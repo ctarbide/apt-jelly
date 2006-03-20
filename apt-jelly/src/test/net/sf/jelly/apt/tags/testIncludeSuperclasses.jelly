@@ -1,0 +1,11 @@
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:apt="jelly:net.sf.jelly.apt.tags.APTTagLibrary">
+
+  <apt:file name="testIncludeSuperclasses.properties">
+    <apt:forAllTypes var="type">
+      <apt:forAllMethods var="method" includeSuperclasses="true">
+<j:out value="${type.qualifiedName}"/>.methods.<j:out value="${method.simpleName}"/>=visited
+      </apt:forAllMethods>
+    </apt:forAllTypes>
+  </apt:file>
+
+</j:jelly>

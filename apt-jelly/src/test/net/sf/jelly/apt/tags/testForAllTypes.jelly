@@ -1,0 +1,12 @@
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:apt="jelly:net.sf.jelly.apt.tags.APTTagLibrary">
+
+  <apt:file name="testForAllTypes.properties">
+    <apt:forAllTypes var="type" annotation="net.sf.jelly.apt.samplesource.annotations.AnnotatedClassExample" annotationVar="annotation">
+<j:out value="${type.qualifiedName}"/>=visited
+<j:out value="${type.qualifiedName}"/>.annotation.name=<j:out value="${annotation.name}"/>
+<j:out value="${type.qualifiedName}"/>.annotation.value=<j:out value="${annotation.value}"/>
+<j:out value="${type.qualifiedName}"/>.annotation.description=<j:out value="${annotation.description}"/>
+    </apt:forAllTypes>
+  </apt:file>
+
+</j:jelly>

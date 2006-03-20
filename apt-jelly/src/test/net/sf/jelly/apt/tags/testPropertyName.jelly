@@ -1,0 +1,13 @@
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:apt="jelly:net.sf.jelly.apt.tags.APTTagLibrary">
+
+  <apt:file name="testPropertyName.properties">
+    <apt:forAllTypes var="type">
+      <apt:forAllMethods var="method">
+<j:out value="${type.qualifiedName}"/>.methods.<j:out value="${method.simpleName}"/>.is.getter=<j:out value="${method.isGetter()}"/>
+<j:out value="${type.qualifiedName}"/>.methods.<j:out value="${method.simpleName}"/>.is.setter=<j:out value="${method.isSetter()}"/>
+<j:out value="${type.qualifiedName}"/>.methods.<j:out value="${method.simpleName}"/>.propertyName=<j:out value="${method.propertyName}"/>
+      </apt:forAllMethods>
+    </apt:forAllTypes>
+  </apt:file>
+
+</j:jelly>

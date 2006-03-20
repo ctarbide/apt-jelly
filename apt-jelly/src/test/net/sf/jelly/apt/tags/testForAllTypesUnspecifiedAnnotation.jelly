@@ -1,0 +1,9 @@
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:apt="jelly:net.sf.jelly.apt.tags.APTTagLibrary">
+
+  <apt:file name="testForAllTypesUnspecifiedAnnotation.properties">
+    <apt:forAllTypes var="type">
+<j:out value="${type.qualifiedName}"/>=visited
+    </apt:forAllTypes>
+  </apt:file>
+
+</j:jelly>

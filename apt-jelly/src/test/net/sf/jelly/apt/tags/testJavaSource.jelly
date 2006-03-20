@@ -1,0 +1,19 @@
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:apt="jelly:net.sf.jelly.apt.tags.APTTagLibrary">
+
+  <apt:javaSource name="net.sf.jelly.apt.examples.ClassAndMethodPrinter">
+package net.sf.jelly.apt.examples;
+
+public class ClassAndMethodPrinter {
+
+  public static void main(String[] args) {
+    <apt:forAllTypes var="type">
+    System.out.println("<j:out value="${type.qualifiedName}"/>");
+      <apt:forAllMethods var="method">
+    System.out.println("<j:out value="${type.qualifiedName}"/>.<j:out value="${method.simpleName}"/>");
+      </apt:forAllMethods>
+    </apt:forAllTypes>
+  }
+}
+  </apt:javaSource>
+
+</j:jelly>

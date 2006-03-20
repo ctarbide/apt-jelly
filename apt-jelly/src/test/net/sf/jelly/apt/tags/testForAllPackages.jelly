@@ -1,0 +1,9 @@
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:apt="jelly:net.sf.jelly.apt.tags.APTTagLibrary">
+
+  <apt:file name="testForAllPackages.properties">
+    <apt:forAllPackages var="package">
+<j:out value="${package.qualifiedName}"/>=visited
+    </apt:forAllPackages>
+  </apt:file>
+
+</j:jelly>

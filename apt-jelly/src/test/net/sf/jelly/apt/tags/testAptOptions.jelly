@@ -1,0 +1,7 @@
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:apt="jelly:net.sf.jelly.apt.tags.APTTagLibrary">
+
+  <apt:file name="testAptOptions.properties">
+options.MyOption=<j:out value="${aptOptions['-AMyOption']}"/>
+  </apt:file>
+
+</j:jelly>

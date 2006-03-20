@@ -1,0 +1,138 @@
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:apt="jelly:net.sf.jelly.apt.tags.APTTagLibrary">
+
+  <apt:file name="testBasicExample.properties">
+    <apt:forAllTypes var="type">
+<!--output each visited type.-->
+<j:out value="${type.qualifiedName}"/>=visited
+<j:out value="${type.qualifiedName}"/>.javadoc=<j:out value="${type.javaDoc}"/>
+<j:out value="${type.qualifiedName}"/>.javadoc.author=<j:out value="${type.javaDoc.author}"/>
+<!--iterate through javadoc tags occuring multiple times.-->
+<j:forEach items="${type.javaDoc.author}" var="author" indexVar="authorIndex">
+<j:out value="${type.qualifiedName}"/>.javadoc.author<j:out value="${authorIndex}"/>=<j:out value="${author}"/>
+</j:forEach>
+
+<!--the modifiers of the type.-->
+<j:out value="${type.qualifiedName}"/>.public=<j:out value="${type.public}"/>
+<j:out value="${type.qualifiedName}"/>.protected=<j:out value="${type.protected}"/>
+<j:out value="${type.qualifiedName}"/>.private=<j:out value="${type.private}"/>
+<j:out value="${type.qualifiedName}"/>.abstract=<j:out value="${type.abstract}"/>
+<j:out value="${type.qualifiedName}"/>.static=<j:out value="${type.static}"/>
+<j:out value="${type.qualifiedName}"/>.final=<j:out value="${type.final}"/>
+<j:out value="${type.qualifiedName}"/>.transient=<j:out value="${type.transient}"/>
+<j:out value="${type.qualifiedName}"/>.volatile=<j:out value="${type.volatile}"/>
+<j:out value="${type.qualifiedName}"/>.synchronized=<j:out value="${type.synchronized}"/>
+<j:out value="${type.qualifiedName}"/>.native=<j:out value="${type.native}"/>
+<j:out value="${type.qualifiedName}"/>.strictfp=<j:out value="${type.strictfp}"/>
+
+<!--demonstrates another use of the modifier decorations in an if statement.-->
+      <j:if test="${type.isPublic()}">
+<j:out value="${type.qualifiedName}"/>.public.condition=met
+      </j:if>
+
+<!--the "type" of types.-->
+<j:out value="${type.qualifiedName}"/>.is.class=<j:out value="${type.isClass()}"/>
+<j:out value="${type.qualifiedName}"/>.is.interface=<j:out value="${type.isInterface()}"/>
+<j:out value="${type.qualifiedName}"/>.is.enum=<j:out value="${type.isEnum()}"/>
+<j:out value="${type.qualifiedName}"/>.is.annotatedType=<j:out value="${type.isAnnotatedType()}"/>
+
+<!--listing out the enum constants of an enum.-->
+      <j:if test="${type.enum}">
+        <j:forEach items="${type.enumConstants}" var="enumConstant">
+<j:out value="${type.qualifiedName}"/>.<j:out value="${enumConstant.simpleName}"/>=visited
+<j:out value="${type.qualifiedName}"/>.<j:out value="${enumConstant.simpleName}"/>.javadoc=<j:out value="${enumConstant.javaDoc}"/>
+        </j:forEach>
+      </j:if>
+
+<!--accessing the annotations of a declaration.-->
+      <apt:ifHasAnnotation var="annotation" annotation="net.sf.jelly.apt.samplesource.annotations.AnnotatedClassExample">
+<j:out value="${type.qualifiedName}"/>.AnnotatedClassExample.name=<j:out value="${annotation.name}"/>
+<j:out value="${type.qualifiedName}"/>.AnnotatedClassExample.value=<j:out value="${annotation.value}"/>
+<j:out value="${type.qualifiedName}"/>.AnnotatedClassExample.description=<j:out value="${annotation.description}"/>
+      </apt:ifHasAnnotation>
+      <apt:ifHasAnnotation var="annotation" annotation="net.sf.jelly.apt.samplesource.annotations.AnotherAnnotatedClassExample">
+<j:out value="${type.qualifiedName}"/>.AnotherAnnotatedClassExample.name=<j:out value="${annotation.name}"/>
+<j:out value="${type.qualifiedName}"/>.AnotherAnnotatedClassExample.value=<j:out value="${annotation.value}"/>
+<j:out value="${type.qualifiedName}"/>.AnotherAnnotatedClassExample.description=<j:out value="${annotation.description}"/>
+      </apt:ifHasAnnotation>
+
+<!--iterating through the methods.-->
+      <apt:forAllMethods var="method" returnTypeVar="returnType">
+<j:out value="${type.qualifiedName}"/>.methods.<j:out value="${method.simpleName}"/>=visited
+<j:out value="${type.qualifiedName}"/>.methods.<j:out value="${method.simpleName}"/>.javadoc=<j:out value="${method.javaDoc}"/>
+<j:out value="${type.qualifiedName}"/>.methods.<j:out value="${method.simpleName}"/>.returnType.toString=<j:out value="${returnType}"/>
+<j:out value="${type.qualifiedName}"/>.methods.<j:out value="${method.simpleName}"/>.returnType.javaDoc=<j:out value="${returnType.docComment}"/>
+<j:out value="${type.qualifiedName}"/>.methods.<j:out value="${method.simpleName}"/>.returnType.is.annotation=<j:out value="${returnType.isAnnotation()}"/>
+<j:out value="${type.qualifiedName}"/>.methods.<j:out value="${method.simpleName}"/>.returnType.is.array=<j:out value="${returnType.isArray()}"/>
+<j:out value="${type.qualifiedName}"/>.methods.<j:out value="${method.simpleName}"/>.returnType.is.collection=<j:out value="${returnType.isCollection()}"/>
+<j:out value="${type.qualifiedName}"/>.methods.<j:out value="${method.simpleName}"/>.returnType.is.class=<j:out value="${returnType.isClass()}"/>
+<j:out value="${type.qualifiedName}"/>.methods.<j:out value="${method.simpleName}"/>.returnType.is.declared=<j:out value="${returnType.isDeclared()}"/>
+<j:out value="${type.qualifiedName}"/>.methods.<j:out value="${method.simpleName}"/>.returnType.is.enum=<j:out value="${returnType.isEnum()}"/>
+<j:out value="${type.qualifiedName}"/>.methods.<j:out value="${method.simpleName}"/>.returnType.is.interface=<j:out value="${returnType.isInterface()}"/>
+<j:out value="${type.qualifiedName}"/>.methods.<j:out value="${method.simpleName}"/>.returnType.is.primitive=<j:out value="${returnType.isPrimitive()}"/>
+<j:out value="${type.qualifiedName}"/>.methods.<j:out value="${method.simpleName}"/>.returnType.is.referenceType=<j:out value="${returnType.isReferenceType()}"/>
+<j:out value="${type.qualifiedName}"/>.methods.<j:out value="${method.simpleName}"/>.returnType.is.typeVariable=<j:out value="${returnType.isTypeVariable()}"/>
+<j:out value="${type.qualifiedName}"/>.methods.<j:out value="${method.simpleName}"/>.returnType.is.void=<j:out value="${returnType.isVoid()}"/>
+<j:out value="${type.qualifiedName}"/>.methods.<j:out value="${method.simpleName}"/>.returnType.is.wildcard=<j:out value="${returnType.isWildcard()}"/>
+
+<!--demonstrating the isInstanceOf method.  Note that if a type is an interface, type.isInstanceOf('java.lang.Object') will return false.-->
+<j:out value="${type.qualifiedName}"/>.methods.<j:out value="${method.simpleName}"/>.returnType.instanceof.Object=<j:out value="${returnType.isInstanceOf('java.lang.Object')}"/>
+<j:out value="${type.qualifiedName}"/>.methods.<j:out value="${method.simpleName}"/>.returnType.instanceof.Family=<j:out value="${returnType.isInstanceOf('net.sf.jelly.apt.samplesource.Family')}"/>
+
+<!--demonstrating primitive type-->
+        <j:if test="${returnType.primitive}">
+<j:out value="${type.qualifiedName}"/>.methods.<j:out value="${method.simpleName}"/>.returnType=<j:out value="${returnType.keyword}"/>
+        </j:if>
+<!--demonstrating void type.-->
+        <j:if test="${returnType.void}">
+<j:out value="${type.qualifiedName}"/>.methods.<j:out value="${method.simpleName}"/>.returnType=void
+        </j:if>
+<!-- demonstrating how to get the declaration of the return type (which might not exist if it's not on the APT path.-->
+<!-- if the a type is primitive or void, it won't have a declaration. -->
+        <apt:ifHasDeclaration type="${returnType}" declarationVar="returnTypeDeclaration">
+<j:out value="${type.qualifiedName}"/>.methods.<j:out value="${method.simpleName}"/>.returnType=<j:out value="${returnTypeDeclaration.qualifiedName}"/>
+        </apt:ifHasDeclaration>
+<!--demonstrating the handling of an array type-->
+        <j:if test="${returnType.array}">
+          <apt:ifHasDeclaration type="${returnType.componentType}" declarationVar="componentType">
+<j:out value="${type.qualifiedName}"/>.methods.<j:out value="${method.simpleName}"/>.returnType=<j:out value="${componentType.qualifiedName}"/>[]
+          </apt:ifHasDeclaration>
+        </j:if>
+<!--demonstrating the handling of a collection type with a type argument that is declared.-->
+        <j:if test="${returnType.collection}">
+          <apt:ifHasDeclaration type="${returnType.actualTypeArguments[0]}" declarationVar="collectionTypeArgument">
+<j:out value="${type.qualifiedName}"/>.methods.<j:out value="${method.simpleName}"/>.returnType.collectionTypeArgument=<j:out value="${collectionTypeArgument.qualifiedName}"/>
+          </apt:ifHasDeclaration>
+        </j:if>
+
+<!--iterating through the parameters of a method.-->
+        <apt:forAllParameters var="param" indexVar="paramIndex">
+<j:out value="${type.qualifiedName}"/>.methods.<j:out value="${method.simpleName}"/>.param<j:out value="${paramIndex}"/>.name=<j:out value="${param.simpleName}"/>
+<j:out value="${type.qualifiedName}"/>.methods.<j:out value="${method.simpleName}"/>.param<j:out value="${paramIndex}"/>.type.toString=<j:out value="${param.type}"/>
+<j:out value="${type.qualifiedName}"/>.methods.<j:out value="${method.simpleName}"/>.param<j:out value="${paramIndex}"/>.javadoc=<j:out value="${param.javaDoc}"/>
+<j:out value="${type.qualifiedName}"/>.methods.<j:out value="${method.simpleName}"/>.param<j:out value="${paramIndex}"/>.docComment=<j:out value="${param.docComment}"/>
+          <j:if test="${param.type.primitive}">
+<j:out value="${type.qualifiedName}"/>.methods.<j:out value="${method.simpleName}"/>.param<j:out value="${paramIndex}"/>.type=<j:out value="${param.type.keyword}"/>
+          </j:if>
+<!--this is an alternative way to get the declaration of a return type, albeit more dangerous as 'type.declaration' could be null.-->
+          <j:if test="${param.type.declared}">
+<j:out value="${type.qualifiedName}"/>.methods.<j:out value="${method.simpleName}"/>.param<j:out value="${paramIndex}"/>.type=<j:out value="${param.type.declaration.qualifiedName}"/>
+          </j:if>
+        </apt:forAllParameters>
+
+<!--iteratring through all the exceptions of a method.-->
+        <apt:forAllThrownTypes var="exception" indexVar="exceptionIndex">
+<j:out value="${type.qualifiedName}"/>.methods.<j:out value="${method.simpleName}"/>.exception<j:out value="${exceptionIndex}"/>.toString=<j:out value="${exception}"/>
+<j:out value="${type.qualifiedName}"/>.methods.<j:out value="${method.simpleName}"/>.exception<j:out value="${exceptionIndex}"/>.docComment=<j:out value="${exception.docComment}"/>
+        </apt:forAllThrownTypes>
+      </apt:forAllMethods>
+
+<!--iterating through the fields.-->
+      <apt:forAllFields var="field">
+<j:out value="${type.qualifiedName}"/>.fields.<j:out value="${field.simpleName}"/>=visited
+<j:out value="${type.qualifiedName}"/>.fields.<j:out value="${field.simpleName}"/>.type=<j:out value="${field.type}"/>
+      </apt:forAllFields>
+
+    </apt:forAllTypes>
+  </apt:file>
+
+</j:jelly>

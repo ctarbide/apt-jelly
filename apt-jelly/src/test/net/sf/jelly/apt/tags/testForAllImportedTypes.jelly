@@ -1,0 +1,13 @@
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:apt="jelly:net.sf.jelly.apt.tags.APTTagLibrary">
+
+  <apt:file name="testForAllImportedTypes.properties">
+    <apt:forAllTypes var="type">
+      <j:if test="${type.qualifiedName eq 'net.sf.jelly.apt.samplesource.services.FamilyService'}">
+        <apt:forAllImportedTypes var="importedType" declaration="${type}">
+<j:out value="${importedType.qualifiedName}"/>=visited
+        </apt:forAllImportedTypes>
+      </j:if>
+    </apt:forAllTypes>
+  </apt:file>
+
+</j:jelly>
