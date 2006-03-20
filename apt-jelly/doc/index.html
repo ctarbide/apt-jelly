@@ -1,0 +1,279 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>apt-jelly</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+  <link rel="stylesheet" href="style.css" type="text/css"/>
+</head>
+
+<body>
+<br/>
+<table border="0" cellspacing="0" cellpadding="0" width="100%">
+<tr>
+  <td colspan="3" class="pos1" height="55" valign="middle">
+    <div class="topbox"><h2>apt-jelly</h2></div>
+  </td>
+</tr>
+<tr>
+  <td>
+    <table width="100%" border="0" cellpadding="0" cellspacing="0" class="topnav">
+      <tr>
+        <td align="left" class="head">
+          &nbsp;&nbsp;soothes irritation and swelling caused by abrasive annotation processing
+        </td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+<td>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td valign="top" width="150"><br/>
+
+      <div>
+        <div class="headbox"><a href="https://sourceforge.net/project/showfiles.php?group_id=162886">Download</a></div>
+        <br/>
+
+        <div class="headbox">Introduction</div>
+        <a class="leftmenu" href="index.html#intro">Introduction</a>
+        <a class="leftmenu" href="index.html#background">Background</a>
+        <a class="leftmenu" href="index.html#documentation">Documentation</a>
+        <a class="leftmenu" href="index.html#scope">Project Scope</a>
+        <a class="leftmenu" href="index.html#about">About</a>
+        <br/>
+
+        <div class="headbox">Documentation</div>
+        <a class="leftmenu" href="getting_started.html">Getting Started</a>
+        <a class="leftmenu" href="reference_guide.html">Reference Guide</a>
+        <a class="leftmenu" href="taglib.html">APT-Jelly Tag Library</a>
+        <a class="leftmenu" href="decorations.html">Decorated Mirror API Data Model</a>
+        <a class="leftmenu" href="api/index.html">API-Docs</a>
+        <a class="leftmenu" href="examples.html">Examples</a>
+        <br/>
+
+        <div class="headbox">Relevant Links</div>
+        <a class="leftmenu" href="http://java.sun.com/j2se/1.5.0/docs/guide/apt/index.html" title="Sun's docs on APT">Annotation Processing Tool (APT)</a>
+        <a class="leftmenu" href="http://jakarta.apache.org/commons/jelly/" title="Jakarta Commons Jelly Project">Commons Jelly</a>
+        <a class="leftmenu" href="http://jakarta.apache.org/commons/jexl/" title="Jakarta Commons Jexl Project">Commons Jexl</a>
+        <a class="leftmenu" href="http://xdoclet.codehaus.org/" title="The latest version of XDoclet">XDoclet</a>
+        <a class="leftmenu" href="http://sourceforge.net"><center><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=162886&amp;type=2" width="125" height="37" border="0" alt="SourceForge.net Logo" /></center></a>
+        <br/>
+
+      </div>
+    </td>
+    <td valign="top"><br/>
+      <table border="0" cellspacing="0" cellpadding="0" width="100%">
+        <tr>
+          <td width="10"></td>
+          <td valign="top" class="mainbox">
+            <h3><a name="intro" id="intro"></a>Introduction</h3>
+            <p>
+              APT-Jelly is an engine for generating artifacts (e.g. source code, config files) from Java source code.  APT-Jelly provides a template-oriented
+              approach to artifact generation (as opposed to raw string-writing to a stream) by leveraging Sun's Annotation Processing Tool and Jakarta
+              Commons Jelly.  APT-Jelly allows developers to take full advantage of the latest Java syntax and features including metadata (annotations),
+              generics, and typesafe enums.
+            </p>
+
+            <h3><a name="intro" id="background"></a>Background</h3>
+            <p>
+              So you've migrated to Java 5 and have started annotating your declarations.  You're thrilled with the concept of defining your own attribute types and
+              that annotation syntax errors are caught at compile-time.  Wow, this sure beats having to use JavaDoc-based attributes that your IDE doesn't recognize
+              and where errors can't be caught until much later.  Sun has even provided a tool for processing your beautifully-annotated source code that you can use
+              to generate config files or even more beautiful source code!  Can life get any better?
+            </p>
+
+            <p>
+              Okay, so let's take a look at this remarkable tool that Sun has provided. What's it called?  Ah. The
+              <a href="http://java.sun.com/j2se/1.5.0/docs/guide/apt/index.html">Annotation Processing Tool (APT)</a>.  Of course.  How creative.  Just for starters,
+              let's figure out how to use it to generate a class that prints to <font class="code">System.out</font> a list of all classes and methods in our source
+              base.  So let's start with the <a href="http://java.sun.com/j2se/1.5.0/docs/guide/apt/GettingStarted.html">getting started guide</a>.
+            </p>
+
+            <p>
+              The getting started guide says that we're going to need to implement an <font class="code">AnnotationProcessorFactory</font> and an
+              <font class="code">AnnotationProcessor</font>.  When the processor is invoked, we have to create our source file in code and use an associated
+              <font class="code">PrintWriter</font> on which we invoke a bunch of <font class="code">println</font>s.
+            </p>
+
+            <p>
+              You've <i>got</i> to be kidding:
+            </p>
+
+            <center>
+            <div class="samplecode">
+              <pre>
+package net.sf.jelly.apt.examples;
+
+import java.util.Collection;
+import java.util.Set;
+import java.util.Collections;
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import com.sun.mirror.apt.AnnotationProcessorFactory;
+import com.sun.mirror.apt.AnnotationProcessor;
+import com.sun.mirror.apt.AnnotationProcessorEnvironment;
+import com.sun.mirror.declaration.AnnotationTypeDeclaration;
+import com.sun.mirror.declaration.TypeDeclaration;
+import com.sun.mirror.declaration.MethodDeclaration;
+
+public class ClassAndMethodPrinterAnnotationProcessorFactory implements AnnotationProcessorFactory {
+
+  public Collection&lt;String&gt; supportedOptions() {
+    return Collections.EMPTY_LIST;
+  }
+
+  public Collection&lt;String&gt; supportedAnnotationTypes() {
+    return Collections.EMPTY_LIST;
+  }
+
+  public AnnotationProcessor getProcessorFor(Set&lt;AnnotationTypeDeclaration&gt; atds, AnnotationProcessorEnvironment env) {
+    return new ClassAndMethodPrinterAnnotationProcessor(env);
+  }
+
+  private class ClassAndMethodPrinterAnnotationProcessor implements AnnotationProcessor {
+
+    AnnotationProcessorEnvironment env;
+
+    public ClassAndMethodPrinterAnnotationProcessor(AnnotationProcessorEnvironment env) {
+      this.env = env;
+    }
+
+    public void process() {
+      try {
+        PrintWriter writer = env.getFiler().createSourceFile("net.sf.jelly.apt.examples.ClassAndMethodPrinter");
+        writer.println("package net.sf.jelly.apt.examples;");
+        writer.println();
+        writer.println("public class ClassAndMethodPrinter {");
+        writer.println();
+        writer.println("  public static void main(String[] args) {");
+        for (TypeDeclaration typeDeclaration : env.getTypeDeclarations()) {
+          writer.println(String.format("    System.out.println(\"Class: %s\");",
+                                       typeDeclaration.getQualifiedName()));
+          for (MethodDeclaration methodDeclaration : typeDeclaration.getMethods()) {
+            writer.println(String.format("    System.out.println(\"Method: %s.%s\");",
+                                         typeDeclaration.getQualifiedName(),
+                                         methodDeclaration.getSimpleName()));
+          }
+        }
+        writer.println("  }");
+        writer.println();
+        writer.println("}");
+      }
+      catch (IOException e) {
+        throw new RuntimeException(e);
+      }
+    }
+  }
+}
+              </pre>
+            </div>
+            </center>
+
+            <p>
+              This is like having to write your favorite J2EE webapp while being limited to just servlets and their associated writers!  Can you imagine not
+              having the convenience of something like JSP to help separate the HTML from the Java code?
+            </p>
+
+            <p>
+              APT-Jelly presents an alternative:
+            </p>
+
+            <center>
+              <div class="samplecode">
+                <pre>
+&lt;j:jelly trim="false" xmlns:j="jelly:core" xmlns:apt="jelly:net.sf.jelly.apt.tags.APTTagLibrary"&gt;
+
+  &lt;apt:javaSource name="net.sf.jelly.apt.examples.ClassAndMethodPrinter"&gt;
+package net.sf.jelly.apt.examples;
+
+public class ClassAndMethodPrinter {
+
+  public static void main(String[] args) {
+    &lt;apt:forAllTypes var="type"&gt;
+    System.out.println("&lt;j:out value="${type.qualifiedName}"/&gt;");
+      &lt;apt:forAllMethods var="method"&gt;
+    System.out.println("&lt;j:out value="${type.qualifiedName}"/&gt;.&lt;j:out value="${method.simpleName}"/&gt;");
+      &lt;/apt:forAllMethods&gt;
+    &lt;/apt:forAllTypes&gt;
+  }
+}
+  &lt;/apt:javaSource&gt;
+
+&lt;/j:jelly&gt;
+                </pre>
+              </div>
+            </center>
+
+            <p>
+              Now isn't that much nicer?  You don't need to implement any interfaces, you don't need to fully swallow Sun's Mirror API, and the format of your code
+              is cleaner and reflects better the output.  Not to mention that you can fully leverage the capabilities of Jelly scripting and any existing
+              Jelly tag libraries (including merging with <a href="http://jakarta.apache.org/velocity/">Velocity</a> templates).
+            </p>
+
+            <br/>
+            <hr/>
+            <h3><a name="documentation" id="documentation"></a>Documentation</h3>
+            <p>
+              If you'd like to give APT-Jelly a try, you'll want to refer to the following documentation:
+            </p>
+            <ul>
+              <li><a href="getting_started.html">Getting Started</a></li>
+              <li><a href="reference_guide.html">Reference Guide</a></li>
+              <li><a href="taglib.html">Jelly Tags</a></li>
+              <li><a href="decorations.html">Decorated Mirror API Data Model</a></li>
+              <li><a href="api/index.html">API Docs</a></li>
+            </ul>
+
+            <br/>
+            <hr/>
+            <h3><a name="scope" id="scope"></a>Project Scope</h3>
+            <p>
+              APT-Jelly is intended to be used by Java developers who need to generate artifacts (e.g. configuration files, Java source code) from existing Java source
+              code at pre-compile time.  Use of APT-Jelly requires <a href="http://java.sun.com">Sun</a>'s
+              <a href="http://java.sun.com/j2se/1.5.0/docs/guide/apt/index.html">Annotation Processing Tool (APT)</a> that ships with the
+              <a href="http://java.sun.com/j2se/1.5.0/download.jsp">JDK 5.0</a>.  While APT was designed to leverage J2SE
+              <a href="http://java.sun.com/j2se/1.5.0/docs/guide/language/annotations.html">metadata (annotations) framework</a> (see
+              <a href="http://jcp.org/en/jsr/detail?id=175">JSR 175</a>), it should be noted that APT can be used to parse and process any Java source code (including
+              source code based on previous versions of the JDK).  So you don't <i>have</i> to be using JDK 5.0 annotations, but if you need to leverage other
+              annotation frameworks (like JavaDoc-based attribute notations), APT-Jelly might not be the tool for you.  (You may want to consider
+              <a href="http://jakarta.apache.org/commons/attributes/">commons-attributes</a> or <a href="http://xdoclet.codehaus.org/">XDoclet</a>.)
+            </p>
+            <p>
+              If you are developing on JDK 5.0 and would like to leverage its annotation framework, you still may not need to generate artifacts at pre-compile time.
+              Consider using the <a href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/reflect/package-summary.html">reflection API</a> to lookup metadata at
+              runtime.
+            </p>
+            <p>
+              Having said that, there could be a variety of reasons you may need to generate artifacts from source code.  Perhaps you'd like to generate a configuration
+              file based off the annotations of your declarations to provide backwards-compatability with a third-party tool or library.  Or perhaps you'd like to
+              generate some source code based off existing source code.  Whatever be the reason, <b>if you want to generate artifacts at pre-compile time (and especially if
+              you want to leverage the JDK 5.0 metadata framework), you'll probably find this project interesting.</b>
+            </p>
+            <br/>
+
+            <hr/>
+            <h3><a name="about" id="about"></a>About APT-Jelly</h3>
+            <p>
+              APT-Jelly is an open-source project, licenced under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, version 2.0</a>.  It was
+              designed and built by Ryan Heaton, working for <a href="http://www.familysearch.org/">familysearch.org</a>.  Comments,
+              enhancements or bug fixes to the project are welcome.
+            </p>
+          </td>
+        </tr>
+      </table>
+      <br/>
+    </td>
+  </tr>
+</table>
+</td>
+</tr>
+
+<tr class="pos1">
+  <td height="20" colspan="2" class="head" align="right">page design by <a href="http://www.oswd.org/email.phtml?user=Phlash">Phlash</a></td>
+</tr>
+</table>
+</body>
+</html>

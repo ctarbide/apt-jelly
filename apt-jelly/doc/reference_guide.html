@@ -1,0 +1,475 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>apt-jelly</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+  <link rel="stylesheet" href="style.css" type="text/css"/>
+</head>
+
+<body>
+<br/>
+<table border="0" cellspacing="0" cellpadding="0" width="100%">
+<tr>
+  <td colspan="3" class="pos1" height="55" valign="middle">
+    <div class="topbox"><h2>apt-jelly</h2></div>
+  </td>
+</tr>
+<tr>
+  <td>
+    <table width="100%" border="0" cellpadding="0" cellspacing="0" class="topnav">
+      <tr>
+        <td align="left" class="head">
+          &nbsp;&nbsp;soothes irritation and swelling caused by abrasive annotation processing
+        </td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+<td>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td valign="top" width="150"><br/>
+
+      <div>
+        <div class="headbox"><a href="index.html">Home</a></div>
+        <br/>
+
+        <div class="headbox"><a href="https://sourceforge.net/project/showfiles.php?group_id=162886">Download</a></div>
+        <br/>
+
+        <div class="headbox">Reference Guide</div>
+        <a class="leftmenu" href="#intro">Introduction</a>
+        <a class="leftmenu" href="#context">APTJellyContext</a>
+        <a class="leftmenu" href="#tags">APT Tag Library</a>
+        <a class="leftmenu" href="#mirror">Decorated Mirror API</a>
+        <a class="leftmenu" href="#extending">Extending APT-Jelly</a>
+        <a class="leftmenu" href="#further">Further Information</a>
+        <br/>
+
+        <div class="headbox">Documentation</div>
+        <a class="leftmenu" href="getting_started.html">Getting Started</a>
+        <a class="leftmenu" href="reference_guide.html">Reference Guide</a>
+        <a class="leftmenu" href="taglib.html">APT-Jelly Tag Library</a>
+        <a class="leftmenu" href="decorations.html">Decorated Mirror API Data Model</a>
+        <a class="leftmenu" href="api/index.html">API-Docs</a>
+        <a class="leftmenu" href="examples.html">Examples</a>
+        <br/>
+
+        <div class="headbox">Relevant Links</div>
+        <a class="leftmenu" href="http://java.sun.com/j2se/1.5.0/docs/guide/apt/index.html" title="Sun's docs on APT">Annotation Processing Tool (APT)</a>
+        <a class="leftmenu" href="http://jakarta.apache.org/commons/jelly/" title="Jakarta Commons Jelly Project">Commons Jelly</a>
+        <a class="leftmenu" href="http://jakarta.apache.org/commons/jexl/" title="Jakarta Commons Jexl Project">Commons Jexl</a>
+        <a class="leftmenu" href="http://xdoclet.codehaus.org/" title="The latest version of XDoclet">XDoclet</a>
+        <a class="leftmenu" href="http://sourceforge.net"><center><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=162886&amp;type=2" width="125" height="37" border="0" alt="SourceForge.net Logo" /></center></a>
+        <br/>
+      </div>
+    </td>
+    <td valign="top"><br/>
+      <table border="0" cellspacing="0" cellpadding="0" width="100%">
+        <tr>
+          <td width="10"></td>
+          <td valign="top" class="mainbox">
+            <h3><a name="intro" id="intro"></a>Introduction</h3>
+            <p>
+              This page was intended as a reference guide for developers who are familiar with
+              <a href="http://jakarta.apache.org/commons/jelly/">commons-jelly</a>,
+              <a href="http://java.sun.com/j2se/1.5.0/docs/guide/apt/index.html">APT</a>, and the
+              <a href="http://java.sun.com/j2se/1.5.0/docs/guide/apt/mirror/index.html">Mirror API</a> and who have grokked the
+              <a href="getting_started.html">getting started guide</a> and who need to know more detail in order to do some real development.  It's expected
+              that developers will need to periodically refer to this guide (and most especially to the <a href="taglib.html">tag library documentation</a> and
+              the <a href="decorations.html">decorated mirror API documentation</a>) to know how to use APT-Jelly in their jelly scripts.
+            </p>
+
+            <p>
+              For the purposes of this reference, it is assumed that any sample jelly script has established the "jelly:core" tag library under the namespace
+              prefix "j" and the APT-Jelly tag library under the namespace prefix "apt".
+            </p>
+
+            <br/>
+            <hr/>
+            <h3><a name="context" id="context"></a>APTJellyContext</h3>
+
+            <p>
+              The <font class="code">APTJellyContext</font> is the jelly context in which each jelly script is executed.  Most APT-Jelly tags assume that they are
+              being invoked within an <font class="code">APTJellyContext</font> so they can reference the <font class="code">AnnotationProcessorEnvironment</font>
+              as needed.
+            </p>
+
+            <p>
+              When the APT-Jelly annotation processor is invoked, a new <font class="code">APTJellyContext</font> is established and initialized with the options
+              of the <font class="code">AnnotationProcessorEnvironment</font> being assigned to the variable "aptOptions".  Developers can look up any options
+              passed to APT by referencing this variable.  For example, to output the value of the "-AMyAPTOption" option, the following snippet can be used:
+            </p>
+
+            <center>
+              <div class="samplecode">
+                <pre>
+&lt;j:out value="${aptOptions['-AMyAPTOption']}"/&gt;
+                </pre>
+              </div>
+            </center>
+
+            <p>
+              It's important to note that the <font class="code">APTJellyContext</font> will write its output to <font class="code">System.out</font> unless it
+              is redirected somewhere else like a flat file or java source file (see the <a href="#tags">tag library documentation</a>).  While it is perfectly
+              acceptable to use the <font class="code">&lt;j:file ...&gt;</font> tag to redirect to a file on the local filesystem, it is assumed that most
+              redirection will happen to an apt-generated artifact using the <font class="code">&lt;apt:javaSource ...&gt;</font> and/or
+              <font class="code">&lt;apt:file ...&gt;</font> tags.  This way, the files will be created relative to the directory specified by the "-s" option
+              given to APT.
+            </p>
+
+            <p>
+              The other important feature enabled by the <font class="code">APTJellyContext</font> is that any variable that is assigned a value that is an
+              instance of <font class="code">com.sun.mirror.declaration.Declaration</font>, <font class="code">com.sun.mirror.type.TypeMirror</font>, and
+              <font class="code">com.sun.mirror.declaration.AnnotationMirror</font> is decorated before being assigned to the variable.  See
+              <a href="#mirror">Decorated Mirror API</a> for more details.
+            </p>
+
+            <br/>
+            <hr/>
+            <h3><a name="tags" id="tags"></a>APT Tag Library</h3>
+
+            <p>
+              The APT tag library is the set of jelly tags that are used to process a set of java source files.  The tag library is referenced in jelly script
+              by <font class="code">net.sf.jelly.apt.tags.APTTagLibrary</font>.  The library is mostly a set of tags that loop through the declarations and
+              and types of the java source files and assign each item in the loop to a variable in the <font class="code">APTJellyContext</font>.  Three notable
+              exceptions to this are the <font class="code">file</font> tag, the <font class="code">javaSource</font> tag, and the
+              <font class="code">annotationValue</font> tag.  The first two tags are used to redirect the script output to a generated artifact.  The third
+              is used to output an annotation if it exists, or none if it doesn't exist.
+            </p>
+
+            <p>
+              This section is intended to give a brief overview of the way the apt tag library is used.  For specific details on the use of each tag, refer to
+              the <a href="taglib.html">tag library documentation</a>.
+            </p>
+
+            <p>
+              A good place to start is by generating an artifact with the <font class="code">file</font> tag or the <font class="code">javaSource</font> tag.
+              As should be expected, the <font class="code">file</font> tag generates a file and the <font class="code">javaSource</font> tag generates a java
+              source file.  The name of the artifact is specified by the "name" attribute.  For a java source artifact, the name should be the fully-qualified
+              name of the java class file for which this is to be the source.  For the <font class="code">file</font> tag, the name should be the simple name
+              of the file, but this tag also allows parameters for the character set and the package relative to which this file should be placed.  The body
+              of each of these tags is redirected to their respective artifacts.
+            </p>
+
+            <p>
+              The java source declarations can be traversed using the <i>declaration loop tag</i>s.  A <i>declaration loop tag</i> is a tag that iterates through
+              a set of declarations, possibly refering to a "parent" declaration to obtain this set.  A parent declaration is a declaration within which a set of
+              declarations is specified.  For example, the parent declaration of a method declaration would be a type declaration (e.g. a class or an interface).
+              A declaration loop tag provides an attribute for specifying the name of the context variable to which should be assigned a reference to the current
+              declaration in the loop, and an attribute for specifying the name of the context variable to which should be assigned the current loop index. The
+              set of declarations over which a declaration loop tag iterates can also be filtered by the class name of an annotation using the "annotation" attribute.
+            </p>
+
+            <p>
+              You will probably want to start by iterating over the set of all type declarations in your source base with the <font class="code">forAllTypes</font>
+              tag, although another good place to start would be with the <font class="code">forAllPackages</font> tag if you want that level of granularity.
+              Refering to the APT Mirror API documentation for <a href="http://java.sun.com/j2se/1.5.0/docs/guide/apt/mirror/com/sun/mirror/declaration/TypeDeclaration.html">TypeDeclaration</a>,
+              you will see that the set of type declarations is the set of all classes and interfaces (including enums and annotation types).  Note also that
+              the documentation for the <font class="code">forAllTypes</font> tag states that interfaces aren't included by default.  If you want to include
+              interfaces, you'll want to specify that with the "includeInterfaces" attribute.
+            </p>
+
+            <p>
+              Once within a <font class="code">forAllTypes</font> tag, you can use other loop tags to iterate through each of the member declarations of the
+              current type.  You'll want to do this through the use of the <font class="code">forAllConstructors</font>, <font class="code">forAllFields</font>,
+              <font class="code">forAllMethods</font>, and <font class="code">forAllNestedTypes</font> tags.  You'll note in the documentation for these tags
+              that it is possible to specify the parent declaration, but this is only necessary if these tags aren't nested within a declaration loop tag for
+              a set of type declarations.
+            </p>
+
+            <p>
+              When traversing a source base, eventually you will encounter a reference to a type (i.e. <a href="http://java.sun.com/j2se/1.5.0/docs/guide/apt/mirror/com/sun/mirror/type/TypeMirror.html">TypeMirror</a>)
+              that may or may not be declared.  You will want to be aware of the difference between a type declaration and a reference to a type in your jelly
+              script because they are modeled quite differently in the mirror API (and rightly so).  While some types may have declarations (e.g. a java class),
+              others may not have declarations (e.g. arrays, primitive types, and the <font class="code">void</font> type).  Whether a type has a declaration is
+              important to know because certain operations are only valid on the declarations of those types.  For example, you cannot determine whether a type
+              reference is annotated with a specified annotation; only type declarations can be annotated.  To determine whether a type has a declaration, use
+              the <font class="code">ifHasDeclaration</font> tag.
+            </p>
+
+            <p>
+              A good example of this is when looking at a <a href="http://java.sun.com/j2se/1.5.0/docs/guide/apt/mirror/com/sun/mirror/declaration/MethodDeclaration.html">method declaration</a>.
+              There are APT-Jelly tags that traverse through the constructs of a method declaration.  These are <font class="code">forAllParameters</font>, and
+              <font class="code">forAllThrownTypes</font>.  There is also an attribute on the <font class="code">forAllMethods</font> tag that allows you to specify
+              the name of a context variable to which to assign the return type of the method.  As an illustration of the difference between a reference to a type
+              and a type declaration, the parameters can be annotated (and thus filtered by a given annotation), but the thrown types of a method cannot.  To
+              determine whether a given thrown type is annotated with a specified annotation, a reference to the declaration of the thrown type must be obtained.
+              The recommended way to do this is with the <font class="code">ifHasDeclaration</font> tag.
+            </p>
+
+            <br/>
+            <hr/>
+            <h3><a name="mirror" id="mirror"></a>Decorated Mirror API</h3>
+
+            <p>
+              When writing a jelly script, you're eventually going to want to do more than just iterate through the declarations of your Java source base.  You
+              may want to output the name of a declaration, or perhaps the value of an annotation element.  In Jelly, this is done through reference to the
+              properties of a context variable using <a href="http://jakarta.apache.org/commons/jexl/">Jexl</a> in a tag the produces output, like the
+              <font class="code">j:out</font> tag.  Therefore, a knowledge of the model for the objects in the Jelly context is imperative when writing your
+              Jelly script.
+            </p>
+
+            <p>
+              The <a href="http://java.sun.com/j2se/1.5.0/docs/guide/apt/mirror/index.html">Mirror API</a> is the object model that is provided by APT.  Each of
+              the declarations and type mirrors in the Mirror API provides a set of relevant properties that can be accessed in script.  However, because the Mirror
+              API has been found to be inadequate or inconvenient to access in script, APT-Jelly decorates the Mirror API with other property accessors that make
+              scripting more easy.
+            </p>
+
+            <p>
+              For example, the Mirror API provides a property on <a href="http://java.sun.com/j2se/1.5.0/docs/guide/apt/mirror/com/sun/mirror/declaration/AnnotationMirror.html">AnnotationMirror</a>
+              that is a map of the element (method) declarations to the values of those elements on the annotation.  While this API is accurate and concise, it
+              becomes difficult to reference the annotation value from script.  APT-Jelly decorates <font class="code">AnnotationMirror</font> by adding properties
+              for each of the elements of the annotation so they can be referenced from script.  To illustrate, consider the following two script snippets.  Each
+              snippet outputs the value of the "bar" element of the annotation "com.foo.Foo".  The first snippet uses the Mirror API as if it were not decorated.
+              The second leverages the API as decorated by APT-Jelly.
+            </p>
+
+            <center>
+              <div class="samplecode">
+                <pre>
+@com.foo.Foo {
+  bar = "hello"
+}
+public class MyClass {
+}
+                </pre>
+              </div>
+              <p class="caption">Example of a class annotated with com.foo.Foo.</p>
+            </center>
+
+            <center>
+              <div class="samplecode">
+                <pre>
+&lt;j:forEach items="${annotation.elementValues.keySet}" var="element"&gt;
+  &lt;j:if test="${element.simpleName eq 'bar'}"&gt;
+    &lt;j:out value="${annotation.elementValues[element]}"/&gt;
+  &lt;/j:if&gt;
+&lt;/j:forEach&gt;
+                </pre>
+              </div>
+              <p class="caption">
+                Script snippet in Jelly that outputs "hello" without using the decorated API.  The context variable "annotation" is assigned the value of the
+                com.foo.Foo AnnotationMirror featured in the example source code above.
+              </p>
+            </center>
+
+            <center>
+              <div class="samplecode">
+                <pre>
+&lt;j:out value="${annotation['bar']}"/&gt;
+                </pre>
+              </div>
+              <p class="caption">
+                Script snippet in Jelly that outputs "hello" using the decorated API. Again, the context variable "annotation" is assigned the value of the
+                com.foo.Foo AnnotationMirror featured in the example source code above.
+              </p>
+            </center>
+
+            <p>
+              For more information on the decorated API, refer to the <a href="decorations.html">decorated mirror API documentation</a>.
+            </p>
+
+            <br/>
+            <hr/>
+            <h3><a name="extending" id="extending"></a>Extending APT-Jelly</h3>
+
+            <p>
+              If APT-Jelly is missing a feature that you need, consider submitting a patch or making a request on the development mailing list.  However, in some cases,
+              it may be more convenient for developers to extend APT-Jelly with their own tags.  For example, you may find it necessary to extend the
+              <font class="code">forAllMethods</font> tag to iterate through your own special set of methods that meet certain specific requirements.  Fortunately,
+              APT-Jelly boasts a clean, modular, and flexible API and can be very easily extended.
+            </p>
+
+            <p>
+              Whenever you find it necessary to extend an existing APT-Jelly tag take a good look at the existing methods to see if you can meet your requirements
+              with a simple override.  Let's take the above-mentioned example of extending the <font class="code">forAllMethods</font> to iterate through a set
+              of methods that meet a specific set of requirements.  The <font class="code">forAllMethods</font> tag is defined by the class
+              <font class="code">net.sf.jelly.apt.tags.ForAllMethodsTag</font>.  Looking at the possible methods we could override, we see that this class extends
+              (among other things) <font class="code">net.sf.jelly.apt.tags.DeclarationLoopTag</font> that defines a method, <font class="code">getDeclarations</font>,
+              that gets the declarations to loop through.  So, this might be a good place to put our own filtering logic.
+            </p>
+
+            <p>
+              Consider the following tag class that extends <font class="code">net.sf.jelly.apt.tags.ForAllMethodsTag</font> and loops all protected methods
+              that are annotated with the "com.foo.Foo" annotation and that return void.
+            </p>
+
+            <center>
+              <div class="samplecode">
+                <pre>
+import net.sf.jelly.apt.tags.ForAllMethodsTag;
+import com.sun.mirror.declaration.MethodDeclaration;
+import com.sun.mirror.declaration.Modifier;
+import com.sun.mirror.type.VoidType;
+
+import java.util.Collection;
+import java.util.ArrayList;
+
+import org.apache.commons.jelly.JellyTagException;
+
+public class ForAllProtectedVoidFooMethodsTag extends ForAllMethodsTag {
+
+  @Override
+  public Collection&lt;MethodDeclaration&gt; getDeclarations() throws JellyTagException {
+    Collection&lt;MethodDeclaration&gt; declarations = super.getDeclarations();
+
+    Collection&lt;MethodDeclaration&gt; specialMethods = new ArrayList&lt;MethodDeclaration&gt;();
+    for (MethodDeclaration method : declarations) {
+      if ((method.getModifiers().contains(Modifier.PROTECTED))
+          && (method.getReturnType() instanceof VoidType)
+          && (method.getAnnotation(com.foo.Foo.class) != null)) {
+        webMethods.add(method);
+      }
+    }
+
+    return webMethods;
+  }
+}
+                </pre>
+              </div>
+            </center>
+
+            <p>
+              A few things to note:
+            </p>
+
+            <ul>
+              <li>
+                The above logic could have also been easily done in script.  You'll have to make your own design decisions to find that delicate balance
+                between a heavy, difficult-to-read script and a superfluous custom tag library.
+              </li>
+              <li>
+                The filtering of the method declaration in the above example happens <i>after</i> the declarations are filtered by annotation.  You may decide
+                to filter before filtering by annotation name by overriding the <font class="code">getAllDeclarationsToConsiderForAnnotationFiltering</font>
+                method.
+              </li>
+              <li>
+                Just in case you don't know, the <font class="code">@java.lang.Override</font> annotation causes a compile failure if any declaration that it
+                annotates doesn't override another declaration.  I use this all the time to help me catch API changes at compile-time rather than causing
+                a confusing catastrophic runtime error.
+              </li>
+            </ul>
+
+            <p>
+              The other aspect of APT-Jelly that you may find useful to extend is the decorated mirror API (*).  In this case, the classes you will want to extend
+              are the decorators, <font class="code">net.sf.jelly.apt.decorations.DeclarationDecorator</font> and
+              <font class="code">net.sf.jelly.apt.decorations.TypeMirrorDecorator</font>.  As you can see, these decorators are implementations of the visitors
+              for declarations and types in the Mirror API.  The work done when visiting a given type or declaration is simply to set a local variable to the decorated
+              instance of the type or declaration.
+            </p>
+
+            <p>
+              When extending the decorators, it's only necessary to override the visit method of the type of declaration or type you want to decorate and then
+              call the same method of the <font class="code">super</font> with your own decorated instance (*).  Your own decorated instance will need to extend the
+              decorated type or declaration class provided by APT-Jelly in order to expose your custom decorated methods.
+            </p>
+
+            <p>
+              After having defined your decoration and extended the decorator, it's necessary to set a system property so APT-Jelly knows what decorator to use
+              when decorating.  This system property is "net.sf.jelly.apt.decorations.DeclarationDecorator" for a declaration decorator and
+              "net.sf.jelly.apt.decorations.TypeMirrorDecorator" for type decorator.  The values of these properties should be the fully-qualified class name
+              of your custom decorator.
+            </p>
+
+            <p>
+              As an example, let's extend APT-Jelly by adding another property called "happy" to any class declaration.  (Apologies for such a contrived example.
+              All the <i>useful</i> decorations I could think of have already been applied.)  We'll say that a class declaration is "happy" if its simple name
+              starts with "Happy".
+            </p>
+
+            <p>
+              First, we start with extending the decorated class declaration:
+            </p>
+
+            <center>
+              <div class="samplecode">
+                <pre>
+package happy;
+
+public class HappilyDecoratedClassDeclaration extends net.sf.jelly.apt.decorations.declaration.DecoratedClassDeclaration {
+
+  public HappilyDecoratedClassDeclaration(com.sun.mirror.declaration.ClassDeclaration delegate) {
+    super(delegate);
+  }
+
+  public boolean isHappy() {
+    return getSimpleName().startsWith("Happy");
+  }
+}
+                </pre>
+              </div>
+            </center>
+
+            <p>
+              Next, we extend <font class="code">net.sf.jelly.apt.decorations.DeclarationDecorator</font> to correctly visit a class declaration:
+            </p>
+
+            <center>
+              <div class="samplecode">
+                <pre>
+package happy;
+
+public class HappyDeclarationDecorator extends net.sf.jelly.apt.decorations.DeclarationDecorator {
+
+  public void visitClassDeclaration(com.sun.mirror.declaration.ClassDeclaration declaration) {
+    super.visitClassDeclaration(new HappilyDecoratedClassDeclaration(declaration));
+  }
+
+}
+                </pre>
+              </div>
+            </center>
+
+            <p>
+              As long as we make sure that there is a sytem property named "net.sf.jelly.apt.decorations.DeclarationDecorator" that has the value
+              "happy.HappyDeclarationDecorator" when we invoke apt (probably with a -D parameter on the command line), then we should be able to access our decorations
+              from script, e.g.:
+            </p>
+
+            <center>
+              <div class="samplecode">
+                <pre>
+&lt;j:if test="${classDeclaration.happy}"&gt;
+  &lt;!-- do some happy processing --&gt;
+&lt;/j:if&gt;
+                </pre>
+              </div>
+            </center>
+
+            <p>
+              *NOTE: The strict rigidity of the visitor/decorator pattern causes some irritating inefficiencies when extending the model.  If you decide that
+              extending the decorated API is necessary, be aware that when extending the decorations of a type, the <i>subtypes</i> of that type will NOT also
+              be decorated.  Using the example above, while we extending a class declaration with the "happy" property, we are NOT extending an enum declaration.
+              So, even though an enum declaration extends a class declaration, no enum declarations will be decorated with the "happy" property.  Now just
+              think about how irritating it would be if we wanted to decorate *all* declarations with the "happy" property.  We would have to extend every subclass
+              of <font class="code">DecoratedDeclaration</font>.  So extend the decorations at your own risk.
+            </p>
+
+            <br/>
+            <hr/>
+            <h3><a name="further" id="further"></a>Further Information</h3>
+            <p>
+              If you've scoured the <a href="taglib.html">tag library documentation</a> and the <a href="decorations.html">decorated mirror API documentation</a>
+              and <i>still</i> can't find what you're looking for, you may want to try the <a href="#">apt-jelly mailing lists</a>.  And then, if all else fails,
+              <i>use the source, Luke</i>.  You may want to especially take a look at the unit tests as a good source for examples on how to use APT-Jelly.
+            </p>
+          </td>
+        </tr>
+      </table>
+      <br/>
+    </td>
+  </tr>
+</table>
+</td>
+</tr>
+
+<tr class="pos1">
+  <td height="20" colspan="2" class="head" align="right">page design by <a href="http://www.oswd.org/email.phtml?user=Phlash">Phlash</a></td>
+</tr>
+</table>
+</body>
+</html>

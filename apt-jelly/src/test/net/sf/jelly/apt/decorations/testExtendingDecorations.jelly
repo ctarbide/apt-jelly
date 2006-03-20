@@ -1,0 +1,11 @@
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:apt="jelly:net.sf.jelly.apt.tags.APTTagLibrary">
+
+  <apt:file name="testExtendingDecorations.properties">
+    <apt:forAllTypes var="type">
+      <j:if test="${type.happy}">
+<j:out value="${type.qualifiedName}"/>=visited
+      </j:if>
+    </apt:forAllTypes>
+  </apt:file>
+
+</j:jelly>

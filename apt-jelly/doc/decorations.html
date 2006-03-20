@@ -1,0 +1,333 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>apt-jelly</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+  <link rel="stylesheet" href="style.css" type="text/css"/>
+</head>
+
+<body>
+<br/>
+<table border="0" cellspacing="0" cellpadding="0" width="100%">
+<tr>
+  <td colspan="3" class="pos1" height="55" valign="middle">
+    <div class="topbox"><h2>apt-jelly</h2></div>
+  </td>
+</tr>
+<tr>
+  <td>
+    <table width="100%" border="0" cellpadding="0" cellspacing="0" class="topnav">
+      <tr>
+        <td align="left" class="head">
+          &nbsp;&nbsp;soothes irritation and swelling caused by abrasive annotation processing
+        </td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+<td>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td valign="top" width="150"><br/>
+
+      <div>
+        <div class="headbox"><a href="index.html">Home</a></div>
+        <br/>
+
+        <div class="headbox"><a href="https://sourceforge.net/project/showfiles.php?group_id=162886">Download</a></div>
+        <br/>
+
+        <div class="headbox">Decorated Mirror API</div>
+        <a class="leftmenu" href="#intro">Introduction</a>
+        <a class="leftmenu" href="#declarations">Decorated Declarations</a>
+        <a class="leftmenu" href="#annotations">Decorated Annotation Mirrors</a>
+        <a class="leftmenu" href="#types">Decorated Types</a>
+        <br/>
+
+        <div class="headbox">Documentation</div>
+        <a class="leftmenu" href="getting_started.html">Getting Started</a>
+        <a class="leftmenu" href="reference_guide.html">Reference Guide</a>
+        <a class="leftmenu" href="taglib.html">APT-Jelly Tag Library</a>
+        <a class="leftmenu" href="decorations.html">Decorated Mirror API Data Model</a>
+        <a class="leftmenu" href="api/index.html">API-Docs</a>
+        <a class="leftmenu" href="examples.html">Examples</a>
+        <br/>
+
+        <div class="headbox">Relevant Links</div>
+        <a class="leftmenu" href="http://java.sun.com/j2se/1.5.0/docs/guide/apt/index.html" title="Sun's docs on APT">Annotation Processing Tool (APT)</a>
+        <a class="leftmenu" href="http://jakarta.apache.org/commons/jelly/" title="Jakarta Commons Jelly Project">Commons Jelly</a>
+        <a class="leftmenu" href="http://jakarta.apache.org/commons/jexl/" title="Jakarta Commons Jexl Project">Commons Jexl</a>
+        <a class="leftmenu" href="http://xdoclet.codehaus.org/" title="The latest version of XDoclet">XDoclet</a>
+        <a class="leftmenu" href="http://sourceforge.net"><center><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=162886&amp;type=2" width="125" height="37" border="0" alt="SourceForge.net Logo" /></center></a>
+        <br/>
+      </div>
+    </td>
+    <td valign="top"><br/>
+      <table border="0" cellspacing="0" cellpadding="0" width="100%">
+        <tr>
+          <td width="10"></td>
+          <td valign="top" class="mainbox">
+            <h3><a name="intro" id="intro"></a>Introduction</h3>
+            <p>
+              The following is a brief overview of the APT-Jelly Decorated Mirror API. You may want to read the <a href="reference_guide.html#mirror">section on
+              the decorated API in the reference guide</a> to establish a context for reading this.  There will be no attempt here to present the decorated API
+              in detail.  For the details, use the <a href="api/index.html">API docs</a>.
+            </p>
+
+            <p>
+              Because these are decorations, all decorated classes provide the same properties that did the Mirror API interfaces that they are decorating.  An
+              important enhancement to note, however, is that all decorated declarations and type mirrors that have properties whose values are declarations or
+              type mirrors (or collections thereof) return the declarations and type mirrors (or collections thereof) in their decorated form.  The APTJellyContext
+              also decorates declarations or type mirrors as necessary when set as variables.
+            </p>
+
+            <p>
+              To extend the decorations, refer to the <a href="reference_guide.html#extending">relevant section in the reference guide</a>.
+            </p>
+
+            <br/>
+            <hr/>
+            <h3><a name="declarations" id="declarations"></a>Decorated Declarations</h3>
+
+            <p><b><u>declaration modifiers</u></b></p>
+
+            <p>
+              The decorated declarations provide additional boolean properties for determining the declartion modifiers.  The relevant properties are public,
+              "protected", "private", "abstract", "static", "final", "transient", "volatile", "synchronized", "native", and "strictfp".  These properties provide a simple way in
+              script to determine the modifiers that are present on a declaration.  As an example, consider the following script snippet:
+            </p>
+
+            <center>
+              <div class="samplecode">
+                <pre>
+&lt;apt:forAllTypes var="type"&gt;
+  &lt;j:if test="${type.public}"&gt;
+    &lt;j:out value="${type}"/&gt; is public.
+  &lt;/j:if&gt;
+  &lt;j:if test="${type.static}"&gt;
+    &lt;j:out value="${type}"/&gt; is static.
+  &lt;/j:if&gt;
+  &lt;j:if test="${type.final}"&gt;
+    &lt;j:out value="${type}"/&gt; is final.
+  &lt;/j:if&gt;
+
+  &lt;-- could be done for the other modifiers, too. --&gt;
+
+&lt;/apt:forAllTypes&gt;
+                </pre>
+              </div>
+            </center>
+
+            <p><b><u>javaDoc</u></b></p>
+
+            <p>
+              The decorated declarations also provide an interesting new property named "javaDoc".  This is property is useful when accessing the JavaDocs for
+              the declaration.  This property is a map that represents the different parts of the doc comment associated with the declaration.  Each key in this
+              map is a JavaDoc tag.  The value associated with the key is a list of JavaDoc tag values.  Use of the "javaDoc" property is best described by
+              example.  Consider the following class:
+            </p>
+
+            <center>
+              <div class="samplecode">
+                <pre>
+/**
+ * This is the comment for my class.
+ *
+ * @author Sam
+ * @author Mike
+ * @version 1.2
+ */
+public class MyClass {
+}
+                </pre>
+              </div>
+            </center>
+
+            <p>
+              If the "myclass" context variable in a jelly script were assigned the type declaration for <font class="code">MyClass</font> as declared
+              above, then the following script snippet:
+            </p>
+
+            <center>
+              <div class="samplecode">
+                <pre>
+---------------- myclass.docComment ----------------
+&lt;j:out value="${myclass.docComment}"/&gt;
+---------------- myclass.javaDoc -------------------
+&lt;j:out value="${myclass.javaDoc}"/&gt;
+---------------- myclass.javaDoc.author ------------
+&lt;j:out value="${myclass.javaDoc.author}"/&gt;
+---------------- myclass.javaDoc.version -----------
+&lt;j:out value="${myclass.javaDoc.version}"/&gt;
+---------------- list of myclass.javaDoc.author ----
+&lt;j:forEach items="${myclass.javaDoc.author}" var="author"&gt;
+  &lt;j:out value="${author}"/&gt;
+&lt;/j:forEach&gt;
+                </pre>
+              </div>
+            </center>
+
+            <p>
+              Would produce the following output:
+            </p>
+
+            <center>
+              <div class="samplecode">
+                <pre>
+---------------- myclass.docComment ----------------
+This is the comment for my class.
+
+@author Sam
+@author Mike
+@version 1.2
+---------------- myclass.javaDoc -------------------
+This is the comment for my class.
+---------------- myclass.javaDoc.author ------------
+Sam
+---------------- myclass.javaDoc.version -----------
+1.2
+---------------- list of myclass.javaDoc.author ----
+  Sam
+  Brian
+                </pre>
+              </div>
+            </center>
+
+            <p>
+              It's interesting to note that the javaDoc property for parameter declarations contains the value of the associated comments in the associated
+              method declaration.  Also, note that the decorated type mirror has a "docComment" property.  This property is set on some decorated type mirrors,
+              most notably the type mirrors for the thrown types of the method.
+            </p>
+
+            <p><b><u>annotations</u></b></p>
+
+            <p>
+              There is also an "annotations" property on the decorated declaration that is a map containing the annotation mirrors on the declaration.  The key
+              of the map is the fully-qualified name of the annotation, the value is the (decorated) annotation mirror.
+            </p>
+
+            <br/>
+            <hr/>
+            <h3><a name="annotations" id="annotations"></a>Decorated Annotation Mirrors</h3>
+
+            <p>
+              APT-Jelly decorates <font class="code">AnnotationMirror</font> by adding properties for each of the elements of the annotation so they can be
+              referenced from script.  To illustrate, consider the following two script snippets.  Each snippet outputs the value of the "bar" element of the
+              annotation "com.foo.Foo".  The first snippet uses the Mirror API as if it were not decorated. The second leverages the API as decorated by
+              APT-Jelly.
+            </p>
+
+            <center>
+              <div class="samplecode">
+                <pre>
+@com.foo.Foo {
+  bar = "hello"
+}
+public class MyClass {
+}
+                </pre>
+              </div>
+              <p class="caption">Example of a class annotated with com.foo.Foo.</p>
+            </center>
+
+            <center>
+              <div class="samplecode">
+                <pre>
+&lt;j:forEach items="${annotation.elementValues.keySet}" var="element"&gt;
+  &lt;j:if test="${element.simpleName eq 'bar'"&gt;
+    &lt;j:out value="${annotation.elementValues[element]}"/&gt;
+  &lt;/j:if&gt;
+&lt;/j:forEach&gt;
+                </pre>
+              </div>
+              <p class="caption">
+                Script snippet in Jelly that outputs "hello" without using the decorated API.  The context variable "annotation" is assigned the value of the
+                com.foo.Foo AnnotationMirror featured in the example source code above.
+              </p>
+            </center>
+
+            <center>
+              <div class="samplecode">
+                <pre>
+&lt;j:out value="${annotation['bar']}"/&gt;
+                </pre>
+              </div>
+              <p class="caption">
+                Script snippet in Jelly that outputs "hello" using the decorated API. Again, the context variable "annotation" is assigned the value of the
+                com.foo.Foo AnnotationMirror featured in the example source code above.
+              </p>
+            </center>
+
+            <br/>
+            <hr/>
+            <h3><a name="typeDeclarations" id="typeDeclarations"></a>Decorated Type Declarations</h3>
+
+            <p>
+              The decorated type declarations provide properties for whether the type declaration is a class, interface, enum, or annotation type declaration.
+              As should be expected, these properties are boolean properties named "class", "interface", "enum", and "annotation".
+            </p>
+
+            <br/>
+            <hr/>
+            <h3><a name="methodDeclarations" id="methodDeclarations"></a>Decorated Method Declarations</h3>
+
+            <p>
+              There is a set of properties on a decorated method declaration that are concerned with whether this method is a property accessor.  A boolean
+              property specifying whether the method is a getter is named "getter."  A boolean property specifying whether the method is a setter
+              is named "setter."  There is also a property that calculates the name of the property for which this is a property accessor is named "propertyName."
+            </p>
+
+            <br/>
+            <hr/>
+            <h3><a name="types" id="types"></a>Decorated Type Mirrors</h3>
+
+            <p>
+              There is a set of properties on the decorated type mirrors that can be used to determine what kind of type mirror it is.  The properties are
+              boolean and are named "annotation", "array", "class", "collection", "declared", "enum", "interface", "primitive", "referenceType", "typeVariable",
+              "void", and "wildcard".
+            </p>
+
+            <p>
+              As explained above, there is also a "docComment" property for types that can be assigned a JavaDoc comment.  Most notable of these is the
+              thrown types of a method.
+            </p>
+
+            <p>
+              There is also a method on decorated type mirrors named "isInstanceOf" that takes as a parameter a string.  This method can be used
+              in script to determine whether the type is an instance of the specified (fully-qualified) name.  While all decorated type mirrors have this
+              method available, it only has meaning if the type mirror is an array, is declared, or is a primitive.
+            </p>
+
+            <p>
+              The following is an example of using the <font class="code">isInstanceOf</font> method in script.  It will output "It is a map" if the "typeMirror"
+              context varible holds a reference to a declared type that is an instance of <font class="code">java.util.Map</font>.
+            </p>
+
+            <center>
+              <div class="samplecode">
+                <pre>
+&lt;j:if test="${typeMirror.isIntanceOf('java.util.Map')}"&gt;
+  It is a map
+&lt;/j:if&gt;
+                </pre>
+              </div>
+            </center>
+
+          </td>
+        </tr>
+      </table>
+      <br/>
+    </td>
+  </tr>
+</table>
+</td>
+</tr>
+
+<tr class="pos1">
+  <td height="20" colspan="2" class="head" align="right">page design by <a href="http://www.oswd.org/email.phtml?user=Phlash">Phlash</a></td>
+</tr>
+</table>
+</body>
+</html>

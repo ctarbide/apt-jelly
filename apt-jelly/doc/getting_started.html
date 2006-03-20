@@ -1,0 +1,248 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>apt-jelly</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+  <link rel="stylesheet" href="style.css" type="text/css"/>
+</head>
+
+<body>
+<br/>
+<table border="0" cellspacing="0" cellpadding="0" width="100%">
+<tr>
+  <td colspan="3" class="pos1" height="55" valign="middle">
+    <div class="topbox"><h2>apt-jelly</h2></div>
+  </td>
+</tr>
+<tr>
+  <td>
+    <table width="100%" border="0" cellpadding="0" cellspacing="0" class="topnav">
+      <tr>
+        <td align="left" class="head">
+          &nbsp;&nbsp;soothes irritation and swelling caused by abrasive annotation processing
+        </td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+<td>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td valign="top" width="150"><br/>
+
+      <div>
+        <div class="headbox"><a href="index.html">Home</a></div>
+        <br/>
+
+        <div class="headbox"><a href="https://sourceforge.net/project/showfiles.php?group_id=162886">Download</a></div>
+        <br/>
+
+        <div class="headbox">Getting Started</div>
+        <a class="leftmenu" href="#intro">Introduction</a>
+        <a class="leftmenu" href="#step1">Creating the Jelly Script</a>
+        <a class="leftmenu" href="#step2">Invoking APT</a>
+        <a class="leftmenu" href="#further">Further Reading</a>
+        <br/>
+
+        <div class="headbox">Documentation</div>
+        <a class="leftmenu" href="getting_started.html">Getting Started</a>
+        <a class="leftmenu" href="reference_guide.html">Reference Guide</a>
+        <a class="leftmenu" href="taglib.html">APT-Jelly Tag Library</a>
+        <a class="leftmenu" href="decorations.html">Decorated Mirror API Data Model</a>
+        <a class="leftmenu" href="api/index.html">API-Docs</a>
+        <a class="leftmenu" href="examples.html">Examples</a>
+        <br/>
+
+        <div class="headbox">Relevant Links</div>
+        <a class="leftmenu" href="http://java.sun.com/j2se/1.5.0/docs/guide/apt/index.html" title="Sun's docs on APT">Annotation Processing Tool (APT)</a>
+        <a class="leftmenu" href="http://jakarta.apache.org/commons/jelly/" title="Jakarta Commons Jelly Project">Commons Jelly</a>
+        <a class="leftmenu" href="http://jakarta.apache.org/commons/jexl/" title="Jakarta Commons Jexl Project">Commons Jexl</a>
+        <a class="leftmenu" href="http://xdoclet.codehaus.org/" title="The latest version of XDoclet">XDoclet</a>
+        <a class="leftmenu" href="http://sourceforge.net"><center><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=162886&amp;type=2" width="125" height="37" border="0" alt="SourceForge.net Logo" /></center></a>
+        <br/>
+      </div>
+    </td>
+    <td valign="top"><br/>
+      <table border="0" cellspacing="0" cellpadding="0" width="100%">
+        <tr>
+          <td width="10"></td>
+          <td valign="top" class="mainbox">
+            <h3><a name="intro" id="intro"></a>Introduction</h3>
+            <p>
+              Before going too far, you're going to want to be familiar with the <a href="http://jakarta.apache.org/commons/jelly/">commons-jelly</a> project
+              as you will be writing jelly scripts to do the work of generating your artifacts.  You will also want to be familiar with the
+              <a href="http://java.sun.com/j2se/1.5.0/docs/guide/apt/index.html">Annotation Processing Tool (APT)</a>.  I'd suggest reading through the getting
+              started page, and pay particular attention to the section on "how the apt tool operates" so as to be familiar with what's going on in
+              the background while generating artifacts and to be able to understand any error messages or warnings that may turn up.  You would also be
+              well-advised to be familiar the <a href="http://java.sun.com/j2se/1.5.0/docs/guide/apt/mirror/index.html">APT Mirror API</a> not only to know
+              the properties and structure of the objects available in the jelly context (accessible by Jexl), but also to be somewhat familiar with the
+              vocabulary of Java syntax.
+            </p>
+
+            <p>
+              So, shall we get started? As an admittedly contrived example, let's go through the process of generating a class that prints to <font class="code">System.out</font> a list
+              of all classes and methods in a given source base.
+            </p>
+
+            <br/>
+            <hr/>
+            <h3><a name="step1" id="step1"></a>Step 1: Creating the Jelly Script</h3>
+            <p>
+              We first write our Jelly script:
+            </p>
+
+            <center>
+              <div class="samplecode">
+                <pre>
+&lt;j:jelly trim="false" xmlns:j="jelly:core" xmlns:apt="jelly:net.sf.jelly.apt.tags.APTTagLibrary"&gt;
+
+  &lt;apt:javaSource name="net.sf.jelly.apt.examples.ClassAndMethodPrinter"&gt;
+package net.sf.jelly.apt.examples;
+
+public class ClassAndMethodPrinter {
+
+  public static void main(String[] args) {
+    &lt;apt:forAllTypes var="type"&gt;
+    System.out.println("&lt;j:out value="${type.qualifiedName}"/&gt;");
+      &lt;apt:forAllMethods var="method"&gt;
+    System.out.println("&lt;j:out value="${type.qualifiedName}"/&gt;.&lt;j:out value="${method.simpleName}"/&gt;");
+      &lt;/apt:forAllMethods&gt;
+    &lt;/apt:forAllTypes&gt;
+  }
+}
+  &lt;/apt:javaSource&gt;
+
+&lt;/j:jelly&gt;
+                </pre>
+              </div>
+            </center>
+
+            <p>
+              Pretty simple, no?  You should be familiar with what a Jelly script looks like.  We start by declaring this document as a jelly script and
+              declaring the tag libraries that will be used for this script. The "j" namespace prefix is mapped to the namespace of the core
+              jelly tags.  We also declare the "apt" prefix to be mapped to the APT tag library.
+            </p>
+
+            <p>
+              The "javaSource" tag declares that we are going to be generating the source code for a Java class named "net.sf.jelly.apt.examples.ClassAndMethodPrinter".
+              Any output within this tag will be directed to this Java source file, so this is where we see the Java code, including the package declaration, the
+              class declaration, and the <font class="code">main</font> method that will do the strenuous work of printing the names of the classes and methods.
+            </p>
+
+            <p>
+              The "forAllTypes" tag iterates through each type declaration in the source base.  By default, interfaces are excluded, so this will only iterate
+              through each class declaration.  The "var" attribute on this tag indicates the name of the context variable that will be used as a reference to
+              the declaration over which we are currently iterating.  (For more information on the "forAllTypes" tag, including how to include interfaces, see
+              the <a href="taglib.html">tag library documentation</a>.)  The first thing we do for each class declaration is output the Java code that will
+              print out the name of the class to <font class="code">System.out</font>.  Note the use of the "out" tag (in the core jelly library) and the
+              use of the Jexl expression to access the qualified name of the type.
+            </p>
+
+            <p>
+              We now iterate through each method in the current declaration with the "forAllMethods" tag (again, the context variable name is set with the "var"
+              attribute).  We then output the Java code that writes the method to <font class="code">System.out</font> in the form of "fully.qualified.Class.[method name]".
+            </p>
+
+            <p>
+              And that's it.  We close off all our constructs and save the file.
+            </p>
+
+            <br/>
+            <hr/>
+            <h3><a name="step2" id="step2"></a>Step 2: Invoking APT</h3>
+
+            <p>
+              Now that the script is written, APT can be invoked as is described in the <a href="http://java.sun.com/j2se/1.5.0/docs/guide/apt/GettingStarted.html">getting started guide</a>.
+              The name of the <font class="code">AnnotationProcessorFactory</font> to use is "net.sf.jelly.apt.APTJellyProcessorFactory".  The location of the jelly
+              script must also be passed in as a parameter using either the <font class="code">"-AjellyScript"</font> option or the <font class="code">"-AjellyScriptURL"</font> option.
+              The first option is the path to the script on the local filesystem.  The second is a URL to the script.  If both are specified, only the
+              filesystem option will be used.
+            </p>
+
+            <p>
+              Please also note the following when invoking APT:
+            </p>
+
+            <ul>
+              <li>
+                Because APT-Jelly doesn't specify the set of annotations that it processes (it processes all of them), invoking APT using the discovery procedure
+                is not an option.  By design, APT-Jelly must be invoked using the <font class="code">"-factory"</font> option.  This is to eliminate any ambiguity
+                that could be caused when invoking APT-Jelly with other instances of <font class="code">AnnotationProcessorFactory</font> that are on the path.
+              </li>
+              <li>
+                For now, APT-Jelly only processes one APT round.  Any source files generated by APT-Jelly will not be processed in later rounds by APT-Jelly.
+              </li>
+            </ul>
+
+            <p>
+              Also, APT-Jelly has a set of library dependencies that you will need to include on your classpath when invoking APT.  These include the following:
+            </p>
+
+            <ul>
+              <li>
+                tools.jar (This jar is included with the 1.5 JDK in $JAVA_HOME/lib, where $JAVA_HOME is the path to your Java home directory.  This jar
+                includes APT and the Mirror API.)
+              </li>
+              <li>commons-jelly.jar</li>
+              <li>commons-beanutils.jar</li>
+              <li>commons-collections.jar</li>
+              <li>commons-jexl.jar</li>
+              <li>commons-logging.jar</li>
+              <li>dom4j.jar</li>
+            </ul>
+
+            <p>
+              So as an example, let's assume our script is saved to the file "class-method-printer.jelly" and that the apt-jelly jar file is saved to the file
+              "apt-jelly.jar" in the "lib" directory, as is all other dependant jars.  To invoke our script on the source files found in the "src/java" directory,
+              putting all generated artifacts into the "target/gen" directory, and compiling all source classes (including the generated one) into the
+              "target/classes" directory, we invoke something like the following command (note it's all one line):
+            </p>
+
+            <p>
+<b>user@host:~></b>apt -cp lib/apt-jelly.jar:lib/commons-jelly.jar:lib/commons-beanutils.jar:lib/commons-collections.jar:lib/commons-jexl.jar:lib/commons-logging.jar:lib/dom4j.jar -s target/gen -factory net.sf.jelly.apt.APTJellyProcessorFactory -AjellyScript=class-method-printer.jelly -d target/classes src/java/*.java
+            </p>
+
+            <p>
+              If everything worked as it should, you'll can now invoke the <font class="code">main</font> method on your generated class:
+            </p>
+
+            <p>
+<b>user@host:~></b>java -cp target/classes net.sf.jelly.apt.examples.ClassAndMethodPrinter
+            </p>
+
+            <p>
+              And you can see the generated source code in target/gen/net/sf/jelly/apt/examples/ClassAndMethodPrinter.java
+            </p>
+
+            <p>
+              <i>NOTE: You probably noticed that the <font class="code">apt</font> command is kind of verbose.  You'll probably want to invoke apt using an <a href="http://ant.apache.org/">Ant</a>
+              task or IDE tool of some kind.  How to do so is beyond the scope of this document, although you may be interested to know that there is a standard
+              ant task for APT being shipped with Ant 1.7.  As of this writing, Ant 1.7 is still in beta, but the APT task works well.</i>
+            </p>
+
+            <br/>
+            <hr/>
+            <h3><a name="further" id="further"></a>Further Reading</h3>
+            <ul>
+              <li><a href="reference_guide.html">APT-Jelly Reference Guide</a></li>
+              <li><a href="taglib.html">APT Jelly Tags</a></li>
+              <li><a href="decorations.html">Decorated Mirror API Data Model</a></li>
+            </ul>
+          </td>
+        </tr>
+      </table>
+      <br/>
+    </td>
+  </tr>
+</table>
+</td>
+</tr>
+
+<tr class="pos1">
+  <td height="20" colspan="2" class="head" align="right">page design by <a href="http://www.oswd.org/email.phtml?user=Phlash">Phlash</a></td>
+</tr>
+</table>
+</body>
+</html>
