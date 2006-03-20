@@ -63,13 +63,24 @@
         <tr>
           <td width="10"></td>
           <td valign="top" class="mainbox">
-            <h3>Frequently Asked Questions</h3>
+            <h3><a name="intro" id="intro"></a>Dependencies</h3>
+
             <p>
-              How do I apply more than one jelly script to a given source base?
+              APT-Jelly has a set of library dependencies that you will need to include on your classpath when invoking APT.  These include the following:
             </p>
-            <p>
-              Why doesn't APT-Jelly support the discovery procedure for the <font class="code">AnnotationProcessorFactory</font>?
-            </p>
+
+            <ul>
+              <li>
+                tools.jar (This jar is included with the 1.5 JDK in $JAVA_HOME/lib, where $JAVA_HOME is the path to your Java home directory.  This jar
+                includes APT and the Mirror API.)
+              </li>
+              <li>commons-jelly.jar (<a href="http://jakarta.apache.org/commons/jelly/">Commons Jelly</a>, recommended version: 1.0)</li>
+              <li>commons-beanutils.jar (<a href="http://jakarta.apache.org/commons/beanutils/">Commons BeanUtils</a>, recommended version: 1.6)</li>
+              <li>commons-collections.jar (<a href="http://jakarta.apache.org/commons/collections/">Commons Collections</a>, recommended version: 2.1)</li>
+              <li>commons-jexl.jar (<a href="http://jakarta.apache.org/commons/jexl/">Commons Jexl</a>, recommended version: 1.0)</li>
+              <li>commons-logging.jar (<a href="http://jakarta.apache.org/commons/logging/">Commons Logging</a>, recommended version: 1.0.3)</li>
+              <li>dom4j.jar (<a href="http://www.dom4j.org/">dom4j</a>, recommended version: 1.5.2)</li>
+            </ul>
 
           </td>
         </tr>
