@@ -178,14 +178,14 @@ public class ClassAndMethodPrinter {
             </ul>
 
             <p>
-              Also, APT-Jelly has a set of library dependencies that you will need to include on your classpath when invoking APT.  These include the following:
+              The APT-Jelly libraries are divided into separate jars to keep the project modular (thinking ahead to future releases that might more directly support
+              other templating engines).  The "core" jar is always needed.  The "jelly" jar is also needed to invoke jelly template engine, with is itself dependent
+              on another set of library dependencies that you will need to include on your classpath when invoking APT.  See <a href="deps.html">the
+              dependencies list</a> for details.  For our example, we're assuming we have the necessary libraries, named this:
             </p>
 
             <ul>
-              <li>
-                tools.jar (This jar is included with the 1.5 JDK in $JAVA_HOME/lib, where $JAVA_HOME is the path to your Java home directory.  This jar
-                includes APT and the Mirror API.)
-              </li>
+              <li>tools.jar</li>
               <li>commons-jelly.jar</li>
               <li>commons-beanutils.jar</li>
               <li>commons-collections.jar</li>
@@ -202,7 +202,7 @@ public class ClassAndMethodPrinter {
             </p>
 
             <p>
-<b>user@host:~></b>apt -cp lib/apt-jelly.jar:lib/commons-jelly.jar:lib/commons-beanutils.jar:lib/commons-collections.jar:lib/commons-jexl.jar:lib/commons-logging.jar:lib/dom4j.jar -s target/gen -factory net.sf.jelly.apt.APTJellyProcessorFactory -AjellyScript=class-method-printer.jelly -d target/classes src/java/*.java
+<b>user@host:~></b>apt -cp lib/apt-jelly-core.jar:lib/apt-jelly-jelly.jar:lib/commons-jelly.jar:lib/commons-beanutils.jar:lib/commons-collections.jar:lib/commons-jexl.jar:lib/commons-logging.jar:lib/dom4j.jar -s target/gen -factory net.sf.jelly.apt.APTJellyProcessorFactory -AjellyScript=class-method-printer.jelly -d target/classes src/java/*.java
             </p>
 
             <p>

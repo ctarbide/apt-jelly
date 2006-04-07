@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project default="jar" name="apt-jelly-core" basedir=".">
+
+  <property file="build.properties"/>
+
+  <property name="src.dir" value="src/java/core"/>
+  <property name="src.test.dir" value="src/test/core"/>
+  <property name="build.dir" value="${core.classes.dir}"/>
+  <property name="test.build.dir" value="target/core/test-classes"/>
+  <property name="test.report.dir" value="target/core/test-reports"/>
+  <property name="final.name" value="apt-jelly-core-${version}"/>
+
+  <path id="build.classpath">
+    <pathelement location="${java.home}/../lib/tools.jar"/>
+  </path>
+
+  <path id="run.classpath">
+    <path refid="build.classpath"/>
+    <pathelement path="${build.dir}"/>
+    <fileset dir="${lib.dir}">
+      <include name="junit*.jar"/>
+    </fileset>
+  </path>
+
+  <target name="init" description="initializes some properties"/>
+
+  <target name="compile" description="compile the code" depends="init">
+    <mkdir dir="${build.dir}"/>
+
+    <javac destdir="${build.dir}" deprecation="true" debug="true" optimize="false" excludes="**/package.html">
+      <src>
+        <pathelement location="${src.dir}"/>
+      </src>
+      <classpath refid="build.classpath"/>
+    </javac>
+
+    <copy todir="${build.dir}">
+      <fileset dir="${src.dir}">
+        <include name="**/*.xsd"/>
+        <include name="**/*.xml"/>
+        <include name="**/*.jelly"/>
+      </fileset>
+    </copy>
+  </target>
+
+  <target name="jar" description="create the jar" depends="compile,test,jar-only"/>
+
+  <target name="jar-only" description="create the jar" depends="compile">
+    <jar jarfile="target/${final.name}.jar" excludes="**/package.html" basedir="${build.dir}"/>
+  </target>
+
+  <target name="clean" description="clean up the generated directories">
+    <delete dir="target"/>
+    <delete dir="${javadoc.dir}"/>
+    <delete dir="${docs.dir}/examples"/>
+  </target>
+
+  <target name="test" description="run the test cases" if="test.failure" depends="internal-test">
+    <fail message="There were test failures."/>
+  </target>
+
+  <target name="internal-test" depends="compile-tests">
+    <mkdir dir="${test.report.dir}"/>
+    <junit dir="./" failureproperty="test.failure" printSummary="yes" fork="false" haltonerror="true">
+      <sysproperty key="basedir" value="."/>
+      <sysproperty key="apt.test.src.dir" value="${basedir}/src/samplesource"/>
+      <formatter type="xml"/>
+      <formatter usefile="false" type="plain"/>
+      <classpath>
+        <path refid="run.classpath"/>
+        <pathelement path="${test.build.dir}"/>
+      </classpath>
+
+      <batchtest todir="${test.report.dir}">
+        <fileset dir="${src.test.dir}">
+          <include name="**/Test*"/>
+        </fileset>
+      </batchtest>
+    </junit>
+  </target>
+
+  <target name="compile-tests" depends="compile">
+    <mkdir dir="${test.build.dir}"/>
+    <javac destdir="${test.build.dir}" deprecation="true" debug="true" optimize="false" excludes="**/package.html">
+      <src>
+        <pathelement location="${src.test.dir}"/>
+      </src>
+      <classpath refid="run.classpath"/>
+    </javac>
+
+    <copy todir="${test.build.dir}">
+      <fileset dir="${src.test.dir}">
+        <include name="**/*.xml"/>
+        <include name="**/*.jelly"/>
+        <include name="**/*.properties"/>
+      </fileset>
+    </copy>
+  </target>
+
+  <target name="doc" description="generates some relevant documentation" depends="javadoc, examples2doc"/>
+
+  <target name="examples2doc" description="publishes the example scripts to the documentation directory">
+    <mkdir dir="${docs.dir}/examples"/>
+
+    <copy todir="${docs.dir}/examples">
+      <fileset dir="${src.test.dir}">
+        <include name="**/*.jelly"/>
+      </fileset>
+      <mapper type="flatten"/>
+    </copy>
+  </target>
+
+  <target name="javadoc" description="generate javadoc" depends="jar-only">
+    <mkdir dir="${javadoc.dir}"/>
+    <property name="title" value="apt-jelly"/>
+
+    <javadoc use="true" destdir="${javadoc.dir}" author="true" sourcepath="${src.dir}"
+             windowtitle="apt-jelly" doctitle="apt-jelly" packagenames="*">
+      <classpath refid="run.classpath"/>
+    </javadoc>
+  </target>
+
+</project>

@@ -1,57 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <project default="jar" name="apt-jelly" basedir=".">
-  <property name="version" value="1.0"/>
-  <property name="lib.dir" value="lib"/>
-  <property name="build.dir" value="target/classes"/>
-  <property name="gen.dir" value="target/gen"/>
+
+  <property file="build.properties"/>
+
   <property name="dist.dir" value="target/dist"/>
-  <property name="conf.dir" value="src/conf"/>
-  <property name="test.build.dir" value="target/test-classes"/>
-  <property name="test.report.dir" value="target/test-reports"/>
-  <property name="docs.dir" value="doc"/>
-  <property name="javadoc.dir" value="${docs.dir}/api"/>
-  <property name="final.name" value="apt-jelly-${version}"/>
+  <property name="dist.name" value="apt-jelly-${version}"/>
 
-  <path id="build.classpath">
-    <fileset dir="${lib.dir}">
-      <include name="*.jar"/>
-    </fileset>
-    <pathelement location="${java.home}/../lib/tools.jar"/>
-  </path>
+  <target name="init" description="initializes some properties"/>
 
-  <path id="run.classpath">
-    <path refid="build.classpath"/>
-    <pathelement path="${build.dir}"/>
-    <pathelement path="${conf.dir}"/>
-  </path>
-
-  <target name="init" description="initializes some properties">
-    <mkdir dir="${lib.dir}"/>
+  <target name="compile" description="compiles the code for the apt-jelly">
+    <ant antfile="build-core.xml" target="compile"/>
+    <ant antfile="build-jelly.xml" target="compile"/>
   </target>
 
-  <target name="compile" description="compile the code" depends="get-deps">
-    <mkdir dir="${build.dir}"/>
-
-    <javac destdir="${build.dir}" deprecation="true" debug="true" optimize="false" excludes="**/package.html">
-      <src>
-        <pathelement location="src/java"/>
-      </src>
-      <classpath refid="build.classpath"/>
-    </javac>
-
-    <copy todir="${build.dir}">
-      <fileset dir="src/java">
-        <include name="**/*.xsd"/>
-        <include name="**/*.xml"/>
-        <include name="**/*.jelly"/>
-      </fileset>
-    </copy>
-
+  <target name="jar" description="builds the jars for the apt-jelly project">
+    <ant antfile="build-core.xml" target="jar"/>
+    <ant antfile="build-jelly.xml" target="jar"/>
   </target>
 
-  <target name="jar" description="create the jar" depends="compile,test">
-    <jar jarfile="target/${final.name}.jar" excludes="**/package.html" basedir="${build.dir}"/>
+  <target name="jar-only" description="builds the jars without running the tests for the apt-jelly project">
+    <ant antfile="build-core.xml" target="jar-only"/>
+    <ant antfile="build-jelly.xml" target="jar-only"/>
+  </target>
+
+  <target name="doc" description="generates some relevant documentation">
+    <ant antfile="build-core.xml" target="doc"/>
+    <ant antfile="build-jelly.xml" target="doc"/>
   </target>
 
   <target name="dist" description="create the distribution bundle" depends="jar, doc">
@@ -59,115 +34,29 @@
     <mkdir dir="${dist.dir}/docs"/>
     <mkdir dir="${dist.dir}/lib"/>
 
-    <copy todir="${dist.dir}/docs">
-      <fileset dir="${docs.dir}"/>
-    </copy>
-
-    <copy todir="${dist.dir}/lib">
-      <fileset dir="${lib.dir}"/>
-    </copy>
-
-    <copy todir="${dist.dir}" file="target/${final.name}.jar"/>
-    <copy todir="${dist.dir}">
-      <fileset dir=".">
-        <include name="*.txt"/>
-      </fileset>
-    </copy>
-
-    <zip destfile="target/${final.name}.zip">
+    <zip destfile="target/${dist.name}.zip">
       <zipfileset dir="${docs.dir}" prefix="docs"/>
       <zipfileset dir="${lib.dir}" prefix="lib"/>
       <zipfileset dir="." includes="*.txt"/>
-      <zipfileset dir="target" includes="${final.name}.jar"/>
+      <zipfileset dir="target" includes="*.jar"/>
     </zip>
   </target>
 
   <target name="src-dist" description="creates a source distribution">
-    <zip destfile="target/${final.name}-src.zip">
+    <zip destfile="target/${dist.name}-src.zip">
       <zipfileset dir="src/java" prefix="src"/>
     </zip>
   </target>
 
-  <target name="jar-only" description="create the jar" depends="compile">
-    <jar jarfile="target/${final.name}.jar" excludes="**/package.html" basedir="${build.dir}"/>
-  </target>
-
   <target name="clean" description="clean up the generated directories">
     <delete dir="target"/>
-    <delete dir="${javadoc.dir}"/>
+    <delete dir="${javadoc.dir}/"/>
     <delete dir="${docs.dir}/examples"/>
   </target>
 
-  <target name="test" description="run the test cases" if="test.failure" depends="internal-test">
-    <fail message="There were test failures."/>
-  </target>
-
-  <target name="internal-test" depends="compile-tests">
-    <mkdir dir="${test.report.dir}"/>
-    <junit dir="./" failureproperty="test.failure" printSummary="yes" fork="false" haltonerror="true">
-      <sysproperty key="basedir" value="."/>
-      <sysproperty key="apt.test.src.dir" value="${basedir}/src/samplesource"/>
-      <formatter type="xml"/>
-      <formatter usefile="false" type="plain"/>
-      <classpath>
-        <fileset dir="${lib.dir}">
-          <include name="*.jar"/>
-        </fileset>
-        <pathelement path="${test.build.dir}"/>
-        <pathelement path="${build.dir}"/>
-      </classpath>
-
-      <batchtest todir="${test.report.dir}">
-        <fileset dir="src/test">
-          <include name="**/Test*"/>
-        </fileset>
-      </batchtest>
-    </junit>
-  </target>
-
-  <target name="compile-tests" depends="compile">
-    <mkdir dir="${test.build.dir}"/>
-    <javac destdir="${test.build.dir}" deprecation="true" debug="true" optimize="false" excludes="**/package.html">
-      <src>
-        <pathelement location="src/test"/>
-      </src>
-      <classpath refid="run.classpath"/>
-    </javac>
-
-    <copy todir="${test.build.dir}">
-      <fileset dir="src/test">
-        <include name="**/*.xml"/>
-        <include name="**/*.jelly"/>
-        <include name="**/*.properties"/>
-      </fileset>
-    </copy>
-  </target>
-
-  <target name="doc" description="generates some relevant documentation" depends="javadoc, examples2doc"/>
-
-  <target name="examples2doc" description="publishes the example scripts to the documentation directory">
-    <mkdir dir="${docs.dir}/examples"/>
-
-    <copy todir="${docs.dir}/examples">
-      <fileset dir="src/test">
-        <include name="**/*.jelly"/>
-      </fileset>
-      <mapper type="flatten"/>
-    </copy>
-  </target>
-
-  <target name="javadoc" description="generate javadoc" depends="jar">
-    <mkdir dir="${javadoc.dir}"/>
-    <property name="title" value="apt-jelly"/>
-
-    <javadoc use="true" destdir="${javadoc.dir}" author="true" sourcepath="src/java"
-             windowtitle="apt-jelly" doctitle="apt-jelly" packagenames="*">
-      <classpath refid="run.classpath"/>
-    </javadoc>
-  </target>
-
-  <target name="get-deps" unless="noget" depends="init">
-    <!--<get dest="${lib.dir}/commons-logging-1.0.2.jar" usetimestamp="true" ignoreerrors="true" src="http://www.ibiblio.org/maven/commons-logging/jars/commons-logging-1.0.2.jar"/>-->
+  <target name="test" description="run the test cases">
+    <ant antfile="build-core.xml" target="test"/>
+    <ant antfile="build-jelly.xml" target="test"/>
   </target>
 
 </project>
