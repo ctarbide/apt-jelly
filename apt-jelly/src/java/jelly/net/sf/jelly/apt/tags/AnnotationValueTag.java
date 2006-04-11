@@ -108,7 +108,6 @@ public class AnnotationValueTag extends APTTagSupport {
     return ((tag == null) ? null : tag.getCurrentDeclaration());
   }
 
-
   /**
    * The declaration on which to get the annotation value.
    *

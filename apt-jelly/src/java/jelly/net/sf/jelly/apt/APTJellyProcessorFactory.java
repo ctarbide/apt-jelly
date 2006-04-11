@@ -17,10 +17,7 @@ package net.sf.jelly.apt;
 
 import com.sun.mirror.apt.AnnotationProcessor;
 import com.sun.mirror.apt.AnnotationProcessorEnvironment;
-import com.sun.mirror.apt.AnnotationProcessorFactory;
-import com.sun.mirror.apt.AnnotationProcessors;
 import com.sun.mirror.declaration.AnnotationTypeDeclaration;
-import net.sf.jelly.apt.decorations.DecoratedAnnotationProcessorEnvironment;
 import org.xml.sax.InputSource;
 
 import java.io.File;
@@ -29,11 +26,11 @@ import java.net.URL;
 import java.util.*;
 
 /**
- * Basic annotation processor factory for a {APTJellyProcessor).
+ * Basic annotation processor factory for a APTJellyProcessor.
  *
  * @author Ryan Heaton
  */
-public class APTJellyProcessorFactory implements AnnotationProcessorFactory {
+public class APTJellyProcessorFactory extends ProcessorFactory {
 
   /**
    * Option to pass to APT specifying the jelly script on the filesystem to invoke.
@@ -67,15 +64,8 @@ public class APTJellyProcessorFactory implements AnnotationProcessorFactory {
     return SUPPORTED_TYPES;
   }
 
-  public AnnotationProcessor getProcessorFor(Set<AnnotationTypeDeclaration> set, AnnotationProcessorEnvironment env) {
-    if (++round > 1) {
-      //we only process one round...
-      //todo: think of some way to process more than one round?
-      return AnnotationProcessors.NO_OP;
-    }
-
-    env = new DecoratedAnnotationProcessorEnvironment(env);
-
+  protected AnnotationProcessor getProcessorFor(Set<AnnotationTypeDeclaration> annotations) {
+    AnnotationProcessorEnvironment env = Context.getCurrentEnvironment();
     Map<String, String> options = env.getOptions();
     String fileOption = options.get(JELLY_SCRIPT_FILE_OPTION);
     URL url = this.script;

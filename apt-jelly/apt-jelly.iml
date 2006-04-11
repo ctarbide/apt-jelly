@@ -86,11 +86,22 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/freemarker-2.3.6.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/../../tools/freemarker-2.3.6/src" />
+        </SOURCES>
+      </library>
+    </orderEntry>
     <orderEntryProperties />
   </component>
   <component name="copyright">
     <Base>
-      <setting name="state" value="2" />
+      <setting name="state" value="1" />
     </Base>
     <LanguageOptions name="$TEMPLATE$">
       <option name="templateOptions">
