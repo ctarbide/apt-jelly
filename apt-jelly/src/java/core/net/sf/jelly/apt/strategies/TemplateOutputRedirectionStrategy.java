@@ -26,5 +26,8 @@ import java.io.IOException;
  */
 public interface TemplateOutputRedirectionStrategy {
 
+  /**
+   * @return The writer to which to redirect the output.
+   */
   PrintWriter getWriter() throws MissingParameterException, IOException;
 }

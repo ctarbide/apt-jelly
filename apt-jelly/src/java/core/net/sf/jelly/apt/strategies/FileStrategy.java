@@ -30,6 +30,7 @@ import java.io.IOException;
  */
 public class FileStrategy extends JavaSourceStrategy {
 
+  private String name;
   private String pkg = "";
   private String charset;
 
@@ -45,6 +46,24 @@ public class FileStrategy extends JavaSourceStrategy {
 
     AnnotationProcessorEnvironment env = getAnnotationProcessorEnvironment();
     return env.getFiler().createTextFile(Filer.Location.SOURCE_TREE, pkg, new File(getName()), charset);
+  }
+
+  /**
+   * The name of the file.
+   *
+   * @return The name of the file.
+   */
+  public String getName() {
+    return name;
+  }
+
+  /**
+   * The name of the file.
+   *
+   * @param name The name of the file.
+   */
+  public void setName(String name) {
+    this.name = name;
   }
 
   /**
