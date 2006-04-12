@@ -70,7 +70,11 @@ public class ThrownTypeLoopStrategy<B extends TemplateBlock> extends TemplateBlo
   protected Collection<ReferenceType> getThrownTypes() throws MissingParameterException {
     ExecutableDeclaration declaration = getDeclaration();
     if (declaration == null) {
-      throw new MissingParameterException("declaration");
+      declaration = getCurrentExecutableDeclaration();
+      
+      if (declaration == null) {
+        throw new MissingParameterException("declaration");
+      }
     }
 
     return declaration.getThrownTypes();
@@ -130,5 +134,16 @@ public class ThrownTypeLoopStrategy<B extends TemplateBlock> extends TemplateBlo
     this.declaration = declaration;
   }
 
-
+  /**
+   * Gets the current declaration (in a loop).
+   *
+   * @return the current declaration (in a loop).
+   */
+  protected ExecutableDeclaration getCurrentExecutableDeclaration() {
+    ExecutableDeclarationLoopStrategy loop = StrategyStack.get().findFirst(ExecutableDeclarationLoopStrategy.class);
+    if (loop != null) {
+      return loop.getCurrentDeclaration();
+    }
+    return null;
+  }
 }

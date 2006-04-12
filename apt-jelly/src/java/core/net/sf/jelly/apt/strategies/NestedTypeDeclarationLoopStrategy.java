@@ -41,7 +41,10 @@ public class NestedTypeDeclarationLoopStrategy<B extends TemplateBlock> extends 
   protected Collection<TypeDeclaration> getAllTypeDeclarations() throws MissingParameterException {
     TypeDeclaration declaration = getDeclaration();
     if (declaration == null) {
-      throw new MissingParameterException("declaration");
+      declaration = getCurrentTypeDeclaration();
+      if (declaration == null) {
+        throw new MissingParameterException("declaration");
+      }
     }
 
     return declaration.getNestedTypes();
@@ -63,5 +66,18 @@ public class NestedTypeDeclarationLoopStrategy<B extends TemplateBlock> extends 
    */
   public void setDeclaration(TypeDeclaration declaration) {
     this.declaration = declaration;
+  }
+
+  /**
+   * Gets the current declaration (in a loop).
+   *
+   * @return the current declaration (in a loop).
+   */
+  protected TypeDeclaration getCurrentTypeDeclaration() {
+    TypeDeclarationLoopStrategy loop = StrategyStack.get().findFirst(TypeDeclarationLoopStrategy.class);
+    if (loop != null) {
+      return (TypeDeclaration) loop.getCurrentDeclaration();
+    }
+    return null;
   }
 }

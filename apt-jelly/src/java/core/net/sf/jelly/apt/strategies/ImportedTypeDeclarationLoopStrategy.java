@@ -171,4 +171,17 @@ public class ImportedTypeDeclarationLoopStrategy<B extends TemplateBlock> extend
   public void setDeclaration(TypeDeclaration declaration) {
     this.declaration = declaration;
   }
+
+  /**
+   * Gets the current declaration (in a loop).
+   *
+   * @return the current declaration (in a loop).
+   */
+  protected TypeDeclaration getCurrentTypeDeclaration() {
+    TypeDeclarationLoopStrategy loop = StrategyStack.get().findFirst(TypeDeclarationLoopStrategy.class);
+    if (loop != null) {
+      return (TypeDeclaration) loop.getCurrentDeclaration();
+    }
+    return null;
+  }
 }

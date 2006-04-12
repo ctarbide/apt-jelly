@@ -43,7 +43,11 @@ public class AnnotationValueStrategy extends TemplateValueStrategy {
   protected String getValue() throws TemplateException {
     Declaration declaration = getDeclaration();
     if (declaration == null) {
-      throw new MissingParameterException("declaration");
+      declaration = getCurrentDeclaration();
+
+      if (declaration == null) {
+        throw new MissingParameterException("declaration");
+      }
     }
 
     if (annotation == null) {
@@ -88,6 +92,19 @@ public class AnnotationValueStrategy extends TemplateValueStrategy {
       return output.toString();
     }
 
+    return null;
+  }
+
+  /**
+   * Gets the current declaration (in a loop).
+   * 
+   * @return the current declaration (in a loop).
+   */
+  protected Declaration getCurrentDeclaration() {
+    DeclarationLoopStrategy loop = StrategyStack.get().findFirst(DeclarationLoopStrategy.class);
+    if (loop != null) {
+      return loop.getCurrentDeclaration();
+    }
     return null;
   }
 

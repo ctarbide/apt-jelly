@@ -48,11 +48,16 @@ public class IfHasAnnotationStrategy<B extends TemplateBlock> extends TemplateBl
       throw new MissingParameterException("annotation");
     }
 
+    Declaration declaration = getDeclaration();
     if (declaration == null) {
-      throw new MissingParameterException("declaration");
+      declaration = getCurrentDeclaration();
+
+      if (declaration == null) {
+        throw new MissingParameterException("declaration");
+      }
     }
 
-    Collection<AnnotationMirror> annotations = declaration.getAnnotationMirrors();
+    Collection<AnnotationMirror> annotations = this.declaration.getAnnotationMirrors();
     for (AnnotationMirror mirror : annotations) {
       AnnotationTypeDeclaration annotationDeclaration = mirror.getAnnotationType().getDeclaration();
       if ((annotationDeclaration != null) && (annotationDeclaration.getQualifiedName().equals(annotation))) {
@@ -119,4 +124,16 @@ public class IfHasAnnotationStrategy<B extends TemplateBlock> extends TemplateBl
     this.declaration = declaration;
   }
 
+  /**
+   * Gets the current declaration (in a loop).
+   *
+   * @return the current declaration (in a loop).
+   */
+  protected Declaration getCurrentDeclaration() {
+    DeclarationLoopStrategy loop = StrategyStack.get().findFirst(DeclarationLoopStrategy.class);
+    if (loop != null) {
+      return loop.getCurrentDeclaration();
+    }
+    return null;
+  }
 }

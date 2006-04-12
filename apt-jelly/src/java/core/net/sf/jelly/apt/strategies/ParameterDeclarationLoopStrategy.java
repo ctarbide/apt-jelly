@@ -18,10 +18,9 @@ package net.sf.jelly.apt.strategies;
 
 import com.sun.mirror.declaration.ExecutableDeclaration;
 import com.sun.mirror.declaration.ParameterDeclaration;
+import net.sf.jelly.apt.TemplateBlock;
 
 import java.util.Collection;
-
-import net.sf.jelly.apt.TemplateBlock;
 
 /**
  * Evaluates its body for all parameters of the current method or constructor declaration.
@@ -40,7 +39,11 @@ public class ParameterDeclarationLoopStrategy<B extends TemplateBlock> extends A
   public Collection<ParameterDeclaration> getAllDeclarationsToConsiderForAnnotationFiltering() throws MissingParameterException {
     ExecutableDeclaration declaration = getDeclaration();
     if (declaration == null) {
-      throw new MissingParameterException("declaration");
+      declaration = getCurrentExecutableDeclaration();
+      
+      if (declaration == null) {
+        throw new MissingParameterException("declaration");
+      }
     }
 
     return declaration.getParameters();
@@ -62,5 +65,18 @@ public class ParameterDeclarationLoopStrategy<B extends TemplateBlock> extends A
    */
   public void setDeclaration(ExecutableDeclaration declaration) {
     this.declaration = declaration;
+  }
+
+  /**
+   * Gets the current declaration (in a loop).
+   *
+   * @return the current declaration (in a loop).
+   */
+  protected ExecutableDeclaration getCurrentExecutableDeclaration() {
+    ExecutableDeclarationLoopStrategy loop = StrategyStack.get().findFirst(ExecutableDeclarationLoopStrategy.class);
+    if (loop != null) {
+      return loop.getCurrentDeclaration();
+    }
+    return null;
   }
 }

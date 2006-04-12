@@ -54,4 +54,20 @@ public class StrategyStack extends Stack<TemplateStrategy> {
     return local.get();
   }
 
+  /**
+   * Finds the first strategy that is of the specified class.
+   *
+   * @param clazz The class.
+   * @return The strategy.
+   */
+  public <S extends TemplateStrategy> S findFirst(Class<S> clazz) {
+    for (TemplateStrategy strategy : get()) {
+      if (clazz.isAssignableFrom(strategy.getClass())) {
+        return (S) strategy;
+      }
+    }
+
+    return null;
+  }
+
 }

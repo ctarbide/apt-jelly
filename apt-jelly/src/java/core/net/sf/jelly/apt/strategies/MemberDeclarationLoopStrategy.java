@@ -49,7 +49,11 @@ public abstract class MemberDeclarationLoopStrategy<M extends MemberDeclaration,
     ArrayList<M> allDeclarations = new ArrayList<M>();
     TypeDeclaration typeDeclaration = getDeclaration();
     if (typeDeclaration == null) {
-      throw new MissingParameterException("declaration");
+      typeDeclaration = getCurrentTypeDeclaration();
+
+      if (typeDeclaration == null) {
+        throw new MissingParameterException("declaration");
+      }
     }
 
     allDeclarations.addAll(getMemberDeclarations(typeDeclaration));
@@ -211,5 +215,18 @@ public abstract class MemberDeclarationLoopStrategy<M extends MemberDeclaration,
    */
   public void setDeclaration(TypeDeclaration declaration) {
     this.declaration = declaration;
+  }
+
+  /**
+   * Gets the current declaration (in a loop).
+   *
+   * @return the current declaration (in a loop).
+   */
+  protected TypeDeclaration getCurrentTypeDeclaration() {
+    TypeDeclarationLoopStrategy loop = StrategyStack.get().findFirst(TypeDeclarationLoopStrategy.class);
+    if (loop != null) {
+      return (TypeDeclaration) loop.getCurrentDeclaration();
+    }
+    return null;
   }
 }
