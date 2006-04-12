@@ -24,6 +24,14 @@ package net.sf.jelly.apt;
 public interface TemplateModel {
 
   /**
+   * Get the value of a variable.
+   *
+   * @param var The variable.
+   * @return The value.
+   */
+  Object getVariable(String var);
+
+  /**
    * Put data into the model under a specified variable name.
    *
    * @param var The variable name.

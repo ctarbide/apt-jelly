@@ -14,28 +14,14 @@
  * limitations under the License.
  */
 
-package net.sf.jelly.apt.strategies;
-
-import com.sun.mirror.declaration.FieldDeclaration;
-import com.sun.mirror.declaration.TypeDeclaration;
-
-import java.util.Collection;
-
-import net.sf.jelly.apt.TemplateBlock;
+package net.sf.jelly.apt;
 
 /**
- * Evaluates its body for all fields of the specified type declaration.
+ * An invokeable block of template code.
  *
  * @author Ryan Heaton
+ * @see TemplateOutput
  */
-public class FieldDeclarationLoopStrategy<B extends TemplateBlock> extends MemberDeclarationLoopStrategy<FieldDeclaration, B> {
-
-  public FieldDeclarationLoopStrategy(B block) {
-    super(block);
-  }
-
-  protected Collection<FieldDeclaration> getMemberDeclarations(TypeDeclaration declaration) {
-    return declaration.getFields();
-  }
+public interface TemplateBlock {
 
 }

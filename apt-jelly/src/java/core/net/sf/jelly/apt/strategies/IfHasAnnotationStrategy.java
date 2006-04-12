@@ -19,23 +19,31 @@ package net.sf.jelly.apt.strategies;
 import com.sun.mirror.declaration.AnnotationMirror;
 import com.sun.mirror.declaration.AnnotationTypeDeclaration;
 import com.sun.mirror.declaration.Declaration;
-import net.sf.jelly.apt.TemplateBody;
+import net.sf.jelly.apt.TemplateBlock;
 import net.sf.jelly.apt.TemplateModel;
+import net.sf.jelly.apt.TemplateOutput;
+import net.sf.jelly.apt.TemplateException;
 
 import java.util.Collection;
+import java.io.IOException;
 
 /**
  * Evalute the body of the tag if the specified declaration has a given annotation.
  *
  * @author Ryan Heaton
  */
-public class IfHasAnnotationStrategy implements TemplateBodyLoopStrategy {
+public class IfHasAnnotationStrategy<B extends TemplateBlock> extends TemplateBlockStrategy<B> {
 
   private Declaration declaration;
   private String annotation;
   private String var;
 
-  public <E extends Exception> void invoke(TemplateModel model, TemplateBody<E> body) throws E, MissingParameterException {
+  public IfHasAnnotationStrategy(B block) {
+    super(block);
+  }
+
+  @Override
+  public <E extends Exception>void invoke(TemplateModel model, TemplateOutput<B, E> output) throws E, IOException, TemplateException {
     if (annotation == null) {
       throw new MissingParameterException("annotation");
     }
@@ -52,7 +60,7 @@ public class IfHasAnnotationStrategy implements TemplateBodyLoopStrategy {
           model.setVariable(var, mirror);
         }
 
-        body.invoke();
+        super.invoke(model, output);
       }
     }
   }

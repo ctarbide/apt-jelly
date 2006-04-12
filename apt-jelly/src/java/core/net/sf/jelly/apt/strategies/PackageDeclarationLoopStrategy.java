@@ -20,6 +20,7 @@ import com.sun.mirror.apt.AnnotationProcessorEnvironment;
 import com.sun.mirror.declaration.PackageDeclaration;
 import com.sun.mirror.declaration.TypeDeclaration;
 import net.sf.jelly.apt.Context;
+import net.sf.jelly.apt.TemplateBlock;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -29,7 +30,11 @@ import java.util.HashMap;
  * 
  * @author Ryan Heaton
  */
-public class PackageDeclarationLoopStrategy extends AnnotationFilterableDeclarationLoopStrategy<PackageDeclaration> {
+public class PackageDeclarationLoopStrategy<B extends TemplateBlock> extends AnnotationFilterableDeclarationLoopStrategy<PackageDeclaration, B> {
+
+  public PackageDeclarationLoopStrategy(B block) {
+    super(block);
+  }
 
   public Collection<PackageDeclaration> getAllDeclarationsToConsiderForAnnotationFiltering() throws MissingParameterException {
     return getAllPackageDeclarations(getAnnotationProcessorEnvironment());

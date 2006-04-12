@@ -28,7 +28,7 @@ import java.util.Collection;
  *
  * @author Ryan Heaton
  */
-public abstract class DeclarationLoopTag<D extends Declaration> extends APTTagSupport {
+public abstract class DeclarationLoopTag<D extends Declaration> extends JellyTagSupport {
 
   private String var;
   private String indexVar;

@@ -17,17 +17,25 @@
 package net.sf.jelly.apt;
 
 /**
- * An invokable body of a template.
+ * Exception indicating there's something wrong with the template.
  *
  * @author Ryan Heaton
  */
-public interface TemplateBody<E extends Exception> {
+public class TemplateException extends Exception {
 
-  /**
-   * Invoke the template body.
-   *
-   * @throws E If there was a problem invoking the template body.
-   */
-  void invoke() throws E;
+  public TemplateException() {
+  }
+
+  public TemplateException(String message) {
+    super(message);
+  }
+
+  public TemplateException(String message, Throwable cause) {
+    super(message, cause);
+  }
+
+  public TemplateException(Throwable cause) {
+    super(cause);
+  }
 
 }

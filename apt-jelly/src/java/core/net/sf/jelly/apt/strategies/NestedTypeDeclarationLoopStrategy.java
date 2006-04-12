@@ -20,12 +20,18 @@ import com.sun.mirror.declaration.TypeDeclaration;
 
 import java.util.Collection;
 
+import net.sf.jelly.apt.TemplateBlock;
+
 /**
  * @author Ryan Heaton
  */
-public class NestedTypeDeclarationLoopStrategy extends TypeDeclarationLoopStrategy {
+public class NestedTypeDeclarationLoopStrategy<B extends TemplateBlock> extends TypeDeclarationLoopStrategy<B> {
 
   private TypeDeclaration declaration;
+
+  public NestedTypeDeclarationLoopStrategy(B block) {
+    super(block);
+  }
 
   /**
    * Limits the loop to all type declarations of the current type declaration.

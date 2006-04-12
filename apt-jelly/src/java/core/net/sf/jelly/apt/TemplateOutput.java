@@ -16,12 +16,30 @@
 
 package net.sf.jelly.apt;
 
+import java.io.Writer;
+import java.io.IOException;
+
 /**
  * Output for a template.
  *
  * @author Ryan Heaton
  */
-public interface TemplateOutput<E extends Exception> {
+public interface TemplateOutput<B extends TemplateBlock, E extends Exception> {
+
+  /**
+   * Redirect the template output to a specified writer.
+   *
+   * @param writer The writer to which to redirect the output.
+   */
+  void redirect(Writer writer) throws E, IOException, TemplateException;
+
+  /**
+   * Write a block of template code to the output.
+   *
+   * @param block The block of template code to write.
+   * @throws E If there was a problem writing to the output.
+   */
+  void write(B block) throws E, IOException, TemplateException;
 
   /**
    * Write a value to the template output.
@@ -29,6 +47,6 @@ public interface TemplateOutput<E extends Exception> {
    * @param value The value to write.
    * @throws E If there was a problem writing to the output.
    */
-  void write(String value) throws E;
+  void write(String value) throws E, IOException, TemplateException;
 
 }

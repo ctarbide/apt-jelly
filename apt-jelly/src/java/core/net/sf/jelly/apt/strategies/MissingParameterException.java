@@ -16,12 +16,14 @@
 
 package net.sf.jelly.apt.strategies;
 
+import net.sf.jelly.apt.TemplateException;
+
 /**
  * Thrown if a parameter is missing for a strategy.
  * 
  * @author Ryan Heaton
  */
-public class MissingParameterException extends Exception {
+public class MissingParameterException extends TemplateException {
 
   private String parameter;
 

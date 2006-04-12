@@ -16,20 +16,36 @@
 
 package net.sf.jelly.apt.strategies;
 
+import net.sf.jelly.apt.TemplateBlock;
+import net.sf.jelly.apt.TemplateModel;
 import net.sf.jelly.apt.TemplateOutput;
+import net.sf.jelly.apt.TemplateException;
+
+import java.io.IOException;
 
 /**
- * A strategy that writes to template output directly.
+ * A strategy for outputing a template block.
  *
  * @author Ryan Heaton
  */
-public interface WriteTemplateOutputStrategy {
+public abstract class TemplateBlockStrategy<B extends TemplateBlock> implements TemplateStrategy<B> {
+
+  private B block;
 
   /**
-   * Invoke the strategy on the given output.
+   * Instantiate the strategy given the specified block.
    *
-   * @param output The output to which to write.
+   * @param block The block.
    */
-  <E extends Exception> void invoke(TemplateOutput<E> output) throws E, MissingParameterException;
+  public TemplateBlockStrategy(B block) {
+    this.block = block;
+  }
+
+  //Inherited.
+  public <E extends Exception> void invoke(TemplateModel model, TemplateOutput<B, E> output) throws E, IOException, TemplateException {
+    StrategyStack.get().push(this);
+    output.write(block);
+    StrategyStack.get().pop();
+  }
 
 }

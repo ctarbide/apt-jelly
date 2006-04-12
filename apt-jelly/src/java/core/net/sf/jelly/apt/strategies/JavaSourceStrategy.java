@@ -27,7 +27,7 @@ import java.io.PrintWriter;
  *
  * @author Ryan Heaton
  */
-public class JavaSourceStrategy implements TemplateOutputRedirectionStrategy {
+public class JavaSourceStrategy extends TemplateOutputRedirectionStrategy {
 
   private String name;
 

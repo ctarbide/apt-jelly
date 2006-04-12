@@ -16,18 +16,31 @@
 
 package net.sf.jelly.apt.strategies;
 
-import java.io.PrintWriter;
+import net.sf.jelly.apt.TemplateBlock;
+import net.sf.jelly.apt.TemplateException;
+import net.sf.jelly.apt.TemplateModel;
+import net.sf.jelly.apt.TemplateOutput;
+
 import java.io.IOException;
+import java.io.PrintWriter;
 
 /**
  * A strategy for redirecting output.
  *
  * @author Ryan Heaton
  */
-public interface TemplateOutputRedirectionStrategy {
+public abstract class TemplateOutputRedirectionStrategy implements TemplateStrategy<TemplateBlock> {
 
   /**
    * @return The writer to which to redirect the output.
    */
-  PrintWriter getWriter() throws MissingParameterException, IOException;
+  protected abstract PrintWriter getWriter() throws TemplateException, IOException;
+
+  //Inherited.
+  public <E extends Exception> void invoke(TemplateModel model, TemplateOutput<TemplateBlock, E> output) throws E, IOException, TemplateException {
+    StrategyStack.get().push(this);
+    output.redirect(getWriter());
+    StrategyStack.get().pop();
+  }
+
 }

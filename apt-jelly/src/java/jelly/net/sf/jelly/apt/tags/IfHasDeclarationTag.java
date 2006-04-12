@@ -28,7 +28,7 @@ import org.apache.commons.jelly.XMLOutput;
  *
  * @author Ryan Heaton
  */
-public class IfHasDeclarationTag extends APTTagSupport {
+public class IfHasDeclarationTag extends JellyTagSupport {
 
   private TypeMirror type;
   private String declarationVar;

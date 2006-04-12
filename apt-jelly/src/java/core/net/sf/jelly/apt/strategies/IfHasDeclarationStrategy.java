@@ -19,8 +19,12 @@ package net.sf.jelly.apt.strategies;
 import com.sun.mirror.declaration.TypeDeclaration;
 import com.sun.mirror.type.DeclaredType;
 import com.sun.mirror.type.TypeMirror;
-import net.sf.jelly.apt.TemplateBody;
+import net.sf.jelly.apt.TemplateBlock;
 import net.sf.jelly.apt.TemplateModel;
+import net.sf.jelly.apt.TemplateOutput;
+import net.sf.jelly.apt.TemplateException;
+
+import java.io.IOException;
 
 /**
  * Evalute the body of the tag if the specified type has a declaration.  If the specified type is an
@@ -28,12 +32,17 @@ import net.sf.jelly.apt.TemplateModel;
  *
  * @author Ryan Heaton
  */
-public class IfHasDeclarationStrategy implements TemplateBodyLoopStrategy {
+public class IfHasDeclarationStrategy<B extends TemplateBlock> extends TemplateBlockStrategy<B> {
 
   private TypeMirror type;
   private String declarationVar;
 
-  public <E extends Exception> void invoke(TemplateModel model, TemplateBody<E> body) throws E, MissingParameterException {
+  public IfHasDeclarationStrategy(B block) {
+    super(block);
+  }
+
+  @Override
+  public <E extends Exception>void invoke(TemplateModel model, TemplateOutput<B, E> output) throws E, IOException, TemplateException {
     if (type == null) {
       throw new MissingParameterException("type");
     }
@@ -46,7 +55,7 @@ public class IfHasDeclarationStrategy implements TemplateBodyLoopStrategy {
         }
       }
 
-      body.invoke();
+      super.invoke(model, output);
     }
   }
 

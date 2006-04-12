@@ -29,7 +29,7 @@ import java.util.Collection;
  *
  * @author Ryan Heaton
  */
-public class IfHasAnnotationTag extends APTTagSupport {
+public class IfHasAnnotationTag extends JellyTagSupport {
 
   private Declaration declaration;
   private String annotation;

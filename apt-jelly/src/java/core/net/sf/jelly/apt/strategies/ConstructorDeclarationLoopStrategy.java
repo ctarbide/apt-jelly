@@ -23,13 +23,19 @@ import com.sun.mirror.declaration.ClassDeclaration;
 import java.util.Collection;
 import java.util.ArrayList;
 
+import net.sf.jelly.apt.TemplateBlock;
+
 /**
  * Evaluates its body for all constructors of the specified type declaration.  If the specified type declaration is an
  * {@link com.sun.mirror.declaration.InterfaceDeclaration}, there will be no constructors.
  *
  * @author Ryan Heaton
  */
-public class ConstructorDeclarationLoopStrategy extends ExecutableDeclarationLoopStrategy<ConstructorDeclaration> {
+public class ConstructorDeclarationLoopStrategy<B extends TemplateBlock> extends ExecutableDeclarationLoopStrategy<ConstructorDeclaration, B> {
+
+  public ConstructorDeclarationLoopStrategy(B block) {
+    super(block);
+  }
 
   /**
    * All the constructors of the given declaration declaration, or an empty list if the current declaration

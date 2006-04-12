@@ -19,9 +19,12 @@ package net.sf.jelly.apt.strategies;
 import com.sun.mirror.declaration.Declaration;
 
 import java.util.Collection;
+import java.io.IOException;
 
 import net.sf.jelly.apt.TemplateModel;
-import net.sf.jelly.apt.TemplateBody;
+import net.sf.jelly.apt.TemplateBlock;
+import net.sf.jelly.apt.TemplateOutput;
+import net.sf.jelly.apt.TemplateException;
 import net.sf.jelly.apt.decorations.DeclarationDecorator;
 
 /**
@@ -29,7 +32,7 @@ import net.sf.jelly.apt.decorations.DeclarationDecorator;
  *
  * @author Ryan Heaton
  */
-public abstract class DeclarationLoopStrategy<D extends Declaration> implements TemplateBodyLoopStrategy {
+public abstract class DeclarationLoopStrategy<D extends Declaration, B extends TemplateBlock> extends TemplateBlockStrategy<B> {
 
   private String var;
   private String indexVar;
@@ -37,24 +40,29 @@ public abstract class DeclarationLoopStrategy<D extends Declaration> implements 
   private int index = 0;
 
   //Inherited.
-  public <E extends Exception> void invoke(TemplateModel model, TemplateBody<E> body) throws E, MissingParameterException {
+  public DeclarationLoopStrategy(B block) {
+    super(block);
+  }
+
+  @Override
+  public <E extends Exception> void invoke(TemplateModel model, TemplateOutput<B, E> output) throws E, IOException, TemplateException {
     Collection<D> declarations = getDeclarations();
     index = 0;
     for (D declaration : declarations) {
       //decorate the declaration first.
       declaration = DeclarationDecorator.decorate(declaration);
-      invoke(declaration, model, body);
+      invoke(declaration, model, output);
     }
   }
 
   /**
-   * Invoke the body with the specified declaration as the current declaration.
+   * Invoke the block with the specified declaration as the current declaration.
    *
    * @param declaration The declaration specified as the current declaration.
    * @param model The model.
-   * @param body The body.
+   * @param output The output.
    */
-  protected <E extends Exception> void invoke(D declaration, TemplateModel model, TemplateBody<E> body) throws E, MissingParameterException {
+  protected <E extends Exception> void invoke(D declaration, TemplateModel model, TemplateOutput<B, E> output) throws E, IOException, TemplateException {
     currentDeclaration = declaration;
 
     if (var != null) {
@@ -65,7 +73,7 @@ public abstract class DeclarationLoopStrategy<D extends Declaration> implements 
       model.setVariable(indexVar, index);
     }
 
-    body.invoke();
+    super.invoke(model, output);
 
     index++;
   }

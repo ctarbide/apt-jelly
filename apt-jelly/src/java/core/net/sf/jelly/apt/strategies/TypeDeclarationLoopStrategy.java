@@ -21,17 +21,26 @@ import com.sun.mirror.declaration.ClassDeclaration;
 import com.sun.mirror.declaration.InterfaceDeclaration;
 import com.sun.mirror.declaration.TypeDeclaration;
 import net.sf.jelly.apt.Context;
+import net.sf.jelly.apt.TemplateBlock;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
 /**
+ * Evaluates its body for each {@link TypeDeclaration type declaration}.
+ * <p/>
+ * Unless specified otherwise, {@link ClassDeclaration}s will be included and {@link InterfaceDeclaration}s will NOT be included.
+ * 
  * @author Ryan Heaton
  */
-public class TypeDeclarationLoopStrategy extends AnnotationFilterableDeclarationLoopStrategy<TypeDeclaration> {
+public class TypeDeclarationLoopStrategy<B extends TemplateBlock> extends AnnotationFilterableDeclarationLoopStrategy<TypeDeclaration, B> {
 
   private boolean includeClasses = true;
   private boolean includeInterfaces = false;
+
+  public TypeDeclarationLoopStrategy(B block) {
+    super(block);
+  }
 
   /**
    * The base collection of types over which to iterate.

@@ -18,20 +18,27 @@ package net.sf.jelly.apt.strategies;
 
 import com.sun.mirror.declaration.MethodDeclaration;
 import com.sun.mirror.declaration.TypeDeclaration;
-import net.sf.jelly.apt.TemplateBody;
+import net.sf.jelly.apt.TemplateBlock;
 import net.sf.jelly.apt.TemplateModel;
+import net.sf.jelly.apt.TemplateOutput;
+import net.sf.jelly.apt.TemplateException;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.io.IOException;
 
 /**
  * Evaluates its body for all methods of the {@link net.sf.jelly.apt.tags.ForAllTypesTag#getCurrentDeclaration() current type declaration}.
  *
  * @author Ryan Heaton
  */
-public class MethodDeclarationLoopStrategy extends ExecutableDeclarationLoopStrategy<MethodDeclaration> {
+public class MethodDeclarationLoopStrategy<B extends TemplateBlock> extends ExecutableDeclarationLoopStrategy<MethodDeclaration, B> {
 
   private String returnTypeVar;
+
+  public MethodDeclarationLoopStrategy(B block) {
+    super(block);
+  }
 
   /**
    * The method declarations of the given type declaration.
@@ -47,15 +54,15 @@ public class MethodDeclarationLoopStrategy extends ExecutableDeclarationLoopStra
    *
    * @param declaration The method declaration.
    * @param model The data model.
-   * @param body the body.
+   * @param output The output.
    */
   @Override
-  protected <E extends Exception>void invoke(MethodDeclaration declaration, TemplateModel model, TemplateBody<E> body) throws E, MissingParameterException {
+  protected <E extends Exception>void invoke(MethodDeclaration declaration, TemplateModel model, TemplateOutput<B, E> output) throws E, IOException, TemplateException {
     if (returnTypeVar != null) {
       model.setVariable(returnTypeVar, declaration.getReturnType());
     }
 
-    super.invoke(declaration, model, body);
+    super.invoke(declaration, model, output);
   }
 
   /**

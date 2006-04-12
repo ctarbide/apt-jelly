@@ -17,15 +17,14 @@
 package net.sf.jelly.apt.strategies;
 
 import com.sun.mirror.declaration.*;
-import com.sun.mirror.util.TypeVisitor;
-import com.sun.mirror.util.SimpleTypeVisitor;
 import com.sun.mirror.type.*;
+import com.sun.mirror.util.SimpleTypeVisitor;
+import com.sun.mirror.util.TypeVisitor;
 
 import java.util.Collection;
 import java.util.HashMap;
 
-import org.apache.commons.jelly.JellyTagException;
-import net.sf.jelly.apt.tags.ForAllTypesTag;
+import net.sf.jelly.apt.TemplateBlock;
 
 /**
  * Evaluates its body for all imported types of a specified type declaration.  By default,
@@ -35,10 +34,11 @@ import net.sf.jelly.apt.tags.ForAllTypesTag;
  *
  * @author Ryan Heaton
  */
-public class ImportedTypeDeclarationLoopStrategy extends TypeDeclarationLoopStrategy {
+public class ImportedTypeDeclarationLoopStrategy<B extends TemplateBlock> extends TypeDeclarationLoopStrategy<B> {
   private TypeDeclaration declaration;
 
-  public ImportedTypeDeclarationLoopStrategy() {
+  public ImportedTypeDeclarationLoopStrategy(B block) {
+    super(block);
     setIncludeClasses(true);
     setIncludeInterfaces(true);
   }

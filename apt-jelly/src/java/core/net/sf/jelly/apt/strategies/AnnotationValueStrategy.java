@@ -16,9 +16,12 @@
 
 package net.sf.jelly.apt.strategies;
 
-import net.sf.jelly.apt.TemplateOutput;
-import com.sun.mirror.declaration.*;
+import com.sun.mirror.declaration.AnnotationMirror;
+import com.sun.mirror.declaration.AnnotationTypeDeclaration;
+import com.sun.mirror.declaration.AnnotationTypeElementDeclaration;
+import com.sun.mirror.declaration.Declaration;
 import com.sun.mirror.type.AnnotationType;
+import net.sf.jelly.apt.TemplateException;
 
 /**
  * Outputs an annotation value.  If a declaration is specified, it will be used to lookup the annotation value.
@@ -30,14 +33,14 @@ import com.sun.mirror.type.AnnotationType;
  *
  * @author Ryan Heaton
  */
-public class AnnotationValueStrategy implements WriteTemplateOutputStrategy {
+public class AnnotationValueStrategy extends TemplateValueStrategy {
 
   private Declaration declaration;
   private String defaultValue;
   private String annotation;
   private String element;
 
-  public <E extends Exception> void invoke(TemplateOutput<E> otpt) throws E, MissingParameterException {
+  protected String getValue() throws TemplateException {
     Declaration declaration = getDeclaration();
     if (declaration == null) {
       throw new MissingParameterException("declaration");
@@ -82,8 +85,10 @@ public class AnnotationValueStrategy implements WriteTemplateOutputStrategy {
     }
 
     if (output != null) {
-      otpt.write(output.toString());
+      return output.toString();
     }
+
+    return null;
   }
 
   /**

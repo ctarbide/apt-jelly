@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="style.css" type="text/css"/>
 </head>
 
-<body>
+<block>
 <br/>
 <table border="0" cellspacing="0" cellpadding="0" width="100%">
 <tr>
@@ -91,17 +91,17 @@
 <ul>
   <li><a href="#annotationValue">annotationValue</a>: Outputs an annotation value.</li>
   <li><a href="#file">file</a>: Redirects output to a new file.</li>
-  <li><a href="#forAllConstructors">forAllConstructors</a>: Evaluates its body for all constructors of the specified type declaration.</li>
-  <li><a href="#forAllFields">forAllFields</a>: Evaluates its body for all fields of the specified type declaration.</li>
-  <li><a href="#forAllImportedTypes">forAllImportedTypes</a>: Evaluates its body for all imported types of a specified type declaration.</li>
-  <li><a href="#forAllMethods">forAllMethods</a>: Evaluates its body for all methods of the specified type declaration.</li>
-  <li><a href="#forAllNestedTypes">forAllNestedTypes</a>: Evaluates its body for all nested types of the specified type declaration.</li>
-  <li><a href="#forAllPackages">forAllPackages</a>: Evaluates its body for all packages in the source base.</li>
-  <li><a href="#forAllParameters">forAllParameters</a>: Evaluates its body for all parameters of the specified executable declaration.</li>
-  <li><a href="#forAllThrownTypes">forAllThrownTypes</a>: Evaluates its body for all thrown types of the specified executable declaration.</li>
-  <li><a href="#forAllTypes">forAllTypes</a>: Evaluates its body for all type declarations in the source base.</li>
-  <li><a href="#ifHasAnnotation">ifHasAnnotation</a>: Evaluates its body if the specified declaration has a specified annotation.</li>
-  <li><a href="#ifHasDeclaration">ifHasDeclaration</a>: Evaluates its body if the specified type mirror has a declaration.</li>
+  <li><a href="#forAllConstructors">forAllConstructors</a>: Evaluates its block for all constructors of the specified type declaration.</li>
+  <li><a href="#forAllFields">forAllFields</a>: Evaluates its block for all fields of the specified type declaration.</li>
+  <li><a href="#forAllImportedTypes">forAllImportedTypes</a>: Evaluates its block for all imported types of a specified type declaration.</li>
+  <li><a href="#forAllMethods">forAllMethods</a>: Evaluates its block for all methods of the specified type declaration.</li>
+  <li><a href="#forAllNestedTypes">forAllNestedTypes</a>: Evaluates its block for all nested types of the specified type declaration.</li>
+  <li><a href="#forAllPackages">forAllPackages</a>: Evaluates its block for all packages in the source base.</li>
+  <li><a href="#forAllParameters">forAllParameters</a>: Evaluates its block for all parameters of the specified executable declaration.</li>
+  <li><a href="#forAllThrownTypes">forAllThrownTypes</a>: Evaluates its block for all thrown types of the specified executable declaration.</li>
+  <li><a href="#forAllTypes">forAllTypes</a>: Evaluates its block for all type declarations in the source base.</li>
+  <li><a href="#ifHasAnnotation">ifHasAnnotation</a>: Evaluates its block if the specified declaration has a specified annotation.</li>
+  <li><a href="#ifHasDeclaration">ifHasDeclaration</a>: Evaluates its block if the specified type mirror has a declaration.</li>
   <li><a href="#javaSource">javaSource</a>: Redirects its output to a java source file.</li>
 </ul>
 
@@ -219,7 +219,7 @@
 <h3><a name="forAllConstructors" id="forAllConstructors"></a>forAllConstructors</h3>
 
 <p>
-  Evaluates its body for all constructors of the specified type declaration. If a type declaration is specified, its constructors will be used.
+  Evaluates its block for all constructors of the specified type declaration. If a type declaration is specified, its constructors will be used.
   Otherwise, this tag must be nested within a declaration loop tag for type declarations and the constructors of the current declaration will be used. It is not
   illegal to specify an interface type declaration, but there will be no constructors.
 </p>
@@ -300,7 +300,7 @@
 <h3><a name="forAllFields" id="forAllFields"></a>forAllFields</h3>
 
 <p>
-  Evaluates its body for all fields of the specified type declaration. If a type declaration is specified, its fields will be used.
+  Evaluates its block for all fields of the specified type declaration. If a type declaration is specified, its fields will be used.
   Otherwise, this tag must be nested within a declaration loop tag for type declarations and the fields of the current declaration will be used.
 </p>
 
@@ -379,7 +379,7 @@
 <h3><a name="forAllImportedTypes" id="forAllImportedTypes"></a>forAllImportedTypes</h3>
 
 <p>
-  Evaluates its body for all imported types of a specified type declaration. If a type declaration is specified, its imported types will be used.
+  Evaluates its block for all imported types of a specified type declaration. If a type declaration is specified, its imported types will be used.
   Otherwise, this tag must be nested within a declaration loop tag for type declarations and the imported types of the current declaration will be used.
   The list of imported types is calculated--it does NOT correspond to the list of import statements in the source code, but it is generated by iterating
   over the member declarations of the specified type declaration. This list will include the bounds of any formal type parameters. This list
@@ -461,7 +461,7 @@
 <h3><a name="forAllMethods" id="forAllMethods"></a>forAllMethods</h3>
 
 <p>
-  Evaluates its body for all methods of the specified type declaration. If a type declaration is specified, its methods will be used.
+  Evaluates its block for all methods of the specified type declaration. If a type declaration is specified, its methods will be used.
   Otherwise, this tag must be nested within a declaration loop tag for type declarations and the methods of the current declaration will be used.
 </p>
 
@@ -549,7 +549,7 @@
 <h3><a name="forAllNestedTypes" id="forAllNestedTypes"></a>forAllNestedTypes</h3>
 
 <p>
-  Evaluates its body for all nested types of the specified type declaration. If a type declaration is specified, its nested types will be used.
+  Evaluates its block for all nested types of the specified type declaration. If a type declaration is specified, its nested types will be used.
   Otherwise, this tag must be nested within a declaration loop tag for type declarations and the nested types of the current declaration will be used.
 </p>
 
@@ -628,7 +628,7 @@
 <h3><a name="forAllPackages" id="forAllPackages"></a>forAllPackages</h3>
 
 <p>
-  Evaluates its body for all packages in the source base.
+  Evaluates its block for all packages in the source base.
 </p>
 
 <center>
@@ -682,7 +682,7 @@
 <h3><a name="forAllParameters" id="forAllParameters"></a>forAllParameters</h3>
 
 <p>
-  Evaluates its body for all parameters of the specified executable declaration. If a executable declaration is specified, its parameters will be used.
+  Evaluates its block for all parameters of the specified executable declaration. If a executable declaration is specified, its parameters will be used.
   Otherwise, this tag must be nested within a declaration loop tag for executable declarations and the parameters of the current declaration will be used.
 </p>
 
@@ -744,7 +744,7 @@
 <h3><a name="forAllThrownTypes" id="forAllThrownTypes"></a>forAllThrownTypes</h3>
 
 <p>
-  Evaluates its body for all thrown types of the specified executable declaration. If a executable declaration is specified, its thrown types will be used.
+  Evaluates its block for all thrown types of the specified executable declaration. If a executable declaration is specified, its thrown types will be used.
   Otherwise, this tag must be nested within a declaration loop tag for executable declarations and the thrown types of the current declaration will be used.
 </p>
 <center>
@@ -786,7 +786,7 @@
 <h3><a name="forAllTypes" id="forAllTypes"></a>forAllTypes</h3>
 
 <p>
-  Evaluates its body for all type declarations in the source base.
+  Evaluates its block for all type declarations in the source base.
 </p>
 <center>
   <table>
@@ -855,7 +855,7 @@
 <h3><a name="ifHasAnnotation" id="ifHasAnnotation"></a>ifHasAnnotation</h3>
 
 <p>
-  Evaluates its body if the specified declaration has a specified annotation. If a declaration is specified, it will be used to lookup the annotation value.
+  Evaluates its block if the specified declaration has a specified annotation. If a declaration is specified, it will be used to lookup the annotation value.
   Otherwise, this tag must be nested within a declaration loop tag and the current declaration will be used.
 </p>
 
@@ -897,7 +897,7 @@
 <h3><a name="ifHasDeclaration" id="ifHasDeclaration"></a>ifHasDeclaration</h3>
 
 <p>
-  Evaluates its body if the specified type mirror has a declaration.
+  Evaluates its block if the specified type mirror has a declaration.
 </p>
 
 <center>
@@ -946,7 +946,7 @@
 
     <tr>
       <td>name</td>
-      <td>The fully-qualified class name of java class for which this tag's body is to be the java source.</td>
+      <td>The fully-qualified class name of java class for which this tag's block is to be the java source.</td>
       <td>Yes</td>
       <td>N/A</td>
     </tr>
@@ -967,5 +967,5 @@
   <td height="20" colspan="2" class="head" align="right">page design by <a href="http://www.oswd.org/email.phtml?user=Phlash">Phlash</a></td>
 </tr>
 </table>
-</body>
+</block>
 </html>

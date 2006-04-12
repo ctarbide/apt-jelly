@@ -21,14 +21,20 @@ import com.sun.mirror.declaration.ParameterDeclaration;
 
 import java.util.Collection;
 
+import net.sf.jelly.apt.TemplateBlock;
+
 /**
  * Evaluates its body for all parameters of the current method or constructor declaration.
  *
  * @author Ryan Heaton
  */
-public class ParameterDeclarationLoopStrategy extends AnnotationFilterableDeclarationLoopStrategy<ParameterDeclaration> {
+public class ParameterDeclarationLoopStrategy<B extends TemplateBlock> extends AnnotationFilterableDeclarationLoopStrategy<ParameterDeclaration, B> {
 
   private ExecutableDeclaration declaration;
+
+  public ParameterDeclarationLoopStrategy(B block) {
+    super(block);
+  }
 
   //Inherited.
   public Collection<ParameterDeclaration> getAllDeclarationsToConsiderForAnnotationFiltering() throws MissingParameterException {

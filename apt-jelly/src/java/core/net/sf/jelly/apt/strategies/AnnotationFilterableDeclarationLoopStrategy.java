@@ -19,25 +19,32 @@ package net.sf.jelly.apt.strategies;
 import com.sun.mirror.declaration.AnnotationMirror;
 import com.sun.mirror.declaration.AnnotationTypeDeclaration;
 import com.sun.mirror.declaration.Declaration;
-import net.sf.jelly.apt.TemplateBody;
+import net.sf.jelly.apt.TemplateBlock;
 import net.sf.jelly.apt.TemplateModel;
+import net.sf.jelly.apt.TemplateOutput;
+import net.sf.jelly.apt.TemplateException;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
+import java.io.IOException;
 
 /**
  * A declaration loop that is filterable by an annotation class.
  *
  * @author Ryan Heaton
  */
-public abstract class AnnotationFilterableDeclarationLoopStrategy<D extends Declaration> extends DeclarationLoopStrategy<D> {
+public abstract class AnnotationFilterableDeclarationLoopStrategy<D extends Declaration, B extends TemplateBlock> extends DeclarationLoopStrategy<D, B> {
 
   private String annotation;
   private String annotationVar;
 
+  public AnnotationFilterableDeclarationLoopStrategy(B block) {
+    super(block);
+  }
+
   @Override
-  protected <E extends Exception> void invoke(D declaration, TemplateModel model, TemplateBody<E> body) throws E, MissingParameterException {
+  protected <E extends Exception>void invoke(D declaration, TemplateModel model, TemplateOutput<B, E> output) throws E, IOException, TemplateException {
     if (annotationVar != null) {
       Collection<AnnotationMirror> annotations = getCurrentDeclaration().getAnnotationMirrors();
       for (AnnotationMirror mirror : annotations) {
@@ -50,7 +57,7 @@ public abstract class AnnotationFilterableDeclarationLoopStrategy<D extends Decl
       }
     }
 
-    super.invoke(declaration, model, body);
+    super.invoke(declaration, model, output);
   }
 
   /**

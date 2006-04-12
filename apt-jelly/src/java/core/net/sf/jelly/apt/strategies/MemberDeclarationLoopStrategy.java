@@ -22,6 +22,7 @@ import com.sun.mirror.type.ClassType;
 import com.sun.mirror.type.InterfaceType;
 import com.sun.mirror.util.Declarations;
 import net.sf.jelly.apt.Context;
+import net.sf.jelly.apt.TemplateBlock;
 import net.sf.jelly.apt.decorations.declaration.DecoratedDeclaration;
 
 import java.util.ArrayList;
@@ -34,11 +35,15 @@ import java.util.Collection;
  *
  * @author Ryan Heaton
  */
-public abstract class MemberDeclarationLoopStrategy<M extends MemberDeclaration> extends AnnotationFilterableDeclarationLoopStrategy<M> {
+public abstract class MemberDeclarationLoopStrategy<M extends MemberDeclaration, B extends TemplateBlock> extends AnnotationFilterableDeclarationLoopStrategy<M, B> {
 
   private boolean includeSuperclasses = false;
   private boolean includeSuperinterfaces = false;
   private TypeDeclaration declaration;
+
+  public MemberDeclarationLoopStrategy(B block) {
+    super(block);
+  }
 
   public Collection<M> getAllDeclarationsToConsiderForAnnotationFiltering() throws MissingParameterException {
     ArrayList<M> allDeclarations = new ArrayList<M>();

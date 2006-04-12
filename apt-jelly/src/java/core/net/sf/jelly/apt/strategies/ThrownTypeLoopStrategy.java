@@ -20,22 +20,30 @@ import com.sun.mirror.declaration.ExecutableDeclaration;
 import com.sun.mirror.type.ReferenceType;
 
 import java.util.Collection;
+import java.io.IOException;
 
 import net.sf.jelly.apt.TemplateModel;
-import net.sf.jelly.apt.TemplateBody;
+import net.sf.jelly.apt.TemplateBlock;
+import net.sf.jelly.apt.TemplateOutput;
+import net.sf.jelly.apt.TemplateException;
 
 /**
  * Iterates through each thrown type of the specified executable declaration.
  *
  * @author Ryan Heaton
  */
-public class ThrownTypeLoopStrategy implements TemplateBodyLoopStrategy {
+public class ThrownTypeLoopStrategy<B extends TemplateBlock> extends TemplateBlockStrategy<B> {
 
   private String var;
   private String indexVar;
   private ExecutableDeclaration declaration;
 
-  public <E extends Exception> void invoke(TemplateModel model, TemplateBody<E> body) throws E, MissingParameterException {
+  public ThrownTypeLoopStrategy(B block) {
+    super(block);
+  }
+
+  @Override
+  public <E extends Exception> void invoke(TemplateModel model, TemplateOutput<B, E> output) throws E, IOException, TemplateException {
     Collection<ReferenceType> thrownTypes = getThrownTypes();
 
     int index = 0;
@@ -44,25 +52,14 @@ public class ThrownTypeLoopStrategy implements TemplateBodyLoopStrategy {
         model.setVariable(indexVar, index);
       }
 
-      invoke(thrownType, model, body);
+      if (var != null) {
+        model.setVariable(var, thrownType);
+      }
+
+      super.invoke(model, output);
 
       index++;
     }
-
-  }
-
-  /**
-   * Invoke the body with the given thrown type as the current thrown type.
-   *
-   * @param thrownType The thrown type.
-   * @param body The body
-   */
-  protected <E extends Exception> void invoke(ReferenceType thrownType, TemplateModel model, TemplateBody<E> body) throws E {
-    if (var != null) {
-      model.setVariable(var, thrownType);
-    }
-
-    body.invoke();
   }
 
   /**

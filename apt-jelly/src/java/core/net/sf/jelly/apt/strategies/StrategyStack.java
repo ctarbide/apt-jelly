@@ -16,27 +16,42 @@
 
 package net.sf.jelly.apt.strategies;
 
-import com.sun.mirror.declaration.ExecutableDeclaration;
-import net.sf.jelly.apt.TemplateBlock;
+import java.util.Stack;
 
 /**
- * Loop strategy through a collection of {@link ExecutableDeclaration}s.
+ * A stack for pushing the current strategy.
  *
  * @author Ryan Heaton
  */
-public abstract class ExecutableDeclarationLoopStrategy<E extends ExecutableDeclaration, B extends TemplateBlock> extends MemberDeclarationLoopStrategy<E, B> {
+public class StrategyStack extends Stack<TemplateStrategy> {
 
-  public ExecutableDeclarationLoopStrategy(B block) {
-    super(block);
+  private static final ThreadLocal<StrategyStack> local = new ThreadLocal<StrategyStack>() {
+    @Override
+    protected StrategyStack initialValue() {
+      return new StrategyStack();
+    }
+
+    @Override
+    public void set(StrategyStack value) {
+      throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void remove() {
+      throw new UnsupportedOperationException();
+    }
+  };
+
+  private StrategyStack() {
   }
 
   /**
-   * Get the current declaration as an executable declaration.
-   *
-   * @return The current declaration.
+   * The current stack.
+   * 
+   * @return The current stack.
    */
-  public E getCurrentDeclaration() {
-    return super.getCurrentDeclaration();
+  public static StrategyStack get() {
+    return local.get();
   }
 
 }

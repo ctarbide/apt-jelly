@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright 2006 Ryan Heaton
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,25 +13,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package net.sf.jelly.apt.tags;
 
-package net.sf.jelly.apt.strategies;
-
-import net.sf.jelly.apt.TemplateModel;
-import net.sf.jelly.apt.TemplateBody;
+import com.sun.mirror.apt.AnnotationProcessorEnvironment;
+import net.sf.jelly.apt.APTJellyContext;
+import org.apache.commons.jelly.TagSupport;
 
 /**
- * A strategy that invokes a template body in some kind a loop of zero or more.
+ * Tag support for jelly tags.
  *
  * @author Ryan Heaton
  */
-public interface TemplateBodyLoopStrategy {
+public abstract class JellyTagSupport<S  extends TagSupport {
 
   /**
-   * Invokes the loop.
+   * The annotation processor environment.
    *
-   * @param model The model to use (and adjust as necessary).
-   * @param body The body to invoke in the loop.
+   * @return The annotation processor environment.
    */
-  <E extends Exception> void invoke(TemplateModel model, TemplateBody<E> body) throws E, MissingParameterException;
+  public AnnotationProcessorEnvironment getAnnotationProcessorEnvironment() {
+    return ((APTJellyContext) getContext()).getAnnotationProcessorEnvironment();
+  }
 
 }

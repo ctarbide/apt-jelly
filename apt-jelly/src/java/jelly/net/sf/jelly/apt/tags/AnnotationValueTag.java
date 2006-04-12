@@ -32,7 +32,7 @@ import org.xml.sax.SAXException;
  *
  * @author Ryan Heaton
  */
-public class AnnotationValueTag extends APTTagSupport {
+public class AnnotationValueTag extends JellyTagSupport {
 
   private Declaration declaration;
   private String defaultValue;

@@ -16,27 +16,33 @@
 
 package net.sf.jelly.apt.strategies;
 
-import com.sun.mirror.declaration.ExecutableDeclaration;
 import net.sf.jelly.apt.TemplateBlock;
+import net.sf.jelly.apt.TemplateModel;
+import net.sf.jelly.apt.TemplateOutput;
+import net.sf.jelly.apt.TemplateException;
+
+import java.io.IOException;
 
 /**
- * Loop strategy through a collection of {@link ExecutableDeclaration}s.
+ * Writes a value to template output.
  *
  * @author Ryan Heaton
  */
-public abstract class ExecutableDeclarationLoopStrategy<E extends ExecutableDeclaration, B extends TemplateBlock> extends MemberDeclarationLoopStrategy<E, B> {
-
-  public ExecutableDeclarationLoopStrategy(B block) {
-    super(block);
-  }
+public abstract class TemplateValueStrategy implements TemplateStrategy<TemplateBlock> {
 
   /**
-   * Get the current declaration as an executable declaration.
+   * Get the value to write to the template output.
    *
-   * @return The current declaration.
+   * @return The value to write to the template output.
    */
-  public E getCurrentDeclaration() {
-    return super.getCurrentDeclaration();
+  protected abstract String getValue() throws TemplateException;
+
+  //Inherited.
+  public <E extends Exception>void invoke(TemplateModel model, TemplateOutput<TemplateBlock, E> output) throws E, IOException, TemplateException {
+    String value = getValue();
+    if (value != null) {
+      output.write(value);
+    }
   }
 
 }

@@ -28,7 +28,7 @@ import java.io.PrintWriter;
  *
  * @author Ryan Heaton
  */
-public class JavaSourceTag extends APTTagSupport {
+public class JavaSourceTag extends JellyTagSupport {
 
   private String name;
 

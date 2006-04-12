@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright 2006 Ryan Heaton
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,24 +13,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.sf.jelly.apt.tags;
 
-import com.sun.mirror.apt.AnnotationProcessorEnvironment;
-import net.sf.jelly.apt.APTJellyContext;
-import org.apache.commons.jelly.TagSupport;
+package net.sf.jelly.apt.strategies;
+
+import net.sf.jelly.apt.TemplateModel;
+import net.sf.jelly.apt.TemplateOutput;
+import net.sf.jelly.apt.TemplateBlock;
+import net.sf.jelly.apt.TemplateException;
+
+import java.io.IOException;
 
 /**
+ * A strategy for using template output.
+ *
  * @author Ryan Heaton
  */
-public abstract class APTTagSupport extends TagSupport {
+public interface TemplateStrategy<B extends TemplateBlock> {
 
   /**
-   * The annotation processor environment.
+   * Invoke the strategy with the specified data model and output.
    *
-   * @return The annotation processor environment.
+   * @param model The data model.
+   * @param output The output.
    */
-  public AnnotationProcessorEnvironment getAnnotationProcessorEnvironment() {
-    return ((APTJellyContext) getContext()).getAnnotationProcessorEnvironment();
-  }
+  <E extends Exception> void invoke(TemplateModel model, TemplateOutput<B, E> output) throws E, IOException, TemplateException;
 
 }

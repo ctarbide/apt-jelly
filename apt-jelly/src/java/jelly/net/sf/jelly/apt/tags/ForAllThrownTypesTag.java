@@ -29,7 +29,7 @@ import java.util.Collection;
  *
  * @author Ryan Heaton
  */
-public class ForAllThrownTypesTag extends APTTagSupport {
+public class ForAllThrownTypesTag extends JellyTagSupport {
 
   private String var;
   private String indexVar;
