@@ -32,10 +32,11 @@ import java.util.HashMap;
  */
 public class PackageDeclarationLoopStrategy<B extends TemplateBlock> extends AnnotationFilterableDeclarationLoopStrategy<PackageDeclaration, B> {
 
-  public PackageDeclarationLoopStrategy(B block) {
-    super(block);
-  }
-
+  /**
+   * Gets all the package declarations in the environment.
+   *
+   * @return The package declarations.
+   */
   public Collection<PackageDeclaration> getAllDeclarationsToConsiderForAnnotationFiltering() throws MissingParameterException {
     return getAllPackageDeclarations(getAnnotationProcessorEnvironment());
   }

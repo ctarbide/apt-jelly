@@ -31,10 +31,6 @@ public class ParameterDeclarationLoopStrategy<B extends TemplateBlock> extends A
 
   private ExecutableDeclaration declaration;
 
-  public ParameterDeclarationLoopStrategy(B block) {
-    super(block);
-  }
-
   //Inherited.
   public Collection<ParameterDeclaration> getAllDeclarationsToConsiderForAnnotationFiltering() throws MissingParameterException {
     ExecutableDeclaration declaration = getDeclaration();

@@ -15,12 +15,8 @@
  */
 package net.sf.jelly.apt.tags;
 
-import com.sun.mirror.declaration.TypeDeclaration;
-import com.sun.mirror.type.DeclaredType;
 import com.sun.mirror.type.TypeMirror;
-import org.apache.commons.jelly.JellyTagException;
-import org.apache.commons.jelly.MissingAttributeException;
-import org.apache.commons.jelly.XMLOutput;
+import net.sf.jelly.apt.strategies.IfHasDeclarationStrategy;
 
 /**
  * Evalute the body of the tag if the specified type has a declaration.  If the specified type is an
@@ -28,35 +24,10 @@ import org.apache.commons.jelly.XMLOutput;
  *
  * @author Ryan Heaton
  */
-public class IfHasDeclarationTag extends JellyTagSupport {
+public class IfHasDeclarationTag extends APTJellyTag<IfHasDeclarationStrategy> {
 
-  private TypeMirror type;
-  private String declarationVar;
-
-  public void doTag(XMLOutput output) throws MissingAttributeException, JellyTagException {
-    if (type == null) {
-      throw new MissingAttributeException("type");
-    }
-
-    if (type instanceof DeclaredType) {
-      TypeDeclaration declaration = ((DeclaredType) type).getDeclaration();
-      if (declaration != null) {
-        if (declarationVar != null) {
-          getContext().setVariable(declarationVar, declaration);
-        }
-      }
-
-      invokeBody(output);
-    }
-  }
-
-  /**
-   * The type on which to check for a declaration.
-   *
-   * @return The type on which to check for a declaration.
-   */
-  public TypeMirror getType() {
-    return type;
+  public IfHasDeclarationTag() {
+    super(new IfHasDeclarationStrategy());
   }
 
   /**
@@ -65,16 +36,7 @@ public class IfHasDeclarationTag extends JellyTagSupport {
    * @param type The type on which to check for a declaration.
    */
   public void setType(TypeMirror type) {
-    this.type = type;
-  }
-
-  /**
-   * The variable to which to assign the declaration variable, if it exists.
-   *
-   * @return The variable to which to assign the declaration variable, if it exists.
-   */
-  public String getDeclarationVar() {
-    return declarationVar;
+    strategy.setType(type);
   }
 
   /**
@@ -83,7 +45,7 @@ public class IfHasDeclarationTag extends JellyTagSupport {
    * @param declarationVar The variable to which to assign the declaration variable, if it exists.
    */
   public void setDeclarationVar(String declarationVar) {
-    this.declarationVar = declarationVar;
+    strategy.setDeclarationVar(declarationVar);
   }
 
 }

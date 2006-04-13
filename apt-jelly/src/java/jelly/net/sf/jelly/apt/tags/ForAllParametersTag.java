@@ -16,58 +16,17 @@
 package net.sf.jelly.apt.tags;
 
 import com.sun.mirror.declaration.ExecutableDeclaration;
-import com.sun.mirror.declaration.ParameterDeclaration;
-import org.apache.commons.jelly.JellyTagException;
-
-import java.util.Collection;
+import net.sf.jelly.apt.strategies.ParameterDeclarationLoopStrategy;
 
 /**
  * Evaluates its body for all parameters of the current method or constructor declaration.
  *
  * @author Ryan Heaton
  */
-public class ForAllParametersTag extends AnnotationFilterableDeclarationLoopTag<ParameterDeclaration> {
+public class ForAllParametersTag extends AnnotationFilterableDeclarationLoopTag<ParameterDeclarationLoopStrategy> {
 
-  private ExecutableDeclaration declaration;
-
-  //Inherited.
-  public Collection<ParameterDeclaration> getAllDeclarationsToConsiderForAnnotationFiltering() throws JellyTagException {
-    ExecutableDeclaration declaration = getDeclaration();
-    if (declaration == null) {
-      declaration = getCurrentExecutableDeclaration();
-
-      if (declaration == null) {
-        throw new JellyTagException("The loop tag for parameters must either be within a loop tag for exectuable declarations or the declaration must be specified.");
-      }
-    }
-
-    return declaration.getParameters();
-  }
-
-  /**
-   * Get the {@link ExecutableDeclarationLoopTag#getCurrentDeclaration() current executable declaration}
-   *
-   * @return The current executable declaration.
-   * @throws JellyTagException If this tag isn't in an executable declaration loop.
-   */
-  protected ExecutableDeclaration getCurrentExecutableDeclaration() throws JellyTagException {
-    ExecutableDeclarationLoopTag tag = (ExecutableDeclarationLoopTag) findAncestorWithClass(ExecutableDeclarationLoopTag.class);
-    ExecutableDeclaration currentDeclaration = tag.getCurrentDeclaration();
-
-    if (currentDeclaration == null) {
-      throw new JellyTagException("The loop tag for parameter declarations must be within a loop tag for exectuable declarations.");
-    }
-
-    return currentDeclaration;
-  }
-
-  /**
-   * The specified declaration.
-   *
-   * @return The specified declaration.
-   */
-  public ExecutableDeclaration getDeclaration() {
-    return declaration;
+  public ForAllParametersTag() {
+    super(new ParameterDeclarationLoopStrategy());
   }
 
   /**
@@ -76,6 +35,7 @@ public class ForAllParametersTag extends AnnotationFilterableDeclarationLoopTag<
    * @param declaration The specified declaration.
    */
   public void setDeclaration(ExecutableDeclaration declaration) {
-    this.declaration = declaration;
+    strategy.setDeclaration(declaration);
   }
+
 }

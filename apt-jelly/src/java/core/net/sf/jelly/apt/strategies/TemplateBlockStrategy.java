@@ -30,19 +30,8 @@ import java.io.IOException;
  */
 public abstract class TemplateBlockStrategy<B extends TemplateBlock> implements TemplateStrategy<B> {
 
-  private B block;
-
-  /**
-   * Instantiate the strategy given the specified block.
-   *
-   * @param block The block.
-   */
-  public TemplateBlockStrategy(B block) {
-    this.block = block;
-  }
-
   //Inherited.
-  public <E extends Exception> void invoke(TemplateModel model, TemplateOutput<B, E> output) throws E, IOException, TemplateException {
+  public void invoke(B block, TemplateOutput<B> output, TemplateModel model) throws IOException, TemplateException {
     StrategyStack.get().push(this);
     output.write(block);
     StrategyStack.get().pop();

@@ -24,29 +24,28 @@ import java.io.IOException;
  *
  * @author Ryan Heaton
  */
-public interface TemplateOutput<B extends TemplateBlock, E extends Exception> {
+public interface TemplateOutput<B extends TemplateBlock> {
 
   /**
    * Redirect the template output to a specified writer.
    *
+   * @param block The block to redirect.
    * @param writer The writer to which to redirect the output.
    */
-  void redirect(Writer writer) throws E, IOException, TemplateException;
+  void redirect(B block, Writer writer) throws IOException, TemplateException;
 
   /**
    * Write a block of template code to the output.
    *
    * @param block The block of template code to write.
-   * @throws E If there was a problem writing to the output.
    */
-  void write(B block) throws E, IOException, TemplateException;
+  void write(B block) throws IOException, TemplateException;
 
   /**
    * Write a value to the template output.
    *
    * @param value The value to write.
-   * @throws E If there was a problem writing to the output.
    */
-  void write(String value) throws E, IOException, TemplateException;
+  void write(String value) throws IOException, TemplateException;
 
 }

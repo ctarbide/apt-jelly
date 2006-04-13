@@ -23,12 +23,15 @@ import java.io.File;
 import java.io.PrintWriter;
 import java.io.IOException;
 
+import net.sf.jelly.apt.Context;
+import net.sf.jelly.apt.TemplateBlock;
+
 /**
  * Strategy for getting the output to a new file <i>relative to the output directory specified for APT</i>.
  *
  * @author Ryan Heaton
  */
-public class FileStrategy extends JavaSourceStrategy {
+public class FileStrategy<B extends TemplateBlock> extends TemplateOutputRedirectionStrategy<B> {
 
   private String name;
   private String pkg = "";
@@ -46,6 +49,15 @@ public class FileStrategy extends JavaSourceStrategy {
 
     AnnotationProcessorEnvironment env = getAnnotationProcessorEnvironment();
     return env.getFiler().createTextFile(Filer.Location.SOURCE_TREE, pkg, new File(getName()), charset);
+  }
+
+  /**
+   * The current annotation processor environment.
+   *
+   * @return The current annotation processor environment.
+   */
+  protected AnnotationProcessorEnvironment getAnnotationProcessorEnvironment() {
+    return Context.getCurrentEnvironment();
   }
 
   /**

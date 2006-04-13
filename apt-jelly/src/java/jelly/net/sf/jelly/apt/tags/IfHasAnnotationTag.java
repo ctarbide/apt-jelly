@@ -15,62 +15,18 @@
  */
 package net.sf.jelly.apt.tags;
 
-import com.sun.mirror.declaration.AnnotationMirror;
-import com.sun.mirror.declaration.AnnotationTypeDeclaration;
 import com.sun.mirror.declaration.Declaration;
-import org.apache.commons.jelly.JellyTagException;
-import org.apache.commons.jelly.MissingAttributeException;
-import org.apache.commons.jelly.XMLOutput;
-
-import java.util.Collection;
+import net.sf.jelly.apt.strategies.IfHasAnnotationStrategy;
 
 /**
  * Evalute the body of the tag if the current declaration (in a loop) has a given annotation.
  *
  * @author Ryan Heaton
  */
-public class IfHasAnnotationTag extends JellyTagSupport {
+public class IfHasAnnotationTag extends APTJellyTag<IfHasAnnotationStrategy> {
 
-  private Declaration declaration;
-  private String annotation;
-  private String var;
-
-  public void doTag(XMLOutput output) throws MissingAttributeException, JellyTagException {
-    if (annotation == null) {
-      throw new MissingAttributeException("annotation");
-    }
-
-
-    Declaration currentDeclaration = declaration;
-    if (currentDeclaration == null) {
-      DeclarationLoopTag parent = (DeclarationLoopTag) findAncestorWithClass(DeclarationLoopTag.class);
-      currentDeclaration = parent.getCurrentDeclaration();
-
-      if (currentDeclaration == null) {
-        throw new JellyTagException("The isHasAnnotationTag must either specify a declaration or be nested withing a declaration loop tag.");
-      }
-    }
-
-    Collection<AnnotationMirror> annotations = currentDeclaration.getAnnotationMirrors();
-    for (AnnotationMirror mirror : annotations) {
-      AnnotationTypeDeclaration annotationDeclaration = mirror.getAnnotationType().getDeclaration();
-      if ((annotationDeclaration != null) && (annotationDeclaration.getQualifiedName().equals(annotation))) {
-        if (var != null) {
-          getContext().setVariable(var, mirror);
-        }
-
-        invokeBody(output);
-      }
-    }
-  }
-
-  /**
-   * The annotation to check for.
-   *
-   * @return The annotation to check for.
-   */
-  public String getAnnotation() {
-    return annotation;
+  public IfHasAnnotationTag() {
+    super(new IfHasAnnotationStrategy());
   }
 
   /**
@@ -79,16 +35,7 @@ public class IfHasAnnotationTag extends JellyTagSupport {
    * @param annotation The annotation to check for.
    */
   public void setAnnotation(String annotation) {
-    this.annotation = annotation;
-  }
-
-  /**
-   * The name of the variable to which to assign the annotation.
-   *
-   * @return The name of the variable to which to assign the annotation.
-   */
-  public String getVar() {
-    return var;
+    strategy.setAnnotation(annotation);
   }
 
   /**
@@ -97,16 +44,7 @@ public class IfHasAnnotationTag extends JellyTagSupport {
    * @param var The name of the variable to which to assign the annotation.
    */
   public void setVar(String var) {
-    this.var = var;
-  }
-
-  /**
-   * The declaration on which to evaluate whether exists the annotation.
-   *
-   * @return The declaration on which to evaluate whether exists the annotation.
-   */
-  public Declaration getDeclaration() {
-    return declaration;
+    strategy.setVar(var);
   }
 
   /**
@@ -115,7 +53,6 @@ public class IfHasAnnotationTag extends JellyTagSupport {
    * @param declaration The declaration on which to evaluate whether exists the annotation.
    */
   public void setDeclaration(Declaration declaration) {
-    this.declaration = declaration;
+    strategy.setDeclaration(declaration);
   }
-
 }

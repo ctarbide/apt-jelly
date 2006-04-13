@@ -15,60 +15,17 @@
  */
 package net.sf.jelly.apt.tags;
 
-import com.sun.mirror.apt.AnnotationProcessorEnvironment;
-import org.apache.commons.jelly.JellyTagException;
-import org.apache.commons.jelly.MissingAttributeException;
-import org.apache.commons.jelly.XMLOutput;
-
-import java.io.IOException;
-import java.io.PrintWriter;
+import net.sf.jelly.apt.strategies.JavaSourceStrategy;
 
 /**
  * Tag that pipes its output to a new java source file.
  *
  * @author Ryan Heaton
  */
-public class JavaSourceTag extends JellyTagSupport {
+public class JavaSourceTag extends APTJellyTag<JavaSourceStrategy> {
 
-  private String name;
-
-  public void doTag(XMLOutput output) throws MissingAttributeException, JellyTagException {
-    if (name == null) {
-      throw new MissingAttributeException("name");
-    }
-
-    PrintWriter redirect = getWriter();
-
-    try {
-      invokeBody(XMLOutput.createXMLOutput(redirect));
-    }
-    finally {
-      redirect.close();
-    }
-  }
-
-  /**
-   * Get the writer for the specified java source file.
-   *
-   * @return the writer for the specified java source file.
-   */
-  protected PrintWriter getWriter() throws JellyTagException {
-    AnnotationProcessorEnvironment env = getAnnotationProcessorEnvironment();
-    try {
-      return env.getFiler().createSourceFile(name);
-    }
-    catch (IOException e) {
-      throw new JellyTagException(e);
-    }
-  }
-
-  /**
-   * Canonical (fully qualified) name of class whose source is to be written.
-   *
-   * @return Canonical (fully qualified) name of class whose source is to be written.
-   */
-  public String getName() {
-    return name;
+  public JavaSourceTag() {
+    super(new JavaSourceStrategy());
   }
 
   /**
@@ -77,7 +34,7 @@ public class JavaSourceTag extends JellyTagSupport {
    * @param name Canonical (fully qualified) name of class whose source is to be written.
    */
   public void setName(String name) {
-    this.name = name;
+    strategy.setName(name);
   }
 
 }

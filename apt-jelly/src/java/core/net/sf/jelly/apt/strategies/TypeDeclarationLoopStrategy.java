@@ -42,10 +42,6 @@ public class TypeDeclarationLoopStrategy<B extends TemplateBlock> extends Annota
   private boolean includeClasses = true;
   private boolean includeInterfaces = false;
 
-  public TypeDeclarationLoopStrategy(B block) {
-    super(block);
-  }
-
   /**
    * The base collection of types over which to iterate.
    *
@@ -150,6 +146,12 @@ public class TypeDeclarationLoopStrategy<B extends TemplateBlock> extends Annota
    */
   public void setPackage(PackageDeclaration pckg) {
     this.pckg = pckg;
+  }
+
+  //Inherited
+  @Override
+  public TypeDeclaration getCurrentDeclaration() {
+    return super.getCurrentDeclaration();
   }
 
   /**

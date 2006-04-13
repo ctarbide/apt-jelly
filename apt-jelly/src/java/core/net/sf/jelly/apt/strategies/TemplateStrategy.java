@@ -31,11 +31,12 @@ import java.io.IOException;
 public interface TemplateStrategy<B extends TemplateBlock> {
 
   /**
-   * Invoke the strategy with the specified data model and output.
+   * Invoke the strategy on a template block with the specified output, given a model.
    *
-   * @param model The data model.
+   * @param block The template block.
    * @param output The output.
+   * @param model The data model.
    */
-  <E extends Exception> void invoke(TemplateModel model, TemplateOutput<B, E> output) throws E, IOException, TemplateException;
+  void invoke(B block, TemplateOutput<B> output, TemplateModel model) throws IOException, TemplateException;
 
 }

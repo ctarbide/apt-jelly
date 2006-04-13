@@ -18,6 +18,7 @@ package net.sf.jelly.apt.strategies;
 
 import com.sun.mirror.apt.AnnotationProcessorEnvironment;
 import net.sf.jelly.apt.Context;
+import net.sf.jelly.apt.TemplateBlock;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -27,7 +28,7 @@ import java.io.PrintWriter;
  *
  * @author Ryan Heaton
  */
-public class JavaSourceStrategy extends TemplateOutputRedirectionStrategy {
+public class JavaSourceStrategy<B extends TemplateBlock> extends TemplateOutputRedirectionStrategy<B> {
 
   private String name;
 

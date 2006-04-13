@@ -22,6 +22,7 @@ import com.sun.mirror.declaration.AnnotationTypeElementDeclaration;
 import com.sun.mirror.declaration.Declaration;
 import com.sun.mirror.type.AnnotationType;
 import net.sf.jelly.apt.TemplateException;
+import net.sf.jelly.apt.TemplateBlock;
 
 /**
  * Outputs an annotation value.  If a declaration is specified, it will be used to lookup the annotation value.
@@ -33,7 +34,7 @@ import net.sf.jelly.apt.TemplateException;
  *
  * @author Ryan Heaton
  */
-public class AnnotationValueStrategy extends TemplateValueStrategy {
+public class AnnotationValueStrategy<B extends TemplateBlock> extends TemplateValueStrategy<B> {
 
   private Declaration declaration;
   private String defaultValue;

@@ -47,7 +47,9 @@
           <root url="jar://$MODULE_DIR$/lib/commons-jelly-1.0.jar!/" />
         </CLASSES>
         <JAVADOC />
-        <SOURCES />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/../../tools/commons-jelly-1.0/src/java" />
+        </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library">

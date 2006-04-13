@@ -46,7 +46,6 @@ public class APTJellyProcessorFactory extends ProcessorFactory {
   private static final Collection<String> SUPPORTED_TYPES = Collections.unmodifiableCollection(Arrays.asList("*"));
 
   private URL script;
-  protected static int round = 0;
 
   public APTJellyProcessorFactory() {
     script = null;

@@ -30,10 +30,6 @@ import net.sf.jelly.apt.TemplateBlock;
  */
 public class FieldDeclarationLoopStrategy<B extends TemplateBlock> extends MemberDeclarationLoopStrategy<FieldDeclaration, B> {
 
-  public FieldDeclarationLoopStrategy(B block) {
-    super(block);
-  }
-
   protected Collection<FieldDeclaration> getMemberDeclarations(TypeDeclaration declaration) {
     return declaration.getFields();
   }

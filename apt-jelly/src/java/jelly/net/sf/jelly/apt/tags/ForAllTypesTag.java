@@ -17,11 +17,9 @@ package net.sf.jelly.apt.tags;
 
 import com.sun.mirror.declaration.ClassDeclaration;
 import com.sun.mirror.declaration.InterfaceDeclaration;
+import com.sun.mirror.declaration.PackageDeclaration;
 import com.sun.mirror.declaration.TypeDeclaration;
-import org.apache.commons.jelly.JellyTagException;
-
-import java.util.ArrayList;
-import java.util.Collection;
+import net.sf.jelly.apt.strategies.TypeDeclarationLoopStrategy;
 
 /**
  * Evaluates its body for each {@link TypeDeclaration type declaration}.
@@ -30,50 +28,14 @@ import java.util.Collection;
  *
  * @author Ryan Heaton
  */
-public class ForAllTypesTag extends AnnotationFilterableDeclarationLoopTag<TypeDeclaration> {
+public class ForAllTypesTag extends AnnotationFilterableDeclarationLoopTag<TypeDeclarationLoopStrategy> {
 
-  private boolean includeClasses = true;
-  private boolean includeInterfaces = false;
-
-  /**
-   * The base collection of types over which to iterate.
-   *
-   * @return The base collection of types over which to iterate.
-   */
-  public Collection<TypeDeclaration> getAllDeclarationsToConsiderForAnnotationFiltering() throws JellyTagException {
-    Collection<TypeDeclaration> allTypeDeclarations = getAllTypeDeclarations();
-    if (includeClasses && includeInterfaces) {
-      return allTypeDeclarations;
-    }
-    else {
-      ArrayList<TypeDeclaration> typeDeclarations = new ArrayList<TypeDeclaration>();
-      for (TypeDeclaration declaration : allTypeDeclarations) {
-        if (((includeClasses) && (declaration instanceof ClassDeclaration)) ||
-          ((includeInterfaces) && (declaration instanceof InterfaceDeclaration))) {
-          typeDeclarations.add(declaration);
-        }
-      }
-      return typeDeclarations;
-    }
+  public ForAllTypesTag() {
+    this(new TypeDeclarationLoopStrategy());
   }
 
-  /**
-   * Get all type declarations from the {@link #getAnnotationProcessorEnvironment() annotation
-   * processor environment}.
-   *
-   * @return All type declarations considered for this loop tag.
-   */
-  protected Collection<TypeDeclaration> getAllTypeDeclarations() throws JellyTagException {
-    return getAnnotationProcessorEnvironment().getTypeDeclarations();
-  }
-
-  /**
-   * Whether to include interfaces in the collection of types over which to iterate.
-   *
-   * @return Whether to include interfaces in the collection of types over which to iterate.
-   */
-  public boolean isIncludeInterfaces() {
-    return includeInterfaces;
+  protected ForAllTypesTag(TypeDeclarationLoopStrategy strategy) {
+    super(strategy);
   }
 
   /**
@@ -82,16 +44,7 @@ public class ForAllTypesTag extends AnnotationFilterableDeclarationLoopTag<TypeD
    * @param includeInterfaces Whether to include interfaces in the collection of types over which to iterate.
    */
   public void setIncludeInterfaces(boolean includeInterfaces) {
-    this.includeInterfaces = includeInterfaces;
-  }
-
-  /**
-   * Whether to include classes in the collection of types over which to iterate.
-   *
-   * @return Whether to include classes in the collection of types over which to iterate.
-   */
-  public boolean isIncludeClasses() {
-    return includeClasses;
+    strategy.setIncludeInterfaces(includeInterfaces);
   }
 
   /**
@@ -100,7 +53,17 @@ public class ForAllTypesTag extends AnnotationFilterableDeclarationLoopTag<TypeD
    * @param includeClasses Whether to include classes in the collection of types over which to iterate.
    */
   public void setIncludeClasses(boolean includeClasses) {
-    this.includeClasses = includeClasses;
+    strategy.setIncludeClasses(includeClasses);
   }
+
+  /**
+   * The package declaration containing the types.
+   *
+   * @param pckg The package declaration containing the types.
+   */
+  public void setPackage(PackageDeclaration pckg) {
+    strategy.setPackage(pckg);
+  }
+
 
 }

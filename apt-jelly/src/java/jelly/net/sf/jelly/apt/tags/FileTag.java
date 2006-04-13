@@ -15,46 +15,26 @@
  */
 package net.sf.jelly.apt.tags;
 
-import com.sun.mirror.apt.AnnotationProcessorEnvironment;
-import com.sun.mirror.apt.Filer;
-import org.apache.commons.jelly.JellyTagException;
-
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
+import net.sf.jelly.apt.strategies.FileStrategy;
 
 /**
  * Tag that pipes its output to a new file <i>relative to the output directory specified for APT</i>.
  *
  * @author Ryan Heaton
  */
-public class FileTag extends JavaSourceTag {
+public class FileTag extends APTJellyTag<FileStrategy> {
 
-  private String pkg = "";
-  private String charset;
-
-  /**
-   * Return the writer to the specified file.
-   *
-   * @return The writer to the specified file.
-   */
-  protected PrintWriter getWriter() throws JellyTagException {
-    AnnotationProcessorEnvironment env = getAnnotationProcessorEnvironment();
-    try {
-      return env.getFiler().createTextFile(Filer.Location.SOURCE_TREE, pkg, new File(getName()), charset);
-    }
-    catch (IOException e) {
-      throw new JellyTagException(e);
-    }
+  public FileTag() {
+    super(new FileStrategy());
   }
 
   /**
-   * Package relative to which the file should be named, or the empty string if none.
+   * The name of the file.
    *
-   * @return Package relative to which the file should be named, or the empty string if none.
+   * @param name The name of the file.
    */
-  public String getPackage() {
-    return pkg;
+  public void setName(String name) {
+    strategy.setName(name);
   }
 
   /**
@@ -63,16 +43,7 @@ public class FileTag extends JavaSourceTag {
    * @param pkg Package relative to which the file should be named, or the empty string if none.
    */
   public void setPackage(String pkg) {
-    this.pkg = pkg;
-  }
-
-  /**
-   * The name of the charset to use.
-   *
-   * @return The name of the charset to use.
-   */
-  public String getCharset() {
-    return charset;
+    strategy.setPackage(pkg);
   }
 
   /**
@@ -81,7 +52,6 @@ public class FileTag extends JavaSourceTag {
    * @param charset The name of the charset to use.
    */
   public void setCharset(String charset) {
-    this.charset = charset;
+    strategy.setCharset(charset);
   }
-
 }

@@ -15,14 +15,8 @@
  */
 package net.sf.jelly.apt.tags;
 
-import com.sun.mirror.declaration.*;
-import com.sun.mirror.type.*;
-import com.sun.mirror.util.SimpleTypeVisitor;
-import com.sun.mirror.util.TypeVisitor;
-import org.apache.commons.jelly.JellyTagException;
-
-import java.util.Collection;
-import java.util.HashMap;
+import com.sun.mirror.declaration.TypeDeclaration;
+import net.sf.jelly.apt.strategies.ImportedTypeDeclarationLoopStrategy;
 
 /**
  * Evaluates its body for all imported types of a specified type declaration.  By default,
@@ -34,146 +28,10 @@ import java.util.HashMap;
  */
 public class ForAllImportedTypesTag extends ForAllTypesTag {
 
-  private TypeDeclaration declaration;
-
   public ForAllImportedTypesTag() {
+    super(new ImportedTypeDeclarationLoopStrategy());
     setIncludeClasses(true);
     setIncludeInterfaces(true);
-  }
-
-  protected Collection<TypeDeclaration> getAllTypeDeclarations() throws JellyTagException {
-    TypeDeclaration declaration = getDeclaration();
-    if (declaration == null) {
-      declaration = getCurrentTypeDeclaration();
-
-      if (declaration == null) {
-        throw new JellyTagException("The loop tag for imported types must either be within a loop tag for type declarations the declaration must be specified.");
-      }
-    }
-
-    return getAllImportedTypes(declaration);
-  }
-
-  /**
-   * Get the {@link ForAllTypesTag#getCurrentDeclaration() current type declaration}
-   *
-   * @return The current type declaration.
-   * @throws JellyTagException If this tag isn't in a type declaration loop.
-   */
-  protected TypeDeclaration getCurrentTypeDeclaration() throws JellyTagException {
-    ForAllTypesTag tag = (ForAllTypesTag) findAncestorWithClass(ForAllTypesTag.class);
-    return ((tag == null) ? null : tag.getCurrentDeclaration());
-  }
-
-  /**
-   * Get all imported types of a given type declaration.
-   *
-   * @param typeDeclaration The type declaration from which to get all imported types.
-   * @return The imported types of a given type declaration.
-   */
-  public static Collection<TypeDeclaration> getAllImportedTypes(TypeDeclaration typeDeclaration) {
-    final HashMap<String, TypeDeclaration> importedTypes = new HashMap<String, TypeDeclaration>();
-
-    //this visitor will add any type declarations to the list of imported types.
-    TypeVisitor visitor = new SimpleTypeVisitor() {
-      public void visitDeclaredType(DeclaredType declaredType) {
-        TypeDeclaration declaration = declaredType.getDeclaration();
-        if (declaration != null) {
-          String qualifiedName = declaration.getQualifiedName();
-          if (!qualifiedName.startsWith("java.lang")) {
-            importedTypes.put(qualifiedName, declaration);
-          }
-        }
-
-        for (TypeMirror type : declaredType.getActualTypeArguments()) {
-          type.accept(this);
-        }
-      }
-
-      public void visitArrayType(ArrayType arrayType) {
-        arrayType.getComponentType().accept(this);
-      }
-
-      public void visitTypeVariable(TypeVariable typeVariable) {
-        TypeParameterDeclaration declaration = typeVariable.getDeclaration();
-        if (declaration != null) {
-          Collection<ReferenceType> bounds = declaration.getBounds();
-          for (ReferenceType referenceType : bounds) {
-            referenceType.accept(this);
-          }
-        }
-      }
-    };
-
-    //visit the fields.
-    for (FieldDeclaration field : typeDeclaration.getFields()) {
-      field.getType().accept(visitor);
-    }
-
-    //visit the methods.
-    for (MethodDeclaration method : typeDeclaration.getMethods()) {
-      method.getReturnType().accept(visitor);
-
-      for (ParameterDeclaration parameter : method.getParameters()) {
-        parameter.getType().accept(visitor);
-      }
-
-      for (ReferenceType thrownType : method.getThrownTypes()) {
-        thrownType.accept(visitor);
-      }
-
-      for (TypeParameterDeclaration formalTypeParameter : method.getFormalTypeParameters()) {
-        Collection<ReferenceType> bounds = formalTypeParameter.getBounds();
-        for (ReferenceType bound : bounds) {
-          bound.accept(visitor);
-        }
-      }
-    }
-
-    //visit the superinterfaces.
-    for (InterfaceType interfaceType : typeDeclaration.getSuperinterfaces()) {
-      interfaceType.accept(visitor);
-    }
-
-    //visit the superclasses and constructors.
-    if (typeDeclaration instanceof ClassDeclaration) {
-      ((ClassDeclaration) typeDeclaration).getSuperclass().accept(visitor);
-
-      for (ConstructorDeclaration constructor : ((ClassDeclaration) typeDeclaration).getConstructors()) {
-        for (ParameterDeclaration parameter : constructor.getParameters()) {
-          parameter.getType().accept(visitor);
-        }
-
-        for (ReferenceType thrownType : constructor.getThrownTypes()) {
-          thrownType.accept(visitor);
-        }
-
-        for (TypeParameterDeclaration formalTypeParameter : constructor.getFormalTypeParameters()) {
-          Collection<ReferenceType> bounds = formalTypeParameter.getBounds();
-          for (ReferenceType bound : bounds) {
-            bound.accept(visitor);
-          }
-        }
-      }
-    }
-
-    for (TypeParameterDeclaration formalTypeParameter : typeDeclaration.getFormalTypeParameters()) {
-      Collection<ReferenceType> bounds = formalTypeParameter.getBounds();
-      for (ReferenceType bound : bounds) {
-        bound.accept(visitor);
-      }
-    }
-
-    return importedTypes.values();
-  }
-
-  /**
-   * The type declaration for which to get all imported types.
-   *
-   * @return The type declaration for which to get all imported types.
-   */
-  public TypeDeclaration getDeclaration() {
-    return declaration;
   }
 
   /**
@@ -182,7 +40,7 @@ public class ForAllImportedTypesTag extends ForAllTypesTag {
    * @param declaration The type declaration for which to get all imported types.
    */
   public void setDeclaration(TypeDeclaration declaration) {
-    this.declaration = declaration;
+    ((ImportedTypeDeclarationLoopStrategy) strategy).setDeclaration(declaration);
   }
 
 }

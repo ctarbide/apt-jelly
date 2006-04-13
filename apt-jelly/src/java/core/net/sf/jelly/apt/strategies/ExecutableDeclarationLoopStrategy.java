@@ -26,10 +26,6 @@ import net.sf.jelly.apt.TemplateBlock;
  */
 public abstract class ExecutableDeclarationLoopStrategy<E extends ExecutableDeclaration, B extends TemplateBlock> extends MemberDeclarationLoopStrategy<E, B> {
 
-  public ExecutableDeclarationLoopStrategy(B block) {
-    super(block);
-  }
-
   /**
    * Get the current declaration as an executable declaration.
    *

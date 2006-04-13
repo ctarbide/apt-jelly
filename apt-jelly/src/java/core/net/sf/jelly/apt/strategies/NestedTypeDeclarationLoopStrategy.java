@@ -29,10 +29,6 @@ public class NestedTypeDeclarationLoopStrategy<B extends TemplateBlock> extends 
 
   private TypeDeclaration declaration;
 
-  public NestedTypeDeclarationLoopStrategy(B block) {
-    super(block);
-  }
-
   /**
    * Limits the loop to all type declarations of the current type declaration.
    *
@@ -42,6 +38,7 @@ public class NestedTypeDeclarationLoopStrategy<B extends TemplateBlock> extends 
     TypeDeclaration declaration = getDeclaration();
     if (declaration == null) {
       declaration = getCurrentTypeDeclaration();
+
       if (declaration == null) {
         throw new MissingParameterException("declaration");
       }
@@ -76,7 +73,7 @@ public class NestedTypeDeclarationLoopStrategy<B extends TemplateBlock> extends 
   protected TypeDeclaration getCurrentTypeDeclaration() {
     TypeDeclarationLoopStrategy loop = StrategyStack.get().findFirst(TypeDeclarationLoopStrategy.class);
     if (loop != null) {
-      return (TypeDeclaration) loop.getCurrentDeclaration();
+      return loop.getCurrentDeclaration();
     }
     return null;
   }

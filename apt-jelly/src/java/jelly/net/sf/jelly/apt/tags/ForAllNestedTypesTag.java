@@ -16,57 +16,17 @@
 package net.sf.jelly.apt.tags;
 
 import com.sun.mirror.declaration.TypeDeclaration;
-import org.apache.commons.jelly.JellyTagException;
-
-import java.util.Collection;
+import net.sf.jelly.apt.strategies.NestedTypeDeclarationLoopStrategy;
 
 /**
- * Evaluates its body for all nested types in the {@link ForAllTypesTag#getCurrentDeclaration() current type
- * declaration}.
+ * Evaluates its body for all nested types in a type declaration.
  *
  * @author Ryan Heaton
  */
 public class ForAllNestedTypesTag extends ForAllTypesTag {
 
-  private TypeDeclaration declaration;
-
-  /**
-   * Limits the loop to all type declarations of the current type declaration.
-   *
-   * @return The collection of nested types.
-   * @throws JellyTagException If not in a type declaration loop.
-   */
-  protected Collection<TypeDeclaration> getAllTypeDeclarations() throws JellyTagException {
-    TypeDeclaration declaration = getDeclaration();
-    if (declaration == null) {
-      declaration = getCurrentTypeDeclaration();
-
-      if (declaration == null) {
-        throw new JellyTagException("The loop tag for nested type declarations must either be within a loop tag for type declarations the declaration must be specified.");
-      }
-    }
-
-    return declaration.getNestedTypes();
-  }
-
-  /**
-   * Get the {@link ForAllTypesTag#getCurrentDeclaration() current type declaration}
-   *
-   * @return The current type declaration.
-   * @throws JellyTagException If this tag isn't in a type declaration loop.
-   */
-  protected TypeDeclaration getCurrentTypeDeclaration() throws JellyTagException {
-    ForAllTypesTag tag = (ForAllTypesTag) findAncestorWithClass(ForAllTypesTag.class);
-    return ((tag == null) ? null : tag.getCurrentDeclaration());
-  }
-
-  /**
-   * The declaration for which to iterate over all nested types.
-   *
-   * @return The declaration for which to iterate over all nested types.
-   */
-  public TypeDeclaration getDeclaration() {
-    return declaration;
+  public ForAllNestedTypesTag() {
+    super(new NestedTypeDeclarationLoopStrategy());
   }
 
   /**
@@ -75,7 +35,7 @@ public class ForAllNestedTypesTag extends ForAllTypesTag {
    * @param declaration The declaration for which to iterate over all nested types.
    */
   public void setDeclaration(TypeDeclaration declaration) {
-    this.declaration = declaration;
+    ((NestedTypeDeclarationLoopStrategy) strategy).setDeclaration(declaration);
   }
 
 }

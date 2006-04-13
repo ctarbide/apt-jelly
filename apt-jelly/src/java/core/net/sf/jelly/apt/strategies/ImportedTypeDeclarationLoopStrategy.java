@@ -37,8 +37,7 @@ import net.sf.jelly.apt.TemplateBlock;
 public class ImportedTypeDeclarationLoopStrategy<B extends TemplateBlock> extends TypeDeclarationLoopStrategy<B> {
   private TypeDeclaration declaration;
 
-  public ImportedTypeDeclarationLoopStrategy(B block) {
-    super(block);
+  public ImportedTypeDeclarationLoopStrategy() {
     setIncludeClasses(true);
     setIncludeInterfaces(true);
   }
@@ -46,7 +45,11 @@ public class ImportedTypeDeclarationLoopStrategy<B extends TemplateBlock> extend
   protected Collection<TypeDeclaration> getAllTypeDeclarations() throws MissingParameterException {
     TypeDeclaration declaration = getDeclaration();
     if (declaration == null) {
-      throw new MissingParameterException("declaration");
+      declaration = getCurrentTypeDeclaration();
+
+      if (declaration == null) {
+        throw new MissingParameterException("declaration");
+      }
     }
 
     return getAllImportedTypes(declaration);
@@ -180,7 +183,7 @@ public class ImportedTypeDeclarationLoopStrategy<B extends TemplateBlock> extend
   protected TypeDeclaration getCurrentTypeDeclaration() {
     TypeDeclarationLoopStrategy loop = StrategyStack.get().findFirst(TypeDeclarationLoopStrategy.class);
     if (loop != null) {
-      return (TypeDeclaration) loop.getCurrentDeclaration();
+      return loop.getCurrentDeclaration();
     }
     return null;
   }

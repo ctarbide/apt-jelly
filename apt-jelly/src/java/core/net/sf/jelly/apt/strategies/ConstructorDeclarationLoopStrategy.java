@@ -33,10 +33,6 @@ import net.sf.jelly.apt.TemplateBlock;
  */
 public class ConstructorDeclarationLoopStrategy<B extends TemplateBlock> extends ExecutableDeclarationLoopStrategy<ConstructorDeclaration, B> {
 
-  public ConstructorDeclarationLoopStrategy(B block) {
-    super(block);
-  }
-
   /**
    * All the constructors of the given declaration declaration, or an empty list if the current declaration
    * is an interface declaration.

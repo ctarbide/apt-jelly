@@ -37,45 +37,36 @@ public abstract class DeclarationLoopStrategy<D extends Declaration, B extends T
   private String var;
   private String indexVar;
   private D currentDeclaration;
-  private int index = 0;
 
   //Inherited.
-  public DeclarationLoopStrategy(B block) {
-    super(block);
-  }
-
-  @Override
-  public <E extends Exception> void invoke(TemplateModel model, TemplateOutput<B, E> output) throws E, IOException, TemplateException {
+  public void invoke(B block, TemplateOutput<B> output, TemplateModel model) throws IOException, TemplateException {
     Collection<D> declarations = getDeclarations();
-    index = 0;
+    int index = 0;
     for (D declaration : declarations) {
-      //decorate the declaration first.
-      declaration = DeclarationDecorator.decorate(declaration);
-      invoke(declaration, model, output);
+      currentDeclaration = DeclarationDecorator.decorate(declaration);
+
+      setupModelForLoop(model, index);
+
+      super.invoke(block, output, model);
+
+      index++;
     }
   }
 
   /**
-   * Invoke the block with the specified declaration as the current declaration.
+   * Sets up the model for the current loop.
    *
-   * @param declaration The declaration specified as the current declaration.
    * @param model The model.
-   * @param output The output.
+   * @param index The loop index.
    */
-  protected <E extends Exception> void invoke(D declaration, TemplateModel model, TemplateOutput<B, E> output) throws E, IOException, TemplateException {
-    currentDeclaration = declaration;
-
+  protected void setupModelForLoop(TemplateModel model, int index) {
     if (var != null) {
-      model.setVariable(var, declaration);
+      model.setVariable(var, currentDeclaration);
     }
 
     if (indexVar != null) {
       model.setVariable(indexVar, index);
     }
-
-    super.invoke(model, output);
-
-    index++;
   }
 
   /**

@@ -15,39 +15,17 @@
  */
 package net.sf.jelly.apt.tags;
 
-import com.sun.mirror.apt.AnnotationProcessorEnvironment;
-import com.sun.mirror.declaration.PackageDeclaration;
-import com.sun.mirror.declaration.TypeDeclaration;
-import org.apache.commons.jelly.JellyTagException;
-
-import java.util.Collection;
-import java.util.HashMap;
+import net.sf.jelly.apt.strategies.PackageDeclarationLoopStrategy;
 
 /**
  * Evaluates its body for all packages.
  *
  * @author Ryan Heaton
  */
-public class ForAllPackagesTag extends AnnotationFilterableDeclarationLoopTag<PackageDeclaration> {
+public class ForAllPackagesTag extends AnnotationFilterableDeclarationLoopTag<PackageDeclarationLoopStrategy> {
 
-  public Collection<PackageDeclaration> getAllDeclarationsToConsiderForAnnotationFiltering() throws JellyTagException {
-    return getAllPackageDeclarations(getAnnotationProcessorEnvironment());
-  }
-
-  /**
-   * Method for getting all package declarations of a given environment.
-   *
-   * @param env The environment.
-   * @return All package declarations of a given environment.
-   */
-  public static Collection<PackageDeclaration> getAllPackageDeclarations(AnnotationProcessorEnvironment env) {
-    HashMap<String, PackageDeclaration> packages = new HashMap<String, PackageDeclaration>();
-    Collection<TypeDeclaration> typeDeclarations = env.getTypeDeclarations();
-    for (TypeDeclaration typeDeclaration : typeDeclarations) {
-      PackageDeclaration packageDecl = typeDeclaration.getPackage();
-      packages.put(packageDecl.getQualifiedName(), packageDecl);
-    }
-    return packages.values();
+  public ForAllPackagesTag() {
+    super(new PackageDeclarationLoopStrategy());
   }
 
 }

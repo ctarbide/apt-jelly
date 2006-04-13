@@ -37,12 +37,8 @@ public class IfHasDeclarationStrategy<B extends TemplateBlock> extends TemplateB
   private TypeMirror type;
   private String declarationVar;
 
-  public IfHasDeclarationStrategy(B block) {
-    super(block);
-  }
-
   @Override
-  public <E extends Exception>void invoke(TemplateModel model, TemplateOutput<B, E> output) throws E, IOException, TemplateException {
+  public void invoke(B block, TemplateOutput<B> output, TemplateModel model) throws IOException, TemplateException {
     if (type == null) {
       throw new MissingParameterException("type");
     }
@@ -55,7 +51,7 @@ public class IfHasDeclarationStrategy<B extends TemplateBlock> extends TemplateB
         }
       }
 
-      super.invoke(model, output);
+      super.invoke(block, output, model);
     }
   }
 

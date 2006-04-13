@@ -38,12 +38,8 @@ public class ThrownTypeLoopStrategy<B extends TemplateBlock> extends TemplateBlo
   private String indexVar;
   private ExecutableDeclaration declaration;
 
-  public ThrownTypeLoopStrategy(B block) {
-    super(block);
-  }
-
   @Override
-  public <E extends Exception> void invoke(TemplateModel model, TemplateOutput<B, E> output) throws E, IOException, TemplateException {
+  public void invoke(B block, TemplateOutput<B> output, TemplateModel model) throws IOException, TemplateException {
     Collection<ReferenceType> thrownTypes = getThrownTypes();
 
     int index = 0;
@@ -56,7 +52,7 @@ public class ThrownTypeLoopStrategy<B extends TemplateBlock> extends TemplateBlo
         model.setVariable(var, thrownType);
       }
 
-      super.invoke(model, output);
+      super.invoke(block, output, model);
 
       index++;
     }

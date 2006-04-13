@@ -15,82 +15,17 @@
  */
 package net.sf.jelly.apt.tags;
 
-import com.sun.mirror.declaration.Declaration;
-import net.sf.jelly.apt.decorations.DeclarationDecorator;
-import org.apache.commons.jelly.JellyTagException;
-import org.apache.commons.jelly.MissingAttributeException;
-import org.apache.commons.jelly.XMLOutput;
-
-import java.util.Collection;
+import net.sf.jelly.apt.strategies.DeclarationLoopStrategy;
 
 /**
  * A tag that is the loop over a set of declarations.
  *
  * @author Ryan Heaton
  */
-public abstract class DeclarationLoopTag<D extends Declaration> extends JellyTagSupport {
+public abstract class DeclarationLoopTag<S extends DeclarationLoopStrategy> extends APTJellyTag<S> {
 
-  private String var;
-  private String indexVar;
-  private D currentDeclaration;
-  private int index = 0;
-
-  public void doTag(XMLOutput output) throws MissingAttributeException, JellyTagException {
-    Collection<D> declarations = getDeclarations();
-    index = 0;
-    for (D declaration : declarations) {
-
-      //decorate the declaration first.
-      declaration = DeclarationDecorator.decorate(declaration);
-      invokeBody(declaration, output);
-    }
-  }
-
-  /**
-   * Invoke the body given <code>declaration</code> as the current declaration.
-   *
-   * @param declaration The current declaration.
-   * @param output The output.
-   */
-  protected void invokeBody(D declaration, XMLOutput output) throws JellyTagException {
-    currentDeclaration = declaration;
-
-    if (var != null) {
-      getContext().setVariable(var, declaration);
-    }
-
-    if (indexVar != null) {
-      getContext().setVariable(indexVar, index);
-    }
-
-    invokeBody(output);
-
-    index++;
-  }
-
-  /**
-   * The current declaration in the loop.
-   *
-   * @return The current declaration in the loop.
-   */
-  public D getCurrentDeclaration() {
-    return currentDeclaration;
-  }
-
-  /**
-   * The declarations to loop through.
-   *
-   * @return The declarations to loop through.
-   */
-  public abstract Collection<D> getDeclarations() throws JellyTagException;
-
-  /**
-   * The context variable in which to store the declaration.
-   *
-   * @return The context variable in which to store the declaration.
-   */
-  public String getVar() {
-    return var;
+  protected DeclarationLoopTag(S strategy) {
+    super(strategy);
   }
 
   /**
@@ -99,16 +34,7 @@ public abstract class DeclarationLoopTag<D extends Declaration> extends JellyTag
    * @param var The context variable in which to store the declaration.
    */
   public void setVar(String var) {
-    this.var = var;
-  }
-
-  /**
-   * Variable in which to store the value of the index.
-   *
-   * @return Variable in which to store the value of the index.
-   */
-  public String getIndexVar() {
-    return indexVar;
+    strategy.setVar(var);
   }
 
   /**
@@ -117,6 +43,7 @@ public abstract class DeclarationLoopTag<D extends Declaration> extends JellyTag
    * @param indexVar Variable in which to store the value of the index.
    */
   public void setIndexVar(String indexVar) {
-    this.indexVar = indexVar;
+    strategy.setIndexVar(indexVar);
   }
+
 }

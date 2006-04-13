@@ -16,20 +16,17 @@
 package net.sf.jelly.apt.tags;
 
 import com.sun.mirror.declaration.ExecutableDeclaration;
+import net.sf.jelly.apt.strategies.ExecutableDeclarationLoopStrategy;
 
 /**
  * Loop tag through a collection of {@link ExecutableDeclaration}s.
  * 
  * @author Ryan Heaton
  */
-public abstract class ExecutableDeclarationLoopTag<E extends ExecutableDeclaration> extends MemberDeclarationLoopTag<E> {
+public abstract class ExecutableDeclarationLoopTag<S extends ExecutableDeclarationLoopStrategy> extends MemberDeclarationLoopTag<S> {
 
-  /**
-   * Get the current declaration as an executable declaration.
-   *
-   * @return The current declaration.
-   */
-  public E getCurrentDeclaration() {
-    return super.getCurrentDeclaration();
+  protected ExecutableDeclarationLoopTag(S strategy) {
+    super(strategy);
   }
+
 }

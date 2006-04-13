@@ -38,12 +38,8 @@ public class IfHasAnnotationStrategy<B extends TemplateBlock> extends TemplateBl
   private String annotation;
   private String var;
 
-  public IfHasAnnotationStrategy(B block) {
-    super(block);
-  }
-
   @Override
-  public <E extends Exception>void invoke(TemplateModel model, TemplateOutput<B, E> output) throws E, IOException, TemplateException {
+  public void invoke(B block, TemplateOutput<B> output, TemplateModel model) throws IOException, TemplateException {
     if (annotation == null) {
       throw new MissingParameterException("annotation");
     }
@@ -57,7 +53,7 @@ public class IfHasAnnotationStrategy<B extends TemplateBlock> extends TemplateBl
       }
     }
 
-    Collection<AnnotationMirror> annotations = this.declaration.getAnnotationMirrors();
+    Collection<AnnotationMirror> annotations = declaration.getAnnotationMirrors();
     for (AnnotationMirror mirror : annotations) {
       AnnotationTypeDeclaration annotationDeclaration = mirror.getAnnotationType().getDeclaration();
       if ((annotationDeclaration != null) && (annotationDeclaration.getQualifiedName().equals(annotation))) {
@@ -65,7 +61,7 @@ public class IfHasAnnotationStrategy<B extends TemplateBlock> extends TemplateBl
           model.setVariable(var, mirror);
         }
 
-        super.invoke(model, output);
+        super.invoke(block, output, model);
       }
     }
   }

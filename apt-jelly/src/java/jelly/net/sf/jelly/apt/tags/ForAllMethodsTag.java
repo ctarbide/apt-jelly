@@ -15,63 +15,25 @@
  */
 package net.sf.jelly.apt.tags;
 
-import com.sun.mirror.declaration.MethodDeclaration;
-import com.sun.mirror.declaration.TypeDeclaration;
-import com.sun.mirror.type.TypeMirror;
-import org.apache.commons.jelly.JellyTagException;
-import org.apache.commons.jelly.XMLOutput;
-
-import java.util.ArrayList;
-import java.util.Collection;
+import net.sf.jelly.apt.strategies.MethodDeclarationLoopStrategy;
 
 /**
- * Evaluates its body for all methods of the {@link ForAllTypesTag#getCurrentDeclaration() current type declaration}.
+ * Evaluates its body for all methods of a type declaration.
  *
  * @author Ryan Heaton
  */
-public class ForAllMethodsTag extends ExecutableDeclarationLoopTag<MethodDeclaration> {
+public class ForAllMethodsTag extends ExecutableDeclarationLoopTag<MethodDeclarationLoopStrategy> {
 
-  private String returnTypeVar;
-
-  /**
-   * The method declarations of the given type declaration.
-   *
-   * @return The method declarations of the given type declaration.
-   */
-  protected Collection<MethodDeclaration> getMemberDeclarations(TypeDeclaration declaration) {
-    return new ArrayList<MethodDeclaration>(declaration.getMethods());
+  public ForAllMethodsTag() {
+    super(new MethodDeclarationLoopStrategy());
   }
 
   /**
-   * Sets up the return type variable and the return type declaration variable, if desired.
+   * The variable to which to assign the return type (as a {@link com.sun.mirror.type.TypeMirror}).
    *
-   * @param declaration The method declaration.
-   * @param output the output.
-   */
-  protected void invokeBody(MethodDeclaration declaration, XMLOutput output) throws JellyTagException {
-    if (returnTypeVar != null) {
-      getContext().setVariable(returnTypeVar, declaration.getReturnType());
-    }
-
-    super.invokeBody(declaration, output);
-  }
-
-  /**
-   * The variable to which to assign the return type (as a {@link TypeMirror}).
-   *
-   * @return The variable to which to assign the return type (as a {@link TypeMirror}).
-   */
-  public String getReturnTypeVar() {
-    return returnTypeVar;
-  }
-
-  /**
-   * The variable to which to assign the return type (as a {@link TypeMirror}).
-   *
-   * @param returnTypeVar The variable to which to assign the return type (as a {@link TypeMirror}).
+   * @param returnTypeVar The variable to which to assign the return type (as a {@link com.sun.mirror.type.TypeMirror}).
    */
   public void setReturnTypeVar(String returnTypeVar) {
-    this.returnTypeVar = returnTypeVar;
+    strategy.setReturnTypeVar(returnTypeVar);
   }
-
 }

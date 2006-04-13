@@ -20,25 +20,18 @@ import com.sun.mirror.declaration.MethodDeclaration;
 import com.sun.mirror.declaration.TypeDeclaration;
 import net.sf.jelly.apt.TemplateBlock;
 import net.sf.jelly.apt.TemplateModel;
-import net.sf.jelly.apt.TemplateOutput;
-import net.sf.jelly.apt.TemplateException;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.io.IOException;
 
 /**
- * Evaluates its body for all methods of the {@link net.sf.jelly.apt.tags.ForAllTypesTag#getCurrentDeclaration() current type declaration}.
+ * Evaluates its body for all methods of the a type declaration.
  *
  * @author Ryan Heaton
  */
 public class MethodDeclarationLoopStrategy<B extends TemplateBlock> extends ExecutableDeclarationLoopStrategy<MethodDeclaration, B> {
 
   private String returnTypeVar;
-
-  public MethodDeclarationLoopStrategy(B block) {
-    super(block);
-  }
 
   /**
    * The method declarations of the given type declaration.
@@ -49,20 +42,14 @@ public class MethodDeclarationLoopStrategy<B extends TemplateBlock> extends Exec
     return new ArrayList<MethodDeclaration>(declaration.getMethods());
   }
 
-  /**
-   * Sets up the return type variable and the return type declaration variable, if desired.
-   *
-   * @param declaration The method declaration.
-   * @param model The data model.
-   * @param output The output.
-   */
+  //Inherited.
   @Override
-  protected <E extends Exception>void invoke(MethodDeclaration declaration, TemplateModel model, TemplateOutput<B, E> output) throws E, IOException, TemplateException {
+  protected void setupModelForLoop(TemplateModel model, int index) {
     if (returnTypeVar != null) {
-      model.setVariable(returnTypeVar, declaration.getReturnType());
+      model.setVariable(returnTypeVar, getCurrentDeclaration().getReturnType());
     }
 
-    super.invoke(declaration, model, output);
+    super.setupModelForLoop(model, index);
   }
 
   /**

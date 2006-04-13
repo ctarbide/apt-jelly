@@ -28,7 +28,7 @@ import java.io.IOException;
  *
  * @author Ryan Heaton
  */
-public abstract class TemplateValueStrategy implements TemplateStrategy<TemplateBlock> {
+public abstract class TemplateValueStrategy<B extends TemplateBlock> implements TemplateStrategy<B> {
 
   /**
    * Get the value to write to the template output.
@@ -38,7 +38,7 @@ public abstract class TemplateValueStrategy implements TemplateStrategy<Template
   protected abstract String getValue() throws TemplateException;
 
   //Inherited.
-  public <E extends Exception>void invoke(TemplateModel model, TemplateOutput<TemplateBlock, E> output) throws E, IOException, TemplateException {
+  public void invoke(B block, TemplateOutput<B> output, TemplateModel model) throws IOException, TemplateException {
     String value = getValue();
     if (value != null) {
       output.write(value);

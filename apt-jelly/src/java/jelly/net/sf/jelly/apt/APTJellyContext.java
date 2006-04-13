@@ -29,7 +29,7 @@ import org.apache.commons.jelly.JellyContext;
  *
  * @author Ryan Heaton
  */
-public class APTJellyContext extends JellyContext {
+public class APTJellyContext extends JellyContext implements TemplateModel {
 
   private final AnnotationProcessorEnvironment aptEnv;
 

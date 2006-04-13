@@ -15,21 +15,17 @@
  */
 package net.sf.jelly.apt.tags;
 
-import com.sun.mirror.declaration.FieldDeclaration;
-import com.sun.mirror.declaration.TypeDeclaration;
-import org.apache.commons.jelly.JellyTagException;
-
-import java.util.Collection;
+import net.sf.jelly.apt.strategies.FieldDeclarationLoopStrategy;
 
 /**
  * Evaluates its body for all fields.
  *
  * @author Ryan Heaton
  */
-public class ForAllFieldsTag extends MemberDeclarationLoopTag<FieldDeclaration> {
+public class ForAllFieldsTag extends MemberDeclarationLoopTag<FieldDeclarationLoopStrategy> {
 
-  protected Collection<FieldDeclaration> getMemberDeclarations(TypeDeclaration declaration) throws JellyTagException {
-    return getCurrentTypeDeclaration().getFields();
+  public ForAllFieldsTag() {
+    super(new FieldDeclarationLoopStrategy());
   }
 
 }

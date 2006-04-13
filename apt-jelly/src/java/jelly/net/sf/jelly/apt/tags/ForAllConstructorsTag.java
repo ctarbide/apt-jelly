@@ -15,37 +15,18 @@
  */
 package net.sf.jelly.apt.tags;
 
-import com.sun.mirror.declaration.ClassDeclaration;
-import com.sun.mirror.declaration.ConstructorDeclaration;
 import com.sun.mirror.declaration.InterfaceDeclaration;
-import com.sun.mirror.declaration.TypeDeclaration;
-
-import java.util.ArrayList;
-import java.util.Collection;
+import net.sf.jelly.apt.strategies.ConstructorDeclarationLoopStrategy;
 
 /**
- * Evaluates its body for all constructors of the {@link ForAllTypesTag#getCurrentDeclaration() current
- * type declaration}.  If the <i>current type declaration</i> is an {@link InterfaceDeclaration}, there
- * will be no constructors.
+ * Evaluates its body for all constructors of the a type declaration.  If the <i>current type
+ * declaration</i> is an {@link InterfaceDeclaration}, there will be no constructors.
  *
  * @author Ryan Heaton
  */
-public class ForAllConstructorsTag extends ExecutableDeclarationLoopTag<ConstructorDeclaration> {
+public class ForAllConstructorsTag extends ExecutableDeclarationLoopTag<ConstructorDeclarationLoopStrategy> {
 
-  /**
-   * All the constructors of the given declaration declaration, or an empty list if the current declaration
-   * is an interface declaration.
-   *
-   * @return All the constructors of the current declaration declaration.
-   */
-  protected Collection<ConstructorDeclaration> getMemberDeclarations(TypeDeclaration declaration) {
-    if (declaration instanceof ClassDeclaration) {
-      return ((ClassDeclaration) declaration).getConstructors();
-    }
-    else {
-      //if it's an interface delcaration, there are no constructors.
-      return new ArrayList<ConstructorDeclaration>();
-    }
+  public ForAllConstructorsTag() {
+    super(new ConstructorDeclarationLoopStrategy());
   }
-
 }

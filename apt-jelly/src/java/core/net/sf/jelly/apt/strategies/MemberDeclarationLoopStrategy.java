@@ -41,10 +41,6 @@ public abstract class MemberDeclarationLoopStrategy<M extends MemberDeclaration,
   private boolean includeSuperinterfaces = false;
   private TypeDeclaration declaration;
 
-  public MemberDeclarationLoopStrategy(B block) {
-    super(block);
-  }
-
   public Collection<M> getAllDeclarationsToConsiderForAnnotationFiltering() throws MissingParameterException {
     ArrayList<M> allDeclarations = new ArrayList<M>();
     TypeDeclaration typeDeclaration = getDeclaration();
@@ -225,7 +221,7 @@ public abstract class MemberDeclarationLoopStrategy<M extends MemberDeclaration,
   protected TypeDeclaration getCurrentTypeDeclaration() {
     TypeDeclarationLoopStrategy loop = StrategyStack.get().findFirst(TypeDeclarationLoopStrategy.class);
     if (loop != null) {
-      return (TypeDeclaration) loop.getCurrentDeclaration();
+      return loop.getCurrentDeclaration();
     }
     return null;
   }

@@ -29,7 +29,7 @@ import java.io.PrintWriter;
  *
  * @author Ryan Heaton
  */
-public abstract class TemplateOutputRedirectionStrategy implements TemplateStrategy<TemplateBlock> {
+public abstract class TemplateOutputRedirectionStrategy<B extends TemplateBlock> implements TemplateStrategy<B> {
 
   /**
    * @return The writer to which to redirect the output.
@@ -37,9 +37,9 @@ public abstract class TemplateOutputRedirectionStrategy implements TemplateStrat
   protected abstract PrintWriter getWriter() throws TemplateException, IOException;
 
   //Inherited.
-  public <E extends Exception> void invoke(TemplateModel model, TemplateOutput<TemplateBlock, E> output) throws E, IOException, TemplateException {
+  public void invoke(B block, TemplateOutput<B> output, TemplateModel model) throws TemplateException, IOException {
     StrategyStack.get().push(this);
-    output.redirect(getWriter());
+    output.redirect(block, getWriter());
     StrategyStack.get().pop();
   }
 
