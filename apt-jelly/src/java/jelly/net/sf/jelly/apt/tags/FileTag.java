@@ -16,6 +16,7 @@
 package net.sf.jelly.apt.tags;
 
 import net.sf.jelly.apt.strategies.FileStrategy;
+import net.sf.jelly.apt.APTJellyTag;
 
 /**
  * Tag that pipes its output to a new file <i>relative to the output directory specified for APT</i>.

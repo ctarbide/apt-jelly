@@ -17,6 +17,7 @@ package net.sf.jelly.apt.tags;
 
 import com.sun.mirror.declaration.Declaration;
 import net.sf.jelly.apt.strategies.IfHasAnnotationStrategy;
+import net.sf.jelly.apt.APTJellyTag;
 
 /**
  * Evalute the body of the tag if the current declaration (in a loop) has a given annotation.

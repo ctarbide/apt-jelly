@@ -14,16 +14,14 @@
  * limitations under the License.
  */
 
-package net.sf.jelly.apt.tags;
+package net.sf.jelly.apt;
 
-import net.sf.jelly.apt.TemplateOutput;
-import net.sf.jelly.apt.TemplateException;
 import org.apache.commons.jelly.JellyTagException;
 import org.apache.commons.jelly.XMLOutput;
 import org.xml.sax.SAXException;
 
-import java.io.Writer;
 import java.io.IOException;
+import java.io.Writer;
 
 /**
  * Output implementation for jelly templates.

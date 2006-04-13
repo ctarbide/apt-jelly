@@ -16,6 +16,7 @@
 package net.sf.jelly.apt.tags;
 
 import net.sf.jelly.apt.strategies.JavaSourceStrategy;
+import net.sf.jelly.apt.APTJellyTag;
 
 /**
  * Tag that pipes its output to a new java source file.

@@ -17,6 +17,7 @@ package net.sf.jelly.apt.tags;
 
 import com.sun.mirror.declaration.Declaration;
 import net.sf.jelly.apt.strategies.AnnotationValueStrategy;
+import net.sf.jelly.apt.APTJellyTag;
 
 /**
  * Outputs an annotation value.  If a declaration is specified, it will be used to lookup the annotation value.

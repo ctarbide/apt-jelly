@@ -13,17 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.sf.jelly.apt.tags;
+package net.sf.jelly.apt;
 
-import net.sf.jelly.apt.APTJellyContext;
-import net.sf.jelly.apt.TemplateBlock;
-import net.sf.jelly.apt.TemplateException;
-import net.sf.jelly.apt.strategies.TemplateStrategy;
 import net.sf.jelly.apt.strategies.MissingParameterException;
+import net.sf.jelly.apt.strategies.TemplateStrategy;
 import org.apache.commons.jelly.JellyTagException;
+import org.apache.commons.jelly.MissingAttributeException;
 import org.apache.commons.jelly.TagSupport;
 import org.apache.commons.jelly.XMLOutput;
-import org.apache.commons.jelly.MissingAttributeException;
 
 import java.io.IOException;
 

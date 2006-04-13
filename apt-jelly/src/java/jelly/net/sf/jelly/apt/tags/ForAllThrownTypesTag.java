@@ -17,6 +17,7 @@ package net.sf.jelly.apt.tags;
 
 import com.sun.mirror.declaration.ExecutableDeclaration;
 import net.sf.jelly.apt.strategies.ThrownTypeLoopStrategy;
+import net.sf.jelly.apt.APTJellyTag;
 
 /**
  * Iterates through each thrown type of an executable declaration.

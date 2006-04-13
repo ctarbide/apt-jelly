@@ -16,6 +16,7 @@
 package net.sf.jelly.apt.tags;
 
 import net.sf.jelly.apt.strategies.DeclarationLoopStrategy;
+import net.sf.jelly.apt.APTJellyTag;
 
 /**
  * A tag that is the loop over a set of declarations.

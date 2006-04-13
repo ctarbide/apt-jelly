@@ -17,6 +17,7 @@ package net.sf.jelly.apt.tags;
 
 import com.sun.mirror.type.TypeMirror;
 import net.sf.jelly.apt.strategies.IfHasDeclarationStrategy;
+import net.sf.jelly.apt.APTJellyTag;
 
 /**
  * Evalute the body of the tag if the specified type has a declaration.  If the specified type is an
