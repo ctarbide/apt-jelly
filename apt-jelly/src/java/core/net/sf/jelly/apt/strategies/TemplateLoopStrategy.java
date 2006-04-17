@@ -53,7 +53,7 @@ public abstract class TemplateLoopStrategy<I, B extends TemplateBlock> extends T
   }
 
   /**
-   * Gets the loop.
+   * Gets the loop, and sets up the model for the first iteration.
    *
    * @param block The block.
    * @param output The output.
@@ -66,7 +66,11 @@ public abstract class TemplateLoopStrategy<I, B extends TemplateBlock> extends T
 
     this.loop = getLoop();
     this.index = 0;
-    return this.loop != null && this.loop.hasNext();
+    boolean hasNext = this.loop != null && this.loop.hasNext();
+    if (hasNext) {
+      setupModelForLoop(model, this.loop.next(), this.index++);
+    }
+    return hasNext;
   }
 
   /**
@@ -79,13 +83,17 @@ public abstract class TemplateLoopStrategy<I, B extends TemplateBlock> extends T
    */
   @Override
   public boolean processBody(B block, TemplateOutput<B> output, TemplateModel model) throws IOException, TemplateException {
-    if (this.loop == null || !this.loop.hasNext()) {
-      throw new IllegalStateException("The body of a loop strategy cannot be invoked if there are no (more) loops!");
+    if (this.loop == null) {
+      throw new TemplateException("The body of a template loop cannot be processed without the loop!");
     }
 
-    setupModelForLoop(model, this.loop.next(), this.index++);
     super.processBody(block, output, model);
-    return this.loop.hasNext();
+
+    boolean hasNext = this.loop.hasNext();
+    if (hasNext) {
+      setupModelForLoop(model, this.loop.next(), this.index++);
+    }
+    return hasNext;
   }
 
 }
