@@ -39,7 +39,9 @@ public class IfHasAnnotationStrategy<B extends TemplateBlock> extends TemplateBl
   private String var;
 
   @Override
-  public void invoke(B block, TemplateOutput<B> output, TemplateModel model) throws IOException, TemplateException {
+  public boolean preProcess(B block, TemplateOutput<B> output, TemplateModel model) throws IOException, TemplateException {
+    super.preProcess(block, output, model);
+    
     if (annotation == null) {
       throw new MissingParameterException("annotation");
     }
@@ -61,9 +63,11 @@ public class IfHasAnnotationStrategy<B extends TemplateBlock> extends TemplateBl
           model.setVariable(var, mirror);
         }
 
-        super.invoke(block, output, model);
+        return true;
       }
     }
+
+    return false;
   }
 
   /**

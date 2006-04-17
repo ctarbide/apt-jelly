@@ -28,12 +28,38 @@ import java.io.IOException;
  *
  * @author Ryan Heaton
  */
-public abstract class TemplateBlockStrategy<B extends TemplateBlock> implements TemplateStrategy<B> {
+public abstract class TemplateBlockStrategy<B extends TemplateBlock> extends TemplateStrategyControl<B> {
 
-  //Inherited.
-  public void invoke(B block, TemplateOutput<B> output, TemplateModel model) throws IOException, TemplateException {
+  /**
+   * Pushes this strategy on the stack and redirects the output.
+   *
+   * @param block The block.
+   * @param output The output.
+   * @param model The model.
+   * @return true, as the body should be evaluated.
+   */
+  public boolean preProcess(B block, TemplateOutput<B> output, TemplateModel model) throws IOException, TemplateException {
     StrategyStack.get().push(this);
+    return true;
+  }
+
+  /**
+   * Writes the body to the output.
+   *
+   * @param block The block.
+   * @param output The output.
+   * @param model The model.
+   * @return false.
+   */
+  public boolean processBody(B block, TemplateOutput<B> output, TemplateModel model) throws IOException, TemplateException {
     output.write(block);
+    return false;
+  }
+
+  /**
+   * Pops this strategy off the stack.
+   */
+  public void postProcess(B block, TemplateOutput<B> output, TemplateModel model) throws IOException, TemplateException {
     StrategyStack.get().pop();
   }
 

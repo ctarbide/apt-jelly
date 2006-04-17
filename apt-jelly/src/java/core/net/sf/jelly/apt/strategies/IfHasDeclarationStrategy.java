@@ -38,7 +38,9 @@ public class IfHasDeclarationStrategy<B extends TemplateBlock> extends TemplateB
   private String declarationVar;
 
   @Override
-  public void invoke(B block, TemplateOutput<B> output, TemplateModel model) throws IOException, TemplateException {
+  public boolean preProcess(B block, TemplateOutput<B> output, TemplateModel model) throws IOException, TemplateException {
+    super.preProcess(block, output, model);
+
     if (type == null) {
       throw new MissingParameterException("type");
     }
@@ -51,8 +53,10 @@ public class IfHasDeclarationStrategy<B extends TemplateBlock> extends TemplateB
         }
       }
 
-      super.invoke(block, output, model);
+      return true;
     }
+
+    return false;
   }
 
   /**

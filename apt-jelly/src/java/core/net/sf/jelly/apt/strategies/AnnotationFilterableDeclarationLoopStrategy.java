@@ -21,6 +21,7 @@ import com.sun.mirror.declaration.AnnotationTypeDeclaration;
 import com.sun.mirror.declaration.Declaration;
 import net.sf.jelly.apt.TemplateBlock;
 import net.sf.jelly.apt.TemplateModel;
+import net.sf.jelly.apt.TemplateException;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -38,7 +39,9 @@ public abstract class AnnotationFilterableDeclarationLoopStrategy<D extends Decl
 
   //Inherited.
   @Override
-  protected void setupModelForLoop(TemplateModel model, int index) {
+  protected void setupModelForLoop(TemplateModel model, D declaration, int index) throws TemplateException {
+    super.setupModelForLoop(model, declaration, index);
+
     if (annotationVar != null) {
       Collection<AnnotationMirror> annotations = getCurrentDeclaration().getAnnotationMirrors();
       for (AnnotationMirror mirror : annotations) {
@@ -50,8 +53,6 @@ public abstract class AnnotationFilterableDeclarationLoopStrategy<D extends Decl
         }
       }
     }
-
-    super.setupModelForLoop(model, index);
   }
 
   /**

@@ -19,11 +19,10 @@ package net.sf.jelly.apt.strategies;
 import com.sun.mirror.declaration.Declaration;
 
 import java.util.Collection;
-import java.io.IOException;
+import java.util.Iterator;
 
 import net.sf.jelly.apt.TemplateModel;
 import net.sf.jelly.apt.TemplateBlock;
-import net.sf.jelly.apt.TemplateOutput;
 import net.sf.jelly.apt.TemplateException;
 import net.sf.jelly.apt.decorations.DeclarationDecorator;
 
@@ -32,24 +31,33 @@ import net.sf.jelly.apt.decorations.DeclarationDecorator;
  *
  * @author Ryan Heaton
  */
-public abstract class DeclarationLoopStrategy<D extends Declaration, B extends TemplateBlock> extends TemplateBlockStrategy<B> {
+public abstract class DeclarationLoopStrategy<D extends Declaration, B extends TemplateBlock> extends TemplateLoopStrategy<D, B> {
 
   private String var;
   private String indexVar;
   private D currentDeclaration;
 
+  /**
+   * The loop variable is the collection of declarations over which to loop.
+   * @return The iterator over the collection of declarations.
+   */
+  protected Iterator<D> getLoop() throws TemplateException {
+    return getDeclarations().iterator();
+  }
+
   //Inherited.
-  public void invoke(B block, TemplateOutput<B> output, TemplateModel model) throws IOException, TemplateException {
-    Collection<D> declarations = getDeclarations();
-    int index = 0;
-    for (D declaration : declarations) {
-      currentDeclaration = DeclarationDecorator.decorate(declaration);
+  @Override
+  protected void setupModelForLoop(TemplateModel model, D declaration, int index) throws TemplateException {
+    super.setupModelForLoop(model, declaration, index);
 
-      setupModelForLoop(model, index);
+    this.currentDeclaration = DeclarationDecorator.decorate(declaration);
 
-      super.invoke(block, output, model);
+    if (this.var != null) {
+      model.setVariable(this.var, currentDeclaration);
+    }
 
-      index++;
+    if (indexVar != null) {
+      model.setVariable(indexVar, index);
     }
   }
 
@@ -60,13 +68,6 @@ public abstract class DeclarationLoopStrategy<D extends Declaration, B extends T
    * @param index The loop index.
    */
   protected void setupModelForLoop(TemplateModel model, int index) {
-    if (var != null) {
-      model.setVariable(var, currentDeclaration);
-    }
-
-    if (indexVar != null) {
-      model.setVariable(indexVar, index);
-    }
   }
 
   /**

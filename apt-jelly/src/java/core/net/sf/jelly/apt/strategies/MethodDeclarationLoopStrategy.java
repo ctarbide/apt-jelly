@@ -20,6 +20,7 @@ import com.sun.mirror.declaration.MethodDeclaration;
 import com.sun.mirror.declaration.TypeDeclaration;
 import net.sf.jelly.apt.TemplateBlock;
 import net.sf.jelly.apt.TemplateModel;
+import net.sf.jelly.apt.TemplateException;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -44,12 +45,13 @@ public class MethodDeclarationLoopStrategy<B extends TemplateBlock> extends Exec
 
   //Inherited.
   @Override
-  protected void setupModelForLoop(TemplateModel model, int index) {
+  protected void setupModelForLoop(TemplateModel model, MethodDeclaration declaration, int index) throws TemplateException {
+    super.setupModelForLoop(model, declaration, index);
+
     if (returnTypeVar != null) {
       model.setVariable(returnTypeVar, getCurrentDeclaration().getReturnType());
     }
 
-    super.setupModelForLoop(model, index);
   }
 
   /**

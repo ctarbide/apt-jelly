@@ -29,18 +29,24 @@ import java.io.PrintWriter;
  *
  * @author Ryan Heaton
  */
-public abstract class TemplateOutputRedirectionStrategy<B extends TemplateBlock> implements TemplateStrategy<B> {
+public abstract class TemplateOutputRedirectionStrategy<B extends TemplateBlock> extends TemplateBlockStrategy<B> {
 
   /**
    * @return The writer to which to redirect the output.
    */
   protected abstract PrintWriter getWriter() throws TemplateException, IOException;
 
-  //Inherited.
-  public void invoke(B block, TemplateOutput<B> output, TemplateModel model) throws TemplateException, IOException {
-    StrategyStack.get().push(this);
+  /**
+   * Writes the body to the redirected output.
+   *
+   * @param block The block.
+   * @param output The output.
+   * @param model The model.
+   * @return false.
+   */
+  public boolean processBody(B block, TemplateOutput<B> output, TemplateModel model) throws IOException, TemplateException {
     output.redirect(block, getWriter());
-    StrategyStack.get().pop();
+    return false;
   }
 
 }
