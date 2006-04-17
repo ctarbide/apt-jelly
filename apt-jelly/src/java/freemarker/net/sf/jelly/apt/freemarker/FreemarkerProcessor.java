@@ -26,6 +26,10 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Collection;
+
+import net.sf.jelly.apt.freemarker.transforms.*;
 
 /**
  * The processor for a freemarker template file.
@@ -74,8 +78,35 @@ public class FreemarkerProcessor implements AnnotationProcessor {
     configuration.setTemplateLoader(getTemplateLoader());
 
     //set up the transforms as shared variables....
+    for (FreemarkerTransform transform : getTransforms()) {
+      configuration.setSharedVariable(transform.getTransformName(), transform);
+    }
 
     return configuration;
+  }
+
+  /**
+   * The collection of transforms available to the freemarker processor.
+   *
+   * @return The collection of transforms available to the freemarker processor.
+   */
+  protected Collection<FreemarkerTransform> getTransforms() {
+    Collection<FreemarkerTransform> transforms = new ArrayList<FreemarkerTransform>();
+    transforms.add(new AnnotationValueTransform());
+    transforms.add(new FileTransform());
+    transforms.add(new ForAllConstructorsTransform());
+    transforms.add(new ForAllFieldsTransform());
+    transforms.add(new ForAllImportedTypesTransform());
+    transforms.add(new ForAllMethodsTransform());
+    transforms.add(new ForAllNestedTypesTransform());
+    transforms.add(new ForAllPackagesTransform());
+    transforms.add(new ForAllParametersTransform());
+    transforms.add(new ForAllThrownTypesTransform());
+    transforms.add(new ForAllTypesTransform());
+    transforms.add(new IfHasAnnotationTransform());
+    transforms.add(new IfHasDeclarationTransform());
+    transforms.add(new JavaSourceTransform());
+    return transforms;
   }
 
   /**

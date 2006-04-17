@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 /**
- * Evaluates its body for all methods of the a type declaration.
+ * Evaluates its body for all methods of a type declaration.
  *
  * @author Ryan Heaton
  */

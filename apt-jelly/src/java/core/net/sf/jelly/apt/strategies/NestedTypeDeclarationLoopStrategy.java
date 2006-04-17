@@ -23,6 +23,8 @@ import java.util.Collection;
 import net.sf.jelly.apt.TemplateBlock;
 
 /**
+ * Evaluates its body for all nested types in a type declaration.
+ * 
  * @author Ryan Heaton
  */
 public class NestedTypeDeclarationLoopStrategy<B extends TemplateBlock> extends TypeDeclarationLoopStrategy<B> {

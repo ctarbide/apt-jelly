@@ -125,10 +125,13 @@ public abstract class FreemarkerTransform<S extends TemplateStrategyControl> imp
   public abstract S newStrategy();
 
   /**
-   * The name of the transform.
+   * The name of the transform.  Default implementation uses the name of the class.
    *
    * @return The name of the transform.
    */
-  public abstract String getTransformName();
+  public String getTransformName() {
+    String transformName = getClass().getSimpleName();
+    return Introspector.decapitalize(transformName.substring(0, transformName.lastIndexOf("Transform")));
+  }
 
 }

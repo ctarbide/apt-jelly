@@ -23,7 +23,7 @@ import net.sf.jelly.apt.TemplateBlock;
 import java.util.Collection;
 
 /**
- * Evaluates its body for all parameters of the current method or constructor declaration.
+ * Evaluates its body for all parameters of the current (or given) method or constructor declaration.
  *
  * @author Ryan Heaton
  */
