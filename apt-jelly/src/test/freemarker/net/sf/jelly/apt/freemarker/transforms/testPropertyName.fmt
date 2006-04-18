@@ -1,0 +1,9 @@
+  <@file name="testPropertyName.properties">
+    <@forAllTypes var="type">
+      <@forAllMethods var="method">
+${type.qualifiedName}.methods.${method.simpleName}.is.getter=${method.isGetter()}
+${type.qualifiedName}.methods.${method.simpleName}.is.setter=${method.isSetter()}
+${type.qualifiedName}.methods.${method.simpleName}.propertyName=${method.propertyName}
+      </@forAllMethods>
+    </@forAllTypes>
+  </@file>

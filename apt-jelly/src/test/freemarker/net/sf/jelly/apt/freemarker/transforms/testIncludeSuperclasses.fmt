@@ -1,0 +1,7 @@
+  <@file name="testIncludeSuperclasses.properties">
+    <@forAllTypes var="type">
+      <@forAllMethods var="method" declaration=type includeSuperclasses=true>
+${type.qualifiedName}.methods.${method.simpleName}=visited
+      </@forAllMethods>
+    </@forAllTypes>
+  </@file>

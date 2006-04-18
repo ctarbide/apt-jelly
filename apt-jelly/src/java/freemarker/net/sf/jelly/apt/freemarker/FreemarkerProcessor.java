@@ -18,9 +18,7 @@ package net.sf.jelly.apt.freemarker;
 
 import com.sun.mirror.apt.AnnotationProcessor;
 import freemarker.cache.URLTemplateLoader;
-import freemarker.template.Configuration;
-import freemarker.template.Template;
-import freemarker.template.TemplateException;
+import freemarker.template.*;
 
 import java.io.IOException;
 import java.io.OutputStreamWriter;
@@ -30,6 +28,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import net.sf.jelly.apt.freemarker.transforms.*;
+import net.sf.jelly.apt.Context;
 
 /**
  * The processor for a freemarker template file.
@@ -59,13 +58,27 @@ public class FreemarkerProcessor implements AnnotationProcessor {
     }
   }
 
+  protected APTJellyObjectWrapper getObjectWrapper() {
+    return new APTJellyObjectWrapper();
+  }
+
   /**
    * The initial data model for the template.
    *
    * @return The initial data model for the template.
    */
   protected FreemarkerModel getModel() {
-    return FreemarkerModel.get();
+    FreemarkerModel model = FreemarkerModel.get();
+    model.setObjectWrapper(getObjectWrapper());
+    //put the apt options into the model.
+    model.put("aptOptions", Context.getCurrentEnvironment().getOptions());
+
+    //set up the transforms....
+    for (FreemarkerTransform transform : getTransforms()) {
+      model.put(transform.getTransformName(), transform);
+    }
+
+    return model;
   }
 
   /**
@@ -76,12 +89,7 @@ public class FreemarkerProcessor implements AnnotationProcessor {
   protected Configuration getConfiguration() {
     Configuration configuration = new Configuration();
     configuration.setTemplateLoader(getTemplateLoader());
-
-    //set up the transforms as shared variables....
-    for (FreemarkerTransform transform : getTransforms()) {
-      configuration.setSharedVariable(transform.getTransformName(), transform);
-    }
-
+    configuration.setLocalizedLookup(false);
     return configuration;
   }
 

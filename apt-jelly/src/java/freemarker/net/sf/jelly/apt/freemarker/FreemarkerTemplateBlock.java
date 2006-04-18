@@ -16,18 +16,17 @@
 
 package net.sf.jelly.apt.freemarker;
 
+import freemarker.template.TemplateModelException;
+import freemarker.template.TransformControl;
 import net.sf.jelly.apt.TemplateBlock;
 import net.sf.jelly.apt.TemplateException;
 import net.sf.jelly.apt.TemplateOutput;
-import net.sf.jelly.apt.strategies.TemplateStrategyControl;
 import net.sf.jelly.apt.strategies.MissingParameterException;
+import net.sf.jelly.apt.strategies.TemplateStrategyControl;
 
-import java.io.Writer;
-import java.io.IOException;
 import java.io.FilterWriter;
-
-import freemarker.template.TransformControl;
-import freemarker.template.TemplateModelException;
+import java.io.IOException;
+import java.io.Writer;
 
 /**
  * A freemarker template block.  The block buffers its value and invokes the strategy when finished.
@@ -89,23 +88,6 @@ public class FreemarkerTemplateBlock extends FilterWriter implements TemplateBlo
   }
 
   /**
-   * Close and post-process the strategy.
-   *
-   * @throws IOException
-   */
-  @Override
-  public void close() throws IOException {
-    try {
-      strategy.postProcess(this, this, FreemarkerModel.get());
-    }
-    catch (TemplateException e) {
-      throw new RuntimeException(e);
-    }
-
-    super.close();
-  }
-
-  /**
    * Just throw it.
    */
   public void onError(Throwable throwable) throws Throwable {
@@ -118,6 +100,18 @@ public class FreemarkerTemplateBlock extends FilterWriter implements TemplateBlo
   public void redirect(FreemarkerTemplateBlock block, Writer writer) throws IOException, TemplateException {
     this.out = writer;
     this.lock = writer;
+  }
+
+  @Override
+  public void close() throws IOException {
+    try {
+      strategy.postProcess(this, this, FreemarkerModel.get());
+    }
+    catch (TemplateException e) {
+      throw new RuntimeException(e);
+    }
+
+    //don't actually close the underlying writer.
   }
 
   /**

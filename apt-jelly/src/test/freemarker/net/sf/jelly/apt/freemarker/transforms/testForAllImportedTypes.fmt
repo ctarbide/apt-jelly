@@ -1,0 +1,9 @@
+  <@file name="testForAllImportedTypes.properties">
+    <@forAllTypes var="type">
+      <#if type.qualifiedName = "net.sf.jelly.apt.samplesource.services.FamilyService">
+        <@forAllImportedTypes var="importedType" declaration=type>
+${importedType.qualifiedName}=visited
+        </@forAllImportedTypes>
+      </#if>
+    </@forAllTypes>
+  </@file>

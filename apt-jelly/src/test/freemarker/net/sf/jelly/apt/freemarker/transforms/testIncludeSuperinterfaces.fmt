@@ -1,0 +1,7 @@
+  <@file name="testIncludeSuperinterfaces.properties">
+    <@forAllTypes var="type" includeInterfaces="true">
+      <@forAllMethods var="method" includeSuperinterfaces="true">
+${type.qualifiedName}.methods.${method.simpleName}=visited
+      </@forAllMethods>
+    </@forAllTypes>
+  </@file>

@@ -1,0 +1,8 @@
+<@file name="testForAllTypesIncludeInterfaces.properties">
+  <@forAllTypes var="type" annotation="net.sf.jelly.apt.samplesource.annotations.AnnotatedClassExample" annotationVar="annotation" includeInterfaces="true">
+${type.qualifiedName}=visited
+${type.qualifiedName}.annotation.name=${annotation.name}
+${type.qualifiedName}.annotation.value=${annotation.value}
+${type.qualifiedName}.annotation.description=${annotation.description}
+  </@forAllTypes>
+</@file>

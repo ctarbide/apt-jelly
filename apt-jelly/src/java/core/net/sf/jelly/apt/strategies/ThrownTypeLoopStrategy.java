@@ -18,43 +18,40 @@ package net.sf.jelly.apt.strategies;
 
 import com.sun.mirror.declaration.ExecutableDeclaration;
 import com.sun.mirror.type.ReferenceType;
+import net.sf.jelly.apt.TemplateBlock;
+import net.sf.jelly.apt.TemplateException;
+import net.sf.jelly.apt.TemplateModel;
 
 import java.util.Collection;
-import java.io.IOException;
-
-import net.sf.jelly.apt.TemplateModel;
-import net.sf.jelly.apt.TemplateBlock;
-import net.sf.jelly.apt.TemplateOutput;
-import net.sf.jelly.apt.TemplateException;
+import java.util.Iterator;
 
 /**
  * Iterates through each thrown type of the specified executable declaration.
  *
  * @author Ryan Heaton
  */
-public class ThrownTypeLoopStrategy<B extends TemplateBlock> extends TemplateBlockStrategy<B> {
+public class ThrownTypeLoopStrategy<B extends TemplateBlock> extends TemplateLoopStrategy<ReferenceType, B> {
 
   private String var;
   private String indexVar;
   private ExecutableDeclaration declaration;
 
+  // Inherited.
+  protected Iterator<ReferenceType> getLoop() throws TemplateException {
+    return getThrownTypes().iterator();
+  }
+
+  // Inherited.
   @Override
-  public void invoke(B block, TemplateOutput<B> output, TemplateModel model) throws IOException, TemplateException {
-    Collection<ReferenceType> thrownTypes = getThrownTypes();
+  protected void setupModelForLoop(TemplateModel model, ReferenceType thrownType, int index) throws TemplateException {
+    super.setupModelForLoop(model, thrownType, index);
 
-    int index = 0;
-    for (ReferenceType thrownType : thrownTypes) {
-      if (indexVar != null) {
-        model.setVariable(indexVar, index);
-      }
+    if (indexVar != null) {
+      model.setVariable(indexVar, index);
+    }
 
-      if (var != null) {
-        model.setVariable(var, thrownType);
-      }
-
-      super.invoke(block, output, model);
-
-      index++;
+    if (var != null) {
+      model.setVariable(var, thrownType);
     }
   }
 

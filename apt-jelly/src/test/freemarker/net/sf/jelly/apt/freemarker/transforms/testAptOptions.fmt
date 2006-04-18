@@ -1,0 +1,3 @@
+<@file name="testAptOptions.properties">
+options.MyOption=${aptOptions["-AMyOption"]}
+</@file>

@@ -26,6 +26,7 @@
       <entry name="?*.dtd" />
       <entry name="?*.tld" />
       <entry name="?*.jelly" />
+      <entry name="?*.fmt" />
     </wildcardResourcePatterns>
   </component>
   <component name="DataSourceManagerImpl" />

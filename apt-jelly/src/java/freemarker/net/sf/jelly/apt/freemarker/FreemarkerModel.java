@@ -16,23 +16,22 @@
 
 package net.sf.jelly.apt.freemarker;
 
+import com.sun.mirror.declaration.AnnotationMirror;
+import com.sun.mirror.declaration.Declaration;
+import com.sun.mirror.type.TypeMirror;
+import freemarker.template.SimpleHash;
+import freemarker.template.TemplateModelException;
 import net.sf.jelly.apt.TemplateModel;
 import net.sf.jelly.apt.decorations.DeclarationDecorator;
 import net.sf.jelly.apt.decorations.TypeMirrorDecorator;
 import net.sf.jelly.apt.decorations.declaration.DecoratedAnnotationMirror;
-
-import java.util.HashMap;
-
-import com.sun.mirror.declaration.Declaration;
-import com.sun.mirror.declaration.AnnotationMirror;
-import com.sun.mirror.type.TypeMirror;
 
 /**
  * The freemarker data model.
  *
  * @author Ryan Heaton
  */
-public class FreemarkerModel extends HashMap implements TemplateModel {
+public class FreemarkerModel extends SimpleHash implements TemplateModel {
 
   private static ThreadLocal<FreemarkerModel> localSingleton = new ThreadLocal<FreemarkerModel>() {
     @Override
@@ -48,18 +47,23 @@ public class FreemarkerModel extends HashMap implements TemplateModel {
   private FreemarkerModel() {
   }
 
-  //Inherited.
+  // Inherited.
   public Object getVariable(String var) {
-    return get(var);
+    try {
+      return get(var);
+    }
+    catch (TemplateModelException e) {
+      throw new RuntimeException(e);
+    }
   }
 
-  //Inherited.
+  // Inherited.
   public void setVariable(String var, Object data) {
     put(var, data);
   }
 
   @Override
-  public Object put(Object key, Object value) {
+  public void put(String key, Object value) {
     if (value instanceof Declaration) {
       value = DeclarationDecorator.decorate((Declaration) value);
     }
@@ -71,7 +75,7 @@ public class FreemarkerModel extends HashMap implements TemplateModel {
       value = new DecoratedAnnotationMirror((AnnotationMirror) value);
     }
 
-    return super.put(key, value);
+    super.put(key, value);
   }
 
 }

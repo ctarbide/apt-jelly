@@ -12,21 +12,25 @@
   <target name="compile" description="compiles the code for the apt-jelly">
     <ant antfile="build-core.xml" target="compile"/>
     <ant antfile="build-jelly.xml" target="compile"/>
+    <ant antfile="build-freemarker.xml" target="compile"/>
   </target>
 
   <target name="jar" description="builds the jars for the apt-jelly project">
     <ant antfile="build-core.xml" target="jar"/>
     <ant antfile="build-jelly.xml" target="jar"/>
+    <ant antfile="build-freemarker.xml" target="jar"/>
   </target>
 
   <target name="jar-only" description="builds the jars without running the tests for the apt-jelly project">
     <ant antfile="build-core.xml" target="jar-only"/>
     <ant antfile="build-jelly.xml" target="jar-only"/>
+    <ant antfile="build-freemarker.xml" target="jar-only"/>
   </target>
 
   <target name="doc" description="generates some relevant documentation">
     <ant antfile="build-core.xml" target="doc"/>
     <ant antfile="build-jelly.xml" target="doc"/>
+    <ant antfile="build-freemarker.xml" target="doc"/>
   </target>
 
   <target name="dist" description="create the distribution bundle" depends="jar, doc">
@@ -57,6 +61,7 @@
   <target name="test" description="run the test cases">
     <ant antfile="build-core.xml" target="test"/>
     <ant antfile="build-jelly.xml" target="test"/>
+    <ant antfile="build-freemarker.xml" target="test"/>
   </target>
 
 </project>

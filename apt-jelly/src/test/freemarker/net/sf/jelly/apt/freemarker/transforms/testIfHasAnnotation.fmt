@@ -1,0 +1,15 @@
+  <@file name="testIfHasAnnotation.properties">
+    <@forAllTypes var="type" annotation="net.sf.jelly.apt.samplesource.annotations.AnnotatedClassExample">
+      <@ifHasAnnotation var="ann" annotation="net.sf.jelly.apt.samplesource.annotations.AnotherAnnotatedClassExample">
+${type.qualifiedName}=visited
+${type.qualifiedName}.annotation.name=${ann.name}
+${type.qualifiedName}.annotation.value=${ann.value}
+${type.qualifiedName}.annotation.description=${ann.description}
+${type.qualifiedName}.annotation.somethingWithDefault=${ann.somethingWithDefault}
+with.annotation.value.tag.no.default=<@annotationValue annotation="net.sf.jelly.apt.samplesource.annotations.AnotherAnnotatedClassExample" element="somethingWithDefault"/>
+with.annotation.value.tag.with.default=<@annotationValue annotation="net.sf.jelly.apt.samplesource.annotations.AnotherAnnotatedClassExample" element="somethingWithDefault" default="nothing"/>
+with.annotation.value.tag.no.element=<@annotationValue annotation="net.sf.jelly.apt.samplesource.annotations.AnotherAnnotatedClassExample" element="noelement" default="no element here"/>
+with.annotation.value.tag.constant.ref=<@annotationValue annotation="net.sf.jelly.apt.samplesource.annotations.AnotherAnnotatedClassExample" element="constantValueReference"/>
+      </@ifHasAnnotation>
+    </@forAllTypes>
+  </@file>

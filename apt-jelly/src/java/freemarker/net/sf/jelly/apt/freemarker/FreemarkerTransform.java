@@ -19,6 +19,7 @@ package net.sf.jelly.apt.freemarker;
 import freemarker.ext.beans.BeanModel;
 import freemarker.template.TemplateBooleanModel;
 import freemarker.template.TemplateModelException;
+import freemarker.template.TemplateScalarModel;
 import freemarker.template.TemplateTransformModel;
 import net.sf.jelly.apt.strategies.TemplateStrategyControl;
 
@@ -29,6 +30,7 @@ import java.beans.PropertyDescriptor;
 import java.io.IOException;
 import java.io.Writer;
 import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 import java.util.Map;
 
 /**
@@ -58,18 +60,71 @@ public abstract class FreemarkerTransform<S extends TemplateStrategyControl> imp
       Object value = args.get(property);
 
       value = unwrap(value, property);
-
       Method method = findSetter(property, strategy);
+
+      if ((value instanceof String) && (method.getParameterTypes()[0] != String.class)) {
+        value = convertString(((String)value), method.getParameterTypes()[0]);
+        if (value == null) {
+          throw new TemplateModelException("The '" + getTransformName() + "' transform doesn't support the '" + property + "' attribute of type String.");
+        }
+      }
+
       try {
         method.invoke(strategy, value);
       }
       catch (IllegalArgumentException e) {
-        throw new TemplateModelException("The '" + getTransformName() + "' transform doesn't support the '" + property + "' attribute");
+        throw new TemplateModelException("The '" + getTransformName() + "' transform doesn't support the '" + property + "' attribute of type " +
+          value.getClass().getSimpleName() + ".");
       }
       catch (Exception e) {
         throw new TemplateModelException(e);
       }
     }
+  }
+
+  /**
+   * Attempts to convert a string value to a given class using the "valueOf" method or "fromString" method.
+   *
+   * @param value The value to convert.
+   * @param toClass The class to convert to.
+   */
+  protected Object convertString(String value, Class toClass) {
+
+    if ((toClass == Boolean.TYPE) || (toClass == Boolean.class)) {
+      return Boolean.valueOf(value);
+    }
+    else if ((toClass == Integer.TYPE) || (toClass == Integer.class)) {
+      return Integer.valueOf(value);
+    }
+    else if ((toClass == Long.TYPE) || (toClass == Long.class)) {
+      return Long.valueOf(value);
+    }
+    else if (Enum.class.isAssignableFrom(toClass)) {
+      return Enum.valueOf(toClass, value);
+    }
+    else if ((toClass == Short.TYPE) || (toClass == Short.class)) {
+      return Short.valueOf(value);
+    }
+    else if ((toClass == Double.TYPE) || (toClass == Double.class)) {
+      return Double.valueOf(value);
+    }
+    else if ((toClass == Float.TYPE) || (toClass == Float.class)) {
+      return Float.valueOf(value);
+    }
+    else {
+      //try the "fromString" method, too.
+      try {
+        Method conversion = toClass.getMethod("fromString", String.class);
+        if ((Modifier.isStatic(conversion.getModifiers())) && (toClass.isAssignableFrom(conversion.getReturnType()))) {
+          return conversion.invoke(null, value);
+        }
+      }
+      catch (Exception e) {
+        //fall through...
+      }
+    }
+
+    return null;
   }
 
   /**
@@ -86,6 +141,9 @@ public abstract class FreemarkerTransform<S extends TemplateStrategyControl> imp
     }
     else if (value instanceof TemplateBooleanModel) {
       value = ((TemplateBooleanModel) value).getAsBoolean();
+    }
+    else if (value instanceof TemplateScalarModel) {
+      value = ((TemplateScalarModel) value).getAsString();
     }
     else if (value != null) {
       throw new TemplateModelException("Unsupported value for parameter '" + property + "' on transform '" + getTransformName() + "': " +

@@ -1,0 +1,5 @@
+<@file name="testForAllTypesUnspecifiedAnnotation.properties">
+  <@forAllTypes var="type">
+${type.qualifiedName}=visited
+  </@forAllTypes>
+</@file>

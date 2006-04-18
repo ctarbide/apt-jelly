@@ -31,22 +31,25 @@ import java.io.PrintWriter;
  */
 public abstract class TemplateOutputRedirectionStrategy<B extends TemplateBlock> extends TemplateBlockStrategy<B> {
 
+  private PrintWriter writer;
+
   /**
    * @return The writer to which to redirect the output.
    */
   protected abstract PrintWriter getWriter() throws TemplateException, IOException;
 
-  /**
-   * Writes the body to the redirected output.
-   *
-   * @param block The block.
-   * @param output The output.
-   * @param model The model.
-   * @return false.
-   */
-  public boolean processBody(B block, TemplateOutput<B> output, TemplateModel model) throws IOException, TemplateException {
-    output.redirect(block, getWriter());
-    return false;
+  @Override
+  public boolean preProcess(B block, TemplateOutput<B> output, TemplateModel model) throws IOException, TemplateException {
+    super.preProcess(block, output, model);
+    this.writer = getWriter();
+    output.redirect(block, writer);
+    return true;
+  }
+
+  @Override
+  public void postProcess(B block, TemplateOutput<B> output, TemplateModel model) throws IOException, TemplateException {
+    super.postProcess(block, output, model);
+    this.writer.close();
   }
 
 }

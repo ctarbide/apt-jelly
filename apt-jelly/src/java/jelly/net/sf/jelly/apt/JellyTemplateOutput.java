@@ -30,7 +30,7 @@ import java.io.Writer;
  */
 public class JellyTemplateOutput implements TemplateOutput<APTJellyTag> {
 
-  private final XMLOutput output;
+  private XMLOutput output;
 
   public JellyTemplateOutput(XMLOutput output) {
     this.output = output;
@@ -38,12 +38,7 @@ public class JellyTemplateOutput implements TemplateOutput<APTJellyTag> {
 
   //Inherited.
   public void redirect(APTJellyTag block, Writer writer) throws IOException, TemplateException {
-    try {
-      block.invokeBody(XMLOutput.createXMLOutput(writer));
-    }
-    catch (JellyTagException e) {
-      throw new TemplateException(e);
-    }
+    this.output = XMLOutput.createXMLOutput(writer);
   }
 
   //Inherited.

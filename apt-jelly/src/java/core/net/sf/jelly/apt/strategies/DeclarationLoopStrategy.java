@@ -62,15 +62,6 @@ public abstract class DeclarationLoopStrategy<D extends Declaration, B extends T
   }
 
   /**
-   * Sets up the model for the current loop.
-   *
-   * @param model The model.
-   * @param index The loop index.
-   */
-  protected void setupModelForLoop(TemplateModel model, int index) {
-  }
-
-  /**
    * The current declaration in the loop.
    *
    * @return The current declaration in the loop.
