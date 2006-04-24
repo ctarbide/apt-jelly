@@ -17,13 +17,14 @@ package net.sf.jelly.apt;
 
 import com.sun.mirror.apt.AnnotationProcessor;
 import com.sun.mirror.apt.AnnotationProcessorEnvironment;
-import com.sun.mirror.declaration.AnnotationTypeDeclaration;
 import org.xml.sax.InputSource;
 
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Map;
 
 /**
  * Basic annotation processor factory for a APTJellyProcessor.
@@ -42,32 +43,37 @@ public class APTJellyProcessorFactory extends ProcessorFactory {
    */
   public static final String JELLY_SCRIPT_URL_OPTION = "-AjellyScriptURL";
 
-  private static final Collection<String> SUPPORTED_OPTIONS = Collections.unmodifiableCollection(Arrays.asList(JELLY_SCRIPT_FILE_OPTION, JELLY_SCRIPT_URL_OPTION));
-  private static final Collection<String> SUPPORTED_TYPES = Collections.unmodifiableCollection(Arrays.asList("*"));
-
-  private URL script;
-
   public APTJellyProcessorFactory() {
-    script = null;
   }
 
   public APTJellyProcessorFactory(URL script) {
-    this.script = script;
+    super(script);
   }
 
+  /**
+   * The Jelly processor factory supports more options for backwards-compatability.
+   *
+   * @return The Jelly processor factory supports more options for backwards-compatability.
+   */
   public Collection<String> supportedOptions() {
-    return SUPPORTED_OPTIONS;
+    Collection<String> options = new ArrayList<String>(super.supportedOptions());
+    options.add(JELLY_SCRIPT_FILE_OPTION);
+    options.add(JELLY_SCRIPT_URL_OPTION);
+    return options;
   }
 
-  public Collection<String> supportedAnnotationTypes() {
-    return SUPPORTED_TYPES;
-  }
-
-  protected AnnotationProcessor getProcessorFor(Set<AnnotationTypeDeclaration> annotations) {
+  /**
+   * The Jelly processor factory supports more options for backwards-compatability.
+   *
+   * @return The template URL.
+   */
+  @Override
+  protected URL getTemplateURL() {
+    URL url = super.getTemplateURL();
     AnnotationProcessorEnvironment env = Context.getCurrentEnvironment();
     Map<String, String> options = env.getOptions();
     String fileOption = options.get(JELLY_SCRIPT_FILE_OPTION);
-    URL url = this.script;
+
     if ((url == null) && (fileOption != null)) {
       try {
         url = new File(fileOption).toURL();
@@ -90,23 +96,12 @@ public class APTJellyProcessorFactory extends ProcessorFactory {
       }
     }
 
-    if (url == null) {
-      throw new IllegalArgumentException(String.format("A valid script option (%s or %s) must be set.", JELLY_SCRIPT_FILE_OPTION, JELLY_SCRIPT_URL_OPTION));
-    }
-
-    InputSource source = new InputSource(url.toString());
-    return newJellyContextAnnotationProcessor(env, source);
+    return url;
   }
 
-  /**
-   * Create a new {@link APTJellyProcessor} given the environment and script.
-   * 
-   * @param env The AnnotationProcessorEnvironment.
-   * @param script The source for the script.
-   * @return The processor.
-   */
-  protected APTJellyProcessor newJellyContextAnnotationProcessor(AnnotationProcessorEnvironment env, InputSource script) {
-    return new APTJellyProcessor(env, script);
+  //Inherited.
+  protected AnnotationProcessor newProcessor(URL url) {
+    return new APTJellyProcessor(Context.getCurrentEnvironment(), new InputSource(url.toString()));
   }
 
 }

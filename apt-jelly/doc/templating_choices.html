@@ -64,25 +64,28 @@
         <tr>
           <td width="10"></td>
           <td valign="top" class="mainbox">
-            <h3><a name="intro" id="intro"></a>Examples</h3>
-
+            <h3>Templating Choices</h3>
             <p>
-              Too many words.  Just show me.
+              Which templating engine to choose is mostly a simple matter of preference, although a variety of factors can be applied as you consider which is
+              best for your situation.  All things being equal, you will probably want to use Freemarker as it is a true templating engine.
             </p>
-
             <p>
-              These are some templates that are used in the unit tests.  They all output a properties file (and the tests check the properties they output).  You
-              may want to checkout the source and see what the tests are doing, too.
+              APT-Jelly was originally desiged to be used with Commons Jelly (hence the name), but that decision was met with some constructive criticism by the
+              Java community because of Jelly's syntax and templating limitations.  Jelly is not a true templating engine, but an XML scripting engine. The XML
+              syntax of the Jelly templates (scripts) puts significant limitations on its templating capabilities (especially when outputting another XML
+              document, for example).  This requires Jelly templates to make some awkward workarounds for some basic templating techniques.
             </p>
-
-            <ul>
-              <li>testBasicExample (<a href="examples/testBasicExample.fmt">Freemarker</a>, <a href="examples/testBasicExample.jelly">Jelly</a>): outputs a bunch of interesting properties of a source base</li>
-              <li>testForAllPackages (<a href="examples/testForAllPackages.fmt">Freemarker</a>, <a href="examples/testForAllPackages.jelly">Jelly</a>): iterates through all the packages of a source base</li>
-              <li>testForAllTypes (<a href="examples/testForAllTypes.fmt">Freemarker</a>, <a href="examples/testForAllTypes.jelly">Jelly</a>): iterates through all types of annotated by a specific annotation</li>
-              <li>testPropertyName (<a href="examples/testPropertyName.fmt">Freemarker</a>, <a href="examples/testPropertyName.jelly">Jelly</a>): utilizes the decorations on a method for property naming</li>
-              <li>testIncludeSuperclasses (<a href="examples/testIncludeSuperclasses.fmt">Freemarker</a>, <a href="examples/testIncludeSuperclasses.jelly">Jelly</a>): iterates through a bunch of methods including superclasses</li>
-              <li>testIfHasAnnotation (<a href="examples/testIfHasAnnotation.fmt">Freemarker</a>, <a href="examples/testIfHasAnnotation.jelly">Jelly</a>): example for testing whether a declaration has an annotation and for outputting an annotation value</li>
-            </ul>
+            <p>
+              Based on some recommendations for templating engines from the community, the decision was made to support a true templating engine for the next
+              release of APT-Jelly.  The choice of Freemarker over Velocity was made primarily because Velocity didn't support named parameters for user-defined
+              directives (macros), but there are also many other advantages of Freemarker over Velocity, including better error handling/reporting and a smaller
+              dependency footprint.  For a full feature comparison, see <a href="http://freemarker.org/fmVsVel.html">Freemarker vs. Velocity.</a>
+            </p>
+            <p>
+              For most users, either Freemarker or Jelly will fully meet your needs, but Freemarker will probably do it in a cleaner, more concise manner.  But
+              if you need to write your own directives or extend the templating capabilities in any way, you might find that Jelly is cleaner, more consistent
+              code. 
+            </p>
           </td>
         </tr>
       </table>

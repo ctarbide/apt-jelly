@@ -41,8 +41,9 @@
 
         <div class="headbox">Reference Guide</div>
         <a class="leftmenu" href="#intro">Introduction</a>
-        <a class="leftmenu" href="#context">APTJellyContext</a>
-        <a class="leftmenu" href="#tags">APT Tag Library</a>
+        <a class="leftmenu" href="#execution">Execution Context</a>
+        <a class="leftmenu" href="#model">Data Model</a>
+        <a class="leftmenu" href="#directives">APT-Jelly Directives</a>
         <a class="leftmenu" href="#mirror">Decorated Mirror API</a>
         <a class="leftmenu" href="#extending">Extending APT-Jelly</a>
         <a class="leftmenu" href="#further">Further Information</a>
@@ -51,7 +52,7 @@
         <div class="headbox">Documentation</div>
         <a class="leftmenu" href="getting_started.html">Getting Started</a>
         <a class="leftmenu" href="reference_guide.html">Reference Guide</a>
-        <a class="leftmenu" href="taglib.html">APT-Jelly Tag Library</a>
+        <a class="leftmenu" href="directives.html">APT-Jelly Directives</a>
         <a class="leftmenu" href="decorations.html">Decorated Mirror API Data Model</a>
         <a class="leftmenu" href="api/index.html">API-Docs</a>
         <a class="leftmenu" href="examples.html">Examples</a>
@@ -60,6 +61,7 @@
 
         <div class="headbox">Relevant Links</div>
         <a class="leftmenu" href="http://java.sun.com/j2se/1.5.0/docs/guide/apt/index.html" title="Sun's docs on APT">Annotation Processing Tool (APT)</a>
+        <a class="leftmenu" href="http://freemarker.org" title="Freemarker Website">Freemarker</a>
         <a class="leftmenu" href="http://jakarta.apache.org/commons/jelly/" title="Jakarta Commons Jelly Project">Commons Jelly</a>
         <a class="leftmenu" href="http://jakarta.apache.org/commons/jexl/" title="Jakarta Commons Jexl Project">Commons Jexl</a>
         <a class="leftmenu" href="http://xdoclet.codehaus.org/" title="The latest version of XDoclet">XDoclet</a>
@@ -74,131 +76,130 @@
           <td valign="top" class="mainbox">
             <h3><a name="intro" id="intro"></a>Introduction</h3>
             <p>
-              This page was intended as a reference guide for developers who are familiar with
-              <a href="http://jakarta.apache.org/commons/jelly/">commons-jelly</a>,
+              This page was intended as a reference guide for developers who are familiar with a <a href="templating_choices.html">templating engine</a>,
               <a href="http://java.sun.com/j2se/1.5.0/docs/guide/apt/index.html">APT</a>, and the
               <a href="http://java.sun.com/j2se/1.5.0/docs/guide/apt/mirror/index.html">Mirror API</a> and who have grokked the
               <a href="getting_started.html">getting started guide</a> and who need to know more detail in order to do some real development.  It's expected
-              that developers will need to periodically refer to this guide (and most especially to the <a href="taglib.html">tag library documentation</a> and
-              the <a href="decorations.html">decorated mirror API documentation</a>) to know how to use APT-Jelly in their jelly scripts.
+              that developers will need to periodically refer to this guide (and most especially to the <a href="directives.html">directive documentation</a> and
+              the <a href="decorations.html">decorated mirror API documentation</a>) to know how to use APT-Jelly in their templates.
             </p>
 
             <p>
-              For the purposes of this reference, it is assumed that any sample jelly script has established the "jelly:core" tag library under the namespace
-              prefix "j" and the APT-Jelly tag library under the namespace prefix "apt".
+              The example template snippets of this reference are Freemarker snippets, although each example is equally applicable to Jelly.
             </p>
 
             <br/>
             <hr/>
-            <h3><a name="context" id="context"></a>APTJellyContext</h3>
+            <h3><a name="execution" id="execution"></a>Execution Context</h3>
 
             <p>
-              The <font class="code">APTJellyContext</font> is the jelly context in which each jelly script is executed.  Most APT-Jelly tags assume that they are
-              being invoked within an <font class="code">APTJellyContext</font> so they can reference the <font class="code">AnnotationProcessorEnvironment</font>
-              as needed.
+              When the <a href="http://java.sun.com/j2se/1.5.0/docs/guide/apt/mirror/com/sun/mirror/apt/AnnotationProcessorFactory.html">ProcessorFactory</a>
+              is asked for a <a href="http://java.sun.com/j2se/1.5.0/docs/guide/apt/mirror/com/sun/mirror/apt/AnnotationProcessor.html">Processor</a>, it first
+              establishes an execution context.  Most APT-Jelly directives assume that they are being invoked within this execution context so they can reference
+              the <font class="code">AnnotationProcessorEnvironment</font> as needed.
             </p>
 
             <p>
-              When the APT-Jelly annotation processor is invoked, a new <font class="code">APTJellyContext</font> is established and initialized with the options
-              of the <font class="code">AnnotationProcessorEnvironment</font> being assigned to the variable "aptOptions".  Developers can look up any options
-              passed to APT by referencing this variable.  For example, to output the value of the "-AMyAPTOption" option, the following snippet can be used:
+              It's important to note that the execution context will direct all output to <font class="code">System.out</font> unless it is redirected somewhere
+              else like a flat file or java source file (see the <a href="#directives">directive documentation</a>). While it is perfectly acceptable to use any
+              available native directives to redirect output to a file on the local filesystem, it is assumed that most redirection will happen to an
+              apt-generated artifact using the <font class="code">javaSource</font> and/or <font class="code">file</font> directives. This way, the files will
+              be created relative to the directory specified by the "-s" option given to APT.
+            </p>
+
+            <h3><a name="model" id="model"></a>Data Model</h3>
+
+            <p>
+              Before invoking any templates, a data model is initialized with the options of the <font class="code">AnnotationProcessorEnvironment</font> being
+              assigned to the variable "aptOptions".  Developers can look up any options passed to APT by referencing this variable.  For example, to output
+              the value of the "-AMyAPTOption" option, the following snippet can be used:
             </p>
 
             <center>
               <div class="samplecode">
                 <pre>
-&lt;j:out value="${aptOptions['-AMyAPTOption']}"/&gt;
+${aptOptions["-AMyAPTOption"]}
                 </pre>
               </div>
             </center>
 
             <p>
-              It's important to note that the <font class="code">APTJellyContext</font> will write its output to <font class="code">System.out</font> unless it
-              is redirected somewhere else like a flat file or java source file (see the <a href="#tags">tag library documentation</a>).  While it is perfectly
-              acceptable to use the <font class="code">&lt;j:file ...&gt;</font> tag to redirect to a file on the local filesystem, it is assumed that most
-              redirection will happen to an apt-generated artifact using the <font class="code">&lt;apt:javaSource ...&gt;</font> and/or
-              <font class="code">&lt;apt:file ...&gt;</font> tags.  This way, the files will be created relative to the directory specified by the "-s" option
-              given to APT.
-            </p>
-
-            <p>
-              The other important feature enabled by the <font class="code">APTJellyContext</font> is that any variable that is assigned a value that is an
-              instance of <font class="code">com.sun.mirror.declaration.Declaration</font>, <font class="code">com.sun.mirror.type.TypeMirror</font>, and
+              The other important feature enabled by the data model is that any variable that is assigned a value that is an instance of
+              <font class="code">com.sun.mirror.declaration.Declaration</font>, <font class="code">com.sun.mirror.type.TypeMirror</font>, and
               <font class="code">com.sun.mirror.declaration.AnnotationMirror</font> is decorated before being assigned to the variable.  See
               <a href="#mirror">Decorated Mirror API</a> for more details.
             </p>
 
             <br/>
             <hr/>
-            <h3><a name="tags" id="tags"></a>APT Tag Library</h3>
+            <h3><a name="directives" id="directives"></a>APT-Jelly Directives</h3>
 
             <p>
-              The APT tag library is the set of jelly tags that are used to process a set of java source files.  The tag library is referenced in jelly script
-              by <font class="code">net.sf.jelly.apt.tags.APTTagLibrary</font>.  The library is mostly a set of tags that loop through the declarations and
-              and types of the java source files and assign each item in the loop to a variable in the <font class="code">APTJellyContext</font>.  Three notable
-              exceptions to this are the <font class="code">file</font> tag, the <font class="code">javaSource</font> tag, and the
-              <font class="code">annotationValue</font> tag.  The first two tags are used to redirect the script output to a generated artifact.  The third
+              APT-Jelly includes a set of directives that are used to process a set of java source files.  Most of the directives are used to loop through the
+              declarations and and types of the java source files and assign each item in the loop to a variable in the data model.  Three notable
+              exceptions to this are the <font class="code">file</font> directive, the <font class="code">javaSource</font> directive, and the
+              <font class="code">annotationValue</font> directive.  The first two directives are used to redirect the output to a generated artifact.  The third
               is used to output an annotation if it exists, or none if it doesn't exist.
             </p>
 
             <p>
-              This section is intended to give a brief overview of the way the apt tag library is used.  For specific details on the use of each tag, refer to
-              the <a href="taglib.html">tag library documentation</a>.
+              This section is intended to give a brief overview of the way the directives are used.  For specific details on the use of each directive, refer to
+              the <a href="directives.html">directive documentation</a>.
             </p>
 
             <p>
-              A good place to start is by generating an artifact with the <font class="code">file</font> tag or the <font class="code">javaSource</font> tag.
-              As should be expected, the <font class="code">file</font> tag generates a file and the <font class="code">javaSource</font> tag generates a java
-              source file.  The name of the artifact is specified by the "name" attribute.  For a java source artifact, the name should be the fully-qualified
-              name of the java class file for which this is to be the source.  For the <font class="code">file</font> tag, the name should be the simple name
-              of the file, but this tag also allows parameters for the character set and the package relative to which this file should be placed.  The block
-              of each of these tags is redirected to their respective artifacts.
+              A good place to start is by generating an artifact with the <font class="code">file</font> directive or the <font class="code">javaSource</font> directive.
+              As should be expected, the <font class="code">file</font> directive generates a file and the <font class="code">javaSource</font> directive generates a java
+              source file.  The name of the artifact is specified by the "name" parameter.  For a java source artifact, the name should be the fully-qualified
+              name of the java class file for which this is to be the source.  For the <font class="code">file</font> directive, the name should be the simple name
+              of the file, but this directive also allows parameters for the character set and the package relative to which this file should be placed.  The body
+              of each of these directives is redirected to their respective artifacts.
             </p>
 
             <p>
-              The java source declarations can be traversed using the <i>declaration loop tag</i>s.  A <i>declaration loop tag</i> is a tag that iterates through
+              The java source declarations can be traversed using the <i>declaration loop directive</i>s.  A <i>declaration loop directive</i> is a directive that iterates through
               a set of declarations, possibly refering to a "parent" declaration to obtain this set.  A parent declaration is a declaration within which a set of
-              declarations is specified.  For example, the parent declaration of a method declaration would be a type declaration (e.g. a class or an interface).
-              A declaration loop tag provides an attribute for specifying the name of the context variable to which should be assigned a reference to the current
-              declaration in the loop, and an attribute for specifying the name of the context variable to which should be assigned the current loop index. The
-              set of declarations over which a declaration loop tag iterates can also be filtered by the class name of an annotation using the "annotation" attribute.
+              other declarations is specified.  For example, the parent declaration of a method declaration would be a type declaration (e.g. a class or an interface).
+              A declaration loop directive provides a parameter for specifying the name of the data model variable to which should be assigned a reference to the current
+              declaration in the loop, and a parameter for specifying the name of the data model variable to which should be assigned the current loop index. The
+              set of declarations over which a declaration loop directive iterates can also be filtered by the class name of an annotation using the "annotation" parameter.
             </p>
 
             <p>
               You will probably want to start by iterating over the set of all type declarations in your source base with the <font class="code">forAllTypes</font>
-              tag, although another good place to start would be with the <font class="code">forAllPackages</font> tag if you want that level of granularity.
+              directive, although another good place to start would be with the <font class="code">forAllPackages</font> directive if you want that level of granularity.
               Refering to the APT Mirror API documentation for <a href="http://java.sun.com/j2se/1.5.0/docs/guide/apt/mirror/com/sun/mirror/declaration/TypeDeclaration.html">TypeDeclaration</a>,
               you will see that the set of type declarations is the set of all classes and interfaces (including enums and annotation types).  Note also that
-              the documentation for the <font class="code">forAllTypes</font> tag states that interfaces aren't included by default.  If you want to include
-              interfaces, you'll want to specify that with the "includeInterfaces" attribute.
+              the documentation for the <font class="code">forAllTypes</font> directive states that interfaces aren't included by default.  If you want to include
+              interfaces, you'll want to specify that with the "includeInterfaces" parameter.
             </p>
 
             <p>
-              Once within a <font class="code">forAllTypes</font> tag, you can use other loop tags to iterate through each of the member declarations of the
+              Once within a <font class="code">forAllTypes</font> directive, you can use other loop directives to iterate through each of the member declarations of the
               current type.  You'll want to do this through the use of the <font class="code">forAllConstructors</font>, <font class="code">forAllFields</font>,
-              <font class="code">forAllMethods</font>, and <font class="code">forAllNestedTypes</font> tags.  You'll note in the documentation for these tags
-              that it is possible to specify the parent declaration, but this is only necessary if these tags aren't nested within a declaration loop tag for
+              <font class="code">forAllMethods</font>, and <font class="code">forAllNestedTypes</font> directives.  You'll note in the documentation for these directives
+              that it is possible to specify the parent declaration, but this is only necessary if these directives aren't nested within a declaration loop directive for
               a set of type declarations.
             </p>
 
             <p>
               When traversing a source base, eventually you will encounter a reference to a type (i.e. <a href="http://java.sun.com/j2se/1.5.0/docs/guide/apt/mirror/com/sun/mirror/type/TypeMirror.html">TypeMirror</a>)
-              that may or may not be declared.  You will want to be aware of the difference between a type declaration and a reference to a type in your jelly
-              script because they are modeled quite differently in the mirror API (and rightly so).  While some types may have declarations (e.g. a java class),
+              that may or may not be declared.  You will want to be aware of the difference between a type declaration and a reference to a type in your
+              template because they are modeled quite differently in the mirror API (and rightly so).  While some types may have declarations (e.g. a java class),
               others may not have declarations (e.g. arrays, primitive types, and the <font class="code">void</font> type).  Whether a type has a declaration is
               important to know because certain operations are only valid on the declarations of those types.  For example, you cannot determine whether a type
               reference is annotated with a specified annotation; only type declarations can be annotated.  To determine whether a type has a declaration, use
-              the <font class="code">ifHasDeclaration</font> tag.
+              the <font class="code">ifHasDeclaration</font> directive.
             </p>
 
             <p>
               A good example of this is when looking at a <a href="http://java.sun.com/j2se/1.5.0/docs/guide/apt/mirror/com/sun/mirror/declaration/MethodDeclaration.html">method declaration</a>.
-              There are APT-Jelly tags that traverse through the constructs of a method declaration.  These are <font class="code">forAllParameters</font>, and
-              <font class="code">forAllThrownTypes</font>.  There is also an attribute on the <font class="code">forAllMethods</font> tag that allows you to specify
-              the name of a context variable to which to assign the return type of the method.  As an illustration of the difference between a reference to a type
+              There are APT-Jelly directives that traverse through the constructs of a method declaration.  These are <font class="code">forAllParameters</font>, and
+              <font class="code">forAllThrownTypes</font>.  There is also a parameter on the <font class="code">forAllMethods</font> directive that allows you to specify
+              the name of a data model variable to which to assign the return type of the method.  As an illustration of the difference between a reference to a type
               and a type declaration, the parameters can be annotated (and thus filtered by a given annotation), but the thrown types of a method cannot.  To
               determine whether a given thrown type is annotated with a specified annotation, a reference to the declaration of the thrown type must be obtained.
-              The recommended way to do this is with the <font class="code">ifHasDeclaration</font> tag.
+              The recommended way to do this is with the <font class="code">ifHasDeclaration</font> directive.
             </p>
 
             <br/>
@@ -206,25 +207,24 @@
             <h3><a name="mirror" id="mirror"></a>Decorated Mirror API</h3>
 
             <p>
-              When writing a jelly script, you're eventually going to want to do more than just iterate through the declarations of your Java source base.  You
-              may want to output the name of a declaration, or perhaps the value of an annotation element.  In Jelly, this is done through reference to the
-              properties of a context variable using <a href="http://jakarta.apache.org/commons/jexl/">Jexl</a> in a tag the produces output, like the
-              <font class="code">j:out</font> tag.  Therefore, a knowledge of the model for the objects in the Jelly context is imperative when writing your
-              Jelly script.
+              When writing a template, you're eventually going to want to do more than just iterate through the declarations of your Java source base.  You
+              may want to output the name of a declaration, or perhaps the value of an annotation element.  This is done through reference to the
+              properties of a data model variable.  Therefore, a knowledge of the model for the objects in the data model is imperative when writing your
+              template.
             </p>
 
             <p>
               The <a href="http://java.sun.com/j2se/1.5.0/docs/guide/apt/mirror/index.html">Mirror API</a> is the object model that is provided by APT.  Each of
-              the declarations and type mirrors in the Mirror API provides a set of relevant properties that can be accessed in script.  However, because the Mirror
-              API has been found to be inadequate or inconvenient to access in script, APT-Jelly decorates the Mirror API with other property accessors that make
-              scripting more easy.
+              the declarations and type mirrors in the Mirror API provides a set of relevant properties that can be accessed in the template.  However, because
+              the Mirror API has been found to be inadequate or inconvenient to access in the data model, APT-Jelly decorates the Mirror API with other property
+              accessors that make templating more easy.
             </p>
 
             <p>
               For example, the Mirror API provides a property on <a href="http://java.sun.com/j2se/1.5.0/docs/guide/apt/mirror/com/sun/mirror/declaration/AnnotationMirror.html">AnnotationMirror</a>
               that is a map of the element (method) declarations to the values of those elements on the annotation.  While this API is accurate and concise, it
-              becomes difficult to reference the annotation value from script.  APT-Jelly decorates <font class="code">AnnotationMirror</font> by adding properties
-              for each of the elements of the annotation so they can be referenced from script.  To illustrate, consider the following two script snippets.  Each
+              becomes difficult to reference the annotation value from the template.  APT-Jelly decorates <font class="code">AnnotationMirror</font> by adding properties
+              for each of the elements of the annotation so they can be referenced from the template.  To illustrate, consider the following two template snippets.  Each
               snippet outputs the value of the "bar" element of the annotation "com.foo.Foo".  The first snippet uses the Mirror API as if it were not decorated.
               The second leverages the API as decorated by APT-Jelly.
             </p>
@@ -245,15 +245,15 @@ public class MyClass {
             <center>
               <div class="samplecode">
                 <pre>
-&lt;j:forEach items="${annotation.elementValues.keySet}" var="element"&gt;
-  &lt;j:if test="${element.simpleName eq 'bar'}"&gt;
-    &lt;j:out value="${annotation.elementValues[element]}"/&gt;
-  &lt;/j:if&gt;
-&lt;/j:forEach&gt;
+&lt;#list annotation.elementValues.entrySet as entry&gt;
+  &lt;#if entry.key.simpleName = "bar"&gt;
+    ${entry.value}
+  &lt;/#if&gt;
+&lt;/#list&gt;
                 </pre>
               </div>
               <p class="caption">
-                Script snippet in Jelly that outputs "hello" without using the decorated API.  The context variable "annotation" is assigned the value of the
+                Freemarker template snippet that outputs "hello" without using the decorated API.  The context variable "annotation" is assigned the value of the
                 com.foo.Foo AnnotationMirror featured in the example source code above.
               </p>
             </center>
@@ -261,11 +261,11 @@ public class MyClass {
             <center>
               <div class="samplecode">
                 <pre>
-&lt;j:out value="${annotation['bar']}"/&gt;
+${annotation.bar}
                 </pre>
               </div>
               <p class="caption">
-                Script snippet in Jelly that outputs "hello" using the decorated API. Again, the context variable "annotation" is assigned the value of the
+                Freemarker template snippet that outputs "hello" using the decorated API. Again, the context variable "annotation" is assigned the value of the
                 com.foo.Foo AnnotationMirror featured in the example source code above.
               </p>
             </center>
@@ -280,29 +280,38 @@ public class MyClass {
 
             <p>
               If APT-Jelly is missing a feature that you need, consider submitting a patch or making a request on the development mailing list.  However, in some cases,
-              it may be more convenient for developers to extend APT-Jelly with their own tags.  For example, you may find it necessary to extend the
-              <font class="code">forAllMethods</font> tag to iterate through your own special set of methods that meet certain specific requirements.  Fortunately,
+              it may be more convenient for developers to extend APT-Jelly with their own directives.  For example, you may find it necessary to extend the
+              <font class="code">forAllMethods</font> directive to iterate through your own special set of methods that meet certain specific requirements.  Fortunately,
               APT-Jelly boasts a clean, modular, and flexible API and can be very easily extended.
             </p>
 
             <p>
-              Whenever you find it necessary to extend an existing APT-Jelly tag take a good look at the existing methods to see if you can meet your requirements
-              with a simple override.  Let's take the above-mentioned example of extending the <font class="code">forAllMethods</font> to iterate through a set
-              of methods that meet a specific set of requirements.  The <font class="code">forAllMethods</font> tag is defined by the class
-              <font class="code">net.sf.jelly.apt.tags.ForAllMethodsTag</font>.  Looking at the possible methods we could override, we see that this class extends
-              (among other things) <font class="code">net.sf.jelly.apt.tags.DeclarationLoopTag</font> that defines a method, <font class="code">getDeclarations</font>,
+              There is a set of directive classes for each templating engine, but all directives share the same common logic in the form of a strategy class.
+              For example, the directive class for the <font class="code">forAllMethods</font> directive to support Freemarker is
+              <font class="code">net.sf.jelly.apt.freemarker.transforms.ForAllMethodsTransform</font>.  The class that support the same directive in Jelly is
+              <font class="code">net.sf.jelly.apt.tags.ForAllMethodsTag</font>.  But both of these directive classes are nothing more than a thin wrapper
+              around a common strategy class, <font class="code">net.sf.jelly.apt.strategies.MethodDeclarationLoopStrategy</font>.
+            </p>
+
+            <p>
+              Whenever you find it necessary to extend an existing APT-Jelly directive take a good look at the existing strategies (and their methods) to see if
+              you can meet your requirements with a simple override.  Let's take the above-mentioned example of extending the
+              <font class="code">forAllMethods</font> directive to iterate through a set of methods that meet a specific set of requirements.  The
+              logic for the <font class="code">forAllMethods</font> directive is defined by the class <font class="code">net.sf.jelly.apt.strategies.MethodDeclarationLoopStrategy</font>.
+              Looking at the possible methods we could override, we see that this class extends (among other things)
+              <font class="code">net.sf.jelly.apt.strategies.DeclarationLoopStrategy</font> that defines a method, <font class="code">getDeclarations</font>,
               that gets the declarations to loop through.  So, this might be a good place to put our own filtering logic.
             </p>
 
             <p>
-              Consider the following tag class that extends <font class="code">net.sf.jelly.apt.tags.ForAllMethodsTag</font> and loops all protected methods
-              that are annotated with the "com.foo.Foo" annotation and that return void.
+              Consider the following directive strategy class that extends <font class="code">net.sf.jelly.apt.strategies.MethodDeclarationLoopStrategy</font>
+              and loops all protected methods that are annotated with the "com.foo.Foo" annotation and that return void.
             </p>
 
             <center>
               <div class="samplecode">
                 <pre>
-import net.sf.jelly.apt.tags.ForAllMethodsTag;
+import net.sf.jelly.apt.strategies.MethodDeclarationLoopStrategy;
 import com.sun.mirror.declaration.MethodDeclaration;
 import com.sun.mirror.declaration.Modifier;
 import com.sun.mirror.type.VoidType;
@@ -312,7 +321,7 @@ import java.util.ArrayList;
 
 import org.apache.commons.jelly.JellyTagException;
 
-public class ForAllProtectedVoidFooMethodsTag extends ForAllMethodsTag {
+public class ForAllProtectedVoidFooMethodsTag extends MethodDeclarationLoopStrategy {
 
   @Override
   public Collection&lt;MethodDeclaration&gt; getDeclarations() throws JellyTagException {
@@ -335,13 +344,20 @@ public class ForAllProtectedVoidFooMethodsTag extends ForAllMethodsTag {
             </center>
 
             <p>
+              Now most of the work is done.  We only have to define the class that defines the directive for our templating engine of choice.  The easiest way
+              to do that is to extend the existing class for our templating engine and override the necessary methods to reference our strategy that we created
+              above.  For example, we could extend <font class="code">net.sf.jelly.apt.freemarker.transforms.ForAllMethodsTransform</font> and override the
+              <font class="code">newStrategy</font> method to return instead in instance of <font class="code">ForAllProtectedVoidFooMethodsTag</font>.
+            </p>
+
+            <p>
               A few things to note:
             </p>
 
             <ul>
               <li>
-                The above logic could have also been easily done in script.  You'll have to make your own design decisions to find that delicate balance
-                between a heavy, difficult-to-read script and a superfluous custom tag library.
+                The above logic could have also been easily done inline with the template.  You'll have to make your own design decisions to find that delicate balance
+                between a heavy, difficult-to-read template and a superfluous custom directive library.
               </li>
               <li>
                 The filtering of the method declaration in the above example happens <i>after</i> the declarations are filtered by annotation.  You may decide
@@ -428,15 +444,15 @@ public class HappyDeclarationDecorator extends net.sf.jelly.apt.decorations.Decl
             <p>
               As long as we make sure that there is a sytem property named "net.sf.jelly.apt.decorations.DeclarationDecorator" that has the value
               "happy.HappyDeclarationDecorator" when we invoke apt (probably with a -D parameter on the command line), then we should be able to access our decorations
-              from script, e.g.:
+              from the template, e.g.:
             </p>
 
             <center>
               <div class="samplecode">
                 <pre>
-&lt;j:if test="${classDeclaration.happy}"&gt;
-  &lt;!-- do some happy processing --&gt;
-&lt;/j:if&gt;
+&lt;#if classDeclaration.happy&gt;
+  &lt;#-- do some happy processing --&gt;
+&lt;/#if&gt;
                 </pre>
               </div>
             </center>
@@ -454,7 +470,7 @@ public class HappyDeclarationDecorator extends net.sf.jelly.apt.decorations.Decl
             <hr/>
             <h3><a name="further" id="further"></a>Further Information</h3>
             <p>
-              If you've scoured the <a href="taglib.html">tag library documentation</a> and the <a href="decorations.html">decorated mirror API documentation</a>
+              If you've scoured the <a href="directives.html">directive documentation</a> and the <a href="decorations.html">decorated mirror API documentation</a>
               and <i>still</i> can't find what you're looking for, you may want to try the <a href="#">apt-jelly mailing lists</a>.  And then, if all else fails,
               <i>use the source, Luke</i>.  You may want to especially take a look at the unit tests as a good source for examples on how to use APT-Jelly.
             </p>

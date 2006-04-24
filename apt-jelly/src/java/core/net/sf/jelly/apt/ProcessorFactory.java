@@ -23,6 +23,9 @@ import com.sun.mirror.apt.AnnotationProcessors;
 import com.sun.mirror.declaration.AnnotationTypeDeclaration;
 
 import java.util.*;
+import java.net.URL;
+import java.net.MalformedURLException;
+import java.io.File;
 
 import net.sf.jelly.apt.decorations.DecoratedAnnotationProcessorEnvironment;
 
@@ -33,15 +36,34 @@ import net.sf.jelly.apt.decorations.DecoratedAnnotationProcessorEnvironment;
  */
 public abstract class ProcessorFactory implements AnnotationProcessorFactory {
 
+  /**
+   * Option to pass to APT specifying the template file on the filesystem to invoke.
+   */
+  public static final String TEMPLATE_FILE_OPTION = "-Atemplate";
+  /**
+   * Option to pass to APT specifying a URL of the template to invoke.
+   */
+  public static final String TEMPLATE_URL_OPTION = "-AtemplateURL";
+
+  private static final Collection<String> SUPPORTED_OPTIONS = Collections.unmodifiableCollection(Arrays.asList(TEMPLATE_FILE_OPTION, TEMPLATE_URL_OPTION));
   protected static int round = 0;
+  protected URL template;
+
+  protected ProcessorFactory() {
+    this.template = null;
+  }
+
+  protected ProcessorFactory(URL template) {
+    this.template = template;
+  }
 
   /**
-   * By default, there are no supported options.
+   * The supported options for this factory.
    *
-   * @return An empty collection of options.
+   * @return The supported options for this factory.
    */
   public Collection<String> supportedOptions() {
-    return new ArrayList<String>();
+    return SUPPORTED_OPTIONS;
   }
 
   /**
@@ -73,12 +95,20 @@ public abstract class ProcessorFactory implements AnnotationProcessorFactory {
   }
 
   /**
-   * Gets the processor for the given set of annotations.
+   * Get a freemarker processor.
    *
    * @param annotations The annotations.
-   * @return The processor.
+   * @return The freemarker processor.
    */
-  protected abstract AnnotationProcessor getProcessorFor(Set<AnnotationTypeDeclaration> annotations);
+  protected AnnotationProcessor getProcessorFor(Set<AnnotationTypeDeclaration> annotations) {
+    URL url = getTemplateURL();
+
+    if (url == null) {
+      throw new IllegalArgumentException(String.format("A valid template option (%s or %s) must be set.", TEMPLATE_FILE_OPTION, TEMPLATE_URL_OPTION));
+    }
+
+    return newProcessor(url);
+  }
 
   /**
    * Decorate the annotation processor environment.
@@ -90,4 +120,45 @@ public abstract class ProcessorFactory implements AnnotationProcessorFactory {
     return new DecoratedAnnotationProcessorEnvironment(env);
   }
 
+  /**
+   * Get the URL to the template.
+   *
+   * @return The URL to the template.
+   */
+  protected URL getTemplateURL() {
+    AnnotationProcessorEnvironment env = Context.getCurrentEnvironment();
+    Map<String, String> options = env.getOptions();
+    String fileOption = options.get(TEMPLATE_FILE_OPTION);
+    URL url = this.template;
+    if ((url == null) && (fileOption != null)) {
+      try {
+        url = new File(fileOption).toURL();
+      }
+      catch (MalformedURLException e) {
+        env.getMessager().printError("Bad file: " + fileOption);
+      }
+    }
+
+    if (url == null) {
+      String urlOption = options.get(TEMPLATE_URL_OPTION);
+
+      if (urlOption != null) {
+        try {
+          url = new URL(urlOption);
+        }
+        catch (MalformedURLException e) {
+          env.getMessager().printError("Bad url: " + urlOption);
+        }
+      }
+    }
+    return url;
+  }
+
+  /**
+   * Instantiate a new processor.
+   *
+   * @param url The URL to the template.
+   * @return The processor.
+   */
+  protected abstract AnnotationProcessor newProcessor(URL url);
 }

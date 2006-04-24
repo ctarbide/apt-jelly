@@ -47,7 +47,7 @@
         <div class="headbox">Documentation</div>
         <a class="leftmenu" href="getting_started.html">Getting Started</a>
         <a class="leftmenu" href="reference_guide.html">Reference Guide</a>
-        <a class="leftmenu" href="taglib.html">APT-Jelly Tag Library</a>
+        <a class="leftmenu" href="directives.html">APT-Jelly Directives</a>
         <a class="leftmenu" href="decorations.html">Decorated Mirror API Data Model</a>
         <a class="leftmenu" href="api/index.html">API-Docs</a>
         <a class="leftmenu" href="examples.html">Examples</a>
@@ -56,6 +56,7 @@
 
         <div class="headbox">Relevant Links</div>
         <a class="leftmenu" href="http://java.sun.com/j2se/1.5.0/docs/guide/apt/index.html" title="Sun's docs on APT">Annotation Processing Tool (APT)</a>
+        <a class="leftmenu" href="http://freemarker.org" title="Freemarker Website">Freemarker</a>
         <a class="leftmenu" href="http://jakarta.apache.org/commons/jelly/" title="Jakarta Commons Jelly Project">Commons Jelly</a>
         <a class="leftmenu" href="http://jakarta.apache.org/commons/jexl/" title="Jakarta Commons Jexl Project">Commons Jexl</a>
         <a class="leftmenu" href="http://xdoclet.codehaus.org/" title="The latest version of XDoclet">XDoclet</a>
@@ -72,9 +73,11 @@
             <h3><a name="intro" id="intro"></a>Introduction</h3>
             <p>
               APT-Jelly is an engine for generating artifacts (e.g. source code, config files) from Java source code.  APT-Jelly provides a template-oriented
-              approach to artifact generation (as opposed to raw string-writing to a stream) by leveraging Sun's Annotation Processing Tool and Jakarta
-              Commons Jelly.  APT-Jelly allows developers to take full advantage of the latest Java syntax and features including metadata (annotations),
-              generics, and typesafe enums.
+              approach to artifact generation (as opposed to raw string-writing to a stream) by providing an interface for Sun's Annotation Processing Tool (APT)
+              to your favorite templating engine.  Currently, APT-Jelly has direct support for both <a href="http://jakarta.apache.org/commons/jelly/">Jakarta
+              Commons Jelly</a> and <a href="http://freemarker.org/">Freemarker</a>, and indirect support for <a href="http://jakarta.apache.org/velocity/">Velocity</a>
+              (through the merging capabilities of Jelly).  APT-Jelly allows developers to take full advantage of the latest Java syntax and features including
+              metadata (annotations), generics, and typesafe enums.
             </p>
 
             <h3><a name="intro" id="background"></a>Background</h3>
@@ -185,33 +188,30 @@ public class ClassAndMethodPrinterAnnotationProcessorFactory implements Annotati
             <center>
               <div class="samplecode">
                 <pre>
-&lt;j:jelly trim="false" xmlns:j="jelly:core" xmlns:apt="jelly:net.sf.jelly.apt.tags.APTTagLibrary"&gt;
-
-  &lt;apt:javaSource name="net.sf.jelly.apt.examples.ClassAndMethodPrinter"&gt;
+&lt;@javaSource name="net.sf.jelly.apt.examples.ClassAndMethodPrinter"&gt;
 package net.sf.jelly.apt.examples;
 
 public class ClassAndMethodPrinter {
 
   public static void main(String[] args) {
-    &lt;apt:forAllTypes var="type"&gt;
-    System.out.println("&lt;j:out value="${type.qualifiedName}"/&gt;");
-      &lt;apt:forAllMethods var="method"&gt;
-    System.out.println("&lt;j:out value="${type.qualifiedName}"/&gt;.&lt;j:out value="${method.simpleName}"/&gt;");
-      &lt;/apt:forAllMethods&gt;
-    &lt;/apt:forAllTypes&gt;
+    &lt;@forAllTypes var="type"&gt;
+    System.out.println("${type.qualifiedName}");
+      &lt;@forAllMethods var="method"&gt;
+    System.out.println("${type.qualifiedName}.${method.simpleName}");
+      &lt;/@forAllMethods&gt;
+    &lt;/@forAllTypes&gt;
   }
 }
-  &lt;/apt:javaSource&gt;
-
-&lt;/j:jelly&gt;
+&lt;/@javaSource&gt;
                 </pre>
               </div>
+              <p class="caption">Example Freemarker template for the ClassAndMethodPrinter. <a href="examples/testJavaSource.jelly">Click here to see
+                the corresponding Jelly template</a>.</p>
             </center>
 
             <p>
               Now isn't that much nicer?  You don't need to implement any interfaces, you don't need to fully swallow Sun's Mirror API, and the format of your code
-              is cleaner and reflects better the output.  Not to mention that you can fully leverage the capabilities of Jelly scripting and any existing
-              Jelly tag libraries (including merging with <a href="http://jakarta.apache.org/velocity/">Velocity</a> templates).
+              is cleaner and reflects better the output.  Not to mention that you can fully leverage the capabilities and features of the templating engine....
             </p>
 
             <br/>
@@ -223,7 +223,7 @@ public class ClassAndMethodPrinter {
             <ul>
               <li><a href="getting_started.html">Getting Started</a></li>
               <li><a href="reference_guide.html">Reference Guide</a></li>
-              <li><a href="taglib.html">Jelly Tags</a></li>
+              <li><a href="directives.html">Jelly Tags</a></li>
               <li><a href="decorations.html">Decorated Mirror API Data Model</a></li>
               <li><a href="api/index.html">API Docs</a></li>
             </ul>

@@ -41,7 +41,7 @@
 
         <div class="headbox">Getting Started</div>
         <a class="leftmenu" href="#intro">Introduction</a>
-        <a class="leftmenu" href="#step1">Creating the Jelly Script</a>
+        <a class="leftmenu" href="#step1">Creating the Template</a>
         <a class="leftmenu" href="#step2">Invoking APT</a>
         <a class="leftmenu" href="#further">Further Reading</a>
         <br/>
@@ -49,7 +49,7 @@
         <div class="headbox">Documentation</div>
         <a class="leftmenu" href="getting_started.html">Getting Started</a>
         <a class="leftmenu" href="reference_guide.html">Reference Guide</a>
-        <a class="leftmenu" href="taglib.html">APT-Jelly Tag Library</a>
+        <a class="leftmenu" href="directives.html">APT-Jelly Directives</a>
         <a class="leftmenu" href="decorations.html">Decorated Mirror API Data Model</a>
         <a class="leftmenu" href="api/index.html">API-Docs</a>
         <a class="leftmenu" href="examples.html">Examples</a>
@@ -58,6 +58,7 @@
 
         <div class="headbox">Relevant Links</div>
         <a class="leftmenu" href="http://java.sun.com/j2se/1.5.0/docs/guide/apt/index.html" title="Sun's docs on APT">Annotation Processing Tool (APT)</a>
+        <a class="leftmenu" href="http://freemarker.org" title="Freemarker Website">Freemarker</a>
         <a class="leftmenu" href="http://jakarta.apache.org/commons/jelly/" title="Jakarta Commons Jelly Project">Commons Jelly</a>
         <a class="leftmenu" href="http://jakarta.apache.org/commons/jexl/" title="Jakarta Commons Jexl Project">Commons Jexl</a>
         <a class="leftmenu" href="http://xdoclet.codehaus.org/" title="The latest version of XDoclet">XDoclet</a>
@@ -72,82 +73,82 @@
           <td valign="top" class="mainbox">
             <h3><a name="intro" id="intro"></a>Introduction</h3>
             <p>
-              Before going too far, you're going to want to be familiar with the <a href="http://jakarta.apache.org/commons/jelly/">commons-jelly</a> project
-              as you will be writing jelly scripts to do the work of generating your artifacts.  You will also want to be familiar with the
-              <a href="http://java.sun.com/j2se/1.5.0/docs/guide/apt/index.html">Annotation Processing Tool (APT)</a>.  I'd suggest reading through the getting
-              started page, and pay particular attention to the section on "how the apt tool operates" so as to be familiar with what's going on in
-              the background while generating artifacts and to be able to understand any error messages or warnings that may turn up.  You would also be
-              well-advised to be familiar the <a href="http://java.sun.com/j2se/1.5.0/docs/guide/apt/mirror/index.html">APT Mirror API</a> not only to know
-              the properties and structure of the objects available in the jelly context (accessible by Jexl), but also to be somewhat familiar with the
+              Before going anywhere, you must choose your templating engine.  Currently, APT-Jelly has direct support for both <a href="http://jakarta.apache.org/commons/jelly/">
+              Jakarta Commons Jelly</a> and <a href="http://freemarker.org/">Freemarker</a>, and indirect support for <a href="http://jakarta.apache.org/velocity/">Velocity</a>
+              (through the merging capabilities of Jelly).  The bottom line is that you'll probably want to choose Freemarker, unless you have a specific reason
+              for going with Jelly or Velocity.  The examples in the documentation use Freemarker, but correlating examples in Jelly will be referenced where
+              practical.  Unless explicitly stated, all APT-Jelly features and usages are applicable to both Freemarker and Jelly.  For a more in-depth analysis
+              of your templating choices, see <a href="templating_choices.html">templating choices</a>.
+            </p>
+            <p>
+              You will also want to be familiar with the <a href="http://java.sun.com/j2se/1.5.0/docs/guide/apt/index.html">Annotation Processing Tool (APT)</a>.
+              I'd suggest reading through the getting started page, and pay particular attention to the section on "how the apt tool operates" so as to be
+              familiar with what's going on in the background while generating artifacts and to be able to understand any error messages or warnings that may
+              turn up.  You would also be well-advised to be familiar the <a href="http://java.sun.com/j2se/1.5.0/docs/guide/apt/mirror/index.html">APT Mirror
+              API</a> not only to know the properties and structure of the objects available in the template data model, but also to be somewhat familiar with the
               vocabulary of Java syntax.
             </p>
 
             <p>
-              So, shall we get started? As an admittedly contrived example, let's go through the process of generating a class that prints to <font class="code">System.out</font> a list
-              of all classes and methods in a given source base.
+              So, shall we get started? As an admittedly contrived example, let's go through the process of generating a class that prints to
+              <font class="code">System.out</font> a list of all classes and methods in a given source base.
             </p>
 
             <br/>
             <hr/>
-            <h3><a name="step1" id="step1"></a>Step 1: Creating the Jelly Script</h3>
+            <h3><a name="step1" id="step1"></a>Step 1: Creating the Template</h3>
             <p>
-              We first write our Jelly script:
+              We first write our template:
             </p>
 
             <center>
               <div class="samplecode">
                 <pre>
-&lt;j:jelly trim="false" xmlns:j="jelly:core" xmlns:apt="jelly:net.sf.jelly.apt.tags.APTTagLibrary"&gt;
-
-  &lt;apt:javaSource name="net.sf.jelly.apt.examples.ClassAndMethodPrinter"&gt;
+&lt;@javaSource name="net.sf.jelly.apt.examples.ClassAndMethodPrinter"&gt;
 package net.sf.jelly.apt.examples;
 
 public class ClassAndMethodPrinter {
 
   public static void main(String[] args) {
-    &lt;apt:forAllTypes var="type"&gt;
-    System.out.println("&lt;j:out value="${type.qualifiedName}"/&gt;");
-      &lt;apt:forAllMethods var="method"&gt;
-    System.out.println("&lt;j:out value="${type.qualifiedName}"/&gt;.&lt;j:out value="${method.simpleName}"/&gt;");
-      &lt;/apt:forAllMethods&gt;
-    &lt;/apt:forAllTypes&gt;
+    &lt;@forAllTypes var="type"&gt;
+    System.out.println("${type.qualifiedName}");
+      &lt;@forAllMethods var="method"&gt;
+    System.out.println("${type.qualifiedName}.${method.simpleName}");
+      &lt;/@forAllMethods&gt;
+    &lt;/@forAllTypes&gt;
   }
 }
-  &lt;/apt:javaSource&gt;
-
-&lt;/j:jelly&gt;
+&lt;/@javaSource&gt;
                 </pre>
               </div>
+              <p class="caption">Example Freemarker template for the ClassAndMethodPrinter. <a href="examples/testJavaSource.jelly">Click here to see
+                the corresponding Jelly template</a>.</p>
             </center>
 
             <p>
-              Pretty simple, no?  You should be familiar with what a Jelly script looks like.  We start by declaring this document as a jelly script and
-              declaring the tag libraries that will be used for this script. The "j" namespace prefix is mapped to the namespace of the core
-              jelly tags.  We also declare the "apt" prefix to be mapped to the APT tag library.
+              Pretty simple, no?  You should be familiar with the different parts of the template.  The "javaSource" directive declares that we are going to be
+              generating the source code for a Java class named "net.sf.jelly.apt.examples.ClassAndMethodPrinter". The body of this directive will be directed
+              to this Java source file, so this is where we see the Java code, including the package declaration, the class declaration, and the
+              <font class="code">main</font> method that will do the strenuous work of printing the names of the classes and methods.
             </p>
 
             <p>
-              The "javaSource" tag declares that we are going to be generating the source code for a Java class named "net.sf.jelly.apt.examples.ClassAndMethodPrinter".
-              Any output within this tag will be directed to this Java source file, so this is where we see the Java code, including the package declaration, the
-              class declaration, and the <font class="code">main</font> method that will do the strenuous work of printing the names of the classes and methods.
+              The "forAllTypes" directive iterates through each type declaration in the source base.  By default, interfaces are excluded, so this will only iterate
+              through each class declaration.  The "var" parameter on this directive indicates the name of the context variable that will be used as a reference to
+              the declaration over which we are currently iterating.  (For more information on the "forAllTypes" directive, including how to include interfaces, see
+              the <a href="directives.html">directive documentation</a>.)  The first thing we do for each class declaration is output the Java code that will
+              print out the name of the class to <font class="code">System.out</font>.  Note the use of the reference (sometimes called interpolation) to the
+              qualified name of the type.
             </p>
 
             <p>
-              The "forAllTypes" tag iterates through each type declaration in the source base.  By default, interfaces are excluded, so this will only iterate
-              through each class declaration.  The "var" attribute on this tag indicates the name of the context variable that will be used as a reference to
-              the declaration over which we are currently iterating.  (For more information on the "forAllTypes" tag, including how to include interfaces, see
-              the <a href="taglib.html">tag library documentation</a>.)  The first thing we do for each class declaration is output the Java code that will
-              print out the name of the class to <font class="code">System.out</font>.  Note the use of the "out" tag (in the core jelly library) and the
-              use of the Jexl expression to access the qualified name of the type.
+              We now iterate through each method in the current declaration with the "forAllMethods" directive (again, the context variable name is set with the "var"
+              parameter).  We then output the Java code that writes the method to <font class="code">System.out</font> in the form of
+              "fully.qualified.Class.[method name]".
             </p>
 
             <p>
-              We now iterate through each method in the current declaration with the "forAllMethods" tag (again, the context variable name is set with the "var"
-              attribute).  We then output the Java code that writes the method to <font class="code">System.out</font> in the form of "fully.qualified.Class.[method name]".
-            </p>
-
-            <p>
-              And that's it.  We close off all our constructs and save the file.
+              And that's it.  We close off the directives and save the file.
             </p>
 
             <br/>
@@ -155,11 +156,11 @@ public class ClassAndMethodPrinter {
             <h3><a name="step2" id="step2"></a>Step 2: Invoking APT</h3>
 
             <p>
-              Now that the script is written, APT can be invoked as is described in the <a href="http://java.sun.com/j2se/1.5.0/docs/guide/apt/GettingStarted.html">getting started guide</a>.
-              The name of the <font class="code">AnnotationProcessorFactory</font> to use is "net.sf.jelly.apt.APTJellyProcessorFactory".  The location of the jelly
-              script must also be passed in as a parameter using either the <font class="code">"-AjellyScript"</font> option or the <font class="code">"-AjellyScriptURL"</font> option.
-              The first option is the path to the script on the local filesystem.  The second is a URL to the script.  If both are specified, only the
-              filesystem option will be used.
+              Now that the template is written, APT can be invoked as is described in the <a href="http://java.sun.com/j2se/1.5.0/docs/guide/apt/GettingStarted.html">getting started guide</a>.
+              The name of the <font class="code">AnnotationProcessorFactory</font> to use is "net.sf.jelly.apt.freemarker.FreemarkerProcessorFactory".  (For a
+              jelly script, it's "net.sf.jelly.apt.APTJellyProcessorFactory".)  The location of the template must also be passed in as a parameter using
+              either the <font class="code">"-Atemplate"</font> option or the <font class="code">"-AtemplateURL"</font> option. The first option is the path to
+              the template on the local filesystem.  The second is a URL to the template.  If both are specified, only the filesystem option will be used.
             </p>
 
             <p>
@@ -178,31 +179,23 @@ public class ClassAndMethodPrinter {
             </ul>
 
             <p>
-              The APT-Jelly libraries are divided into separate jars to keep the project modular (thinking ahead to future releases that might more directly support
-              other templating engines).  The "core" jar is always needed.  The "jelly" jar is also needed to invoke jelly template engine, with is itself dependent
-              on another set of library dependencies that you will need to include on your classpath when invoking APT.  See <a href="deps.html">the
-              dependencies list</a> for details.  For our example, we're assuming we have the necessary libraries, named this:
-            </p>
-
-            <ul>
-              <li>tools.jar</li>
-              <li>commons-jelly.jar</li>
-              <li>commons-beanutils.jar</li>
-              <li>commons-collections.jar</li>
-              <li>commons-jexl.jar</li>
-              <li>commons-logging.jar</li>
-              <li>dom4j.jar</li>
-            </ul>
-
-            <p>
-              So as an example, let's assume our script is saved to the file "class-method-printer.jelly" and that the apt-jelly jar file is saved to the file
-              "apt-jelly.jar" in the "lib" directory, as is all other dependant jars.  To invoke our script on the source files found in the "src/java" directory,
-              putting all generated artifacts into the "target/gen" directory, and compiling all source classes (including the generated one) into the
-              "target/classes" directory, we invoke something like the following command (note it's all one line):
+              The APT-Jelly libraries are divided into separate jars to keep the project modular between templating engines.  The "core" jar is always needed, and
+              has no third-party dependencies.  The other jar that is needed is the interface for the templating engine.  The "freemarker" jar is needed to
+              interface with the Freemarker engine, and it also has no other third-party dependencies. The "jelly" jar is needed to invoke the jelly template
+              engine, with is itself dependent on another set of library dependencies that you will need to include on your classpath when invoking APT.
+              See <a href="deps.html">the dependencies list</a> for details.  Since we're using Freemarker for our example, we will only need the three jars
+              previously mentioned.
             </p>
 
             <p>
-<b>user@host:~></b>apt -cp lib/apt-jelly-core.jar:lib/apt-jelly-jelly.jar:lib/commons-jelly.jar:lib/commons-beanutils.jar:lib/commons-collections.jar:lib/commons-jexl.jar:lib/commons-logging.jar:lib/dom4j.jar -s target/gen -factory net.sf.jelly.apt.APTJellyProcessorFactory -AjellyScript=class-method-printer.jelly -d target/classes src/java/*.java
+              So as an example, let's assume our script is saved to the file "class-method-printer.fmt" and that the three jars are named "apt-jelly-core.jar,"
+              "apt-jelly-freemarker.jar," and "freemarker.jar" and put in the "lib" directory, as is all other dependant jars.  To invoke our script on the
+              source files found in the "src/java" directory, putting all generated artifacts into the "target/gen" directory, and compiling all source classes
+              (including the generated one) into the "target/classes" directory, we invoke something like the following command (note it's all one line):
+            </p>
+
+            <p>
+<b>user@host:~></b>apt -cp lib/apt-jelly-core.jar:lib/apt-jelly-freemarker.jar:lib/freemarker.jar -s target/gen -factory net.sf.jelly.apt.APTJellyProcessorFactory -AjellyScript=class-method-printer.fmt -d target/classes src/java/*.java
             </p>
 
             <p>
@@ -228,7 +221,7 @@ public class ClassAndMethodPrinter {
             <h3><a name="further" id="further"></a>Further Reading</h3>
             <ul>
               <li><a href="reference_guide.html">APT-Jelly Reference Guide</a></li>
-              <li><a href="taglib.html">APT Jelly Tags</a></li>
+              <li><a href="directives.html">APT Jelly Directives</a></li>
               <li><a href="decorations.html">Decorated Mirror API Data Model</a></li>
             </ul>
           </td>

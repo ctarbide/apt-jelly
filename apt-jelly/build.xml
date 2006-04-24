@@ -7,6 +7,13 @@
   <property name="dist.dir" value="target/dist"/>
   <property name="dist.name" value="apt-jelly-${version}"/>
 
+  <path id="build.classpath">
+    <fileset dir="${lib.dir}">
+      <include name="*.jar"/>
+    </fileset>
+    <pathelement location="${java.home}/../lib/tools.jar"/>
+  </path>
+
   <target name="init" description="initializes some properties"/>
 
   <target name="compile" description="compiles the code for the apt-jelly">
@@ -28,9 +35,17 @@
   </target>
 
   <target name="doc" description="generates some relevant documentation">
-    <ant antfile="build-core.xml" target="doc"/>
-    <ant antfile="build-jelly.xml" target="doc"/>
-    <ant antfile="build-freemarker.xml" target="doc"/>
+    <mkdir dir="${javadoc.dir}"/>
+    <property name="title" value="apt-jelly"/>
+
+    <javadoc use="true" destdir="${javadoc.dir}" author="true" windowtitle="apt-jelly" doctitle="apt-jelly">
+      <fileset dir="src/java"/>
+      <classpath refid="build.classpath"/>
+    </javadoc>
+
+    <ant antfile="build-core.xml" target="examples2doc"/>
+    <ant antfile="build-jelly.xml" target="examples2doc"/>
+    <ant antfile="build-freemarker.xml" target="examples2doc"/>
   </target>
 
   <target name="dist" description="create the distribution bundle" depends="jar, doc">
@@ -39,11 +54,18 @@
     <mkdir dir="${dist.dir}/lib"/>
 
     <zip destfile="target/${dist.name}.zip">
-      <zipfileset dir="${docs.dir}" prefix="docs"/>
-      <zipfileset dir="${lib.dir}" prefix="lib"/>
-      <zipfileset dir="." includes="*.txt"/>
-      <zipfileset dir="target" includes="*.jar"/>
+      <zipfileset dir="${docs.dir}" prefix="apt-jelly/docs"/>
+      <zipfileset dir="${lib.dir}" prefix="apt-jelly/lib"/>
+      <zipfileset dir="." includes="LICENSE NOTICE" prefix="apt-jelly"/>
+      <zipfileset dir="target" includes="*.jar" prefix="apt-jelly"/>
     </zip>
+
+    <tar destfile="target/${dist.name}.tar.gz" compression="gzip">
+      <tarfileset dir="${docs.dir}" prefix="apt-jelly/docs"/>
+      <tarfileset dir="${lib.dir}" prefix="apt-jelly/lib"/>
+      <tarfileset dir="." includes="LICENSE NOTICE" prefix="apt-jelly"/>
+      <tarfileset dir="target" includes="*.jar" prefix="apt-jelly"/>
+    </tar>
   </target>
 
   <target name="src-dist" description="creates a source distribution">
