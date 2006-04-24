@@ -33,18 +33,24 @@ import net.sf.jelly.apt.decorations.declaration.DecoratedAnnotationMirror;
  */
 public class FreemarkerModel extends SimpleHash implements TemplateModel {
 
-  private static ThreadLocal<FreemarkerModel> localSingleton = new ThreadLocal<FreemarkerModel>() {
-    @Override
-    protected FreemarkerModel initialValue() {
-      return new FreemarkerModel();
-    }
-  };
+  private static ThreadLocal<FreemarkerModel> localSingleton = new ThreadLocal<FreemarkerModel>();
 
-  public static FreemarkerModel get() {
-    return localSingleton.get();
+  /**
+   * Set the current model.
+   *
+   * @param model The model to set.
+   */
+  public static void set(FreemarkerModel model) {
+    localSingleton.set(model);
   }
 
-  private FreemarkerModel() {
+  /**
+   * Get the current model in the thread.
+   *
+   * @return the current model in the thread.
+   */
+  public static FreemarkerModel get() {
+    return localSingleton.get();
   }
 
   // Inherited.

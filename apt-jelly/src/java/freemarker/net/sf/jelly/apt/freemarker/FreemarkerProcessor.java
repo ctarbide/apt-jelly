@@ -68,7 +68,8 @@ public class FreemarkerProcessor implements AnnotationProcessor {
    * @return The initial data model for the template.
    */
   protected FreemarkerModel getModel() {
-    FreemarkerModel model = FreemarkerModel.get();
+    FreemarkerModel model = newModel();
+    FreemarkerModel.set(model);
     model.setObjectWrapper(getObjectWrapper());
     //put the apt options into the model.
     model.put("aptOptions", Context.getCurrentEnvironment().getOptions());
@@ -79,6 +80,15 @@ public class FreemarkerProcessor implements AnnotationProcessor {
     }
 
     return model;
+  }
+
+  /**
+   * Instantiate a new model.
+   *
+   * @return The new model.
+   */
+  protected FreemarkerModel newModel() {
+    return new FreemarkerModel();
   }
 
   /**
