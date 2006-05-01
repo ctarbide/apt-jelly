@@ -37,7 +37,7 @@ public class ThrownTypeLoopStrategy<B extends TemplateBlock> extends TemplateLoo
   private ExecutableDeclaration declaration;
 
   // Inherited.
-  protected Iterator<ReferenceType> getLoop() throws TemplateException {
+  protected Iterator<ReferenceType> getLoop(TemplateModel model) throws TemplateException {
     return getThrownTypes().iterator();
   }
 

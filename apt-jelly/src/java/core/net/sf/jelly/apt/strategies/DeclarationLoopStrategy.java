@@ -40,8 +40,9 @@ public abstract class DeclarationLoopStrategy<D extends Declaration, B extends T
   /**
    * The loop variable is the collection of declarations over which to loop.
    * @return The iterator over the collection of declarations.
+   * @param model
    */
-  protected Iterator<D> getLoop() throws TemplateException {
+  protected Iterator<D> getLoop(TemplateModel model) throws TemplateException {
     return getDeclarations().iterator();
   }
 

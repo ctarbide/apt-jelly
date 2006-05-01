@@ -16,10 +16,9 @@
 
 package net.sf.jelly.apt.freemarker;
 
-import freemarker.ext.beans.BeanModel;
-import freemarker.template.TemplateBooleanModel;
+import freemarker.ext.beans.BeansWrapper;
+import freemarker.template.TemplateModel;
 import freemarker.template.TemplateModelException;
-import freemarker.template.TemplateScalarModel;
 import freemarker.template.TemplateTransformModel;
 import net.sf.jelly.apt.strategies.TemplateStrategyControl;
 
@@ -59,7 +58,7 @@ public abstract class FreemarkerTransform<S extends TemplateStrategyControl> imp
       String property = (String) key;
       Object value = args.get(property);
 
-      value = unwrap(value, property);
+      value = unwrap((TemplateModel) value, property);
       Method method = findSetter(property, strategy);
 
       if ((value instanceof String) && (method.getParameterTypes()[0] != String.class)) {
@@ -134,22 +133,14 @@ public abstract class FreemarkerTransform<S extends TemplateStrategyControl> imp
    * @param property The property.
    * @return The unwrapped object.
    */
-  protected Object unwrap(Object value, String property) throws TemplateModelException {
-    //unwrap the value.
-    if (value instanceof BeanModel) {
-      value = ((BeanModel) value).getWrappedObject();
+  protected Object unwrap(TemplateModel value, String property) throws TemplateModelException {
+    try {
+      return BeansWrapper.getDefaultInstance().unwrap(value);
     }
-    else if (value instanceof TemplateBooleanModel) {
-      value = ((TemplateBooleanModel) value).getAsBoolean();
-    }
-    else if (value instanceof TemplateScalarModel) {
-      value = ((TemplateScalarModel) value).getAsString();
-    }
-    else if (value != null) {
+    catch (TemplateModelException e) {
       throw new TemplateModelException("Unsupported value for parameter '" + property + "' on transform '" + getTransformName() + "': " +
         value.getClass().getName());
     }
-    return value;
   }
 
   /**

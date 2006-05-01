@@ -21,6 +21,7 @@ import com.sun.mirror.declaration.Declaration;
 import com.sun.mirror.type.TypeMirror;
 import freemarker.template.SimpleHash;
 import freemarker.template.TemplateModelException;
+import freemarker.ext.beans.BeansWrapper;
 import net.sf.jelly.apt.TemplateModel;
 import net.sf.jelly.apt.decorations.DeclarationDecorator;
 import net.sf.jelly.apt.decorations.TypeMirrorDecorator;
@@ -56,11 +57,15 @@ public class FreemarkerModel extends SimpleHash implements TemplateModel {
   // Inherited.
   public Object getVariable(String var) {
     try {
-      return get(var);
+      return unwrap(get(var));
     }
     catch (TemplateModelException e) {
       throw new RuntimeException(e);
     }
+  }
+
+  private Object unwrap(freemarker.template.TemplateModel model) throws TemplateModelException {
+    return BeansWrapper.getDefaultInstance().unwrap(model);
   }
 
   // Inherited.

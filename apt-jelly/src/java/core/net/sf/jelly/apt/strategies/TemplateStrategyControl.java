@@ -16,11 +16,10 @@
 
 package net.sf.jelly.apt.strategies;
 
-import net.sf.jelly.apt.strategies.TemplateStrategy;
 import net.sf.jelly.apt.TemplateBlock;
-import net.sf.jelly.apt.TemplateOutput;
-import net.sf.jelly.apt.TemplateModel;
 import net.sf.jelly.apt.TemplateException;
+import net.sf.jelly.apt.TemplateModel;
+import net.sf.jelly.apt.TemplateOutput;
 
 import java.io.IOException;
 

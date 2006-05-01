@@ -37,9 +37,11 @@ public abstract class TemplateLoopStrategy<I, B extends TemplateBlock> extends T
   /**
    * Get the loop.
    *
+   * @param model The model to use as necessary.
    * @return The loop.
+   * @param model
    */
-  protected abstract Iterator<I> getLoop() throws TemplateException;
+  protected abstract Iterator<I> getLoop(TemplateModel model) throws TemplateException;
 
   /**
    * Sets up the model for the current loop.  Default implementation does nothing.
@@ -64,7 +66,7 @@ public abstract class TemplateLoopStrategy<I, B extends TemplateBlock> extends T
   public boolean preProcess(B block, TemplateOutput<B> output, TemplateModel model) throws IOException, TemplateException {
     super.preProcess(block, output, model);
 
-    this.loop = getLoop();
+    this.loop = getLoop(model);
     this.index = 0;
     boolean hasNext = this.loop != null && this.loop.hasNext();
     if (hasNext) {
