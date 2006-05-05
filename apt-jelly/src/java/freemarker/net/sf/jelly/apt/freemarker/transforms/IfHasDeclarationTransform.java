@@ -27,6 +27,15 @@ import net.sf.jelly.apt.strategies.IfHasDeclarationStrategy;
  */
 public class IfHasDeclarationTransform extends FreemarkerTransform<IfHasDeclarationStrategy> {
 
+  /**
+   * Construct a new transform under the specified namespace.  <code>null</code> or <code>""</code> means the root namespace.
+   *
+   * @param namespace The namespace.
+   */
+  public IfHasDeclarationTransform(String namespace) {
+    super(namespace);
+  }
+
   // Inherited.
   public IfHasDeclarationStrategy newStrategy() {
     return new IfHasDeclarationStrategy();

@@ -26,6 +26,15 @@ import net.sf.jelly.apt.strategies.NestedTypeDeclarationLoopStrategy;
  */
 public class ForAllNestedTypesTransform extends FreemarkerTransform<NestedTypeDeclarationLoopStrategy> {
 
+  /**
+   * Construct a new transform under the specified namespace.  <code>null</code> or <code>""</code> means the root namespace.
+   *
+   * @param namespace The namespace.
+   */
+  public ForAllNestedTypesTransform(String namespace) {
+    super(namespace);
+  }
+
   //Inherited.
   public NestedTypeDeclarationLoopStrategy newStrategy() {
     return new NestedTypeDeclarationLoopStrategy();

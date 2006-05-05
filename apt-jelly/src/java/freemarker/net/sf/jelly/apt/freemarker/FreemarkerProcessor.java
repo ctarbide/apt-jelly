@@ -19,6 +19,8 @@ package net.sf.jelly.apt.freemarker;
 import com.sun.mirror.apt.AnnotationProcessor;
 import freemarker.cache.URLTemplateLoader;
 import freemarker.template.*;
+import net.sf.jelly.apt.Context;
+import net.sf.jelly.apt.freemarker.transforms.*;
 
 import java.io.IOException;
 import java.io.OutputStreamWriter;
@@ -26,9 +28,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
-
-import net.sf.jelly.apt.freemarker.transforms.*;
-import net.sf.jelly.apt.Context;
+import java.util.Map;
+import java.util.HashMap;
 
 /**
  * The processor for a freemarker template file.
@@ -48,7 +49,7 @@ public class FreemarkerProcessor implements AnnotationProcessor {
 
     try {
       Template template = configuration.getTemplate(templateURL.toString());
-      template.process(getModel(), new OutputStreamWriter(System.out));
+      template.process(getRootModel(), new OutputStreamWriter(System.out));
     }
     catch (IOException e) {
       throw new RuntimeException(e);
@@ -58,36 +59,58 @@ public class FreemarkerProcessor implements AnnotationProcessor {
     }
   }
 
+  /**
+   * Get the object wrapper for the main model.
+   *
+   * @return the object wrapper for the main model.
+   */
   protected APTJellyObjectWrapper getObjectWrapper() {
     return new APTJellyObjectWrapper();
   }
 
   /**
-   * The initial data model for the template.
+   * The root data model for the template.
    *
-   * @return The initial data model for the template.
+   * @return The root data model for the template.
    */
-  protected FreemarkerModel getModel() {
-    FreemarkerModel model = newModel();
-    FreemarkerModel.set(model);
-    model.setObjectWrapper(getObjectWrapper());
-    //put the apt options into the model.
-    model.put("aptOptions", Context.getCurrentEnvironment().getOptions());
+  protected FreemarkerModel getRootModel() {
+    HashMap<String, Map<String, Object>> sourceMap = new HashMap<String, Map<String, Object>>();
+
+    //set up the variables....
+    for (FreemarkerVariable var : getVariables()) {
+      String namespace = var.getNamespace();
+      if (!sourceMap.containsKey(namespace)) {
+        sourceMap.put(namespace, new HashMap<String, Object>());
+      }
+      sourceMap.get(namespace).put(var.getName(), var.getValue());
+    }
 
     //set up the transforms....
     for (FreemarkerTransform transform : getTransforms()) {
-      model.put(transform.getTransformName(), transform);
+      String namespace = transform.getTransformNamespace();
+      if (!sourceMap.containsKey(namespace)) {
+        sourceMap.put(namespace, new HashMap<String, Object>());
+      }
+      sourceMap.get(namespace).put(transform.getTransformName(), transform);
     }
+
+    FreemarkerModel model = newRootModel();
+    FreemarkerModel.set(model);
+    model.setObjectWrapper(getObjectWrapper());
+    if (sourceMap.containsKey(null)) {
+      model.putAll(sourceMap.remove(null));
+    }
+    model.putAll(sourceMap);
 
     return model;
   }
 
   /**
-   * Instantiate a new model.
+   * Instantiate a new root model.
    *
-   * @return The new model.
+   * @return The new root model.
    */
-  protected FreemarkerModel newModel() {
+  protected FreemarkerModel newRootModel() {
     return new FreemarkerModel();
   }
 
@@ -104,27 +127,41 @@ public class FreemarkerProcessor implements AnnotationProcessor {
   }
 
   /**
-   * The collection of transforms available to the freemarker processor.
+   * The collection of transforms to establish in the model before processing.
    *
-   * @return The collection of transforms available to the freemarker processor.
+   * @return The collection of transforms to establish in the model before processing.
    */
   protected Collection<FreemarkerTransform> getTransforms() {
+    String namespace = Context.getCurrentEnvironment().getOptions().get(FreemarkerProcessorFactory.FM_LIBRARY_NS_OPTION);
     Collection<FreemarkerTransform> transforms = new ArrayList<FreemarkerTransform>();
-    transforms.add(new AnnotationValueTransform());
-    transforms.add(new FileTransform());
-    transforms.add(new ForAllConstructorsTransform());
-    transforms.add(new ForAllFieldsTransform());
-    transforms.add(new ForAllImportedTypesTransform());
-    transforms.add(new ForAllMethodsTransform());
-    transforms.add(new ForAllNestedTypesTransform());
-    transforms.add(new ForAllPackagesTransform());
-    transforms.add(new ForAllParametersTransform());
-    transforms.add(new ForAllThrownTypesTransform());
-    transforms.add(new ForAllTypesTransform());
-    transforms.add(new IfHasAnnotationTransform());
-    transforms.add(new IfHasDeclarationTransform());
-    transforms.add(new JavaSourceTransform());
+    transforms.add(new AnnotationValueTransform(namespace));
+    transforms.add(new FileTransform(namespace));
+    transforms.add(new ForAllConstructorsTransform(namespace));
+    transforms.add(new ForAllFieldsTransform(namespace));
+    transforms.add(new ForAllImportedTypesTransform(namespace));
+    transforms.add(new ForAllMethodsTransform(namespace));
+    transforms.add(new ForAllNestedTypesTransform(namespace));
+    transforms.add(new ForAllPackagesTransform(namespace));
+    transforms.add(new ForAllParametersTransform(namespace));
+    transforms.add(new ForAllThrownTypesTransform(namespace));
+    transforms.add(new ForAllTypesTransform(namespace));
+    transforms.add(new IfHasAnnotationTransform(namespace));
+    transforms.add(new IfHasDeclarationTransform(namespace));
+    transforms.add(new JavaSourceTransform(namespace));
     return transforms;
+  }
+
+  /**
+   * The collection of variables to establish in the model before processing.
+   *
+   * @return The collection of variables to establish in the model before processing.
+   */
+  protected Collection<FreemarkerVariable> getVariables() {
+    Collection<FreemarkerVariable> variables = new ArrayList<FreemarkerVariable>();
+    Map<String, String> options = Context.getCurrentEnvironment().getOptions();
+    String namespace = options.get(FreemarkerProcessorFactory.FM_LIBRARY_NS_OPTION);
+    variables.add(new FreemarkerVariable(namespace, "aptOptions", options));
+    return variables;
   }
 
   /**

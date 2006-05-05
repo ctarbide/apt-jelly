@@ -39,6 +39,17 @@ import java.util.Map;
  */
 public abstract class FreemarkerTransform<S extends TemplateStrategyControl> implements TemplateTransformModel {
 
+  private String namespace;
+
+  /**
+   * Construct a new transform under the specified namespace.  <code>null</code> or <code>""</code> means the root namespace.
+   *
+   * @param namespace The namespace.
+   */
+  protected FreemarkerTransform(String namespace) {
+    this.namespace = namespace;
+  }
+
   //Inherited.
   public Writer getWriter(Writer out, Map args) throws TemplateModelException, IOException {
     S strategy = newStrategy();
@@ -181,6 +192,15 @@ public abstract class FreemarkerTransform<S extends TemplateStrategyControl> imp
   public String getTransformName() {
     String transformName = getClass().getSimpleName();
     return Introspector.decapitalize(transformName.substring(0, transformName.lastIndexOf("Transform")));
+  }
+
+  /**
+   * The namespace of the transform.  <code>null</code> or <code>""</code> means the root namespace.
+   * 
+   * @return The namespace of the transform.
+   */
+  public String getTransformNamespace() {
+    return namespace;
   }
 
 }

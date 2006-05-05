@@ -26,6 +26,15 @@ import net.sf.jelly.apt.strategies.FieldDeclarationLoopStrategy;
  */
 public class ForAllFieldsTransform extends FreemarkerTransform<FieldDeclarationLoopStrategy> {
 
+  /**
+   * Construct a new transform under the specified namespace.  <code>null</code> or <code>""</code> means the root namespace.
+   *
+   * @param namespace The namespace.
+   */
+  public ForAllFieldsTransform(String namespace) {
+    super(namespace);
+  }
+
   //Inherited.
   public FieldDeclarationLoopStrategy newStrategy() {
     return new FieldDeclarationLoopStrategy();

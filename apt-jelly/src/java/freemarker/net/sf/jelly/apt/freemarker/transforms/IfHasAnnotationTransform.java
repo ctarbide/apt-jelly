@@ -26,6 +26,15 @@ import net.sf.jelly.apt.freemarker.FreemarkerTransform;
  */
 public class IfHasAnnotationTransform extends FreemarkerTransform<IfHasAnnotationStrategy> {
 
+  /**
+   * Construct a new transform under the specified namespace.  <code>null</code> or <code>""</code> means the root namespace.
+   *
+   * @param namespace The namespace.
+   */
+  public IfHasAnnotationTransform(String namespace) {
+    super(namespace);
+  }
+
   // Inherited.
   public IfHasAnnotationStrategy newStrategy() {
     return new IfHasAnnotationStrategy();

@@ -26,6 +26,15 @@ import net.sf.jelly.apt.freemarker.FreemarkerTransform;
  */
 public class FileTransform extends FreemarkerTransform<FileStrategy> {
 
+  /**
+   * Construct a new transform under the specified namespace.  <code>null</code> or <code>""</code> means the root namespace.
+   *
+   * @param namespace The namespace.
+   */
+  public FileTransform(String namespace) {
+    super(namespace);
+  }
+
   //Inherited.
   public FileStrategy newStrategy() {
     return new FileStrategy();

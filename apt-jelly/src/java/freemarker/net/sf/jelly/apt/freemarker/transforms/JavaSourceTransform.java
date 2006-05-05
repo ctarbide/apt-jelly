@@ -26,6 +26,15 @@ import net.sf.jelly.apt.freemarker.FreemarkerTransform;
  */
 public class JavaSourceTransform extends FreemarkerTransform<JavaSourceStrategy> {
 
+  /**
+   * Construct a new transform under the specified namespace.  <code>null</code> or <code>""</code> means the root namespace.
+   *
+   * @param namespace The namespace.
+   */
+  public JavaSourceTransform(String namespace) {
+    super(namespace);
+  }
+
   // Inherited.
   public JavaSourceStrategy newStrategy() {
     return new JavaSourceStrategy();

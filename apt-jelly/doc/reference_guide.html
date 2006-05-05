@@ -115,6 +115,11 @@
               the value of the "-AMyAPTOption" option, the following snippet can be used:
             </p>
 
+            <p>
+              <i>NOTE: When using the Freemarker processor, there is an option, <font class="code">-AAPTJellyFreemarkerLibraryNS</font>, that specifies the
+                namespace under which the "aptOptions" variable can be put.</i>
+            </p>
+
             <center>
               <div class="samplecode">
                 <pre>
@@ -140,6 +145,11 @@ ${aptOptions["-AMyAPTOption"]}
               exceptions to this are the <font class="code">file</font> directive, the <font class="code">javaSource</font> directive, and the
               <font class="code">annotationValue</font> directive.  The first two directives are used to redirect the output to a generated artifact.  The third
               is used to output an annotation if it exists, or none if it doesn't exist.
+            </p>
+
+            <p>
+              <i>NOTE: When using the Freemarker processor, there is an option, <font class="code">-AAPTJellyFreemarkerLibraryNS</font>, that specifies the
+                namespace under which the transforms can reside.</i>
             </p>
 
             <p>

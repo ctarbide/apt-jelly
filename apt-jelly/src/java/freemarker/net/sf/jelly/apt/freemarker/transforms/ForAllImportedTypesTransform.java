@@ -29,6 +29,15 @@ import net.sf.jelly.apt.strategies.ImportedTypeDeclarationLoopStrategy;
  */
 public class ForAllImportedTypesTransform extends FreemarkerTransform<ImportedTypeDeclarationLoopStrategy> {
 
+  /**
+   * Construct a new transform under the specified namespace.  <code>null</code> or <code>""</code> means the root namespace.
+   *
+   * @param namespace The namespace.
+   */
+  public ForAllImportedTypesTransform(String namespace) {
+    super(namespace);
+  }
+
   //Inherited.
   public ImportedTypeDeclarationLoopStrategy newStrategy() {
     return new ImportedTypeDeclarationLoopStrategy();

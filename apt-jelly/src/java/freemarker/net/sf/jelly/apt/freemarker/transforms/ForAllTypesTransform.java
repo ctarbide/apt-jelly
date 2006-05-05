@@ -14,6 +14,15 @@ import net.sf.jelly.apt.strategies.TypeDeclarationLoopStrategy;
  */
 public class ForAllTypesTransform extends FreemarkerTransform<TypeDeclarationLoopStrategy> {
 
+  /**
+   * Construct a new transform under the specified namespace.  <code>null</code> or <code>""</code> means the root namespace.
+   *
+   * @param namespace The namespace.
+   */
+  public ForAllTypesTransform(String namespace) {
+    super(namespace);
+  }
+
   // Inherited.
   public TypeDeclarationLoopStrategy newStrategy() {
     return new TypeDeclarationLoopStrategy();

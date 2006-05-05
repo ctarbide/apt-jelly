@@ -18,6 +18,12 @@ package net.sf.jelly.apt.freemarker;
 
 import freemarker.template.*;
 import net.sf.jelly.apt.decorations.JavaDoc;
+import net.sf.jelly.apt.decorations.DeclarationDecorator;
+import net.sf.jelly.apt.decorations.TypeMirrorDecorator;
+import net.sf.jelly.apt.decorations.declaration.DecoratedAnnotationMirror;
+import com.sun.mirror.declaration.Declaration;
+import com.sun.mirror.declaration.AnnotationMirror;
+import com.sun.mirror.type.TypeMirror;
 
 /**
  * Freemarker object wrapper for the APT-Jelly output classes.
@@ -32,11 +38,20 @@ public class APTJellyObjectWrapper extends DefaultObjectWrapper {
 
   @Override
   public TemplateModel wrap(Object obj) throws TemplateModelException {
-    if (obj instanceof JavaDoc) {
+    if (obj instanceof Declaration) {
+      obj = DeclarationDecorator.decorate((Declaration) obj);
+    }
+    else if (obj instanceof TypeMirror) {
+      obj = TypeMirrorDecorator.decorate((TypeMirror) obj);
+    }
+    else if ((obj instanceof AnnotationMirror) && !(obj instanceof DecoratedAnnotationMirror)) {
+      //AnnotationMirror is neither a TypeMirror nor a Declaration...
+      obj = new DecoratedAnnotationMirror((AnnotationMirror) obj);
+    }
+    else if (obj instanceof JavaDoc) {
       return new FreemarkerJavaDoc((JavaDoc) obj);
     }
-
-    if (obj instanceof Boolean) {
+    else if (obj instanceof Boolean) {
       return new ScalarBooleanModel((Boolean) obj);
     }
 

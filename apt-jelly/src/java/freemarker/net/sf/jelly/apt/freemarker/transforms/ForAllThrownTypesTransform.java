@@ -26,6 +26,15 @@ import net.sf.jelly.apt.strategies.ThrownTypeLoopStrategy;
  */
 public class ForAllThrownTypesTransform extends FreemarkerTransform<ThrownTypeLoopStrategy> {
 
+  /**
+   * Construct a new transform under the specified namespace.  <code>null</code> or <code>""</code> means the root namespace.
+   *
+   * @param namespace The namespace.
+   */
+  public ForAllThrownTypesTransform(String namespace) {
+    super(namespace);
+  }
+
   //Inherited.
   public ThrownTypeLoopStrategy newStrategy() {
     return new ThrownTypeLoopStrategy();

@@ -16,16 +16,10 @@
 
 package net.sf.jelly.apt.freemarker;
 
-import com.sun.mirror.declaration.AnnotationMirror;
-import com.sun.mirror.declaration.Declaration;
-import com.sun.mirror.type.TypeMirror;
+import freemarker.ext.beans.BeansWrapper;
 import freemarker.template.SimpleHash;
 import freemarker.template.TemplateModelException;
-import freemarker.ext.beans.BeansWrapper;
 import net.sf.jelly.apt.TemplateModel;
-import net.sf.jelly.apt.decorations.DeclarationDecorator;
-import net.sf.jelly.apt.decorations.TypeMirrorDecorator;
-import net.sf.jelly.apt.decorations.declaration.DecoratedAnnotationMirror;
 
 /**
  * The freemarker data model.
@@ -64,6 +58,12 @@ public class FreemarkerModel extends SimpleHash implements TemplateModel {
     }
   }
 
+  /**
+   * Unwrap a model.
+   *
+   * @param model The model to unwrap.
+   * @return The unwrapped model.
+   */
   private Object unwrap(freemarker.template.TemplateModel model) throws TemplateModelException {
     return BeansWrapper.getDefaultInstance().unwrap(model);
   }
@@ -71,22 +71,6 @@ public class FreemarkerModel extends SimpleHash implements TemplateModel {
   // Inherited.
   public void setVariable(String var, Object data) {
     put(var, data);
-  }
-
-  @Override
-  public void put(String key, Object value) {
-    if (value instanceof Declaration) {
-      value = DeclarationDecorator.decorate((Declaration) value);
-    }
-    else if (value instanceof TypeMirror) {
-      value = TypeMirrorDecorator.decorate((TypeMirror) value);
-    }
-    else if ((value instanceof AnnotationMirror) && !(value instanceof DecoratedAnnotationMirror)) {
-      //AnnotationMirror is neither a TypeMirror nor a Declaration...
-      value = new DecoratedAnnotationMirror((AnnotationMirror) value);
-    }
-
-    super.put(key, value);
   }
 
 }

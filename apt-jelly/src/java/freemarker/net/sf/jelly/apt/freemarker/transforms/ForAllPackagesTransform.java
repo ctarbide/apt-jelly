@@ -26,6 +26,15 @@ import net.sf.jelly.apt.strategies.PackageDeclarationLoopStrategy;
  */
 public class ForAllPackagesTransform extends FreemarkerTransform<PackageDeclarationLoopStrategy> {
 
+  /**
+   * Construct a new transform under the specified namespace.  <code>null</code> or <code>""</code> means the root namespace.
+   *
+   * @param namespace The namespace.
+   */
+  public ForAllPackagesTransform(String namespace) {
+    super(namespace);
+  }
+
   //Inherited.
   public PackageDeclarationLoopStrategy newStrategy() {
     return new PackageDeclarationLoopStrategy();

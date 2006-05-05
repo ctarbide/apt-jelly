@@ -20,6 +20,9 @@ import com.sun.mirror.apt.AnnotationProcessor;
 import net.sf.jelly.apt.ProcessorFactory;
 
 import java.net.URL;
+import java.util.Collection;
+import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * A processor factory for the freemarker engine.
@@ -28,11 +31,20 @@ import java.net.URL;
  */
 public class FreemarkerProcessorFactory extends ProcessorFactory {
 
+  public static final String FM_LIBRARY_NS_OPTION = "-AAPTJellyFreemarkerLibraryNS";
+
   public FreemarkerProcessorFactory() {
   }
 
   public FreemarkerProcessorFactory(URL script) {
     super(script);
+  }
+
+  @Override
+  public Collection<String> supportedOptions() {
+    ArrayList<String> options = new ArrayList<String>(super.supportedOptions());
+    options.add(FM_LIBRARY_NS_OPTION);
+    return Collections.unmodifiableCollection(options);
   }
 
   /**

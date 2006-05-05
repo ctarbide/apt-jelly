@@ -31,6 +31,15 @@ import net.sf.jelly.apt.strategies.AnnotationValueStrategy;
  */
 public class AnnotationValueTransform extends FreemarkerTransform<AnnotationValueStrategy> {
 
+  /**
+   * Construct a new transform under the specified namespace.  <code>null</code> or <code>""</code> means the root namespace.
+   *
+   * @param namespace The namespace.
+   */
+  public AnnotationValueTransform(String namespace) {
+    super(namespace);
+  }
+
   //Inherited.
   public AnnotationValueStrategy newStrategy() {
     return new AnnotationValueStrategy();

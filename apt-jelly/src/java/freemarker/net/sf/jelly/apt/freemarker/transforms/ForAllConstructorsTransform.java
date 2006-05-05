@@ -27,6 +27,15 @@ import net.sf.jelly.apt.freemarker.FreemarkerTransform;
  */
 public class ForAllConstructorsTransform extends FreemarkerTransform<ConstructorDeclarationLoopStrategy> {
 
+  /**
+   * Construct a new transform under the specified namespace.  <code>null</code> or <code>""</code> means the root namespace.
+   *
+   * @param namespace The namespace.
+   */
+  public ForAllConstructorsTransform(String namespace) {
+    super(namespace);
+  }
+
   public ConstructorDeclarationLoopStrategy newStrategy() {
     return new ConstructorDeclarationLoopStrategy();
   }

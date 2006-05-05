@@ -1,0 +1,9 @@
+<@apt.file name="testForAllTypes.properties">
+  <@apt.forAllTypes var="type" annotation="net.sf.jelly.apt.samplesource.annotations.AnnotatedClassExample" annotationVar="annotation">
+${type.qualifiedName}=visited
+${type.qualifiedName}.annotation.name=${annotation.name}
+${type.qualifiedName}.annotation.value=${annotation.value}
+${type.qualifiedName}.annotation.description=${annotation.description}
+options.MyOption=${apt.aptOptions["-AMyOption"]}
+  </@apt.forAllTypes>
+</@apt.file>
