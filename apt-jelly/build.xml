@@ -72,6 +72,9 @@
     <zip destfile="target/${dist.name}-src.zip">
       <zipfileset dir="src/java" prefix="src"/>
     </zip>
+    <tar destfile="target/${dist.name}-src.tar.gz" compression="gzip">
+      <tarfileset dir="src/java" prefix="src"/>
+    </tar>
   </target>
 
   <target name="clean" description="clean up the generated directories">
