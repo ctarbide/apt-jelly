@@ -16,18 +16,19 @@
 
 package net.sf.jelly.apt;
 
-import com.sun.mirror.apt.AnnotationProcessorFactory;
 import com.sun.mirror.apt.AnnotationProcessor;
 import com.sun.mirror.apt.AnnotationProcessorEnvironment;
+import com.sun.mirror.apt.AnnotationProcessorFactory;
 import com.sun.mirror.apt.AnnotationProcessors;
 import com.sun.mirror.declaration.AnnotationTypeDeclaration;
-
-import java.util.*;
-import java.net.URL;
-import java.net.MalformedURLException;
-import java.io.File;
-
+import net.sf.jelly.apt.decorations.DeclarationDecorator;
 import net.sf.jelly.apt.decorations.DecoratedAnnotationProcessorEnvironment;
+import net.sf.jelly.apt.decorations.TypeMirrorDecorator;
+
+import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.*;
 
 /**
  * Base class for the annotation processor factory.
@@ -40,12 +41,26 @@ public abstract class ProcessorFactory implements AnnotationProcessorFactory {
    * Option to pass to APT specifying the template file on the filesystem to invoke.
    */
   public static final String TEMPLATE_FILE_OPTION = "-Atemplate";
+
   /**
    * Option to pass to APT specifying a URL of the template to invoke.
    */
   public static final String TEMPLATE_URL_OPTION = "-AtemplateURL";
 
-  private static final Collection<String> SUPPORTED_OPTIONS = Collections.unmodifiableCollection(Arrays.asList(TEMPLATE_FILE_OPTION, TEMPLATE_URL_OPTION));
+  /**
+   * Option for specifying the declaration decorator.
+   */
+  public static final String DECLARATION_DECORATOR_OPTION = "-A" + DeclarationDecorator.class.getName();
+
+  /**
+   * Option for specifying the type decorator.
+   */
+  public static final String TYPE_DECORATOR_OPTION = "-A" + TypeMirrorDecorator.class.getName();
+
+  private static final Collection<String> SUPPORTED_OPTIONS = Collections.unmodifiableCollection(Arrays.asList(TEMPLATE_FILE_OPTION,
+                                                                                                               TEMPLATE_URL_OPTION,
+                                                                                                               DECLARATION_DECORATOR_OPTION,
+                                                                                                               TYPE_DECORATOR_OPTION));
   protected static int round = 0;
   protected URL template;
 
@@ -89,7 +104,17 @@ public abstract class ProcessorFactory implements AnnotationProcessorFactory {
       return AnnotationProcessors.NO_OP;
     }
 
-    Context.setCurrentEnvironment(decorateEnvironment(env));
+    AnnotationProcessorEnvironment ape = decorateEnvironment(env);
+
+    if (ape.getOptions().containsKey(DECLARATION_DECORATOR_OPTION)) {
+      System.setProperty(DeclarationDecorator.class.getName(), ape.getOptions().get(DECLARATION_DECORATOR_OPTION));
+    }
+
+    if (ape.getOptions().containsKey(TYPE_DECORATOR_OPTION)) {
+      System.setProperty(TypeMirrorDecorator.class.getName(), ape.getOptions().get(TYPE_DECORATOR_OPTION));
+    }
+
+    Context.setCurrentEnvironment(ape);
 
     return getProcessorFor(set);
   }
