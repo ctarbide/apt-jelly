@@ -56,6 +56,11 @@
         <a class="leftmenu" href="deps.html">Dependencies</a>
         <br/>
 
+        <div class="headbox">Need Help?</div>
+        <a class="leftmenu" href="http://sourceforge.net/tracker/?group_id=162886&atid=825554">Support Forum</a>
+        <a class="leftmenu" href="http://sourceforge.net/mail/?group_id=162886">Mailing Lists</a>
+        <br/>
+
         <div class="headbox">Relevant Links</div>
         <a class="leftmenu" href="http://java.sun.com/j2se/1.5.0/docs/guide/apt/index.html" title="Sun's docs on APT">Annotation Processing Tool (APT)</a>
         <a class="leftmenu" href="http://freemarker.org" title="Freemarker">Freemarker</a>
@@ -183,22 +188,28 @@ public class ClassAndMethodPrinter {
 
             <p>
               The APT-Jelly libraries are divided into separate jars to keep the project modular between templating engines.  The "core" jar is always needed, and
-              has no third-party dependencies.  The other jar that is needed is the interface for the templating engine.  The "freemarker" jar is needed to
-              interface with the Freemarker engine, and it also has no other third-party dependencies. The "jelly" jar is needed to invoke the jelly template
-              engine, with is itself dependent on another set of library dependencies that you will need to include on your classpath when invoking APT.
-              See <a href="deps.html">the dependencies list</a> for details.  Since we're using Freemarker for our example, we will only need the three jars
-              previously mentioned.
+              has no third-party dependencies.  The other jar that is needed is the interface for the templating engine.  The "apt-jelly-freemarker" jar is needed to
+              interface with the Freemarker engine, and it has a dependency on only the "freemarker" jar containing the Freemarker engine. The "apt-jelly-jelly" jar is
+              needed to invoke the jelly template engine, which is itself dependent on another set of library dependencies that you will need to include on
+              your classpath when invoking APT. See <a href="deps.html">the dependencies list</a> for details.  Since we're using Freemarker for our example,
+              we will need the "core" jar, the "apt-jelly-freemarker" jar, and the "freemarker" jar to invoke the processor.
             </p>
 
             <p>
-              So as an example, let's assume our script is saved to the file "class-method-printer.fmt" and that the three jars are named "apt-jelly-core.jar,"
-              "apt-jelly-freemarker.jar," and "freemarker.jar" and put in the "lib" directory, as is all other dependant jars.  To invoke our script on the
-              source files found in the "src/java" directory, putting all generated artifacts into the "target/gen" directory, and compiling all source classes
-              (including the generated one) into the "target/classes" directory, we invoke something like the following command (note it's all one line):
+              Of course, we also to include on our classpath any other jars that the source code itself depends on.  For our simple example, we will assume that
+              our source code depends on another third-party libary that is packaged into a jar names "third-party.jar".
             </p>
 
             <p>
-<b>user@host:~></b>apt -cp lib/apt-jelly-core.jar:lib/apt-jelly-freemarker.jar:lib/freemarker.jar -s target/gen -factory net.sf.jelly.apt.APTJellyProcessorFactory -AjellyScript=class-method-printer.fmt -d target/classes src/java/*.java
+              So as an example, let's assume our script is saved to the file "class-method-printer.fmt" and that the engine jars are named "apt-jelly-core.jar",
+              "apt-jelly-freemarker.jar," and "freemarker.jar" and put in the "lib" directory, as are all other dependant jars (in our case, just "third-party.jar).
+              To invoke our script on the source files found in the "src/java" directory, putting all generated artifacts into the "target/gen" directory, and
+              compiling all source classes (including the generated one) into the "target/classes" directory, we invoke something like the following command
+              (note it's all one line, and make sure the directory "target/classes" exists):
+            </p>
+
+            <p>
+<b>user@host:~></b>apt -cp lib/apt-jelly-core.jar:lib/apt-jelly-freemarker.jar:lib/freemarker.jar:lib/third-party.jar -s target/gen -factory net.sf.jelly.apt.freemarker.FreemarkerProcessorFactory -Atemplate=class-method-printer.fmt -d target/classes src/java/*.java
             </p>
 
             <p>
