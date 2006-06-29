@@ -1,0 +1,8 @@
+  <@file name="testGetProperties.properties">
+    <@forAllTypes var="type">
+      <#list type.properties as property>
+${type.qualifiedName}.${property.propertyName}=true
+${type.qualifiedName}.${property.propertyName}.readonly=${property.readOnly}
+      </#list>
+    </@forAllTypes>
+  </@file>

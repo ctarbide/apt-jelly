@@ -22,13 +22,13 @@ import java.util.Collection;
 
 /**
  * A decorated type mirror provides:
- *
+ * <p/>
  * <ul>
- *   <li>boolean properties to determine the type of mirror
- *   <li>an <code>isInstanceOf</code> method that determines whether this mirrors a class that is
- *       an instanceof the class denoted by the given fully-qualified name.
- *   <li>a docComment property that outputs the doc comment, if specified.  E.g. for a return type
- *       or a thrown type.
+ * <li>boolean properties to determine the type of mirror
+ * <li>an <code>isInstanceOf</code> method that determines whether this mirrors a class that is
+ * an instanceof the class denoted by the given fully-qualified name.
+ * <li>a docComment property that outputs the doc comment, if specified.  E.g. for a return type
+ * or a thrown type.
  * </ul>
  *
  * @author Ryan Heaton
@@ -47,6 +47,9 @@ public class DecoratedTypeMirror implements TypeMirror {
   }
 
   public boolean equals(Object obj) {
+    if (obj instanceof DecoratedTypeMirror) {
+      return equals(((DecoratedTypeMirror) obj).delegate);
+    }
     return delegate.equals(obj);
   }
 

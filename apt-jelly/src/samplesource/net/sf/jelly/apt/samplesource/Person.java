@@ -22,7 +22,7 @@ import java.util.List;
 /**
  * @author Ryan Heaton
  */
-@AnnotatedClassExample(
+@AnnotatedClassExample (
   name = "personExample",
   description = "an example of a person",
   value = "PERSON"
@@ -55,6 +55,10 @@ public class Person implements Nameable {
 
   public void setGender(Gender gender) {
     this.gender = gender;
+  }
+
+  public String getPersonValue() {
+    return String.valueOf(getId());
   }
 
 }

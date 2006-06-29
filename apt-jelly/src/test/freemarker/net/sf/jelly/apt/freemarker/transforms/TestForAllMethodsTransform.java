@@ -18,10 +18,10 @@ package net.sf.jelly.apt.freemarker.transforms;
 
 import net.sf.jelly.apt.freemarker.FreemarkerTestCase;
 
-import java.util.Properties;
-import java.io.FileInputStream;
 import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.InputStreamReader;
+import java.util.Properties;
 
 /**
  * Runs all tests for the <code>ForAllMethodsTag</code> class.
@@ -102,8 +102,21 @@ public class TestForAllMethodsTransform extends FreemarkerTestCase {
     assertEquals("names", results.getProperty("net.sf.jelly.apt.samplesource.Person.methods.setNames.propertyName"));
   }
 
-  protected void tearDown() throws Exception {
-    //
+  /**
+   * Getting/evaluating the properties of a type definition.
+   */
+  public void testGetProperties() throws Exception {
+    runScript("testGetProperties.fmt");
+    Properties results = readOutputAsProperties("testGetProperties.properties");
+
+    assertTrue(Boolean.valueOf(results.getProperty("net.sf.jelly.apt.samplesource.Person.names")));
+    assertTrue(Boolean.valueOf(results.getProperty("net.sf.jelly.apt.samplesource.Person.id")));
+    assertTrue(Boolean.valueOf(results.getProperty("net.sf.jelly.apt.samplesource.Person.gender")));
+    assertTrue(Boolean.valueOf(results.getProperty("net.sf.jelly.apt.samplesource.Person.personValue")));
+    assertFalse(Boolean.valueOf(results.getProperty("net.sf.jelly.apt.samplesource.Person.names.readonly")));
+    assertFalse(Boolean.valueOf(results.getProperty("net.sf.jelly.apt.samplesource.Person.id.readonly")));
+    assertFalse(Boolean.valueOf(results.getProperty("net.sf.jelly.apt.samplesource.Person.gender.readonly")));
+    assertTrue(Boolean.valueOf(results.getProperty("net.sf.jelly.apt.samplesource.Person.personValue.readonly")));
   }
 
 }
