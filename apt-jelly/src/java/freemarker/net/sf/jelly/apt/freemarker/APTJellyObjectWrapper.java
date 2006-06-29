@@ -16,14 +16,14 @@
 
 package net.sf.jelly.apt.freemarker;
 
+import com.sun.mirror.declaration.AnnotationMirror;
+import com.sun.mirror.declaration.Declaration;
+import com.sun.mirror.type.TypeMirror;
 import freemarker.template.*;
-import net.sf.jelly.apt.decorations.JavaDoc;
 import net.sf.jelly.apt.decorations.DeclarationDecorator;
+import net.sf.jelly.apt.decorations.JavaDoc;
 import net.sf.jelly.apt.decorations.TypeMirrorDecorator;
 import net.sf.jelly.apt.decorations.declaration.DecoratedAnnotationMirror;
-import com.sun.mirror.declaration.Declaration;
-import com.sun.mirror.declaration.AnnotationMirror;
-import com.sun.mirror.type.TypeMirror;
 
 /**
  * Freemarker object wrapper for the APT-Jelly output classes.
@@ -33,7 +33,6 @@ import com.sun.mirror.type.TypeMirror;
 public class APTJellyObjectWrapper extends DefaultObjectWrapper {
 
   public APTJellyObjectWrapper() {
-    setNullModel(new SimpleScalar("null"));
   }
 
   @Override
