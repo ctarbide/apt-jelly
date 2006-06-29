@@ -20,8 +20,8 @@ import com.sun.mirror.declaration.AnnotationMirror;
 import com.sun.mirror.declaration.AnnotationTypeDeclaration;
 import com.sun.mirror.declaration.Declaration;
 import net.sf.jelly.apt.TemplateBlock;
-import net.sf.jelly.apt.TemplateModel;
 import net.sf.jelly.apt.TemplateException;
+import net.sf.jelly.apt.TemplateModel;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -89,15 +89,15 @@ public abstract class AnnotationFilterableDeclarationLoopStrategy<D extends Decl
    * Whether the given declaration is annotated with an annotation that has the given
    * (fully-qualified) annotation name.
    *
-   * @param declaration The declaration.
+   * @param declaration    The declaration.
    * @param annotationName The annotation name.
    * @return Whether the declaration has the annotation.
    */
   protected boolean hasAnnotation(D declaration, String annotationName) {
     for (AnnotationMirror mirror : declaration.getAnnotationMirrors()) {
       AnnotationTypeDeclaration annotation = mirror.getAnnotationType().getDeclaration();
-      if (annotation != null) {
-        return annotation.getQualifiedName().equals(annotationName);
+      if ((annotation != null) && (annotation.getQualifiedName().equals(annotationName))) {
+        return true;
       }
     }
     return false;
