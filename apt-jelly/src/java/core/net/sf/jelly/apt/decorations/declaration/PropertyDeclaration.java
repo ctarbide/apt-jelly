@@ -67,6 +67,25 @@ public class PropertyDeclaration extends DecoratedMethodDeclaration {
   }
 
   /**
+   * The simple name of the property is the property name.
+   *
+   * @return The simple name of the property is the property name.
+   */
+  @Override
+  public String getSimpleName() {
+    return getter.getPropertyName();
+  }
+
+  /**
+   * Make sure the property name is calculated correctly.
+   * cd
+   */
+  @Override
+  public String getPropertyName() {
+    return getter.getPropertyName();
+  }
+
+  /**
    * The setter, or null if this property is a read-only property.
    *
    * @return The setter.
