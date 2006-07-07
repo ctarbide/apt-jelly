@@ -39,6 +39,20 @@ public class TestForAllTypesTransform extends FreemarkerTestCase {
     assertEquals("an example of a person", results.getProperty("net.sf.jelly.apt.samplesource.Person.annotation.description"));
   }
 
+  public void testForAllTypesDifferentPackage() throws Exception {
+    runScript("testForAllTypesDifferentPackage.fmt");
+    Properties results = readOutputAsProperties("net/sf/jelly/apt/testForAllTypes.properties");
+    assertNotNull("Class should have been visited.", results.getProperty("net.sf.jelly.apt.samplesource.Family"));
+    assertNotNull("Class should have been visited.", results.getProperty("net.sf.jelly.apt.samplesource.Person"));
+    assertNull("Class should NOT have been visited.", results.getProperty("net.sf.jelly.apt.samplesource.Name"));
+    assertNull("Class should NOT have been visited.", results.getProperty("net.sf.jelly.apt.samplesource.NameType"));
+    assertNull("Class should NOT have been visited.", results.getProperty("net.sf.jelly.apt.samplesource.Gender"));
+    assertNull("Interface should NOT have been visited.", results.getProperty("net.sf.jelly.apt.samplesource.Identifiable"));
+    assertEquals("personExample", results.getProperty("net.sf.jelly.apt.samplesource.Person.annotation.name"));
+    assertEquals("PERSON", results.getProperty("net.sf.jelly.apt.samplesource.Person.annotation.value"));
+    assertEquals("an example of a person", results.getProperty("net.sf.jelly.apt.samplesource.Person.annotation.description"));
+  }
+
   public void testForAllTypesIncludeInterfaces() throws Exception {
     runScript("testForAllTypesIncludeInterfaces.fmt");
     Properties results = readOutputAsProperties("testForAllTypesIncludeInterfaces.properties");

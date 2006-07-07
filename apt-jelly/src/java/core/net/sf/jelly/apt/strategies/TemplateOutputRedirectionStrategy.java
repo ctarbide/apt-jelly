@@ -49,7 +49,9 @@ public abstract class TemplateOutputRedirectionStrategy<B extends TemplateBlock>
   @Override
   public void postProcess(B block, TemplateOutput<B> output, TemplateModel model) throws IOException, TemplateException {
     super.postProcess(block, output, model);
-    this.writer.close();
+    if (this.writer != null) { //the writer could be null if there was an error in the pre-process.
+      this.writer.close();
+    }
   }
 
 }
