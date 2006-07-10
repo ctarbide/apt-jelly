@@ -78,9 +78,11 @@ public class DecoratedTypeDeclaration extends DecoratedMemberDeclaration impleme
     HashMap<String, DecoratedMethodDeclaration> setters = new HashMap<String, DecoratedMethodDeclaration>();
     for (MethodDeclaration method : getMethods()) {
       DecoratedMethodDeclaration decoratedMethod = (DecoratedMethodDeclaration) method;
-      if (decoratedMethod.isGetter() || decoratedMethod.isSetter()) {
-        HashMap<String, DecoratedMethodDeclaration> methodMap = decoratedMethod.isGetter() ? getters : setters;
-        methodMap.put(decoratedMethod.getPropertyName(), decoratedMethod);
+      if (decoratedMethod.isPublic()) {
+        if (decoratedMethod.isGetter() || decoratedMethod.isSetter()) {
+          HashMap<String, DecoratedMethodDeclaration> methodMap = decoratedMethod.isGetter() ? getters : setters;
+          methodMap.put(decoratedMethod.getPropertyName(), decoratedMethod);
+        }
       }
     }
 
