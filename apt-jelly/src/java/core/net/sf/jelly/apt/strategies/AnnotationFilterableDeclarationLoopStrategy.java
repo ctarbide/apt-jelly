@@ -25,6 +25,7 @@ import net.sf.jelly.apt.TemplateModel;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Iterator;
 
 /**
@@ -36,6 +37,7 @@ public abstract class AnnotationFilterableDeclarationLoopStrategy<D extends Decl
 
   private String annotation;
   private String annotationVar;
+  private String excludes;
 
   //Inherited.
   @Override
@@ -68,20 +70,44 @@ public abstract class AnnotationFilterableDeclarationLoopStrategy<D extends Decl
    * @return The filtered list of declarations.
    */
   public Collection<D> getDeclarations() throws MissingParameterException {
-    if (annotation == null) {
+    if ((annotation == null) && (excludes == null)) {
       return getAllDeclarationsToConsiderForAnnotationFiltering();
     }
 
     //I can't guarantee that the collection of unfiltered declarations is modifiable,
     //so I'm putting them in my own ArrayList.
     ArrayList<D> declarations = new ArrayList<D>(getAllDeclarationsToConsiderForAnnotationFiltering());
-    Iterator<D> it = declarations.iterator();
-    while (it.hasNext()) {
-      D declaration = it.next();
-      if (!hasAnnotation(declaration, annotation)) {
-        it.remove();
+    if (annotation != null) {
+      Iterator<D> it = declarations.iterator();
+      while (it.hasNext()) {
+        D declaration = it.next();
+        if (!hasAnnotation(declaration, annotation)) {
+          it.remove();
+        }
       }
     }
+
+    if (excludes != null) {
+      HashSet<String> excludesSet = new HashSet<String>();
+      for (String excludeAnnotation : excludes.split(",")) {
+        excludeAnnotation = excludeAnnotation.trim();
+        if (excludeAnnotation.length() > 0) {
+          excludesSet.add(excludeAnnotation);
+        }
+      }
+
+      Iterator<D> it = declarations.iterator();
+      while (it.hasNext()) {
+        D declaration = it.next();
+        for (String exclude : excludesSet) {
+          if (hasAnnotation(declaration, exclude)) {
+            it.remove();
+          }
+        }
+      }
+    }
+
+
     return declarations;
   }
 
@@ -137,5 +163,23 @@ public abstract class AnnotationFilterableDeclarationLoopStrategy<D extends Decl
    */
   public void setAnnotationVar(String annotationVar) {
     this.annotationVar = annotationVar;
+  }
+
+  /**
+   * Comma-separated list of annotations that will exclude the declaration from the loop.
+   *
+   * @return Comma-separated list of annotations that will exclude the declaration from the loop.
+   */
+  public String getExcludes() {
+    return excludes;
+  }
+
+  /**
+   * Comma-separated list of annotations that will exclude the declaration from the loop.
+   *
+   * @param excludes Comma-separated list of annotations that will exclude the declaration from the loop.
+   */
+  public void setExcludes(String excludes) {
+    this.excludes = excludes;
   }
 }

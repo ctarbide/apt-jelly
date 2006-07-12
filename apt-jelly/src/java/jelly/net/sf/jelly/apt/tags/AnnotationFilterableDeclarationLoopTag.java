@@ -45,4 +45,13 @@ public abstract class AnnotationFilterableDeclarationLoopTag<S extends Annotatio
   public void setAnnotationVar(String annotationVar) {
     strategy.setAnnotationVar(annotationVar);
   }
+
+  /**
+   * Comma-separated list of annotations that will exclude the declaration from the loop.
+   *
+   * @param excludes Comma-separated list of annotations that will exclude the declaration from the loop.
+   */
+  public void setExcludes(String excludes) {
+    strategy.setExcludes(excludes);
+  }
 }
