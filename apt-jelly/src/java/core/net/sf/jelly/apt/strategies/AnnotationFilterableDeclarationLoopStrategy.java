@@ -102,6 +102,7 @@ public abstract class AnnotationFilterableDeclarationLoopStrategy<D extends Decl
         for (String exclude : excludesSet) {
           if (hasAnnotation(declaration, exclude)) {
             it.remove();
+            break;
           }
         }
       }
