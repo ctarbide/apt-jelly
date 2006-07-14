@@ -18,7 +18,10 @@ package net.sf.jelly.apt.freemarker;
 
 import com.sun.mirror.apt.AnnotationProcessor;
 import freemarker.cache.URLTemplateLoader;
-import freemarker.template.*;
+import freemarker.template.Configuration;
+import freemarker.template.Template;
+import freemarker.template.TemplateException;
+import freemarker.template.TemplateModelException;
 import net.sf.jelly.apt.Context;
 import net.sf.jelly.apt.freemarker.transforms.*;
 
@@ -28,8 +31,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Map;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * The processor for a freemarker template file.
@@ -52,11 +55,29 @@ public class FreemarkerProcessor implements AnnotationProcessor {
       template.process(getRootModel(), new OutputStreamWriter(System.out));
     }
     catch (IOException e) {
-      throw new RuntimeException(e);
+      process(e);
     }
     catch (TemplateException e) {
-      throw new RuntimeException(e);
+      process(e);
     }
+  }
+
+  /**
+   * Process a TemplateException.  Default wraps it in a RuntimeException.
+   *
+   * @param e The exception to process.
+   */
+  protected void process(TemplateException e) {
+    throw new RuntimeException(e);
+  }
+
+  /**
+   * Process an IOException.  Default wraps it in a RuntimeException.
+   *
+   * @param e The exception to process.
+   */
+  protected void process(IOException e) {
+    throw new RuntimeException(e);
   }
 
   /**
@@ -73,7 +94,7 @@ public class FreemarkerProcessor implements AnnotationProcessor {
    *
    * @return The root data model for the template.
    */
-  protected FreemarkerModel getRootModel() {
+  protected FreemarkerModel getRootModel() throws TemplateModelException {
     HashMap<String, Map<String, Object>> sourceMap = new HashMap<String, Map<String, Object>>();
 
     //set up the variables....
