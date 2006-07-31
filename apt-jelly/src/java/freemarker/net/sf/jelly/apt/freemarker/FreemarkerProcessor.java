@@ -51,7 +51,7 @@ public class FreemarkerProcessor implements AnnotationProcessor {
     Configuration configuration = getConfiguration();
 
     try {
-      Template template = configuration.getTemplate(templateURL.toString());
+      Template template = configuration.getTemplate(getTemplateURL().toString());
       template.process(getRootModel(), new OutputStreamWriter(System.out));
     }
     catch (IOException e) {
@@ -60,6 +60,15 @@ public class FreemarkerProcessor implements AnnotationProcessor {
     catch (TemplateException e) {
       process(e);
     }
+  }
+
+  /**
+   * The template URL.
+   *
+   * @return The template URL.
+   */
+  public URL getTemplateURL() {
+    return templateURL;
   }
 
   /**
