@@ -22,14 +22,15 @@ import com.sun.mirror.type.AnnotationType;
 import com.sun.mirror.util.SourcePosition;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  * A decorated annotation mirror provides:
- *
+ * <p/>
  * <ul>
- *   <li>properties for each of its elements
+ * <li>properties for each of its elements
  * </ul>
  *
  * @author Ryan Heaton
@@ -46,7 +47,7 @@ public class DecoratedAnnotationMirror extends HashMap<String, Object> implement
     this.delegate = delegate;
     AnnotationType annotationType = delegate.getAnnotationType();
     Collection<AnnotationTypeElementDeclaration> allElements = annotationType.getDeclaration().getMethods();
-    Map<AnnotationTypeElementDeclaration, AnnotationValue> elementValues = delegate.getElementValues();
+    Map<AnnotationTypeElementDeclaration, AnnotationValue> elementValues = Collections.unmodifiableMap(delegate.getElementValues());
 
     put("annotationType", annotationType);
     put("position", delegate.getPosition());
@@ -70,7 +71,7 @@ public class DecoratedAnnotationMirror extends HashMap<String, Object> implement
   }
 
   public Map<AnnotationTypeElementDeclaration, AnnotationValue> getElementValues() {
-    return this.delegate.getElementValues();
+    return Collections.unmodifiableMap(this.delegate.getElementValues());
   }
 
   public boolean equals(Object o) {
