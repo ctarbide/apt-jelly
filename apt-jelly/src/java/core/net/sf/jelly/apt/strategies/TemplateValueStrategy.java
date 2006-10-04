@@ -17,9 +17,9 @@
 package net.sf.jelly.apt.strategies;
 
 import net.sf.jelly.apt.TemplateBlock;
+import net.sf.jelly.apt.TemplateException;
 import net.sf.jelly.apt.TemplateModel;
 import net.sf.jelly.apt.TemplateOutput;
-import net.sf.jelly.apt.TemplateException;
 
 import java.io.IOException;
 
@@ -40,9 +40,9 @@ public abstract class TemplateValueStrategy<B extends TemplateBlock> extends Tem
   /**
    * Writes the {@link #getValue() value} to the output.
    *
-   * @param block The block.
+   * @param block  The block.
    * @param output The output.
-   * @param model The model.
+   * @param model  The model.
    * @return false, as no body should be processed.
    */
   public boolean preProcess(B block, TemplateOutput<B> output, TemplateModel model) throws IOException, TemplateException {

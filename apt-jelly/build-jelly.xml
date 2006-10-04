@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project default="jar" name="apt-jelly-jelly" basedir=".">
+<project default="test" name="apt-jelly-jelly" basedir=".">
 
   <property file="build.properties"/>
 
@@ -53,12 +53,6 @@
 
   </target>
 
-  <target name="jar" description="create the jar" depends="compile, test, jar-only"/>
-
-  <target name="jar-only" description="create the jar" depends="compile">
-    <jar jarfile="target/${final.name}.jar" excludes="**/package.html" basedir="${build.dir}"/>
-  </target>
-
   <target name="clean" description="clean up the generated directories">
     <delete dir="target"/>
     <delete dir="${javadoc.dir}"/>
@@ -106,29 +100,6 @@
       </fileset>
     </copy>
     <copy todir="${test.build.dir}" file="src/test/log4j.xml"/>
-  </target>
-
-  <target name="doc" description="generates some relevant documentation" depends="javadoc, examples2doc"/>
-
-  <target name="examples2doc" description="publishes the example scripts to the documentation directory">
-    <mkdir dir="${docs.dir}/examples"/>
-
-    <copy todir="${docs.dir}/examples">
-      <fileset dir="${src.test.dir}">
-        <include name="**/*.jelly"/>
-      </fileset>
-      <mapper type="flatten"/>
-    </copy>
-  </target>
-
-  <target name="javadoc" description="generate javadoc" depends="jar-only">
-    <mkdir dir="${javadoc.dir}"/>
-    <property name="title" value="apt-jelly"/>
-
-    <javadoc use="true" destdir="${javadoc.dir}" author="true" sourcepath="${src.dir}"
-             windowtitle="apt-jelly" doctitle="apt-jelly" packagenames="*">
-      <classpath refid="run.classpath"/>
-    </javadoc>
   </target>
 
 </project>

@@ -1,0 +1,38 @@
+  <@javaSource name="net.sf.jelly.apt.examples.WrapperTransforms">
+package net.sf.jelly.apt.examples;
+
+public class WrapperTransforms {
+
+  public static void main(String[] args) {
+    boolean booleanProperty = true;
+    char charProperty = 'b';
+    byte byteProperty = (byte) 3;
+    int intProperty = 4;
+    short shortProperty = 5;
+    long longProperty = 6;
+    float floatProperty = 7;
+    double doubleProperty = 8;
+
+    Boolean booleanPropertyWrapped = null;
+    Character charPropertyWrapped = null;
+    Byte bytePropertyWrapped = null;
+    Integer intPropertyWrapped = null;
+    Short shortPropertyWrapped = null;
+    Long longPropertyWrapped = null;
+    Float floatPropertyWrapped = null;
+    Double doublePropertyWrapped = null;
+
+    Object someValue = null;
+
+    <@forAllTypes var="type">
+      <#if "net.sf.jelly.apt.samplesource.PrimitivesHolder" = type.qualifiedName>
+        <@forAllProperties var="property">
+    ${property.propertyName}Wrapped = <@wrapIfPrimitive type=property.propertyType>${property.propertyName}</@wrapIfPrimitive>;
+    ${property.propertyName} = <@unwrapIfPrimitive type=property.propertyType>${property.propertyName}Wrapped</@unwrapIfPrimitive>;
+    ${property.propertyName}Wrapped = (<@primitiveWrapper type=property.propertyType />) someValue;
+        </@forAllProperties>
+      </#if>
+    </@forAllTypes>
+  }
+}
+  </@javaSource>

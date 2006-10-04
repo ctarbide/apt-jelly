@@ -173,11 +173,15 @@ public class FreemarkerProcessor implements AnnotationProcessor {
     transforms.add(new ForAllNestedTypesTransform(namespace));
     transforms.add(new ForAllPackagesTransform(namespace));
     transforms.add(new ForAllParametersTransform(namespace));
+    transforms.add(new ForAllPropertiesTransform(namespace));
     transforms.add(new ForAllThrownTypesTransform(namespace));
     transforms.add(new ForAllTypesTransform(namespace));
     transforms.add(new IfHasAnnotationTransform(namespace));
     transforms.add(new IfHasDeclarationTransform(namespace));
     transforms.add(new JavaSourceTransform(namespace));
+    transforms.add(new PrimitiveWrapperTransform(namespace));
+    transforms.add(new WrapIfPrimitiveTransform(namespace));
+    transforms.add(new UnwrapIfPrimitiveTransform(namespace));
     return transforms;
   }
 

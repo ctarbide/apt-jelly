@@ -25,8 +25,8 @@ import org.apache.commons.jelly.TagLibrary;
 public class APTTagLibrary extends TagLibrary {
 
   public APTTagLibrary() {
+    registerTag("annotationValue", AnnotationValueTag.class);
     registerTag("file", FileTag.class);
-    registerTag("javaSource", JavaSourceTag.class);
     registerTag("forAllConstructors", ForAllConstructorsTag.class);
     registerTag("forAllFields", ForAllFieldsTag.class);
     registerTag("forAllImportedTypes", ForAllImportedTypesTag.class);
@@ -34,11 +34,12 @@ public class APTTagLibrary extends TagLibrary {
     registerTag("forAllNestedTypes", ForAllNestedTypesTag.class);
     registerTag("forAllPackages", ForAllPackagesTag.class);
     registerTag("forAllParameters", ForAllParametersTag.class);
+    registerTag("forAllProperties", ForAllPropertiesTag.class);
     registerTag("forAllThrownTypes", ForAllThrownTypesTag.class);
     registerTag("forAllTypes", ForAllTypesTag.class);
     registerTag("ifHasAnnotation", IfHasAnnotationTag.class);
     registerTag("ifHasDeclaration", IfHasDeclarationTag.class);
-    registerTag("annotationValue", AnnotationValueTag.class);
+    registerTag("javaSource", JavaSourceTag.class);
   }
 
 }

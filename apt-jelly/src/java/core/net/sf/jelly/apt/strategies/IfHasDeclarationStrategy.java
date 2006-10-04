@@ -20,9 +20,9 @@ import com.sun.mirror.declaration.TypeDeclaration;
 import com.sun.mirror.type.DeclaredType;
 import com.sun.mirror.type.TypeMirror;
 import net.sf.jelly.apt.TemplateBlock;
+import net.sf.jelly.apt.TemplateException;
 import net.sf.jelly.apt.TemplateModel;
 import net.sf.jelly.apt.TemplateOutput;
-import net.sf.jelly.apt.TemplateException;
 
 import java.io.IOException;
 

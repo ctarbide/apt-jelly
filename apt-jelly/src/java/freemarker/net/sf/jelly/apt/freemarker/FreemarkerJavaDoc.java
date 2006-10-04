@@ -37,7 +37,8 @@ public class FreemarkerJavaDoc implements TemplateHashModel, TemplateScalarModel
 
   // Inherited.
   public TemplateModel get(String key) throws TemplateModelException {
-    return new FreemarkerJavaDocTagList(javaDoc.get(key));
+    JavaDoc.JavaDocTagList values = javaDoc.get(key);
+    return values != null ? new FreemarkerJavaDocTagList(values) : null;
   }
 
   // Inherited.
@@ -81,7 +82,11 @@ public class FreemarkerJavaDoc implements TemplateHashModel, TemplateScalarModel
 
     // Inherited.
     public String getAsString() throws TemplateModelException {
-      return this.values.get(0);
+      if (this.values.size() > 0) {
+        return this.values.get(0);
+      }
+
+      return null;
     }
   }
 }

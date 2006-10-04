@@ -419,8 +419,9 @@
 </p>
 
 <p>
-  After having defined your decoration and extended the decorator, it's necessary to set a system property so APT-Jelly knows what decorator to use
-  when decorating. This system property is "net.sf.jelly.apt.decorations.DeclarationDecorator" for a declaration decorator and
+  After having defined your decoration and extended the decorator, it's necessary to tell APT-Jelly what decorator to use when decorating. This can be done
+  either by a system property or passed in as an "-A" APT option on the command line. (Note that the system property is difficult to set from the command line.)
+  This name of this system property (or APT option) is "net.sf.jelly.apt.decorations.DeclarationDecorator" for a declaration decorator and
   "net.sf.jelly.apt.decorations.TypeMirrorDecorator" for type decorator. The values of these properties should be the fully-qualified class name
   of your custom decorator. You can set a system property either programmatically or you can specify these properties with a -A option (e.g.
   -Anet.sf.jelly.apt.decorations.DeclarationDecorator=happy.HappyDeclarationDecorator) passed to the APT-Jelly processor factory.
@@ -476,7 +477,7 @@
 </center>
 
 <p>
-  As long as we make sure that there is a sytem property named "net.sf.jelly.apt.decorations.DeclarationDecorator" that has the value
+  As long as we make sure that there is a sytem property (or APT option) named "net.sf.jelly.apt.decorations.DeclarationDecorator" that has the value
   "happy.HappyDeclarationDecorator" when we invoke apt (either with a -A option or programmatically), then we should be able to access our decorations
   from the template, e.g.:
 </p>

@@ -23,15 +23,29 @@
   </target>
 
   <target name="jar" description="builds the jars for the apt-jelly project">
-    <ant antfile="build-core.xml" target="jar"/>
-    <ant antfile="build-jelly.xml" target="jar"/>
-    <ant antfile="build-freemarker.xml" target="jar"/>
+    <ant antfile="build-core.xml" target="test"/>
+    <ant antfile="build-jelly.xml" target="test"/>
+    <ant antfile="build-freemarker.xml" target="test"/>
+
+    <mkdir dir="target"/>
+    <jar jarfile="target/${dist.name}.jar">
+      <fileset dir="target/core/classes"/>
+      <fileset dir="target/freemarker/classes"/>
+      <fileset dir="target/jelly/classes"/>
+    </jar>
   </target>
 
   <target name="jar-only" description="builds the jars without running the tests for the apt-jelly project">
-    <ant antfile="build-core.xml" target="jar-only"/>
-    <ant antfile="build-jelly.xml" target="jar-only"/>
-    <ant antfile="build-freemarker.xml" target="jar-only"/>
+    <ant antfile="build-core.xml" target="compile"/>
+    <ant antfile="build-jelly.xml" target="compile"/>
+    <ant antfile="build-freemarker.xml" target="compile"/>
+
+    <mkdir dir="target"/>
+    <jar jarfile="target/${dist.name}.jar">
+      <fileset dir="target/core/classes"/>
+      <fileset dir="target/freemarker/classes"/>
+      <fileset dir="target/jelly/classes"/>
+    </jar>
   </target>
 
   <target name="doc" description="generates some relevant documentation">
@@ -43,9 +57,13 @@
       <classpath refid="build.classpath"/>
     </javadoc>
 
-    <ant antfile="build-core.xml" target="examples2doc"/>
-    <ant antfile="build-jelly.xml" target="examples2doc"/>
-    <ant antfile="build-freemarker.xml" target="examples2doc"/>
+    <mkdir dir="${docs.dir}/examples"/>
+    <copy todir="${docs.dir}/examples">
+      <fileset dir="src/test">
+        <include name="**/*.jelly"/>
+      </fileset>
+      <mapper type="flatten"/>
+    </copy>
   </target>
 
   <target name="dist" description="create the distribution bundle" depends="jar, doc">
