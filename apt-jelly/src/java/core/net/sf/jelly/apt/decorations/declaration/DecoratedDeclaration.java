@@ -25,16 +25,17 @@ import net.sf.jelly.apt.decorations.DeclarationDecorator;
 import net.sf.jelly.apt.decorations.JavaDoc;
 
 import java.lang.annotation.Annotation;
+import java.lang.reflect.Proxy;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  * A decorated declaration provides:
- *
+ * <p/>
  * <ul>
- *   <li>boolean properties for each {@link Modifier}
- *   <li>A property for the javadoc for this declaration.
+ * <li>boolean properties for each {@link Modifier}
+ * <li>A property for the javadoc for this declaration.
  * </ul>
  *
  * @author Ryan Heaton
@@ -43,6 +44,7 @@ public class DecoratedDeclaration implements Declaration {
 
   protected final Declaration delegate;
   protected final JavaDoc javaDoc;
+  private HashMap<String, AnnotationMirror> annotations = null;
 
   public DecoratedDeclaration(Declaration delegate) {
     this.delegate = delegate;
@@ -163,14 +165,17 @@ public class DecoratedDeclaration implements Declaration {
    * @return A map of annotations for this declaration.
    */
   public Map<String, AnnotationMirror> getAnnotations() {
-    HashMap<String, AnnotationMirror> annotations = new HashMap<String, AnnotationMirror>();
-    for (AnnotationMirror annotationMirror : getAnnotationMirrors()) {
-      AnnotationType annotationType = annotationMirror.getAnnotationType();
-      if ((annotationType != null) && (annotationType.getDeclaration() != null)) {
-        annotations.put(annotationType.getDeclaration().getQualifiedName(), annotationMirror);
+    if (this.annotations == null) {
+      this.annotations = new HashMap<String, AnnotationMirror>();
+      for (AnnotationMirror annotationMirror : getAnnotationMirrors()) {
+        AnnotationType annotationType = annotationMirror.getAnnotationType();
+        if ((annotationType != null) && (annotationType.getDeclaration() != null)) {
+          annotations.put(annotationType.getDeclaration().getQualifiedName(), annotationMirror);
+        }
       }
     }
-    return annotations;
+
+    return this.annotations;
   }
 
   //Inherited.
@@ -183,9 +188,22 @@ public class DecoratedDeclaration implements Declaration {
     return DeclarationDecorator.decorateAnnotationMirrors(delegate.getAnnotationMirrors());
   }
 
-  //Inherited.
+  /**
+   * Returns an instance of the annotation type as described in the APT mirror javadocs.  However, the
+   * irritating MirroredTypeException and MirroredTypesException are not thrown until after an attempt
+   * to load the class is made.
+   *
+   * @param annotationType The annotation type.
+   * @return An instance of the annotation.
+   */
   public <A extends Annotation> A getAnnotation(Class<A> annotationType) {
-    return delegate.getAnnotation(annotationType);
+    DecoratedAnnotationMirror annotationMirror = (DecoratedAnnotationMirror) getAnnotations().get(annotationType.getName());
+    if (annotationMirror != null) {
+      AnnotationInvocationHandler handler = new AnnotationInvocationHandler(annotationType, annotationMirror);
+      return (A) Proxy.newProxyInstance(annotationType.getClassLoader(), new Class[]{annotationType}, handler);
+    }
+
+    return null;
   }
 
   //Inherited.
@@ -214,6 +232,10 @@ public class DecoratedDeclaration implements Declaration {
 
   //Inherited.
   public boolean equals(Object obj) {
+    if (obj instanceof DecoratedDeclaration) {
+      return equals(((DecoratedDeclaration) obj).delegate);
+    }
+
     return delegate.equals(obj);
   }
 

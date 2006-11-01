@@ -38,6 +38,7 @@ import java.util.Map;
 public class DecoratedAnnotationMirror extends HashMap<String, Object> implements AnnotationMirror {
 
   private AnnotationMirror delegate;
+  private final HashMap<String, Object> allElementValues;
 
   public DecoratedAnnotationMirror(AnnotationMirror delegate) {
     if (delegate == null) {
@@ -47,17 +48,22 @@ public class DecoratedAnnotationMirror extends HashMap<String, Object> implement
     this.delegate = delegate;
     AnnotationType annotationType = delegate.getAnnotationType();
     Collection<AnnotationTypeElementDeclaration> allElements = annotationType.getDeclaration().getMethods();
-    Map<AnnotationTypeElementDeclaration, AnnotationValue> elementValues = Collections.unmodifiableMap(delegate.getElementValues());
+    Map<AnnotationTypeElementDeclaration, AnnotationValue> elementValues = getElementValues();
 
     put("annotationType", annotationType);
     put("position", delegate.getPosition());
     put("elementValues", elementValues);
+    allElementValues = new HashMap<String, Object>();
     for (AnnotationTypeElementDeclaration element : allElements) {
       if (elementValues.containsKey(element)) {
-        put(element.getSimpleName(), elementValues.get(element).getValue());
+        Object value = elementValues.get(element).getValue();
+        allElementValues.put(element.getSimpleName(), value);
+        put(element.getSimpleName(), value);
       }
       else {
-        put(element.getSimpleName(), element.getDefaultValue().getValue());
+        Object value = element.getDefaultValue().getValue();
+        allElementValues.put(element.getSimpleName(), value);
+        put(element.getSimpleName(), value);
       }
     }
   }
@@ -72,6 +78,10 @@ public class DecoratedAnnotationMirror extends HashMap<String, Object> implement
 
   public Map<AnnotationTypeElementDeclaration, AnnotationValue> getElementValues() {
     return Collections.unmodifiableMap(this.delegate.getElementValues());
+  }
+
+  public Map<String, Object> getAllElementValues() {
+    return allElementValues;
   }
 
   public boolean equals(Object o) {

@@ -10,6 +10,7 @@
       <sourceFolder url="file://$MODULE_DIR$/src/java/jelly" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/samplesource" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/core" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/test/core-samples" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/freemarker" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/jelly" isTestSource="true" />
     </content>

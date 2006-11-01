@@ -23,6 +23,8 @@ import com.sun.mirror.util.DeclarationVisitor;
 import net.sf.jelly.apt.decorations.DeclarationDecorator;
 import net.sf.jelly.apt.decorations.TypeMirrorDecorator;
 
+import java.lang.annotation.Annotation;
+import java.lang.annotation.Inherited;
 import java.util.Collection;
 
 /**
@@ -35,19 +37,32 @@ public class DecoratedClassDeclaration extends DecoratedTypeDeclaration implemen
   }
 
   public ClassType getSuperclass() {
-    return TypeMirrorDecorator.decorate((((ClassDeclaration)delegate).getSuperclass()));
+    return TypeMirrorDecorator.decorate((((ClassDeclaration) delegate).getSuperclass()));
   }
 
   public Collection<ConstructorDeclaration> getConstructors() {
-    return DeclarationDecorator.decorate((((ClassDeclaration)delegate).getConstructors()));
+    return DeclarationDecorator.decorate((((ClassDeclaration) delegate).getConstructors()));
   }
 
   public Collection<MethodDeclaration> getMethods() {
-    return DeclarationDecorator.decorate(((ClassDeclaration)delegate).getMethods());
+    return DeclarationDecorator.decorate(((ClassDeclaration) delegate).getMethods());
   }
 
   public boolean isClass() {
     return true;
+  }
+
+  @Override
+  public <A extends Annotation> A getAnnotation(Class<A> annotationType) {
+    A annotation = super.getAnnotation(annotationType);
+    if ((annotation == null) & (annotationType.getAnnotation(Inherited.class) != null)) {
+      ClassDeclaration superDecl = getSuperclass().getDeclaration();
+      if ((superDecl != null) && (!Object.class.getName().equals(superDecl.getQualifiedName()))) {
+        return superDecl.getAnnotation(annotationType);
+      }
+    }
+
+    return annotation;
   }
 
   //Inherited.
