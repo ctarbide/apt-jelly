@@ -92,9 +92,9 @@ public class AnnotationInvocationHandler implements InvocationHandler {
       //it's an enum constant....
       EnumConstantDeclaration constant = (EnumConstantDeclaration) value;
       EnumDeclaration declaringType = constant.getDeclaringType();
-      Class enumClass = null;
+      Class enumClass;
       try {
-        enumClass = loadClass(declaringType.getQualifiedName());
+        enumClass = loadClass(getLoadableFQN(declaringType));
       }
       catch (ClassNotFoundException e) {
         throw new IllegalStateException("Unable to load the enum class " + declaringType.getQualifiedName() + " to create the instance of "
@@ -178,16 +178,7 @@ public class AnnotationInvocationHandler implements InvocationHandler {
       public void visitDeclaredType(DeclaredType declaredType) {
         TypeDeclaration declaration = declaredType.getDeclaration();
         if (declaration != null) {
-          StringBuilder className = new StringBuilder();
-          TypeDeclaration declaringType = declaration.getDeclaringType();
-          while (declaringType != null) {
-            className.insert(0, "$" + declaration.getSimpleName());
-            declaration = declaringType;
-            declaringType = declaration.getDeclaringType();
-          }
-
-          className.insert(0, declaration.getQualifiedName());
-          fqn[0] = className.toString();
+          fqn[0] = getLoadableFQN(declaration);
         }
       }
 
@@ -213,6 +204,26 @@ public class AnnotationInvocationHandler implements InvocationHandler {
     }
 
     throw new ClassNotFoundException("Class not found: " + typeMirror);
+  }
+
+  /**
+   * Get the "loadable" fqn of the given declaration, where "loadable" means recognizable by
+   * Class.forName.
+   *
+   * @param declaration The declaration.
+   * @return The loadable fqn.
+   */
+  protected String getLoadableFQN(TypeDeclaration declaration) {
+    StringBuilder className = new StringBuilder();
+    TypeDeclaration declaringType = declaration.getDeclaringType();
+    while (declaringType != null) {
+      className.insert(0, "$" + declaration.getSimpleName());
+      declaration = declaringType;
+      declaringType = declaration.getDeclaringType();
+    }
+
+    className.insert(0, declaration.getQualifiedName());
+    return className.toString();
   }
 
   protected Class loadClass(String qualifiedName) throws ClassNotFoundException {

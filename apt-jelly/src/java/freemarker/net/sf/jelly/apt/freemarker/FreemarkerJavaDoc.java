@@ -27,7 +27,7 @@ import java.util.ArrayList;
  *
  * @author Ryan Heaton
  */
-public class FreemarkerJavaDoc implements TemplateHashModel, TemplateScalarModel {
+public class FreemarkerJavaDoc implements TemplateHashModelEx, TemplateScalarModel {
 
   private final JavaDoc javaDoc;
 
@@ -55,6 +55,21 @@ public class FreemarkerJavaDoc implements TemplateHashModel, TemplateScalarModel
   @Override
   public String toString() {
     return javaDoc.toString();
+  }
+
+  // Inherited.
+  public int size() throws TemplateModelException {
+    return javaDoc.size();
+  }
+
+  // Inherited.
+  public TemplateCollectionModel keys() throws TemplateModelException {
+    return new SimpleCollection(this.javaDoc.keySet());
+  }
+
+  // Inherited.
+  public TemplateCollectionModel values() throws TemplateModelException {
+    return new SimpleCollection(this.javaDoc.values());
   }
 
   public static class FreemarkerJavaDocTagList implements TemplateSequenceModel, TemplateScalarModel {

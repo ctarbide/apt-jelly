@@ -45,32 +45,31 @@ public class JavaDoc extends HashMap<String, JavaDoc.JavaDocTagList> {
     }
     else {
       BufferedReader reader = new BufferedReader(new StringReader(docComment));
-      StringWriter valueWriter = new StringWriter();
-      PrintWriter out = new PrintWriter(valueWriter);
+      StringWriter currentValue = new StringWriter();
+      PrintWriter out = new PrintWriter(currentValue);
+      String currentTag = null;
       try {
         String line = reader.readLine();
         while (line != null) {
           line = line.trim();
           if (line.startsWith("@")) {
-            //it's a javadoc tag.
+            //it's a javadoc block tag.
+            pushValue(currentTag, currentValue.toString());
+
             int spaceIndex = line.indexOf(' ');
             if (spaceIndex == -1) {
               spaceIndex = line.length();
             }
-            String tag = line.substring(1, spaceIndex);
+
+            currentTag = line.substring(1, spaceIndex);
             String value = "";
             if ((spaceIndex + 1) < line.length()) {
               value = line.substring(spaceIndex + 1);
             }
 
-            JavaDocTagList tagList = get(tag);
-            if (tagList == null) {
-              tagList = new JavaDocTagList(value);
-              put(tag, tagList);
-            }
-            else {
-              tagList.add(value);
-            }
+            currentValue = new StringWriter();
+            out = new PrintWriter(currentValue);
+            out.println(value);
           }
           else {
             out.println(line);
@@ -78,12 +77,36 @@ public class JavaDoc extends HashMap<String, JavaDoc.JavaDocTagList> {
 
           line = reader.readLine();
         }
+        
+        pushValue(currentTag, currentValue.toString());
       }
       catch (IOException e) {
         //fall through.
       }
+    }
+  }
 
-      value = valueWriter.toString();
+  /**
+   * Pushes a value onto a tag.
+   *
+   * @param tag The tag onto which to push the value.  (null indicates no tag.)
+   * @param value The value of the tag.
+   */
+  private void pushValue(String tag, String value) {
+    value = value.trim(); //trim the value.
+    
+    if (tag == null) {
+      this.value = value;
+    }
+    else {
+      JavaDocTagList tagList = get(tag);
+      if (tagList == null) {
+        tagList = new JavaDocTagList(value);
+        put(tag, tagList);
+      }
+      else {
+        tagList.add(value);
+      }
     }
   }
 
