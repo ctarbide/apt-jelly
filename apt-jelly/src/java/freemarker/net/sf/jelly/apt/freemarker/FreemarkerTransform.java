@@ -72,7 +72,7 @@ public abstract class FreemarkerTransform<S extends TemplateStrategyControl> imp
       value = unwrap((TemplateModel) value, property);
       Method method = findSetter(property, strategy);
 
-      if ((value instanceof String) && (method.getParameterTypes()[0] != String.class)) {
+      if ((value instanceof String) && (!method.getParameterTypes()[0].isAssignableFrom(String.class))) {
         value = convertString(((String)value), method.getParameterTypes()[0]);
         if (value == null) {
           throw new TemplateModelException("The '" + getTransformName() + "' transform doesn't support the '" + property + "' attribute of type String.");
