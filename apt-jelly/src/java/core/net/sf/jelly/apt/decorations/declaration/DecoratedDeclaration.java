@@ -160,6 +160,23 @@ public class DecoratedDeclaration implements Declaration {
   }
 
   /**
+   * The value of the java doc, before the block tags.
+   *
+   * @return The value of the java doc, before the block tags, or null if the value is the empty string.
+   */
+  public String getDocValue() {
+    String value = this.javaDoc.toString();
+    if (value != null) {
+      value = value.trim();
+
+      if ("".equals(value)) {
+        value = null;
+      }
+    }
+    return value;
+  }
+
+  /**
    * A map of annotations for this declaration.
    *
    * @return A map of annotations for this declaration.

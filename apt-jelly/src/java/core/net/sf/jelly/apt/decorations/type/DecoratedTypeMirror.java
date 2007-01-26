@@ -117,4 +117,16 @@ public class DecoratedTypeMirror implements TypeMirror {
     this.docComment = docComment;
   }
 
+  public String getDocValue() {
+    String value = getDocComment();
+    if (value != null) {
+      value = value.trim();
+
+      if ("".equals(value)) {
+        value = null;
+      }
+    }
+    return value;
+  }
+
 }
