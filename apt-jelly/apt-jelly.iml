@@ -96,7 +96,9 @@
           <root url="jar:///usr/java/jdk1.5.0_10/lib/tools.jar!/" />
         </CLASSES>
         <JAVADOC />
-        <SOURCES />
+        <SOURCES>
+          <root url="file:///usr/java/src-jdk1.5.0/j2se/src/share/classes" />
+        </SOURCES>
       </library>
     </orderEntry>
     <orderEntryProperties />

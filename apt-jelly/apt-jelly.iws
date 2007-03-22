@@ -18,12 +18,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/JavaDoc.java" afterPath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/JavaDoc.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/freemarker/net/sf/jelly/apt/freemarker/transforms/testBasicExample.fmt" afterPath="$PROJECT_DIR$/src/test/freemarker/net/sf/jelly/apt/freemarker/transforms/testBasicExample.fmt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/type/DecoratedTypeMirror.java" afterPath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/type/DecoratedTypeMirror.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/declaration/DecoratedDeclaration.java" afterPath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/declaration/DecoratedDeclaration.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NOTICE" afterPath="$PROJECT_DIR$/NOTICE" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/style.css" afterPath="$PROJECT_DIR$/doc/style.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apt-jelly.iml" afterPath="$PROJECT_DIR$/apt-jelly.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/declaration/DecoratedAnnotationMirror.java" afterPath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/declaration/DecoratedAnnotationMirror.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apt-jelly.iws" afterPath="$PROJECT_DIR$/apt-jelly.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/freemarker/net/sf/jelly/apt/freemarker/transforms/basicExample.properties" afterPath="$PROJECT_DIR$/src/test/freemarker/net/sf/jelly/apt/freemarker/transforms/basicExample.properties" />
     </list>
   </component>
   <component name="ChangeListSynchronizer" />
@@ -163,91 +162,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="AnnotationInvocationHandler.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/declaration/AnnotationInvocationHandler.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="60" column="10" selection-start="2150" selection-end="2150" vertical-scroll-proportion="0.020380436">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JavaDoc.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/JavaDoc.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="110" column="3" selection-start="3162" selection-end="3162" vertical-scroll-proportion="2.0026631">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DecoratedDeclaration.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/declaration/DecoratedDeclaration.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="176" column="0" selection-start="4619" selection-end="4757" vertical-scroll-proportion="0.61413044">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DecoratedTypeMirror.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/type/DecoratedTypeMirror.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="0" selection-start="716" selection-end="716" vertical-scroll-proportion="0.30706522">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DecoratedExecutableDeclaration.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/declaration/DecoratedExecutableDeclaration.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="118" column="43" selection-start="4411" selection-end="4411" vertical-scroll-proportion="0.7350544">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DecoratedMethodDeclaration.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/declaration/DecoratedMethodDeclaration.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="43" column="18" selection-start="1508" selection-end="1508" vertical-scroll-proportion="0.16576087">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="testBasicExample.fmt" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/freemarker/net/sf/jelly/apt/freemarker/transforms/testBasicExample.fmt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="44" selection-start="183" selection-end="183" vertical-scroll-proportion="0.10190217">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TestBasicExample.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/freemarker/net/sf/jelly/apt/freemarker/transforms/TestBasicExample.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="35" column="42" selection-start="1156" selection-end="1156" vertical-scroll-proportion="0.38082558">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="basicExample.properties" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/freemarker/net/sf/jelly/apt/freemarker/transforms/basicExample.properties">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="53" selection-start="565" selection-end="565" vertical-scroll-proportion="0.16304348">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="ExtendedFamily.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/samplesource/net/sf/jelly/apt/samplesource/ExtendedFamily.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="13" selection-start="678" selection-end="678" vertical-scroll-proportion="0.39946738">
+            <state line="20" column="13" selection-start="678" selection-end="678" vertical-scroll-proportion="0.37593985">
               <folding />
             </state>
           </provider>
@@ -256,7 +174,16 @@
       <file leaf-file-name="FreemarkerTransform.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/java/freemarker/net/sf/jelly/apt/freemarker/FreemarkerTransform.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="64" column="5" selection-start="2094" selection-end="2094" vertical-scroll-proportion="0.42798913">
+            <state line="64" column="5" selection-start="2094" selection-end="2094" vertical-scroll-proportion="0.019157087">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FreemarkerProcessor.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/java/freemarker/net/sf/jelly/apt/freemarker/FreemarkerProcessor.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="41" column="13" selection-start="1306" selection-end="1306" vertical-scroll-proportion="0.019157087">
               <folding />
             </state>
           </provider>
@@ -265,7 +192,52 @@
       <file leaf-file-name="InAPTTestCase.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/core/net/sf/jelly/apt/InAPTTestCase.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="76" column="0" selection-start="2247" selection-end="2247" vertical-scroll-proportion="0.020380436">
+            <state line="81" column="44" selection-start="2375" selection-end="2375" vertical-scroll-proportion="0.019157087">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DecoratedAnnotationMirror.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/declaration/DecoratedAnnotationMirror.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="65" column="0" selection-start="2417" selection-end="2417" vertical-scroll-proportion="0.65389526">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AnnotationMirrorImpl.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file:///usr/java/src-jdk1.5.0/j2se/src/share/classes/com/sun/tools/apt/mirror/declaration/AnnotationMirrorImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="81" column="44" selection-start="2084" selection-end="2084" vertical-scroll-proportion="0.22305764">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Attribute.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file:///usr/java/src-jdk1.5.0/j2se/src/share/classes/com/sun/tools/javac/code/Attribute.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="26" column="13" selection-start="797" selection-end="797" vertical-scroll-proportion="0.018796992">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Type.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file:///usr/java/src-jdk1.5.0/j2se/src/share/classes/com/sun/tools/javac/code/Type.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="49" column="13" selection-start="1795" selection-end="1795" vertical-scroll-proportion="0.019157087">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AptEnv.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file:///usr/java/src-jdk1.5.0/j2se/src/share/classes/com/sun/tools/apt/mirror/AptEnv.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="64" column="15" selection-start="1867" selection-end="1867" vertical-scroll-proportion="0.44862154">
               <folding />
             </state>
           </provider>
@@ -274,7 +246,7 @@
       <file leaf-file-name="APTTestUtil.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/core/net/sf/jelly/apt/APTTestUtil.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="75" column="29" selection-start="2258" selection-end="2258" vertical-scroll-proportion="0.17934783">
+            <state line="75" column="29" selection-start="2258" selection-end="2258" vertical-scroll-proportion="0.22733077">
               <folding />
             </state>
           </provider>
@@ -283,7 +255,7 @@
       <file leaf-file-name="DepAnnotation.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/core/net/sf/jelly/apt/decorations/DepAnnotation.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="0" selection-start="717" selection-end="717" vertical-scroll-proportion="0.47936085">
+            <state line="24" column="0" selection-start="717" selection-end="717" vertical-scroll-proportion="0.45112783">
               <folding />
             </state>
           </provider>
@@ -292,7 +264,34 @@
       <file leaf-file-name="Name.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/samplesource/net/sf/jelly/apt/samplesource/Name.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="13" selection-start="678" selection-end="678" vertical-scroll-proportion="0.39946738">
+            <state line="18" column="22" selection-start="660" selection-end="660" vertical-scroll-proportion="0.33834586">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="build.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/build.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="14" column="9" selection-start="419" selection-end="419" vertical-scroll-proportion="0.019157087">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="style.css" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/doc/style.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="59" column="16" selection-start="1013" selection-end="1013" vertical-scroll-proportion="0.019157087">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="build.properties" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/build.properties">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="1" column="0" selection-start="30" selection-end="30" vertical-scroll-proportion="0.018796992">
               <folding />
             </state>
           </provider>
@@ -423,125 +422,7 @@
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:$PROJECT_DIR$/src" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:$PROJECT_DIR$/src/test" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="apt-jelly.ipr" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="apt-jelly" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:$PROJECT_DIR$" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:$PROJECT_DIR$/src" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:$PROJECT_DIR$/src/test" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:$PROJECT_DIR$/src/test/freemarker" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:$PROJECT_DIR$/src/test/freemarker/net" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:$PROJECT_DIR$/src/test/freemarker/net/sf" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:$PROJECT_DIR$/src/test/freemarker/net/sf/jelly" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:$PROJECT_DIR$/src/test/freemarker/net/sf/jelly/apt" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:$PROJECT_DIR$/src/test/freemarker/net/sf/jelly/apt/freemarker" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="apt-jelly.ipr" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="apt-jelly" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:$PROJECT_DIR$" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:$PROJECT_DIR$/src" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:$PROJECT_DIR$/src/test" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:$PROJECT_DIR$/src/test/freemarker" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:$PROJECT_DIR$/src/test/freemarker/net" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:$PROJECT_DIR$/src/test/freemarker/net/sf" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:$PROJECT_DIR$/src/test/freemarker/net/sf/jelly" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:$PROJECT_DIR$/src/test/freemarker/net/sf/jelly/apt" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:$PROJECT_DIR$/src/test/freemarker/net/sf/jelly/apt/freemarker" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:$PROJECT_DIR$/src/test/freemarker/net/sf/jelly/apt/freemarker/transforms" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="apt-jelly.ipr" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="apt-jelly" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:$PROJECT_DIR$" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:$PROJECT_DIR$/src" />
+          <option name="myItemId" value="PsiDirectory:$PROJECT_DIR$/doc" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
       </PATH>
@@ -558,7 +439,7 @@
       <showLibraryContents />
       <hideEmptyPackages ProjectPane="false" />
       <abbreviatePackageNames />
-      <showStructure Favorites="false" PackagesPane="false" Scope="false" ProjectPane="false" />
+      <showStructure Favorites="false" ProjectPane="false" Scope="false" PackagesPane="false" />
       <autoscrollToSource />
       <autoscrollFromSource />
       <sortByType />
@@ -567,13 +448,41 @@
   <component name="PropertiesComponent">
     <property name="GoToClass.includeJavaFiles" value="false" />
     <property name="MemberChooser.copyJavadoc" value="false" />
+    <property name="cvs_file_history_treeWidth0" value="168" />
+    <property name="cvs_file_history_treeOrder4" value="4" />
+    <property name="cvs_file_history_flatWidth2" value="168" />
+    <property name="cvs_file_history_flatOrder4" value="4" />
+    <property name="cvs_file_history_treeOrder1" value="1" />
+    <property name="GoToFile.includeJavaFiles" value="false" />
+    <property name="cvs_file_history_flatOrder1" value="1" />
+    <property name="cvs_file_history_flatWidth1" value="168" />
+    <property name="cvs_file_history_treeWidth1" value="168" />
+    <property name="cvs_file_history_treeOrder6" value="6" />
     <property name="GoToClass.includeLibraries" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
+    <property name="cvs_file_history_flatOrder2" value="2" />
+    <property name="cvs_file_history_flatWidth4" value="168" />
+    <property name="cvs_file_history_treeWidth2" value="168" />
+    <property name="GoToClass.toSaveIncludeLibraries" value="false" />
+    <property name="cvs_file_history_flatOrder3" value="3" />
+    <property name="cvs_file_history_treeOrder5" value="5" />
+    <property name="RunManagerConfig.showSettingsBeforeRunnig" value="true" />
     <property name="MemberChooser.sorted" value="false" />
     <property name="RunManagerConfig.compileBeforeRunning" value="true" />
-    <property name="GoToFile.includeJavaFiles" value="false" />
-    <property name="GoToClass.toSaveIncludeLibraries" value="false" />
-    <property name="RunManagerConfig.showSettingsBeforeRunnig" value="true" />
+    <property name="cvs_file_history_flatWidth6" value="168" />
+    <property name="cvs_file_history_flatOrder0" value="0" />
+    <property name="cvs_file_history_treeOrder3" value="3" />
+    <property name="cvs_file_history_treeWidth4" value="168" />
+    <property name="cvs_file_history_treeWidth6" value="168" />
+    <property name="cvs_file_history_flatOrder5" value="5" />
+    <property name="cvs_file_history_flatWidth5" value="169" />
+    <property name="cvs_file_history_treeOrder2" value="2" />
+    <property name="cvs_file_history_treeWidth3" value="169" />
+    <property name="cvs_file_history_treeWidth5" value="169" />
+    <property name="cvs_file_history_flatOrder6" value="6" />
+    <property name="cvs_file_history_flatWidth0" value="168" />
+    <property name="cvs_file_history_flatWidth3" value="169" />
+    <property name="cvs_file_history_treeOrder0" value="0" />
   </component>
   <component name="ReadonlyStatusHandler">
     <option name="SHOW_DIALOG" value="true" />
@@ -764,14 +673,14 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="29" width="1274" height="964" extended-state="0" />
+    <frame x="6" y="52" width="1274" height="963" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="3" />
       <window_info id="CVS" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32894737" order="8" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="3" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="7" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.36505333" order="0" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.36437908" order="0" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3241627" order="1" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" order="1" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3277512" order="8" />
@@ -784,11 +693,12 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3277512" order="2" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24981357" order="2" />
       <window_info id="File View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="3" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39789966" order="4" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" order="0" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39789966" order="4" />
+      <window_info id="simpleUML" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="3" />
       <window_info id="TCPMON" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="3" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="8" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295063" order="8" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32934132" order="8" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="0" />
       <window_info id="Favorites" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="3" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" order="2" />
@@ -887,111 +797,162 @@
     <option name="myLastEditedConfigurable" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/test/core/net/sf/jelly/apt/InAPTTestCase.java">
+    <entry file="file://$PROJECT_DIR$/src/samplesource/net/sf/jelly/apt/samplesource/ExtendedFamily.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="76" column="0" selection-start="2247" selection-end="2247" vertical-scroll-proportion="0.020380436">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/core/net/sf/jelly/apt/APTTestUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="75" column="29" selection-start="2258" selection-end="2258" vertical-scroll-proportion="0.17934783">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/core/net/sf/jelly/apt/decorations/DepAnnotation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="0" selection-start="717" selection-end="717" vertical-scroll-proportion="0.47936085">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/samplesource/net/sf/jelly/apt/samplesource/Name.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="13" selection-start="678" selection-end="678" vertical-scroll-proportion="0.39946738">
+        <state line="20" column="13" selection-start="678" selection-end="678" vertical-scroll-proportion="0.37593985">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/java/freemarker/net/sf/jelly/apt/freemarker/FreemarkerTransform.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="64" column="5" selection-start="2094" selection-end="2094" vertical-scroll-proportion="0.42798913">
+        <state line="64" column="5" selection-start="2094" selection-end="2094" vertical-scroll-proportion="0.019157087">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/declaration/AnnotationInvocationHandler.java">
+    <entry file="file://$PROJECT_DIR$/src/java/freemarker/net/sf/jelly/apt/freemarker/FreemarkerProcessor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="60" column="10" selection-start="2150" selection-end="2150" vertical-scroll-proportion="0.020380436">
+        <state line="41" column="13" selection-start="1306" selection-end="1306" vertical-scroll-proportion="0.019157087">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/samplesource/net/sf/jelly/apt/samplesource/ExtendedFamily.java">
+    <entry file="file://$PROJECT_DIR$/src/test/core/net/sf/jelly/apt/InAPTTestCase.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="13" selection-start="678" selection-end="678" vertical-scroll-proportion="0.39946738">
+        <state line="81" column="44" selection-start="2375" selection-end="2375" vertical-scroll-proportion="0.019157087">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/freemarker/net/sf/jelly/apt/freemarker/transforms/TestBasicExample.java">
+    <entry file="file:///usr/java/src-jdk1.5.0/j2se/src/share/classes/com/sun/tools/apt/mirror/declaration/AnnotationMirrorImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="42" selection-start="1156" selection-end="1156" vertical-scroll-proportion="0.38082558">
+        <state line="81" column="44" selection-start="2084" selection-end="2084" vertical-scroll-proportion="0.22305764">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/declaration/DecoratedExecutableDeclaration.java">
+    <entry file="file:///usr/java/src-jdk1.5.0/j2se/src/share/classes/com/sun/tools/javac/code/Attribute.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="118" column="43" selection-start="4411" selection-end="4411" vertical-scroll-proportion="0.7350544">
+        <state line="26" column="13" selection-start="797" selection-end="797" vertical-scroll-proportion="0.018796992">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/declaration/DecoratedMethodDeclaration.java">
+    <entry file="file:///usr/java/src-jdk1.5.0/j2se/src/share/classes/com/sun/tools/javac/code/Type.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="43" column="18" selection-start="1508" selection-end="1508" vertical-scroll-proportion="0.16576087">
+        <state line="49" column="13" selection-start="1795" selection-end="1795" vertical-scroll-proportion="0.019157087">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/freemarker/net/sf/jelly/apt/freemarker/transforms/basicExample.properties">
+    <entry file="file:///usr/java/src-jdk1.5.0/j2se/src/share/classes/com/sun/tools/apt/mirror/AptEnv.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="53" selection-start="565" selection-end="565" vertical-scroll-proportion="0.16304348">
+        <state line="64" column="15" selection-start="1867" selection-end="1867" vertical-scroll-proportion="0.44862154">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/freemarker/net/sf/jelly/apt/freemarker/transforms/testBasicExample.fmt">
+    <entry file="file://$PROJECT_DIR$/src/test/core/net/sf/jelly/apt/APTTestUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="44" selection-start="183" selection-end="183" vertical-scroll-proportion="0.10190217">
+        <state line="75" column="29" selection-start="2258" selection-end="2258" vertical-scroll-proportion="0.22733077">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/JavaDoc.java">
+    <entry file="file://$PROJECT_DIR$/src/test/core/net/sf/jelly/apt/decorations/DepAnnotation.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="110" column="3" selection-start="3162" selection-end="3162" vertical-scroll-proportion="2.0026631">
+        <state line="24" column="0" selection-start="717" selection-end="717" vertical-scroll-proportion="0.45112783">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/declaration/DecoratedDeclaration.java">
+    <entry file="file://$PROJECT_DIR$/src/samplesource/net/sf/jelly/apt/samplesource/Name.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="176" column="0" selection-start="4619" selection-end="4757" vertical-scroll-proportion="0.61413044">
+        <state line="18" column="22" selection-start="660" selection-end="660" vertical-scroll-proportion="0.33834586">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/type/DecoratedTypeMirror.java">
+    <entry file="file://$PROJECT_DIR$/build.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="0" selection-start="716" selection-end="716" vertical-scroll-proportion="0.30706522">
+        <state line="14" column="9" selection-start="419" selection-end="419" vertical-scroll-proportion="0.019157087">
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/build.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="0" selection-start="30" selection-end="30" vertical-scroll-proportion="0.018796992">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/doc/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="59" column="16" selection-start="1013" selection-end="1013" vertical-scroll-proportion="0.019157087">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/declaration/DecoratedAnnotationMirror.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="65" column="0" selection-start="2417" selection-end="2417" vertical-scroll-proportion="0.65389526">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="simpleUML.DiagramSettingsWorkspace" />
+  <component name="simpleUML.UMLToolWindowPlugin">
+    <General>
+      <option name="birdViewUpdateDelay" value="2000" />
+      <option name="defaultFileLocation" value="file://$PROJECT_DIR$" />
+    </General>
+    <Classdiagram>
+      <option name="diagramTitleFont" value="SansSerif,1,12" />
+      <option name="diagramFont" value="SansSerif,0,10" />
+      <option name="defaultFieldsExpanded" value="false" />
+      <option name="defaultContructorsExpanded" value="false" />
+      <option name="defaultMethodsExpanded" value="false" />
+      <option name="showParameters" value="true" />
+      <option name="showTooltip" value="true" />
+      <option name="showReturnValues" value="true" />
+      <option name="longModifier" value="true" />
+      <option name="implementsBehaviour" value="1" />
+      <option name="extendsBehaviour" value="1" />
+      <option name="compartmentBehaviour" value="1" />
+      <option name="interfaceBackgroundColor" value="-6494306" />
+      <option name="abstractClassBackgroundColor" value="-1580132" />
+      <option name="classBackgroundColor" value="-6508057" />
+      <option name="diagramBackgroundColor" value="-1" />
+      <option name="useAntialiasedConnectors" value="true" />
+      <option name="quickSourceLinkColor" value="-16776961" />
+      <option name="quickDiagramLinkColor" value="-8454144" />
+      <option name="drawDecorations" value="false" />
+      <option name="hideFieldList" value="" />
+      <option name="showFieldList" value="" />
+      <option name="hideConstructorList" value="" />
+      <option name="showConstructorList" value="" />
+      <option name="hideMethodList" value="" />
+      <option name="showMethodList" value="" />
+      <option name="minimumFigureSize" value="0,0" />
+    </Classdiagram>
+    <Dependencydiagram>
+      <option name="diagramTitleFont" value="SansSerif,1,12" />
+      <option name="diagramFont" value="SansSerif,0,10" />
+      <option name="diagramBackgroundColor" value="-1" />
+      <option name="useAntialiasedConnectors" value="true" />
+      <option name="packageNameCompressionLevel" value="0" />
+    </Dependencydiagram>
+    <Packagediagram>
+      <option name="diagramTitleFont" value="SansSerif,0,12" />
+      <option name="diagramFont" value="SansSerif,0,10" />
+      <option name="packageBackgroundColor" value="-4144960" />
+      <option name="diagramBackgroundColor" value="-1" />
+      <option name="useAntialiasedConnectors" value="true" />
+      <option name="packageNameCompressionLevel" value="2" />
+    </Packagediagram>
   </component>
 </project>
 

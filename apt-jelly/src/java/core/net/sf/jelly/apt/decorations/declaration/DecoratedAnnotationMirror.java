@@ -61,7 +61,12 @@ public class DecoratedAnnotationMirror extends HashMap<String, Object> implement
         put(element.getSimpleName(), value);
       }
       else {
-        Object value = element.getDefaultValue().getValue();
+        AnnotationValue defaultValue = element.getDefaultValue();
+        if (defaultValue == null) {
+          throw new IllegalStateException(delegate.getPosition() + ": the element '" + element.getSimpleName() + "' must have a value specified.");
+        }
+
+        Object value = defaultValue.getValue();
         allElementValues.put(element.getSimpleName(), value);
         put(element.getSimpleName(), value);
       }
