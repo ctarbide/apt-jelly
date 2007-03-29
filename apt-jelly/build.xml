@@ -48,6 +48,21 @@
     </jar>
   </target>
 
+  <target name="build-maven-bundle">
+    <copy file="pom.xml" todir="target" filtering="true">
+      <filterset>
+        <filter token="VERSION" value="${version}"/>
+      </filterset>
+    </copy>
+
+    <jar destfile="target/${dist.name}-bundle.jar">
+      <fileset dir="target">
+        <include name="${dist.name}.jar"/>
+        <include name="pom.xml"/>
+      </fileset>
+    </jar>
+  </target>
+
   <target name="doc" description="generates some relevant documentation">
     <mkdir dir="${javadoc.dir}"/>
     <property name="title" value="apt-jelly"/>
