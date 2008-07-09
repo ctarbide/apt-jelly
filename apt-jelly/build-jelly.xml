@@ -20,6 +20,7 @@
         <include name="commons-*.jar"/>
         <include name="dom4j-*.jar"/>
         <include name="log4j-*.jar"/>
+        <include name="junit-*.jar"/>
       </fileset>
       <pathelement location="${java.home}/../lib/tools.jar"/>
       <pathelement location="${core.classes.dir}"/>

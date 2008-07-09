@@ -18,6 +18,7 @@
     <path id="build.classpath">
       <fileset dir="${lib.dir}">
         <include name="freemarker-*.jar"/>
+        <include name="junit-*.jar"/>
       </fileset>
       <pathelement location="${java.home}/../lib/tools.jar"/>
       <pathelement location="${core.classes.dir}"/>

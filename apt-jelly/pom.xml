@@ -1,7 +1,7 @@
 <project>
 
   <modelVersion>4.0.0</modelVersion>
-  <groupId>net.sf.jelly.apt</groupId>
+  <groupId>net.sf.apt-jelly</groupId>
   <artifactId>apt-jelly</artifactId>
   <version>@VERSION@</version>
 
