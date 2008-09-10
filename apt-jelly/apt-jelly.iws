@@ -30,15 +30,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/samplesource/net/sf/jelly/apt/samplesource/Person.java" afterPath="$PROJECT_DIR$/src/samplesource/net/sf/jelly/apt/samplesource/Person.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build-freemarker.xml" afterPath="$PROJECT_DIR$/build-freemarker.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apt-jelly.ipr" afterPath="$PROJECT_DIR$/apt-jelly.ipr" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apt-jelly.iml" afterPath="$PROJECT_DIR$/apt-jelly.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/template.html" afterPath="$PROJECT_DIR$/doc/template.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/index.html" afterPath="$PROJECT_DIR$/doc/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apt-jelly.iws" afterPath="$PROJECT_DIR$/apt-jelly.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build-jelly.xml" afterPath="$PROJECT_DIR$/build-jelly.xml" />
     </list>
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
@@ -136,28 +128,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="FreemarkerProcessor.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/java/freemarker/net/sf/jelly/apt/freemarker/FreemarkerProcessor.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="41" column="13" selection-start="1306" selection-end="1306" vertical-scroll-proportion="0.015353122">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="InAPTTestCase.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/core/net/sf/jelly/apt/InAPTTestCase.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="81" column="44" selection-start="2375" selection-end="2375" vertical-scroll-proportion="0.015353122">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="DecoratedAnnotationMirror.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/declaration/DecoratedAnnotationMirror.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="87" column="29" selection-start="3125" selection-end="3125" vertical-scroll-proportion="0.8126919">
+            <state line="87" column="29" selection-start="3125" selection-end="3125" vertical-scroll-proportion="0.80995476">
               <folding />
             </state>
           </provider>
@@ -166,7 +140,7 @@
       <file leaf-file-name="pom.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="41" column="28" selection-start="1134" selection-end="1134" vertical-scroll-proportion="0.6419624">
+            <state line="41" column="28" selection-start="1134" selection-end="1134" vertical-scroll-proportion="0.11022727">
               <folding />
             </state>
           </provider>
@@ -175,16 +149,88 @@
       <file leaf-file-name="build-freemarker.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/build-freemarker.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="0" selection-start="877" selection-end="915" vertical-scroll-proportion="0.3131524">
+            <state line="20" column="0" selection-start="877" selection-end="915" vertical-scroll-proportion="0.017045455">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="build-jelly.xml" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="build-jelly.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/build-jelly.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="0" selection-start="953" selection-end="953" vertical-scroll-proportion="0.36012527">
+            <state line="23" column="0" selection-start="953" selection-end="953" vertical-scroll-proportion="0.017045455">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FileStrategy.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/strategies/FileStrategy.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="43" column="5" selection-start="1302" selection-end="1302" vertical-scroll-proportion="0.016685206">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ForAllTypesTransform.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/java/freemarker/net/sf/jelly/apt/freemarker/transforms/ForAllTypesTransform.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="14" column="77" selection-start="654" selection-end="654" vertical-scroll-proportion="0.23755656">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TypeDeclarationLoopStrategy.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/strategies/TypeDeclarationLoopStrategy.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="76" column="5" selection-start="2908" selection-end="2908" vertical-scroll-proportion="1.2680756">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="build.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/build.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="62" column="0" selection-start="2088" selection-end="2088" vertical-scroll-proportion="0.017045455">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DecoratedTypeMirror.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/type/DecoratedTypeMirror.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="35" column="13" selection-start="1198" selection-end="1198" vertical-scroll-proportion="0.016685206">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DecoratedDeclaredType.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/type/DecoratedDeclaredType.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="34" column="13" selection-start="1289" selection-end="1289" vertical-scroll-proportion="0.16240267">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DecoratedAnnotationProcessorEnvironment.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/DecoratedAnnotationProcessorEnvironment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="71" column="0" selection-start="2246" selection-end="2246" vertical-scroll-proportion="0.16515838">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TemplateOutputRedirectionStrategy.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/strategies/TemplateOutputRedirectionStrategy.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="52" column="26" selection-start="1799" selection-end="1799" vertical-scroll-proportion="0.8631813">
               <folding />
             </state>
           </provider>
@@ -192,20 +238,20 @@
       </file>
       <file leaf-file-name="deps.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/doc/deps.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="26" column="7" selection-start="801" selection-end="801" vertical-scroll-proportion="0.016357688">
-              <folding />
-            </state>
-          </provider>
           <provider editor-type-id="HtmlPreview">
             <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="26" column="7" selection-start="801" selection-end="801" vertical-scroll-proportion="0.017878426">
+              <folding />
+            </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="DecoratedDeclaration.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/declaration/DecoratedDeclaration.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="218" column="65" selection-start="6349" selection-end="6349" vertical-scroll-proportion="0.2446264">
+            <state line="218" column="65" selection-start="6349" selection-end="6349" vertical-scroll-proportion="0.17908788">
               <folding />
             </state>
           </provider>
@@ -214,7 +260,7 @@
       <file leaf-file-name="AnnotationInvocationHandler.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/declaration/AnnotationInvocationHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="61" column="74" selection-start="2225" selection-end="2225" vertical-scroll-proportion="0.0155925155">
+            <state line="61" column="74" selection-start="2225" selection-end="2225" vertical-scroll-proportion="0.016968327">
               <folding />
             </state>
           </provider>
@@ -330,6 +376,46 @@
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/src" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="apt-jelly" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="apt-jelly" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/src" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/src/java" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="apt-jelly" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="apt-jelly" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
           <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/lib" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
@@ -358,8 +444,8 @@
     <property name="cvs_file_history_treeOrder5" value="5" />
     <property name="cvs_file_history_treeOrder2" value="2" />
     <property name="cvs_file_history_treeOrder1" value="1" />
-    <property name="cvs_file_history_treeOrder4" value="4" />
     <property name="RunManagerConfig.showSettingsBeforeRunnig" value="true" />
+    <property name="cvs_file_history_treeOrder4" value="4" />
     <property name="cvs_file_history_treeOrder3" value="3" />
     <property name="MemberChooser.sorted" value="false" />
     <property name="GoToClass.includeJavaFiles" value="false" />
@@ -372,15 +458,15 @@
     <property name="cvs_file_history_treeWidth2" value="168" />
     <property name="cvs_file_history_treeWidth3" value="169" />
     <property name="cvs_file_history_flatWidth2" value="168" />
+    <property name="MemberChooser.showClasses" value="true" />
     <property name="cvs_file_history_treeOrder0" value="0" />
     <property name="cvs_file_history_flatWidth3" value="169" />
     <property name="cvs_file_history_treeWidth4" value="168" />
-    <property name="MemberChooser.showClasses" value="true" />
-    <property name="cvs_file_history_flatWidth0" value="168" />
     <property name="cvs_file_history_treeWidth5" value="169" />
+    <property name="cvs_file_history_flatWidth0" value="168" />
+    <property name="cvs_file_history_flatWidth1" value="168" />
     <property name="cvs_file_history_treeWidth6" value="168" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="cvs_file_history_flatWidth1" value="168" />
     <property name="GoToFile.includeJavaFiles" value="false" />
     <property name="RunManagerConfig.compileBeforeRunning" value="true" />
     <property name="cvs_file_history_flatOrder4" value="4" />
@@ -407,7 +493,7 @@
       <recent name="net.sf.jelly.apt" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.TestBasicExample.testBasicExample">
+  <component name="RunManager" selected="Remote.maven">
     <tempConfiguration default="false" name="TestBasicExample.testBasicExample" type="JUnit" factoryName="JUnit" enabled="false" merge="false">
       <pattern value="net.sf.jelly.apt.freemarker.transforms.*" />
       <module name="apt-jelly" />
@@ -433,6 +519,80 @@
         <option name="Make" value="true" />
       </method>
     </tempConfiguration>
+    <configuration default="true" type="MavenRunConfiguration" factoryName="Maven">
+      <MavenSettings>
+        <option name="myCoreSettings">
+          <MavenCoreSettings>
+            <option name="checksumPolicy" value="fail" />
+            <option name="failureBehavior" value="fail-fast" />
+            <option name="localRepository" value="" />
+            <option name="mavenHome" value="" />
+            <option name="mavenSettingsFile" value="" />
+            <option name="nonRecursive" value="false" />
+            <option name="pluginUpdatePolicy" value="false" />
+            <option name="produceExceptionErrorMessages" value="false" />
+            <option name="usePluginRegistry" value="false" />
+            <option name="workOffline" value="false" />
+          </MavenCoreSettings>
+        </option>
+        <option name="myRunnerSettings">
+          <MavenRunnerSettings>
+            <option name="jreName" value="1.5" />
+            <option name="mavenProperties">
+              <map />
+            </option>
+            <option name="runMavenInBackground" value="false" />
+            <option name="skipTests" value="false" />
+            <option name="syncAfterBuild" value="true" />
+            <option name="useMavenEmbedder" value="false" />
+            <option name="vmOptions" value="" />
+          </MavenRunnerSettings>
+        </option>
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="goals">
+              <list />
+            </option>
+            <option name="pomPath" value="" />
+            <option name="profiles">
+              <set />
+            </option>
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application" enabled="false" merge="false">
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
+    </configuration>
+    <configuration default="true" type="Remote" factoryName="Remote">
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" value="javadebug" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="5005" />
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+    </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit" enabled="false" merge="false">
       <module name="" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -454,38 +614,6 @@
       <method>
         <option name="Make" value="true" />
       </method>
-    </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-    </configuration>
-    <configuration default="true" type="Remote" factoryName="Remote">
-      <option name="USE_SOCKET_TRANSPORT" value="true" />
-      <option name="SERVER_MODE" value="false" />
-      <option name="SHMEM_ADDRESS" value="javadebug" />
-      <option name="HOST" value="localhost" />
-      <option name="PORT" value="5005" />
-    </configuration>
-    <configuration default="true" type="Application" factoryName="Application" enabled="false" merge="false">
-      <option name="MAIN_CLASS_NAME" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="" />
-      <envs />
     </configuration>
     <configuration default="false" name="TestAnnotationProxyLogic.testMegaAnnotation" type="JUnit" factoryName="JUnit" enabled="false" merge="false">
       <module name="apt-jelly" />
@@ -513,10 +641,30 @@
       <RunnerSettings RunnerId="Run" />
       <ConfigurationWrapper RunnerId="Debug" />
       <ConfigurationWrapper RunnerId="Run" />
+      <method>
+        <option name="Make" value="true" />
+      </method>
     </configuration>
-    <list size="2">
+    <configuration default="false" name="maven" type="Remote" factoryName="Remote">
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" value="javadebug" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="8000" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="8000" />
+        <option name="TRANSPORT" value="0" />
+        <option name="LOCAL" value="false" />
+      </RunnerSettings>
+      <ConfigurationWrapper RunnerId="Debug" />
+      <method>
+        <option name="Make" value="true" />
+      </method>
+    </configuration>
+    <list size="3">
       <item index="0" class="java.lang.String" itemvalue="JUnit.TestBasicExample.testBasicExample" />
       <item index="1" class="java.lang.String" itemvalue="JUnit.TestAnnotationProxyLogic.testMegaAnnotation" />
+      <item index="2" class="java.lang.String" itemvalue="Remote.maven" />
     </list>
   </component>
   <component name="ScopeViewComponent">
@@ -596,8 +744,8 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="25" width="1920" height="1150" extended-state="0" />
-    <editor active="true" />
+    <frame x="0" y="25" width="1779" height="1090" extended-state="0" />
+    <editor active="false" />
     <layout>
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="3" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="8" />
@@ -605,7 +753,7 @@
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="3" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" order="1" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3241627" order="1" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39789966" order="4" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3973168" order="4" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="8" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="3" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32934132" order="8" />
@@ -613,13 +761,13 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="7" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" order="1" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" order="0" />
-      <window_info id="Maven projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="-1" />
+      <window_info id="Maven projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="3" />
       <window_info id="Module Dependencies" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="3" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.36324558" order="0" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3627907" order="0" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="8" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24981357" order="2" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" order="6" />
-      <window_info id="Duplicates" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="-1" />
+      <window_info id="Duplicates" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="8" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3277512" order="2" />
       <window_info id="simpleUML" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="3" />
       <window_info id="File View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="3" />
@@ -717,110 +865,117 @@
     <option name="myLastEditedConfigurable" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/test/core/net/sf/jelly/apt/APTTestUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="75" column="29" selection-start="2258" selection-end="2258" vertical-scroll-proportion="0.18157181">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/core/net/sf/jelly/apt/decorations/DepAnnotation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="0" selection-start="717" selection-end="717" vertical-scroll-proportion="0.47808766">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/doc/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="59" column="16" selection-start="1013" selection-end="1013" vertical-scroll-proportion="0.020325202">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/samplesource/net/sf/jelly/apt/samplesource/Name.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="22" selection-start="660" selection-end="660" vertical-scroll-proportion="0.35856575">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="0" selection-start="30" selection-end="30" vertical-scroll-proportion="0.01992032">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="62" column="0" selection-start="2088" selection-end="2088" vertical-scroll-proportion="0.46747968">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/java/freemarker/net/sf/jelly/apt/freemarker/FreemarkerProcessor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="13" selection-start="1306" selection-end="1306" vertical-scroll-proportion="0.015353122">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/core/net/sf/jelly/apt/InAPTTestCase.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="81" column="44" selection-start="2375" selection-end="2375" vertical-scroll-proportion="0.015353122">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/doc/deps.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="7" selection-start="801" selection-end="801" vertical-scroll-proportion="0.016357688">
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="HtmlPreview">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/declaration/DecoratedDeclaration.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="218" column="65" selection-start="6349" selection-end="6349" vertical-scroll-proportion="0.2446264">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/declaration/AnnotationInvocationHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="61" column="74" selection-start="2225" selection-end="2225" vertical-scroll-proportion="0.0155925155">
+        <state line="81" column="44" selection-start="2375" selection-end="2375" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/declaration/DecoratedAnnotationMirror.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="87" column="29" selection-start="3125" selection-end="3125" vertical-scroll-proportion="0.8126919">
+        <state line="87" column="29" selection-start="3125" selection-end="3125" vertical-scroll-proportion="0.80995476">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="28" selection-start="1134" selection-end="1134" vertical-scroll-proportion="0.6419624">
+        <state line="41" column="28" selection-start="1134" selection-end="1134" vertical-scroll-proportion="0.11022727">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/build-freemarker.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="0" selection-start="877" selection-end="915" vertical-scroll-proportion="0.3131524">
+        <state line="20" column="0" selection-start="877" selection-end="915" vertical-scroll-proportion="0.017045455">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/build-jelly.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="0" selection-start="953" selection-end="953" vertical-scroll-proportion="0.36012527">
+        <state line="23" column="0" selection-start="953" selection-end="953" vertical-scroll-proportion="0.017045455">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/strategies/FileStrategy.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="43" column="5" selection-start="1302" selection-end="1302" vertical-scroll-proportion="0.016685206">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/freemarker/net/sf/jelly/apt/freemarker/transforms/ForAllTypesTransform.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="77" selection-start="654" selection-end="654" vertical-scroll-proportion="0.23755656">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="62" column="0" selection-start="2088" selection-end="2088" vertical-scroll-proportion="0.017045455">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/type/DecoratedTypeMirror.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="35" column="13" selection-start="1198" selection-end="1198" vertical-scroll-proportion="0.016685206">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/type/DecoratedDeclaredType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="34" column="13" selection-start="1289" selection-end="1289" vertical-scroll-proportion="0.16240267">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/DecoratedAnnotationProcessorEnvironment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="71" column="0" selection-start="2246" selection-end="2246" vertical-scroll-proportion="0.16515838">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/strategies/TemplateOutputRedirectionStrategy.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="52" column="26" selection-start="1799" selection-end="1799" vertical-scroll-proportion="0.8631813">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/doc/deps.html">
+      <provider editor-type-id="HtmlPreview">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="7" selection-start="801" selection-end="801" vertical-scroll-proportion="0.017878426">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/declaration/DecoratedDeclaration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="218" column="65" selection-start="6349" selection-end="6349" vertical-scroll-proportion="0.17908788">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/declaration/AnnotationInvocationHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="61" column="74" selection-start="2225" selection-end="2225" vertical-scroll-proportion="0.016968327">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/strategies/TypeDeclarationLoopStrategy.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="76" column="5" selection-start="2908" selection-end="2908" vertical-scroll-proportion="1.2680756">
           <folding />
         </state>
       </provider>
