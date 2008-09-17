@@ -98,7 +98,7 @@
         <include name="**/*.properties"/>
       </fileset>
     </copy>
-    <copy todir="${test.build.dir}" file="src/test/log4j.xml"/>
+    <copy todir="${test.build.dir}" file="freemarker/src/test/resources/log4j.xml"/>
   </target>
 
 </project>

@@ -24,8 +24,10 @@
 
   <modules>
     <module>core</module>
+<!--
     <module>freemarker</module>
     <module>jelly</module>
+-->
   </modules>
 
   <build>
@@ -120,6 +122,15 @@
         <groupId>freemarker</groupId>
         <artifactId>freemarker</artifactId>
         <version>2.3.6</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.sun</groupId>
+        <artifactId>tools</artifactId>
+        <version>1.5.0</version>
+
+        <scope>system</scope>
+        <systemPath>${java.home}/../lib/tools.jar</systemPath>
       </dependency>
 
       <dependency>

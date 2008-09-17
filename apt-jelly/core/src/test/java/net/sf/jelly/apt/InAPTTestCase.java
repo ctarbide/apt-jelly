@@ -72,6 +72,10 @@ public class InAPTTestCase extends TestCase {
     aptOpts.add("-cp");
     String classpath = System.getProperty("apt.core.test.class.path");
     if (classpath == null) {
+      //see if we're running from maven
+      classpath = System.getProperty("surefire.test.class.path");
+    }
+    if (classpath == null) {
       classpath = System.getProperty("java.class.path");
     }
     aptOpts.add(classpath);
