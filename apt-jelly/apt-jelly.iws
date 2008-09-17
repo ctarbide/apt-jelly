@@ -30,7 +30,262 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" name="Default" comment="">
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/jelly/net/sf/jelly/apt/tags/FileTag.java" afterPath="$PROJECT_DIR$/jelly/src/main/java/net/sf/jelly/apt/tags/FileTag.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/strategies/TemplateValueStrategy.java" afterPath="$PROJECT_DIR$/core/src/main/java/net/sf/jelly/apt/strategies/TemplateValueStrategy.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt" afterPath="$PROJECT_DIR$/core/src/main/java/net/sf/jelly/apt" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/freemarker/net/sf/jelly/apt/freemarker/FreemarkerVariable.java" afterPath="$PROJECT_DIR$/freemarker/src/main/java/net/sf/jelly/apt/freemarker/FreemarkerVariable.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/strategies/PropertyDeclarationLoopStrategy.java" afterPath="$PROJECT_DIR$/core/src/main/java/net/sf/jelly/apt/strategies/PropertyDeclarationLoopStrategy.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/jelly/net/sf/jelly/apt/decorations/HappyDeclarationDecorator.java" afterPath="$PROJECT_DIR$/jelly/src/test/java/net/sf/jelly/apt/decorations/HappyDeclarationDecorator.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/core-samples/net/sf/jelly/apt" afterPath="$PROJECT_DIR$/core/src/test/samples/net/sf/jelly/apt" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/jelly/net/sf/jelly/apt/JellyTemplateOutput.java" afterPath="$PROJECT_DIR$/jelly/src/main/java/net/sf/jelly/apt/JellyTemplateOutput.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/strategies/TemplateLoopStrategy.java" afterPath="$PROJECT_DIR$/core/src/main/java/net/sf/jelly/apt/strategies/TemplateLoopStrategy.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/jelly/net/sf/jelly/apt/tags/ForAllConstructorsTag.java" afterPath="$PROJECT_DIR$/jelly/src/main/java/net/sf/jelly/apt/tags/ForAllConstructorsTag.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/TemplateModel.java" afterPath="$PROJECT_DIR$/core/src/main/java/net/sf/jelly/apt/TemplateModel.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/freemarker/net/sf/jelly/apt/freemarker/package.html" afterPath="$PROJECT_DIR$/freemarker/src/main/java/net/sf/jelly/apt/freemarker/package.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/strategies/TypeDeclarationLoopStrategy.java" afterPath="$PROJECT_DIR$/core/src/main/java/net/sf/jelly/apt/strategies/TypeDeclarationLoopStrategy.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/src/test/java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/jelly/net/sf/jelly/apt/tags/ForAllPropertiesTag.java" afterPath="$PROJECT_DIR$/jelly/src/main/java/net/sf/jelly/apt/tags/ForAllPropertiesTag.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/jelly/net/sf/jelly/apt/tags/APTTagLibrary.java" afterPath="$PROJECT_DIR$/jelly/src/main/java/net/sf/jelly/apt/tags/APTTagLibrary.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/jelly/net/sf/jelly" afterPath="$PROJECT_DIR$/jelly/src/main/java/net/sf/jelly" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/strategies/IfHasDeclarationStrategy.java" afterPath="$PROJECT_DIR$/core/src/main/java/net/sf/jelly/apt/strategies/IfHasDeclarationStrategy.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/jelly/net" afterPath="$PROJECT_DIR$/jelly/src/main/java/net" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/jelly/net/sf/jelly/apt/tags/testBasicExample.jelly" afterPath="$PROJECT_DIR$/jelly/src/test/java/net/sf/jelly/apt/tags/testBasicExample.jelly" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/jelly/net/sf/jelly/apt/tags/TestJavaSourceTag.java" afterPath="$PROJECT_DIR$/jelly/src/test/java/net/sf/jelly/apt/tags/TestJavaSourceTag.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/declaration/DecoratedMethodDeclaration.java" afterPath="$PROJECT_DIR$/core/src/main/java/net/sf/jelly/apt/decorations/declaration/DecoratedMethodDeclaration.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/freemarker/src/test" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/freemarker/net/sf/jelly/apt/freemarker/FreemarkerProcessor.java" afterPath="$PROJECT_DIR$/freemarker/src/main/java/net/sf/jelly/apt/freemarker/FreemarkerProcessor.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/jelly/net/sf/jelly/apt/tags/DeclarationLoopTag.java" afterPath="$PROJECT_DIR$/jelly/src/main/java/net/sf/jelly/apt/tags/DeclarationLoopTag.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/strategies/TemplateStrategy.java" afterPath="$PROJECT_DIR$/core/src/main/java/net/sf/jelly/apt/strategies/TemplateStrategy.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/strategies/ThrownTypeLoopStrategy.java" afterPath="$PROJECT_DIR$/core/src/main/java/net/sf/jelly/apt/strategies/ThrownTypeLoopStrategy.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/jelly/net/sf/jelly/apt/APTJellyProcessor.java" afterPath="$PROJECT_DIR$/jelly/src/main/java/net/sf/jelly/apt/APTJellyProcessor.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/freemarker/net/sf/jelly/apt/freemarker/transforms/ForAllTypesTransform.java" afterPath="$PROJECT_DIR$/freemarker/src/main/java/net/sf/jelly/apt/freemarker/transforms/ForAllTypesTransform.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/jelly/net/sf/jelly/apt/tags/TestForAllTypesTag.java" afterPath="$PROJECT_DIR$/jelly/src/test/java/net/sf/jelly/apt/tags/TestForAllTypesTag.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/strategies/TemplateBlockStrategy.java" afterPath="$PROJECT_DIR$/core/src/main/java/net/sf/jelly/apt/strategies/TemplateBlockStrategy.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/strategies/ImportedTypeDeclarationLoopStrategy.java" afterPath="$PROJECT_DIR$/core/src/main/java/net/sf/jelly/apt/strategies/ImportedTypeDeclarationLoopStrategy.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/ProcessorFactory.java" afterPath="$PROJECT_DIR$/core/src/main/java/net/sf/jelly/apt/ProcessorFactory.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/declaration/AnnotationInvocationHandler.java" afterPath="$PROJECT_DIR$/core/src/main/java/net/sf/jelly/apt/decorations/declaration/AnnotationInvocationHandler.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/declaration/DecoratedParameterDeclaration.java" afterPath="$PROJECT_DIR$/core/src/main/java/net/sf/jelly/apt/decorations/declaration/DecoratedParameterDeclaration.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/freemarker/net/sf/jelly/apt/freemarker/transforms/testGetProperties.fmt" afterPath="$PROJECT_DIR$/freemarker/src/test/java/net/sf/jelly/apt/freemarker/transforms/testGetProperties.fmt" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/jelly/net/sf/jelly/apt/decorations" afterPath="$PROJECT_DIR$/jelly/src/test/java/net/sf/jelly/apt/decorations" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/jelly/net/sf" afterPath="$PROJECT_DIR$/jelly/src/test/java/net/sf" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/jelly/net/sf/jelly/apt/tags/testForAllPackages.jelly" afterPath="$PROJECT_DIR$/jelly/src/test/java/net/sf/jelly/apt/tags/testForAllPackages.jelly" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/jelly/net/sf/jelly" afterPath="$PROJECT_DIR$/jelly/src/test/java/net/sf/jelly" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/freemarker/net/sf/jelly/apt/freemarker/transforms/IfHasAnnotationTransform.java" afterPath="$PROJECT_DIR$/freemarker/src/main/java/net/sf/jelly/apt/freemarker/transforms/IfHasAnnotationTransform.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/jelly/net/sf/jelly/apt/tags/testIfHasAnnotation.jelly" afterPath="$PROJECT_DIR$/jelly/src/test/java/net/sf/jelly/apt/tags/testIfHasAnnotation.jelly" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/type/DecoratedTypeMirror.java" afterPath="$PROJECT_DIR$/core/src/main/java/net/sf/jelly/apt/decorations/type/DecoratedTypeMirror.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/type/DecoratedAnnotationType.java" afterPath="$PROJECT_DIR$/core/src/main/java/net/sf/jelly/apt/decorations/type/DecoratedAnnotationType.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/jelly/src/main/java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/freemarker/net/sf/jelly/apt/freemarker/transforms/testIncludeSuperclasses.fmt" afterPath="$PROJECT_DIR$/freemarker/src/test/java/net/sf/jelly/apt/freemarker/transforms/testIncludeSuperclasses.fmt" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/strategies/IfHasAnnotationStrategy.java" afterPath="$PROJECT_DIR$/core/src/main/java/net/sf/jelly/apt/strategies/IfHasAnnotationStrategy.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/core/net/sf/jelly/apt/APTTestUtil.java" afterPath="$PROJECT_DIR$/core/src/test/net/sf/jelly/apt/APTTestUtil.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/freemarker/net/sf/jelly/apt/freemarker/transforms/TestNamespacedModel.java" afterPath="$PROJECT_DIR$/freemarker/src/test/java/net/sf/jelly/apt/freemarker/transforms/TestNamespacedModel.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/package.html" afterPath="$PROJECT_DIR$/core/src/main/java/net/sf/jelly/apt/decorations/package.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/freemarker/net/sf/jelly/apt/freemarker/FreemarkerJavaDoc.java" afterPath="$PROJECT_DIR$/freemarker/src/main/java/net/sf/jelly/apt/freemarker/FreemarkerJavaDoc.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/jelly/net/sf/jelly/apt" afterPath="$PROJECT_DIR$/jelly/src/test/java/net/sf/jelly/apt" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/TemplateException.java" afterPath="$PROJECT_DIR$/core/src/main/java/net/sf/jelly/apt/TemplateException.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/strategies/UnwrapIfPrimitiveStrategy.java" afterPath="$PROJECT_DIR$/core/src/main/java/net/sf/jelly/apt/strategies/UnwrapIfPrimitiveStrategy.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/jelly/net/sf/jelly/apt/tags/WrapIfPrimitiveTag.java" afterPath="$PROJECT_DIR$/jelly/src/main/java/net/sf/jelly/apt/tags/WrapIfPrimitiveTag.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/core/net/sf" afterPath="$PROJECT_DIR$/core/src/test/net/sf" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/core-samples/net/sf/jelly" afterPath="$PROJECT_DIR$/core/src/test/samples/net/sf/jelly" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/freemarker/net/sf/jelly/apt/freemarker/transforms/package.html" afterPath="$PROJECT_DIR$/freemarker/src/main/java/net/sf/jelly/apt/freemarker/transforms/package.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/jelly/net" afterPath="$PROJECT_DIR$/jelly/src/test/java/net" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/freemarker/net/sf/jelly/apt/freemarker/transforms/ForAllFieldsTransform.java" afterPath="$PROJECT_DIR$/freemarker/src/main/java/net/sf/jelly/apt/freemarker/transforms/ForAllFieldsTransform.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/jelly/src/test/java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/jelly/src" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/declaration/DecoratedDeclaration.java" afterPath="$PROJECT_DIR$/core/src/main/java/net/sf/jelly/apt/decorations/declaration/DecoratedDeclaration.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/freemarker/net/sf/jelly/apt/freemarker/transforms" afterPath="$PROJECT_DIR$/freemarker/src/test/java/net/sf/jelly/apt/freemarker/transforms" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/core/net/sf/jelly/apt/examples" afterPath="$PROJECT_DIR$/core/src/test/net/sf/jelly/apt/examples" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/jelly/net/sf/jelly/apt/tags/IfHasAnnotationTag.java" afterPath="$PROJECT_DIR$/jelly/src/main/java/net/sf/jelly/apt/tags/IfHasAnnotationTag.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/core/net/sf/jelly/apt/decorations/MegaAnnotation.java" afterPath="$PROJECT_DIR$/core/src/test/net/sf/jelly/apt/decorations/MegaAnnotation.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/jelly/net/sf/jelly/apt/decorations/HappilyDecoratedClassDeclaration.java" afterPath="$PROJECT_DIR$/jelly/src/test/java/net/sf/jelly/apt/decorations/HappilyDecoratedClassDeclaration.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/src/main/java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/jelly/net/sf/jelly/apt/tags/testAptOptions.jelly" afterPath="$PROJECT_DIR$/jelly/src/test/java/net/sf/jelly/apt/tags/testAptOptions.jelly" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/strategies/NestedTypeDeclarationLoopStrategy.java" afterPath="$PROJECT_DIR$/core/src/main/java/net/sf/jelly/apt/strategies/NestedTypeDeclarationLoopStrategy.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/freemarker/net/sf/jelly/apt/freemarker/transforms/testForAllTypes.fmt" afterPath="$PROJECT_DIR$/freemarker/src/test/java/net/sf/jelly/apt/freemarker/transforms/testForAllTypes.fmt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/freemarker/src/main" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/jelly/net/sf/jelly/apt/tags/ForAllTypesTag.java" afterPath="$PROJECT_DIR$/jelly/src/main/java/net/sf/jelly/apt/tags/ForAllTypesTag.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/freemarker/net/sf/jelly/apt/freemarker/transforms/ForAllPackagesTransform.java" afterPath="$PROJECT_DIR$/freemarker/src/main/java/net/sf/jelly/apt/freemarker/transforms/ForAllPackagesTransform.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/jelly/net/sf/jelly/apt/tags" afterPath="$PROJECT_DIR$/jelly/src/main/java/net/sf/jelly/apt/tags" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/freemarker/net/sf/jelly/apt/freemarker/transforms/ForAllImportedTypesTransform.java" afterPath="$PROJECT_DIR$/freemarker/src/main/java/net/sf/jelly/apt/freemarker/transforms/ForAllImportedTypesTransform.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/core/net/sf/jelly/apt" afterPath="$PROJECT_DIR$/core/src/test/net/sf/jelly/apt" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/type/package.html" afterPath="$PROJECT_DIR$/core/src/main/java/net/sf/jelly/apt/decorations/type/package.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/core/net/sf/jelly/apt/InAPTTestCase.java" afterPath="$PROJECT_DIR$/core/src/test/net/sf/jelly/apt/InAPTTestCase.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/freemarker/net/sf/jelly/apt/freemarker/APTJellyObjectWrapper.java" afterPath="$PROJECT_DIR$/freemarker/src/main/java/net/sf/jelly/apt/freemarker/APTJellyObjectWrapper.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/core/net" afterPath="$PROJECT_DIR$/core/src/test/net" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/declaration/PropertyDeclaration.java" afterPath="$PROJECT_DIR$/core/src/main/java/net/sf/jelly/apt/decorations/declaration/PropertyDeclaration.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/jelly/src/main" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/declaration" afterPath="$PROJECT_DIR$/core/src/main/java/net/sf/jelly/apt/decorations/declaration" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/declaration/DecoratedInterfaceDeclaration.java" afterPath="$PROJECT_DIR$/core/src/main/java/net/sf/jelly/apt/decorations/declaration/DecoratedInterfaceDeclaration.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/jelly/net/sf/jelly/apt/tags/ForAllMethodsTag.java" afterPath="$PROJECT_DIR$/jelly/src/main/java/net/sf/jelly/apt/tags/ForAllMethodsTag.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/freemarker/net/sf/jelly/apt" afterPath="$PROJECT_DIR$/freemarker/src/main/java/net/sf/jelly/apt" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/core/net/sf" afterPath="$PROJECT_DIR$/core/src/main/java/net/sf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apt-jelly.iws" afterPath="$PROJECT_DIR$/apt-jelly.iws" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/jelly/net/sf/jelly/apt/tags/ForAllNestedTypesTag.java" afterPath="$PROJECT_DIR$/jelly/src/main/java/net/sf/jelly/apt/tags/ForAllNestedTypesTag.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/core/net/sf/jelly/apt/decorations/DepAnnotation.java" afterPath="$PROJECT_DIR$/core/src/test/net/sf/jelly/apt/decorations/DepAnnotation.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/type" afterPath="$PROJECT_DIR$/core/src/main/java/net/sf/jelly/apt/decorations/type" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/jelly/net/sf/jelly/apt/decorations/testExtendingDecorations.jelly" afterPath="$PROJECT_DIR$/jelly/src/test/java/net/sf/jelly/apt/decorations/testExtendingDecorations.jelly" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/strategies/AnnotationValueStrategy.java" afterPath="$PROJECT_DIR$/core/src/main/java/net/sf/jelly/apt/strategies/AnnotationValueStrategy.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/jelly/net/sf/jelly/apt/tags/MemberDeclarationLoopTag.java" afterPath="$PROJECT_DIR$/jelly/src/main/java/net/sf/jelly/apt/tags/MemberDeclarationLoopTag.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/jelly/net/sf/jelly/apt/tags/package.html" afterPath="$PROJECT_DIR$/jelly/src/main/java/net/sf/jelly/apt/tags/package.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/TypeMirrorDecorator.java" afterPath="$PROJECT_DIR$/core/src/main/java/net/sf/jelly/apt/decorations/TypeMirrorDecorator.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/strategies" afterPath="$PROJECT_DIR$/core/src/main/java/net/sf/jelly/apt/strategies" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/freemarker/net/sf/jelly/apt/freemarker/FreemarkerTemplateBlock.java" afterPath="$PROJECT_DIR$/freemarker/src/main/java/net/sf/jelly/apt/freemarker/FreemarkerTemplateBlock.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/core/net" afterPath="$PROJECT_DIR$/core/src/main/java/net" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/freemarker/net" afterPath="$PROJECT_DIR$/freemarker/src/main/java/net" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/declaration/DecoratedClassDeclaration.java" afterPath="$PROJECT_DIR$/core/src/main/java/net/sf/jelly/apt/decorations/declaration/DecoratedClassDeclaration.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/jelly/net/sf/jelly/apt/decorations/TestExtendingDecorators.java" afterPath="$PROJECT_DIR$/jelly/src/test/java/net/sf/jelly/apt/decorations/TestExtendingDecorators.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/freemarker/net/sf" afterPath="$PROJECT_DIR$/freemarker/src/test/java/net/sf" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/jelly/net/sf/jelly/apt/APTJellyProcessorFactory.java" afterPath="$PROJECT_DIR$/jelly/src/main/java/net/sf/jelly/apt/APTJellyProcessorFactory.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/jelly/net/sf/jelly/apt/tags/testForAllTypesUnspecifiedAnnotation.jelly" afterPath="$PROJECT_DIR$/jelly/src/test/java/net/sf/jelly/apt/tags/testForAllTypesUnspecifiedAnnotation.jelly" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/freemarker/net/sf/jelly/apt/freemarker/transforms/testForAllPackages.fmt" afterPath="$PROJECT_DIR$/freemarker/src/test/java/net/sf/jelly/apt/freemarker/transforms/testForAllPackages.fmt" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/freemarker/net/sf" afterPath="$PROJECT_DIR$/freemarker/src/main/java/net/sf" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/freemarker/net/sf/jelly/apt/freemarker/transforms/TestForAllImportedTypesTransform.java" afterPath="$PROJECT_DIR$/freemarker/src/test/java/net/sf/jelly/apt/freemarker/transforms/TestForAllImportedTypesTransform.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/freemarker/net/sf/jelly/apt/freemarker/transforms/TestIfHasAnnotationTransform.java" afterPath="$PROJECT_DIR$/freemarker/src/test/java/net/sf/jelly/apt/freemarker/transforms/TestIfHasAnnotationTransform.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/freemarker/net/sf/jelly/apt/freemarker/transforms/testAptOptions.fmt" afterPath="$PROJECT_DIR$/freemarker/src/test/java/net/sf/jelly/apt/freemarker/transforms/testAptOptions.fmt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/src/test" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/strategies/TemplateOutputRedirectionStrategy.java" afterPath="$PROJECT_DIR$/core/src/main/java/net/sf/jelly/apt/strategies/TemplateOutputRedirectionStrategy.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/jelly" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/jelly/net/sf" afterPath="$PROJECT_DIR$/jelly/src/main/java/net/sf" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/freemarker/net/sf/jelly/apt/freemarker/transforms/JavaSourceTransform.java" afterPath="$PROJECT_DIR$/freemarker/src/main/java/net/sf/jelly/apt/freemarker/transforms/JavaSourceTransform.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/type/DecoratedDeclaredType.java" afterPath="$PROJECT_DIR$/core/src/main/java/net/sf/jelly/apt/decorations/type/DecoratedDeclaredType.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/declaration/DecoratedExecutableDeclaration.java" afterPath="$PROJECT_DIR$/core/src/main/java/net/sf/jelly/apt/decorations/declaration/DecoratedExecutableDeclaration.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/jelly/net/sf/jelly/apt/tags/ExecutableDeclarationLoopTag.java" afterPath="$PROJECT_DIR$/jelly/src/main/java/net/sf/jelly/apt/tags/ExecutableDeclarationLoopTag.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/type/DecoratedWildcardType.java" afterPath="$PROJECT_DIR$/core/src/main/java/net/sf/jelly/apt/decorations/type/DecoratedWildcardType.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/freemarker/net/sf/jelly/apt/freemarker/transforms/testIfHasAnnotation.fmt" afterPath="$PROJECT_DIR$/freemarker/src/test/java/net/sf/jelly/apt/freemarker/transforms/testIfHasAnnotation.fmt" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations" afterPath="$PROJECT_DIR$/core/src/main/java/net/sf/jelly/apt/decorations" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/Context.java" afterPath="$PROJECT_DIR$/core/src/main/java/net/sf/jelly/apt/Context.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/jelly/net/sf/jelly/apt/tags" afterPath="$PROJECT_DIR$/jelly/src/test/java/net/sf/jelly/apt/tags" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/type/DecoratedVoidType.java" afterPath="$PROJECT_DIR$/core/src/main/java/net/sf/jelly/apt/decorations/type/DecoratedVoidType.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/freemarker/net/sf/jelly/apt/freemarker/transforms/testBasicExample.fmt" afterPath="$PROJECT_DIR$/freemarker/src/test/java/net/sf/jelly/apt/freemarker/transforms/testBasicExample.fmt" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/freemarker/net/sf/jelly/apt" afterPath="$PROJECT_DIR$/freemarker/src/test/java/net/sf/jelly/apt" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/jelly/net/sf/jelly/apt/tags/AnnotationValueTag.java" afterPath="$PROJECT_DIR$/jelly/src/main/java/net/sf/jelly/apt/tags/AnnotationValueTag.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/freemarker/net/sf/jelly/apt/freemarker/FreemarkerModel.java" afterPath="$PROJECT_DIR$/freemarker/src/main/java/net/sf/jelly/apt/freemarker/FreemarkerModel.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/freemarker/net/sf/jelly" afterPath="$PROJECT_DIR$/freemarker/src/test/java/net/sf/jelly" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/freemarker/net/sf/jelly/apt/freemarker/transforms/ForAllMethodsTransform.java" afterPath="$PROJECT_DIR$/freemarker/src/main/java/net/sf/jelly/apt/freemarker/transforms/ForAllMethodsTransform.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/jelly/net/sf/jelly/apt/APTJellyTest.java" afterPath="$PROJECT_DIR$/jelly/src/test/java/net/sf/jelly/apt/APTJellyTest.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/jelly/net/sf/jelly/apt/tags/testPropertyName.jelly" afterPath="$PROJECT_DIR$/jelly/src/test/java/net/sf/jelly/apt/tags/testPropertyName.jelly" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/jelly/net/sf/jelly/apt/tags/TestForAllPackagesTag.java" afterPath="$PROJECT_DIR$/jelly/src/test/java/net/sf/jelly/apt/tags/TestForAllPackagesTag.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/jelly/net/sf/jelly/apt/tags/ForAllFieldsTag.java" afterPath="$PROJECT_DIR$/jelly/src/main/java/net/sf/jelly/apt/tags/ForAllFieldsTag.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/jelly/src/test" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/freemarker/net/sf/jelly" afterPath="$PROJECT_DIR$/freemarker/src/main/java/net/sf/jelly" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/freemarker/net/sf/jelly/apt/freemarker/transforms/TestForAllPackagesTransform.java" afterPath="$PROJECT_DIR$/freemarker/src/test/java/net/sf/jelly/apt/freemarker/transforms/TestForAllPackagesTransform.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/freemarker/net/sf/jelly/apt/freemarker/FreemarkerProcessorFactory.java" afterPath="$PROJECT_DIR$/freemarker/src/main/java/net/sf/jelly/apt/freemarker/FreemarkerProcessorFactory.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/jelly/net/sf/jelly/apt/tags/ForAllPackagesTag.java" afterPath="$PROJECT_DIR$/jelly/src/main/java/net/sf/jelly/apt/tags/ForAllPackagesTag.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/core-samples/net" afterPath="$PROJECT_DIR$/core/src/test/samples/net" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/src" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/core/net/sf/jelly/apt/decorations/TestAnnotationProxyLogic.java" afterPath="$PROJECT_DIR$/core/src/test/net/sf/jelly/apt/decorations/TestAnnotationProxyLogic.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/freemarker/net/sf/jelly/apt/freemarker/transforms/testForAllTypesIncludeInterfaces.fmt" afterPath="$PROJECT_DIR$/freemarker/src/test/java/net/sf/jelly/apt/freemarker/transforms/testForAllTypesIncludeInterfaces.fmt" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/DeclarationDecorator.java" afterPath="$PROJECT_DIR$/core/src/main/java/net/sf/jelly/apt/decorations/DeclarationDecorator.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/strategies/TemplateStrategyControl.java" afterPath="$PROJECT_DIR$/core/src/main/java/net/sf/jelly/apt/strategies/TemplateStrategyControl.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/jelly/net/sf/jelly/apt/APTJellyContext.java" afterPath="$PROJECT_DIR$/jelly/src/main/java/net/sf/jelly/apt/APTJellyContext.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/strategies/JavaSourceStrategy.java" afterPath="$PROJECT_DIR$/core/src/main/java/net/sf/jelly/apt/strategies/JavaSourceStrategy.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/src/test/samples" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apt-jelly.ipr" afterPath="$PROJECT_DIR$/apt-jelly.ipr" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/jelly/net/sf/jelly/apt/tags/ForAllThrownTypesTag.java" afterPath="$PROJECT_DIR$/jelly/src/main/java/net/sf/jelly/apt/tags/ForAllThrownTypesTag.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/core/net/sf/jelly/apt/decorations/TestDecorations.java" afterPath="$PROJECT_DIR$/core/src/test/net/sf/jelly/apt/decorations/TestDecorations.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/jelly/net/sf/jelly/apt/tags/JavaSourceTag.java" afterPath="$PROJECT_DIR$/jelly/src/main/java/net/sf/jelly/apt/tags/JavaSourceTag.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/freemarker/net/sf/jelly/apt/freemarker/transforms/TestForAllMethodsTransform.java" afterPath="$PROJECT_DIR$/freemarker/src/test/java/net/sf/jelly/apt/freemarker/transforms/TestForAllMethodsTransform.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/type/DecoratedInterfaceType.java" afterPath="$PROJECT_DIR$/core/src/main/java/net/sf/jelly/apt/decorations/type/DecoratedInterfaceType.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/TemplateBlock.java" afterPath="$PROJECT_DIR$/core/src/main/java/net/sf/jelly/apt/TemplateBlock.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/freemarker/net/sf/jelly/apt/freemarker" afterPath="$PROJECT_DIR$/freemarker/src/main/java/net/sf/jelly/apt/freemarker" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/freemarker/net/sf/jelly/apt/freemarker/transforms" afterPath="$PROJECT_DIR$/freemarker/src/main/java/net/sf/jelly/apt/freemarker/transforms" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/jelly/net/sf/jelly/apt/tags/TestForAllMethodsTag.java" afterPath="$PROJECT_DIR$/jelly/src/test/java/net/sf/jelly/apt/tags/TestForAllMethodsTag.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/strategies/WrapIfPrimitiveStrategy.java" afterPath="$PROJECT_DIR$/core/src/main/java/net/sf/jelly/apt/strategies/WrapIfPrimitiveStrategy.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/freemarker/net/sf/jelly/apt/freemarker/transforms/AnnotationValueTransform.java" afterPath="$PROJECT_DIR$/freemarker/src/main/java/net/sf/jelly/apt/freemarker/transforms/AnnotationValueTransform.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/jelly/net/sf/jelly/apt/tags/testForAllTypesIncludeInterfaces.jelly" afterPath="$PROJECT_DIR$/jelly/src/test/java/net/sf/jelly/apt/tags/testForAllTypesIncludeInterfaces.jelly" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/freemarker/net/sf/jelly/apt/freemarker/transforms/FileTransform.java" afterPath="$PROJECT_DIR$/freemarker/src/main/java/net/sf/jelly/apt/freemarker/transforms/FileTransform.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/strategies/package.html" afterPath="$PROJECT_DIR$/core/src/main/java/net/sf/jelly/apt/strategies/package.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/freemarker/net/sf/jelly/apt/freemarker/transforms/testPropertyName.fmt" afterPath="$PROJECT_DIR$/freemarker/src/test/java/net/sf/jelly/apt/freemarker/transforms/testPropertyName.fmt" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/freemarker/net/sf/jelly/apt/freemarker/transforms/IfHasDeclarationTransform.java" afterPath="$PROJECT_DIR$/freemarker/src/main/java/net/sf/jelly/apt/freemarker/transforms/IfHasDeclarationTransform.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/freemarker/net" afterPath="$PROJECT_DIR$/freemarker/src/test/java/net" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/strategies/MissingParameterException.java" afterPath="$PROJECT_DIR$/core/src/main/java/net/sf/jelly/apt/strategies/MissingParameterException.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/jelly/net/sf/jelly/apt" afterPath="$PROJECT_DIR$/jelly/src/main/java/net/sf/jelly/apt" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly" afterPath="$PROJECT_DIR$/core/src/main/java/net/sf/jelly" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/jelly/net/sf/jelly/apt/tags/testForAllTypes.jelly" afterPath="$PROJECT_DIR$/jelly/src/test/java/net/sf/jelly/apt/tags/testForAllTypes.jelly" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/strategies/ParameterDeclarationLoopStrategy.java" afterPath="$PROJECT_DIR$/core/src/main/java/net/sf/jelly/apt/strategies/ParameterDeclarationLoopStrategy.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/declaration/DecoratedPackageDeclaration.java" afterPath="$PROJECT_DIR$/core/src/main/java/net/sf/jelly/apt/decorations/declaration/DecoratedPackageDeclaration.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/type/DecoratedReferenceType.java" afterPath="$PROJECT_DIR$/core/src/main/java/net/sf/jelly/apt/decorations/type/DecoratedReferenceType.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/freemarker/net/sf/jelly/apt/freemarker/transforms/testJavaSource.fmt" afterPath="$PROJECT_DIR$/freemarker/src/test/java/net/sf/jelly/apt/freemarker/transforms/testJavaSource.fmt" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/strategies/MemberDeclarationLoopStrategy.java" afterPath="$PROJECT_DIR$/core/src/main/java/net/sf/jelly/apt/strategies/MemberDeclarationLoopStrategy.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/core-samples/net/sf" afterPath="$PROJECT_DIR$/core/src/test/samples/net/sf" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/TemplateOutput.java" afterPath="$PROJECT_DIR$/core/src/main/java/net/sf/jelly/apt/TemplateOutput.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/declaration/DecoratedAnnotationTypeDeclaration.java" afterPath="$PROJECT_DIR$/core/src/main/java/net/sf/jelly/apt/decorations/declaration/DecoratedAnnotationTypeDeclaration.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/freemarker/net/sf/jelly/apt/freemarker/transforms/basicExample.properties" afterPath="$PROJECT_DIR$/freemarker/src/test/java/net/sf/jelly/apt/freemarker/transforms/basicExample.properties" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/core/net/sf/jelly/apt/examples/ClassAndMethodPrinterAnnotationProcessorFactory.java" afterPath="$PROJECT_DIR$/core/src/test/net/sf/jelly/apt/examples/ClassAndMethodPrinterAnnotationProcessorFactory.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/declaration/package.html" afterPath="$PROJECT_DIR$/core/src/main/java/net/sf/jelly/apt/decorations/declaration/package.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/declaration/DecoratedMemberDeclaration.java" afterPath="$PROJECT_DIR$/core/src/main/java/net/sf/jelly/apt/decorations/declaration/DecoratedMemberDeclaration.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/jelly/net/sf/jelly/apt/tags/testIncludeSuperclasses.jelly" afterPath="$PROJECT_DIR$/jelly/src/test/java/net/sf/jelly/apt/tags/testIncludeSuperclasses.jelly" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/freemarker/net/sf/jelly/apt/freemarker/transforms/WrapIfPrimitiveTransform.java" afterPath="$PROJECT_DIR$/freemarker/src/main/java/net/sf/jelly/apt/freemarker/transforms/WrapIfPrimitiveTransform.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/freemarker/net/sf/jelly/apt/freemarker/transforms/ForAllPropertiesTransform.java" afterPath="$PROJECT_DIR$/freemarker/src/main/java/net/sf/jelly/apt/freemarker/transforms/ForAllPropertiesTransform.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/freemarker/net/sf/jelly/apt/freemarker/transforms/testForAllTypesUnspecifiedAnnotation.fmt" afterPath="$PROJECT_DIR$/freemarker/src/test/java/net/sf/jelly/apt/freemarker/transforms/testForAllTypesUnspecifiedAnnotation.fmt" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/freemarker/net/sf/jelly/apt/freemarker/transforms/TestJavaSourceTransform.java" afterPath="$PROJECT_DIR$/freemarker/src/test/java/net/sf/jelly/apt/freemarker/transforms/TestJavaSourceTransform.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/type/DecoratedEnumType.java" afterPath="$PROJECT_DIR$/core/src/main/java/net/sf/jelly/apt/decorations/type/DecoratedEnumType.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/strategies/ExecutableDeclarationLoopStrategy.java" afterPath="$PROJECT_DIR$/core/src/main/java/net/sf/jelly/apt/strategies/ExecutableDeclarationLoopStrategy.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/freemarker/net/sf/jelly/apt/freemarker" afterPath="$PROJECT_DIR$/freemarker/src/test/java/net/sf/jelly/apt/freemarker" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/type/DecoratedTypeVariable.java" afterPath="$PROJECT_DIR$/core/src/main/java/net/sf/jelly/apt/decorations/type/DecoratedTypeVariable.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/freemarker/net/sf/jelly/apt/freemarker/transforms/ForAllNestedTypesTransform.java" afterPath="$PROJECT_DIR$/freemarker/src/main/java/net/sf/jelly/apt/freemarker/transforms/ForAllNestedTypesTransform.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/declaration/DecoratedEnumDeclaration.java" afterPath="$PROJECT_DIR$/core/src/main/java/net/sf/jelly/apt/decorations/declaration/DecoratedEnumDeclaration.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/src/main" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/jelly/net/sf/jelly/apt/tags/testIncludeSuperinterfaces.jelly" afterPath="$PROJECT_DIR$/jelly/src/test/java/net/sf/jelly/apt/tags/testIncludeSuperinterfaces.jelly" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/strategies/FieldDeclarationLoopStrategy.java" afterPath="$PROJECT_DIR$/core/src/main/java/net/sf/jelly/apt/strategies/FieldDeclarationLoopStrategy.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/strategies/PrimitiveWrapperStrategy.java" afterPath="$PROJECT_DIR$/core/src/main/java/net/sf/jelly/apt/strategies/PrimitiveWrapperStrategy.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/jelly/net/sf/jelly/apt/tags/ForAllImportedTypesTag.java" afterPath="$PROJECT_DIR$/jelly/src/main/java/net/sf/jelly/apt/tags/ForAllImportedTypesTag.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/jelly/net/sf/jelly/apt/tags/basicExample.properties" afterPath="$PROJECT_DIR$/jelly/src/test/java/net/sf/jelly/apt/tags/basicExample.properties" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/jelly/net/sf/jelly/apt/tags/testForAllImportedTypes.jelly" afterPath="$PROJECT_DIR$/jelly/src/test/java/net/sf/jelly/apt/tags/testForAllImportedTypes.jelly" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/freemarker" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/jelly/net/sf/jelly/apt/tags/TestForAllImportedTypesTag.java" afterPath="$PROJECT_DIR$/jelly/src/test/java/net/sf/jelly/apt/tags/TestForAllImportedTypesTag.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/JavaDoc.java" afterPath="$PROJECT_DIR$/core/src/main/java/net/sf/jelly/apt/decorations/JavaDoc.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/type/DecoratedClassType.java" afterPath="$PROJECT_DIR$/core/src/main/java/net/sf/jelly/apt/decorations/type/DecoratedClassType.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/freemarker/net/sf/jelly/apt/freemarker/transforms/TestForAllTypesTransform.java" afterPath="$PROJECT_DIR$/freemarker/src/test/java/net/sf/jelly/apt/freemarker/transforms/TestForAllTypesTransform.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/freemarker/net/sf/jelly/apt/freemarker/transforms/testForAllTypesDifferentPackage.fmt" afterPath="$PROJECT_DIR$/freemarker/src/test/java/net/sf/jelly/apt/freemarker/transforms/testForAllTypesDifferentPackage.fmt" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/freemarker/net/sf/jelly/apt/freemarker/transforms/testNamespacedForAllTypes.fmt" afterPath="$PROJECT_DIR$/freemarker/src/test/java/net/sf/jelly/apt/freemarker/transforms/testNamespacedForAllTypes.fmt" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/freemarker/net/sf/jelly/apt/freemarker/transforms/testIncludeSuperinterfaces.fmt" afterPath="$PROJECT_DIR$/freemarker/src/test/java/net/sf/jelly/apt/freemarker/transforms/testIncludeSuperinterfaces.fmt" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/core/net/sf/jelly/apt/decorations" afterPath="$PROJECT_DIR$/core/src/test/net/sf/jelly/apt/decorations" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/strategies/PackageDeclarationLoopStrategy.java" afterPath="$PROJECT_DIR$/core/src/main/java/net/sf/jelly/apt/strategies/PackageDeclarationLoopStrategy.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/freemarker/src" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/declaration/DecoratedTypeDeclaration.java" afterPath="$PROJECT_DIR$/core/src/main/java/net/sf/jelly/apt/decorations/declaration/DecoratedTypeDeclaration.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/freemarker/src/test/java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/jelly/net/sf/jelly/apt/APTJellyTag.java" afterPath="$PROJECT_DIR$/jelly/src/main/java/net/sf/jelly/apt/APTJellyTag.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/freemarker/net/sf/jelly/apt/freemarker/transforms/UnwrapIfPrimitiveTransform.java" afterPath="$PROJECT_DIR$/freemarker/src/main/java/net/sf/jelly/apt/freemarker/transforms/UnwrapIfPrimitiveTransform.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/freemarker/net/sf/jelly/apt/freemarker/transforms/PrimitiveWrapperTransform.java" afterPath="$PROJECT_DIR$/freemarker/src/main/java/net/sf/jelly/apt/freemarker/transforms/PrimitiveWrapperTransform.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/freemarker/net/sf/jelly/apt/freemarker/FreemarkerTransform.java" afterPath="$PROJECT_DIR$/freemarker/src/main/java/net/sf/jelly/apt/freemarker/FreemarkerTransform.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/declaration/DecoratedAnnotationTypeElementDeclaration.java" afterPath="$PROJECT_DIR$/core/src/main/java/net/sf/jelly/apt/decorations/declaration/DecoratedAnnotationTypeElementDeclaration.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/freemarker/net/sf/jelly/apt/freemarker/transforms/testWrapperTransforms.fmt" afterPath="$PROJECT_DIR$/freemarker/src/test/java/net/sf/jelly/apt/freemarker/transforms/testWrapperTransforms.fmt" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/freemarker/net/sf/jelly/apt/freemarker/transforms/ForAllParametersTransform.java" afterPath="$PROJECT_DIR$/freemarker/src/main/java/net/sf/jelly/apt/freemarker/transforms/ForAllParametersTransform.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/declaration/DecoratedEnumConstantDeclaration.java" afterPath="$PROJECT_DIR$/core/src/main/java/net/sf/jelly/apt/decorations/declaration/DecoratedEnumConstantDeclaration.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/core-samples/net/sf/jelly/apt/decorations" afterPath="$PROJECT_DIR$/core/src/test/samples/net/sf/jelly/apt/decorations" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/freemarker/src/main/java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/declaration/DecoratedTypeParameterDeclaration.java" afterPath="$PROJECT_DIR$/core/src/main/java/net/sf/jelly/apt/decorations/declaration/DecoratedTypeParameterDeclaration.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/type/DecoratedArrayType.java" afterPath="$PROJECT_DIR$/core/src/main/java/net/sf/jelly/apt/decorations/type/DecoratedArrayType.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/jelly/net/sf/jelly/apt/tags/IfHasDeclarationTag.java" afterPath="$PROJECT_DIR$/jelly/src/main/java/net/sf/jelly/apt/tags/IfHasDeclarationTag.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/freemarker/net/sf/jelly/apt/freemarker/transforms/TestBasicExample.java" afterPath="$PROJECT_DIR$/freemarker/src/test/java/net/sf/jelly/apt/freemarker/transforms/TestBasicExample.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/jelly/net/sf/jelly/apt/tags/AnnotationFilterableDeclarationLoopTag.java" afterPath="$PROJECT_DIR$/jelly/src/main/java/net/sf/jelly/apt/tags/AnnotationFilterableDeclarationLoopTag.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/freemarker/net/sf/jelly/apt/freemarker/transforms/testForAllImportedTypes.fmt" afterPath="$PROJECT_DIR$/freemarker/src/test/java/net/sf/jelly/apt/freemarker/transforms/testForAllImportedTypes.fmt" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/DecoratedAnnotationProcessorEnvironment.java" afterPath="$PROJECT_DIR$/core/src/main/java/net/sf/jelly/apt/decorations/DecoratedAnnotationProcessorEnvironment.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/core-samples/net/sf/jelly/apt/decorations/MegaAnnotatedClass.java" afterPath="$PROJECT_DIR$/core/src/test/samples/net/sf/jelly/apt/decorations/MegaAnnotatedClass.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/declaration/DecoratedAnnotationMirror.java" afterPath="$PROJECT_DIR$/core/src/main/java/net/sf/jelly/apt/decorations/declaration/DecoratedAnnotationMirror.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/jelly/net/sf/jelly/apt/tags/testJavaSource.jelly" afterPath="$PROJECT_DIR$/jelly/src/test/java/net/sf/jelly/apt/tags/testJavaSource.jelly" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/declaration/DecoratedFieldDeclaration.java" afterPath="$PROJECT_DIR$/core/src/main/java/net/sf/jelly/apt/decorations/declaration/DecoratedFieldDeclaration.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/jelly/net/sf/jelly/apt/tags/TestBasicExample.java" afterPath="$PROJECT_DIR$/jelly/src/test/java/net/sf/jelly/apt/tags/TestBasicExample.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/strategies/FileStrategy.java" afterPath="$PROJECT_DIR$/core/src/main/java/net/sf/jelly/apt/strategies/FileStrategy.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/jelly/net/sf/jelly/apt/tags/UnwrapIfPrimitiveTag.java" afterPath="$PROJECT_DIR$/jelly/src/main/java/net/sf/jelly/apt/tags/UnwrapIfPrimitiveTag.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/freemarker/net/sf/jelly/apt/freemarker/transforms/TestWrapperTransforms.java" afterPath="$PROJECT_DIR$/freemarker/src/test/java/net/sf/jelly/apt/freemarker/transforms/TestWrapperTransforms.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/strategies/MethodDeclarationLoopStrategy.java" afterPath="$PROJECT_DIR$/core/src/main/java/net/sf/jelly/apt/strategies/MethodDeclarationLoopStrategy.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/strategies/ConstructorDeclarationLoopStrategy.java" afterPath="$PROJECT_DIR$/core/src/main/java/net/sf/jelly/apt/strategies/ConstructorDeclarationLoopStrategy.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/freemarker/net/sf/jelly/apt/freemarker/transforms/ForAllThrownTypesTransform.java" afterPath="$PROJECT_DIR$/freemarker/src/main/java/net/sf/jelly/apt/freemarker/transforms/ForAllThrownTypesTransform.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/jelly/net/sf/jelly/apt/tags/ForAllParametersTag.java" afterPath="$PROJECT_DIR$/jelly/src/main/java/net/sf/jelly/apt/tags/ForAllParametersTag.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/jelly/net/sf/jelly/apt/tags/PrimitiveWrapperTag.java" afterPath="$PROJECT_DIR$/jelly/src/main/java/net/sf/jelly/apt/tags/PrimitiveWrapperTag.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/strategies/AnnotationFilterableDeclarationLoopStrategy.java" afterPath="$PROJECT_DIR$/core/src/main/java/net/sf/jelly/apt/strategies/AnnotationFilterableDeclarationLoopStrategy.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/core/net/sf/jelly" afterPath="$PROJECT_DIR$/core/src/test/net/sf/jelly" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/strategies/StrategyStack.java" afterPath="$PROJECT_DIR$/core/src/main/java/net/sf/jelly/apt/strategies/StrategyStack.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/declaration/DecoratedConstructorDeclaration.java" afterPath="$PROJECT_DIR$/core/src/main/java/net/sf/jelly/apt/decorations/declaration/DecoratedConstructorDeclaration.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/strategies/DeclarationLoopStrategy.java" afterPath="$PROJECT_DIR$/core/src/main/java/net/sf/jelly/apt/strategies/DeclarationLoopStrategy.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/freemarker/net/sf/jelly/apt/freemarker/FreemarkerTestCase.java" afterPath="$PROJECT_DIR$/freemarker/src/test/java/net/sf/jelly/apt/freemarker/FreemarkerTestCase.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/jelly/net/sf/jelly/apt/tags/TestIfHasAnnotation.java" afterPath="$PROJECT_DIR$/jelly/src/test/java/net/sf/jelly/apt/tags/TestIfHasAnnotation.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/type/DecoratedPrimitiveType.java" afterPath="$PROJECT_DIR$/core/src/main/java/net/sf/jelly/apt/decorations/type/DecoratedPrimitiveType.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/java/freemarker/net/sf/jelly/apt/freemarker/transforms/ForAllConstructorsTransform.java" afterPath="$PROJECT_DIR$/freemarker/src/main/java/net/sf/jelly/apt/freemarker/transforms/ForAllConstructorsTransform.java" />
     </list>
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
@@ -128,19 +383,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="DecoratedAnnotationMirror.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/declaration/DecoratedAnnotationMirror.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="87" column="29" selection-start="3125" selection-end="3125" vertical-scroll-proportion="0.80995476">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="pom.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="41" column="28" selection-start="1134" selection-end="1134" vertical-scroll-proportion="0.11022727">
+            <state line="172" column="65" selection-start="5170" selection-end="5170" vertical-scroll-proportion="2.6959248">
               <folding />
             </state>
           </provider>
@@ -149,7 +395,7 @@
       <file leaf-file-name="build-freemarker.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/build-freemarker.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="0" selection-start="877" selection-end="915" vertical-scroll-proportion="0.017045455">
+            <state line="68" column="64" selection-start="2405" selection-end="2415" vertical-scroll-proportion="0.48497853">
               <folding />
             </state>
           </provider>
@@ -158,79 +404,25 @@
       <file leaf-file-name="build-jelly.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/build-jelly.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="0" selection-start="953" selection-end="953" vertical-scroll-proportion="0.017045455">
+            <state line="70" column="64" selection-start="2445" selection-end="2445" vertical-scroll-proportion="0.82758623">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FileStrategy.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/strategies/FileStrategy.java">
+      <file leaf-file-name="build-core.xml" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/build-core.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="43" column="5" selection-start="1302" selection-end="1302" vertical-scroll-proportion="0.016685206">
+            <state line="68" column="79" selection-start="2343" selection-end="2343" vertical-scroll-proportion="0.87774295">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ForAllTypesTransform.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/java/freemarker/net/sf/jelly/apt/freemarker/transforms/ForAllTypesTransform.java">
+      <file leaf-file-name="build.properties" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/build.properties">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="77" selection-start="654" selection-end="654" vertical-scroll-proportion="0.23755656">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TypeDeclarationLoopStrategy.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/strategies/TypeDeclarationLoopStrategy.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="76" column="5" selection-start="2908" selection-end="2908" vertical-scroll-proportion="1.2680756">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="build.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/build.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="62" column="0" selection-start="2088" selection-end="2088" vertical-scroll-proportion="0.017045455">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DecoratedTypeMirror.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/type/DecoratedTypeMirror.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="35" column="13" selection-start="1198" selection-end="1198" vertical-scroll-proportion="0.016685206">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DecoratedDeclaredType.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/type/DecoratedDeclaredType.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="34" column="13" selection-start="1289" selection-end="1289" vertical-scroll-proportion="0.16240267">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DecoratedAnnotationProcessorEnvironment.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/DecoratedAnnotationProcessorEnvironment.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="71" column="0" selection-start="2246" selection-end="2246" vertical-scroll-proportion="0.16515838">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TemplateOutputRedirectionStrategy.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/strategies/TemplateOutputRedirectionStrategy.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="52" column="26" selection-start="1799" selection-end="1799" vertical-scroll-proportion="0.8631813">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -238,31 +430,13 @@
       </file>
       <file leaf-file-name="deps.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/doc/deps.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="26" column="7" selection-start="801" selection-end="801" vertical-scroll-proportion="0.016375545">
+              <folding />
+            </state>
+          </provider>
           <provider editor-type-id="HtmlPreview">
             <state />
-          </provider>
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="26" column="7" selection-start="801" selection-end="801" vertical-scroll-proportion="0.017878426">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DecoratedDeclaration.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/declaration/DecoratedDeclaration.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="218" column="65" selection-start="6349" selection-end="6349" vertical-scroll-proportion="0.17908788">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AnnotationInvocationHandler.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/declaration/AnnotationInvocationHandler.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="61" column="74" selection-start="2225" selection-end="2225" vertical-scroll-proportion="0.016968327">
-              <folding />
-            </state>
           </provider>
         </entry>
       </file>
@@ -299,28 +473,6 @@
   <component name="PerforceChangeBrowserSettings">
     <option name="USE_CLIENT_FILTER" value="true" />
     <option name="CLIENT" value="" />
-  </component>
-  <component name="PerforceDirect.Settings">
-    <option name="useP4CONFIG" value="true" />
-    <option name="port" value="&lt;perforce_server&gt;:1666" />
-    <option name="client" value="" />
-    <option name="user" value="" />
-    <option name="passwd" value="" />
-    <option name="showCmds" value="false" />
-    <option name="useNativeApi" value="false" />
-    <option name="pathToExec" value="p4" />
-    <option name="useCustomPathToExec" value="false" />
-    <option name="SYNC_FORCE" value="false" />
-    <option name="SYNC_RUN_RESOLVE" value="true" />
-    <option name="REVERT_UNCHANGED_FILES" value="true" />
-    <option name="CHARSET" value="none" />
-    <option name="SHOW_BRANCHES_HISTORY" value="true" />
-    <option name="ENABLED" value="true" />
-    <option name="USE_LOGIN" value="false" />
-    <option name="LOGIN_SILENTLY" value="false" />
-    <option name="INTEGRATE_RUN_RESOLVE" value="true" />
-    <option name="INTEGRATE_REVERT_UNCHANGED" value="true" />
-    <option name="SERVER_TIMEOUT" value="20000" />
   </component>
   <component name="ProjectLevelVcsManager">
     <OptionsSetting value="true" id="Add" />
@@ -379,6 +531,200 @@
           <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/src" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/src/test" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="apt-jelly" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="apt-jelly" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/src" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/src/test" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/src/test/jelly" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/src/test/jelly/net" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/src/test/jelly/net/sf" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/src/test/jelly/net/sf/jelly" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/src/test/jelly/net/sf/jelly/apt" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="apt-jelly" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="apt-jelly" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/src" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/src/test" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/src/test/freemarker" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/src/test/freemarker/net" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/src/test/freemarker/net/sf" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/src/test/freemarker/net/sf/jelly" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/src/test/freemarker/net/sf/jelly/apt" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/src/test/freemarker/net/sf/jelly/apt/freemarker" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="apt-jelly" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="apt-jelly" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/src" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/src/test" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/src/test/core-samples" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/src/test/core-samples/net" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/src/test/core-samples/net/sf" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/src/test/core-samples/net/sf/jelly" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/src/test/core-samples/net/sf/jelly/apt" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="apt-jelly" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="apt-jelly" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/src" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/src/test" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/src/test/core" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/src/test/core/net" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/src/test/core/net/sf" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/src/test/core/net/sf/jelly" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/src/test/core/net/sf/jelly/apt" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="apt-jelly" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="apt-jelly" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/src" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
       </PATH>
       <PATH>
         <PATH_ELEMENT>
@@ -401,6 +747,26 @@
           <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/src/java" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/src/java/jelly" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/src/java/jelly/net" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/src/java/jelly/net/sf" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/src/java/jelly/net/sf/jelly" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/src/java/jelly/net/sf/jelly/apt" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
       </PATH>
       <PATH>
         <PATH_ELEMENT>
@@ -416,7 +782,409 @@
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/lib" />
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/src" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/src/java" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/src/java/freemarker" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/src/java/freemarker/net" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/src/java/freemarker/net/sf" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/src/java/freemarker/net/sf/jelly" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/src/java/freemarker/net/sf/jelly/apt" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/src/java/freemarker/net/sf/jelly/apt/freemarker" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="apt-jelly" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="apt-jelly" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/src" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/src/java" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/src/java/core" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/src/java/core/net" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/src/java/core/net/sf" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/src/java/core/net/sf/jelly" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/src/java/core/net/sf/jelly/apt" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="apt-jelly" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="apt-jelly" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/jelly" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/jelly/src" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/jelly/src/test" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="apt-jelly" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="apt-jelly" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/jelly" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/jelly/src" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/jelly/src/main" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="apt-jelly" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="apt-jelly" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/core" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/core/src" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/core/src/test" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="apt-jelly" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="apt-jelly" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/core" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/core/src" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/core/src/main" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/core/src/main/java" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/core/src/main/java/net" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/core/src/main/java/net/sf" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/core/src/main/java/net/sf/jelly" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/core/src/main/java/net/sf/jelly/apt" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="apt-jelly" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="apt-jelly" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/core" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/core/src" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/core/src/main" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/core/src/main/java" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/core/src/main/java/net" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/core/src/main/java/net/sf" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/core/src/main/java/net/sf/jelly" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/core/src/main/java/net/sf/jelly/apt" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/core/src/main/java/net/sf/jelly/apt/strategies" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="apt-jelly" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="apt-jelly" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/core" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/core/src" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/core/src/main" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/core/src/main/java" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/core/src/main/java/net" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/core/src/main/java/net/sf" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/core/src/main/java/net/sf/jelly" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/core/src/main/java/net/sf/jelly/apt" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/core/src/main/java/net/sf/jelly/apt/decorations" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="apt-jelly" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="apt-jelly" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/core" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/core/src" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/core/src/main" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/core/src/main/java" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/core/src/main/java/net" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/core/src/main/java/net/sf" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/core/src/main/java/net/sf/jelly" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/core/src/main/java/net/sf/jelly/apt" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/core/src/main/java/net/sf/jelly/apt/decorations" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/core/src/main/java/net/sf/jelly/apt/decorations/type" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="apt-jelly" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="apt-jelly" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/core" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/core/src" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/core/src/main" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/core/src/main/java" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/core/src/main/java/net" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/core/src/main/java/net/sf" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/core/src/main/java/net/sf/jelly" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/core/src/main/java/net/sf/jelly/apt" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/core/src/main/java/net/sf/jelly/apt/decorations" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/home/heatonra/sandbox/apt-jelly/core/src/main/java/net/sf/jelly/apt/decorations/declaration" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
       </PATH>
@@ -433,7 +1201,7 @@
       <showLibraryContents />
       <hideEmptyPackages ProjectPane="false" />
       <abbreviatePackageNames />
-      <showStructure PackagesPane="false" Scope="false" Favorites="false" ProjectPane="false" />
+      <showStructure ProjectPane="false" Scope="false" PackagesPane="false" Favorites="false" />
       <autoscrollToSource />
       <autoscrollFromSource />
       <sortByType />
@@ -444,8 +1212,8 @@
     <property name="cvs_file_history_treeOrder5" value="5" />
     <property name="cvs_file_history_treeOrder2" value="2" />
     <property name="cvs_file_history_treeOrder1" value="1" />
-    <property name="RunManagerConfig.showSettingsBeforeRunnig" value="true" />
     <property name="cvs_file_history_treeOrder4" value="4" />
+    <property name="RunManagerConfig.showSettingsBeforeRunnig" value="true" />
     <property name="cvs_file_history_treeOrder3" value="3" />
     <property name="MemberChooser.sorted" value="false" />
     <property name="GoToClass.includeJavaFiles" value="false" />
@@ -462,10 +1230,10 @@
     <property name="cvs_file_history_treeOrder0" value="0" />
     <property name="cvs_file_history_flatWidth3" value="169" />
     <property name="cvs_file_history_treeWidth4" value="168" />
-    <property name="cvs_file_history_treeWidth5" value="169" />
     <property name="cvs_file_history_flatWidth0" value="168" />
-    <property name="cvs_file_history_flatWidth1" value="168" />
+    <property name="cvs_file_history_treeWidth5" value="169" />
     <property name="cvs_file_history_treeWidth6" value="168" />
+    <property name="cvs_file_history_flatWidth1" value="168" />
     <property name="GoToClass.includeLibraries" value="false" />
     <property name="GoToFile.includeJavaFiles" value="false" />
     <property name="RunManagerConfig.compileBeforeRunning" value="true" />
@@ -543,7 +1311,6 @@
             </option>
             <option name="runMavenInBackground" value="false" />
             <option name="skipTests" value="false" />
-            <option name="syncAfterBuild" value="true" />
             <option name="useMavenEmbedder" value="false" />
             <option name="vmOptions" value="" />
           </MavenRunnerSettings>
@@ -561,37 +1328,12 @@
         </option>
       </MavenSettings>
     </configuration>
-    <configuration default="true" type="Application" factoryName="Application" enabled="false" merge="false">
-      <option name="MAIN_CLASS_NAME" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="" />
-      <envs />
-    </configuration>
     <configuration default="true" type="Remote" factoryName="Remote">
       <option name="USE_SOCKET_TRANSPORT" value="true" />
       <option name="SERVER_MODE" value="false" />
       <option name="SHMEM_ADDRESS" value="javadebug" />
       <option name="HOST" value="localhost" />
       <option name="PORT" value="5005" />
-    </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
     </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit" enabled="false" merge="false">
       <module name="" />
@@ -614,6 +1356,31 @@
       <method>
         <option name="Make" value="true" />
       </method>
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application" enabled="false" merge="false">
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
     </configuration>
     <configuration default="false" name="TestAnnotationProxyLogic.testMegaAnnotation" type="JUnit" factoryName="JUnit" enabled="false" merge="false">
       <module name="apt-jelly" />
@@ -722,6 +1489,9 @@
     <option name="UPDATE_RUN_STATUS" value="false" />
     <option name="UPDATE_RECURSIVELY" value="true" />
     <option name="MERGE_DRY_RUN" value="false" />
+    <option name="UPDATE_LOCK_ON_DEMAND" value="false" />
+    <configuration useDefault="true">/home/heatonra/.subversion</configuration>
+    <myIsUseDefaultProxy>true</myIsUseDefaultProxy>
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -744,7 +1514,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="25" width="1779" height="1090" extended-state="0" />
+    <frame x="30" y="42" width="1811" height="1131" extended-state="0" />
     <editor active="false" />
     <layout>
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="3" />
@@ -763,7 +1533,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" order="0" />
       <window_info id="Maven projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="3" />
       <window_info id="Module Dependencies" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="3" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3627907" order="0" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3624429" order="0" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="8" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24981357" order="2" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" order="6" />
@@ -865,117 +1635,47 @@
     <option name="myLastEditedConfigurable" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/test/core/net/sf/jelly/apt/InAPTTestCase.java">
+    <entry file="file://$PROJECT_DIR$/doc/deps.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="81" column="44" selection-start="2375" selection-end="2375" vertical-scroll-proportion="0.0">
+        <state line="26" column="7" selection-start="801" selection-end="801" vertical-scroll-proportion="0.016375545">
           <folding />
         </state>
       </provider>
+      <provider editor-type-id="HtmlPreview">
+        <state />
+      </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/declaration/DecoratedAnnotationMirror.java">
+    <entry file="file://$PROJECT_DIR$/build.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="87" column="29" selection-start="3125" selection-end="3125" vertical-scroll-proportion="0.80995476">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="28" selection-start="1134" selection-end="1134" vertical-scroll-proportion="0.11022727">
+        <state line="172" column="65" selection-start="5170" selection-end="5170" vertical-scroll-proportion="2.6959248">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/build-freemarker.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="0" selection-start="877" selection-end="915" vertical-scroll-proportion="0.017045455">
+        <state line="68" column="64" selection-start="2405" selection-end="2415" vertical-scroll-proportion="0.48497853">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/build-jelly.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="0" selection-start="953" selection-end="953" vertical-scroll-proportion="0.017045455">
+        <state line="70" column="64" selection-start="2445" selection-end="2445" vertical-scroll-proportion="0.82758623">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/strategies/FileStrategy.java">
+    <entry file="file://$PROJECT_DIR$/build-core.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="43" column="5" selection-start="1302" selection-end="1302" vertical-scroll-proportion="0.016685206">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/java/freemarker/net/sf/jelly/apt/freemarker/transforms/ForAllTypesTransform.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="77" selection-start="654" selection-end="654" vertical-scroll-proportion="0.23755656">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="62" column="0" selection-start="2088" selection-end="2088" vertical-scroll-proportion="0.017045455">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/type/DecoratedTypeMirror.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="13" selection-start="1198" selection-end="1198" vertical-scroll-proportion="0.016685206">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/type/DecoratedDeclaredType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="13" selection-start="1289" selection-end="1289" vertical-scroll-proportion="0.16240267">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/DecoratedAnnotationProcessorEnvironment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="71" column="0" selection-start="2246" selection-end="2246" vertical-scroll-proportion="0.16515838">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/strategies/TemplateOutputRedirectionStrategy.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="52" column="26" selection-start="1799" selection-end="1799" vertical-scroll-proportion="0.8631813">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/doc/deps.html">
-      <provider editor-type-id="HtmlPreview">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="7" selection-start="801" selection-end="801" vertical-scroll-proportion="0.017878426">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/declaration/DecoratedDeclaration.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="218" column="65" selection-start="6349" selection-end="6349" vertical-scroll-proportion="0.17908788">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/decorations/declaration/AnnotationInvocationHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="61" column="74" selection-start="2225" selection-end="2225" vertical-scroll-proportion="0.016968327">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/java/core/net/sf/jelly/apt/strategies/TypeDeclarationLoopStrategy.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="76" column="5" selection-start="2908" selection-end="2908" vertical-scroll-proportion="1.2680756">
+        <state line="68" column="79" selection-start="2343" selection-end="2343" vertical-scroll-proportion="0.87774295">
           <folding />
         </state>
       </provider>

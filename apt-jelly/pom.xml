@@ -1,12 +1,11 @@
-<project>
-
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>net.sf.apt-jelly</groupId>
-  <artifactId>apt-jelly</artifactId>
-  <version>@VERSION@</version>
-
-  <packaging>jar</packaging>
-  <name>APT-Jelly</name>
+  <artifactId>apt-jelly-parent</artifactId>
+  <packaging>pom</packaging>
+  <version>2.4</version>
+  <name>APT-Jelly - Parent</name>
   <url>http://apt-jelly.sf.net/</url>
   <description>The apt-jelly is a source code artifact generation tool.</description>
   <licenses>
@@ -16,9 +15,92 @@
       <distribution>repo</distribution>
     </license>
   </licenses>
+  
   <scm>
-    <url>cvs://apt-jelly.cvs.sourceforge.net:/cvsroot/apt-jelly</url>
+    <connection>scm:svn:http://apt-jelly.svn.sourceforge.net/svnroot/apt-jelly</connection>
+    <developerConnection>scm:svn:https://apt-jelly.svn.sourceforge.net/svnroot/apt-jelly</developerConnection>
+    <url>http://apt-jelly.svn.sourceforge.net/svnroot/apt-jelly</url>
   </scm>
+
+  <modules>
+    <module>core</module>
+    <module>freemarker</module>
+    <module>jelly</module>
+  </modules>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.5</source>
+          <target>1.5</target>
+        </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-idea-plugin</artifactId>
+        <configuration>
+          <downloadSources>true</downloadSources>
+          <downloadJavadocs>true</downloadJavadocs>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>attach-sources</id>
+            <phase>package</phase>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-release-plugin</artifactId>
+        <configuration>
+          <tagBase>https://apt-jelly.svn.sourceforge.net/svnroot/apt-jelly/tags/</tagBase>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-enforcer-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>enforce-java-5</id>
+            <phase>validate</phase>
+            <goals>
+              <goal>enforce-once</goal>
+            </goals>
+            <configuration>
+              <rules>
+                <requireJavaVersion>
+                  <version>(,1.6)</version>
+                  <message>
+                    Although APT-Jelly is fully compatible with Java 1.6 and above,
+                    we want to make sure APT-Jelly is built with compatibility for
+                    Java 5. Please use Java 5 to build APT-Jelly.
+                  </message>
+                </requireJavaVersion>
+              </rules>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-report-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </reporting>
 
   <dependencies>
 
@@ -26,65 +108,70 @@
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>3.8.1</version>
+
       <scope>test</scope>
     </dependency>
 
-    <dependency>
-      <groupId>freemarker</groupId>
-      <artifactId>freemarker</artifactId>
-      <version>2.3.6</version>
-      <optional>true</optional>
-    </dependency>
-
-    <dependency>
-      <groupId>commons-beanutils</groupId>
-      <artifactId>commons-beanutils</artifactId>
-      <version>1.6</version>
-      <optional>true</optional>
-    </dependency>
-
-    <dependency>
-      <groupId>commons-collections</groupId>
-      <artifactId>commons-collections</artifactId>
-      <version>2.1</version>
-      <optional>true</optional>
-    </dependency>
-
-    <dependency>
-      <groupId>commons-jelly</groupId>
-      <artifactId>commons-jelly</artifactId>
-      <version>1.0</version>
-      <optional>true</optional>
-    </dependency>
-
-    <dependency>
-      <groupId>commons-jexl</groupId>
-      <artifactId>commons-jexl</artifactId>
-      <version>1.0</version>
-      <optional>true</optional>
-    </dependency>
-
-    <dependency>
-      <groupId>commons-logging</groupId>
-      <artifactId>commons-logging</artifactId>
-      <version>1.0.3</version>
-      <optional>true</optional>
-    </dependency>
-
-    <dependency>
-      <groupId>dom4j</groupId>
-      <artifactId>dom4j</artifactId>
-      <version>1.5.2</version>
-      <optional>true</optional>
-    </dependency>
-
-    <dependency>
-      <groupId>log4j</groupId>
-      <artifactId>log4j</artifactId>
-      <version>1.2.7</version>
-      <optional>true</optional>
-    </dependency>
-
   </dependencies>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>freemarker</groupId>
+        <artifactId>freemarker</artifactId>
+        <version>2.3.6</version>
+      </dependency>
+
+      <dependency>
+        <groupId>commons-beanutils</groupId>
+        <artifactId>commons-beanutils</artifactId>
+        <version>1.6</version>
+      </dependency>
+
+      <dependency>
+        <groupId>commons-collections</groupId>
+        <artifactId>commons-collections</artifactId>
+        <version>2.1</version>
+      </dependency>
+
+      <dependency>
+        <groupId>commons-jelly</groupId>
+        <artifactId>commons-jelly</artifactId>
+        <version>1.0</version>
+      </dependency>
+
+      <dependency>
+        <groupId>commons-jexl</groupId>
+        <artifactId>commons-jexl</artifactId>
+        <version>1.0</version>
+      </dependency>
+
+      <dependency>
+        <groupId>commons-logging</groupId>
+        <artifactId>commons-logging</artifactId>
+        <version>1.0.3</version>
+      </dependency>
+
+      <dependency>
+        <groupId>dom4j</groupId>
+        <artifactId>dom4j</artifactId>
+        <version>1.5.2</version>
+      </dependency>
+
+      <dependency>
+        <groupId>log4j</groupId>
+        <artifactId>log4j</artifactId>
+        <version>1.2.7</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <distributionManagement>
+    <repository>
+      <id>sourceforge</id>
+      <name>APT-Jelly M2 Repository</name>
+      <url>scp://shell.sf.net/home/groups/a/ap/apt-jelly/m2</url>
+    </repository>
+  </distributionManagement>
 
 </project>
