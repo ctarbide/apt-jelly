@@ -22,6 +22,7 @@ import com.sun.mirror.type.ReferenceType;
 import com.sun.mirror.util.DeclarationVisitor;
 import net.sf.jelly.apt.decorations.DeclarationDecorator;
 import net.sf.jelly.apt.decorations.TypeMirrorDecorator;
+import net.sf.jelly.apt.decorations.JavaDoc;
 import net.sf.jelly.apt.decorations.type.DecoratedReferenceType;
 
 import java.util.ArrayList;
@@ -64,9 +65,14 @@ public class DecoratedExecutableDeclaration extends DecoratedMemberDeclaration i
       throwsComments.put(exception, throwsComment);
     }
 
-    paramsComments = new HashMap<String, String>();
-    if (getJavaDoc().get("param") != null) {
-      for (String paramDoc : getJavaDoc().get("param")) {
+    this.paramsComments = parseParamComments(getJavaDoc());
+  }
+
+  protected static HashMap<String, String> parseParamComments(JavaDoc jd) {
+    HashMap<String, String> paramComments = new HashMap<String, String>();
+    if (jd.get("param") != null) {
+      for (String paramDoc : jd.get("param")) {
+        paramDoc = paramDoc.replaceAll("\\s", " ");
         int spaceIndex = paramDoc.indexOf(' ');
         if (spaceIndex == -1) {
           spaceIndex = paramDoc.length();
@@ -78,9 +84,10 @@ public class DecoratedExecutableDeclaration extends DecoratedMemberDeclaration i
           paramComment = paramDoc.substring(spaceIndex + 1);
         }
 
-        paramsComments.put(param, paramComment);
+        paramComments.put(param, paramComment);
       }
     }
+    return paramComments;
   }
 
   public boolean isVarArgs() {
