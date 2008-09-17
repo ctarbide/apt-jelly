@@ -40,7 +40,8 @@ public class FamilyService {
   /**
    * Adds a child to a family.
    *
-   * @param family The family to which to add a child.
+   * @param family
+   *   The family to which to add a child.
    * @param child The child to add to the family.
    */
   public void addChild(Family family, Person child) {
