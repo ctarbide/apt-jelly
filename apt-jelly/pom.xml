@@ -24,10 +24,8 @@
 
   <modules>
     <module>core</module>
-<!--
     <module>freemarker</module>
     <module>jelly</module>
--->
   </modules>
 
   <build>

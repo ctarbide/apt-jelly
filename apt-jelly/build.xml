@@ -1,125 +1,106 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project default="jar" name="apt-jelly" basedir=".">
+<project default="dist" name="apt-jelly" basedir="." xmlns:artifact="urn:maven-artifact-ant">
 
-  <property file="build.properties"/>
+  <target name="init" description="initializes some properties">
+    <typedef resource="org/apache/maven/artifact/ant/antlib.xml" uri="urn:maven-artifact-ant" loaderref="antlib.loader">
+      <classpath>
+        <fileset dir="lib">
+          <include name="maven-ant-tasks-*.jar"/>
+        </fileset>
+      </classpath>
+    </typedef>
 
-  <property name="dist.dir" value="target/dist"/>
-  <property name="dist.name" value="apt-jelly-${version}"/>
+    <artifact:pom id="parent.pom" file="${basedir}/pom.xml"/>
+    <artifact:pom id="freemarker.pom" file="${basedir}/freemarker/pom.xml"/>
+    <artifact:dependencies filesetId="freemarker.libs.fileset" pathId="freemarker.libs.path" pomRefId="freemarker.pom"/>
+    <artifact:pom id="jelly.pom" file="${basedir}/jelly/pom.xml"/>
+    <artifact:dependencies filesetId="jelly.libs.fileset" pathId="jelly.libs.path" pomRefId="jelly.pom"/>
 
-  <path id="build.classpath">
-    <fileset dir="${lib.dir}">
-      <include name="*.jar"/>
-    </fileset>
-    <pathelement location="${java.home}/../lib/tools.jar"/>
-  </path>
-
-  <target name="init" description="initializes some properties"/>
-
-  <target name="compile" description="compiles the code for the apt-jelly">
-    <ant antfile="build-core.xml" target="compile"/>
-    <ant antfile="build-jelly.xml" target="compile"/>
-    <ant antfile="build-freemarker.xml" target="compile"/>
+    <echo message="Current version is: ${parent.pom.version}"/>
+    <property name="dist.name" value="apt-jelly-${parent.pom.version}"/>
+    <property name="dist.dir" value="target/dist"/>
+    <property name="docs.dir" value="target/docs"/>
+    <property name="javadoc.dir" value="${docs.dir}/api"/>
   </target>
 
-  <target name="jar" description="builds the jars for the apt-jelly project">
-    <ant antfile="build-core.xml" target="test"/>
-    <ant antfile="build-jelly.xml" target="test"/>
-    <ant antfile="build-freemarker.xml" target="test"/>
+  <target name="doc" depends="init" description="generates some relevant documentation">
+    <mkdir dir="${javadoc.dir}"/>
 
-    <mkdir dir="target"/>
-    <jar jarfile="target/${dist.name}.jar">
-      <fileset dir="target/core/classes"/>
-      <fileset dir="target/freemarker/classes"/>
-      <fileset dir="target/jelly/classes"/>
-    </jar>
-  </target>
-
-  <target name="jar-only" description="builds the jars without running the tests for the apt-jelly project">
-    <ant antfile="build-core.xml" target="compile"/>
-    <ant antfile="build-jelly.xml" target="compile"/>
-    <ant antfile="build-freemarker.xml" target="compile"/>
-
-    <mkdir dir="target"/>
-    <jar jarfile="target/${dist.name}.jar">
-      <fileset dir="target/core/classes"/>
-      <fileset dir="target/freemarker/classes"/>
-      <fileset dir="target/jelly/classes"/>
-    </jar>
-  </target>
-
-  <target name="build-maven-bundle">
-    <copy file="pom.xml" todir="target" filtering="true">
-      <filterset>
-        <filter token="VERSION" value="${version}"/>
-      </filterset>
+    <copy todir="${docs.dir}">
+      <fileset dir="doc"/>
     </copy>
 
-    <jar destfile="target/${dist.name}-bundle.jar">
-      <fileset dir="target">
-        <include name="${dist.name}.jar"/>
-        <include name="pom.xml"/>
+    <javadoc doctitle="apt-jelly" windowtitle="apt-jelly" destdir="${javadoc.dir}" author="true" version="true" packagenames="*">
+      <fileset dir="${basedir}">
+        <include name="**/src/main/java/**/*.java"/>
+        <exclude name="**/samples/**"/>
       </fileset>
-    </jar>
-  </target>
 
-  <target name="doc" description="generates some relevant documentation">
-    <mkdir dir="${javadoc.dir}"/>
-    <property name="title" value="apt-jelly"/>
+      <sourcepath>
+        <dirset dir="${basedir}">
+          <include name="**/src/main/resources"/>
+          <exclude name="**/samples/**"/>
+        </dirset>
+      </sourcepath>
 
-    <javadoc use="true" destdir="${javadoc.dir}" author="true" windowtitle="apt-jelly" doctitle="apt-jelly">
-      <fileset dir="src/java"/>
-      <classpath refid="build.classpath"/>
+      <classpath>
+        <path refid="freemarker.libs.path"/>
+        <path refid="jelly.libs.path"/>
+        <pathelement location="${java.home}/../lib/tools.jar"/>
+        <path path="${java.class.path}"/>
+      </classpath>
+
     </javadoc>
 
     <mkdir dir="${docs.dir}/examples"/>
     <copy todir="${docs.dir}/examples">
-      <fileset dir="src/test">
-        <include name="**/*.jelly"/>
+      <fileset dir="${basedir}">
+        <include name="**/src/test/**/*.jelly"/>
       </fileset>
       <mapper type="flatten"/>
     </copy>
   </target>
 
-  <target name="dist" description="create the distribution bundle" depends="jar, doc">
-    <mkdir dir="${dist.dir}"/>
+  <target name="dist" description="create the distribution bundle" depends="doc">
     <mkdir dir="${dist.dir}/docs"/>
     <mkdir dir="${dist.dir}/lib"/>
 
+    <copy todir="${dist.dir}/docs">
+      <fileset dir="${docs.dir}"/>
+    </copy>
+    <copy todir="${dist.dir}/lib">
+      <fileset refid="freemarker.libs.fileset"/>
+      <fileset refid="jelly.libs.fileset"/>
+      <mapper type="flatten"/>
+    </copy>
+
     <zip destfile="target/${dist.name}.zip">
-      <zipfileset dir="${docs.dir}" prefix="apt-jelly/docs"/>
-      <zipfileset dir="${lib.dir}" prefix="apt-jelly/lib"/>
+      <zipfileset dir="${dist.dir}" prefix="apt-jelly"/>
       <zipfileset dir="." includes="LICENSE NOTICE" prefix="apt-jelly"/>
-      <zipfileset dir="target" includes="*.jar" prefix="apt-jelly"/>
     </zip>
 
     <tar destfile="target/${dist.name}.tar.gz" compression="gzip">
-      <tarfileset dir="${docs.dir}" prefix="apt-jelly/docs"/>
-      <tarfileset dir="${lib.dir}" prefix="apt-jelly/lib"/>
+      <tarfileset dir="${dist.dir}" prefix="apt-jelly"/>
       <tarfileset dir="." includes="LICENSE NOTICE" prefix="apt-jelly"/>
-      <tarfileset dir="target" includes="*.jar" prefix="apt-jelly"/>
     </tar>
   </target>
 
-  <target name="src-dist" description="creates a source distribution">
+  <target name="src-dist" depends="init" description="creates a source distribution">
     <zip destfile="target/${dist.name}-src.zip">
-      <zipfileset dir="src/java" prefix="src"/>
+      <zipfileset dir="core/src/main/java" prefix="apt-jelly/src"/>
+      <zipfileset dir="fremarker/src/main/java" prefix="apt-jelly/src"/>
+      <zipfileset dir="jelly/src/main/java" prefix="apt-jelly/src"/>
     </zip>
     <tar destfile="target/${dist.name}-src.tar.gz" compression="gzip">
-      <tarfileset dir="src/java" prefix="src"/>
+      <tarfileset dir="core/src/main/java" prefix="apt-jelly/src"/>
+      <tarfileset dir="fremarker/src/main/java" prefix="apt-jelly/src"/>
+      <tarfileset dir="jelly/src/main/java" prefix="apt-jelly/src"/>
     </tar>
   </target>
 
   <target name="clean" description="clean up the generated directories">
     <delete dir="target"/>
-    <delete dir="${javadoc.dir}/"/>
-    <delete dir="${docs.dir}/examples"/>
-  </target>
-
-  <target name="test" description="run the test cases">
-    <ant antfile="build-core.xml" target="test"/>
-    <ant antfile="build-jelly.xml" target="test"/>
-    <ant antfile="build-freemarker.xml" target="test"/>
   </target>
 
 </project>
