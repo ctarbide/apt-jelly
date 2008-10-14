@@ -21,6 +21,10 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
+
+import net.sf.jelly.apt.util.JavaDocTagHandler;
 
 /**
  * Object encapsulating the javadocs of a declaration.  This class is intended
@@ -33,6 +37,9 @@ import java.util.Map;
  */
 public class JavaDoc extends HashMap<String, JavaDoc.JavaDocTagList> {
 
+  protected static final Pattern MARKUP_TAG_PATTERN = Pattern.compile("<([^ ]+)[^>]*>(.*?)</\\1>"); 
+  protected static final Pattern INLINE_TAG_PATTERN = Pattern.compile("\\{@([^\\} ]+) ?(.*?)\\}"); 
+
   private String value;
 
   public JavaDoc() {
@@ -40,6 +47,10 @@ public class JavaDoc extends HashMap<String, JavaDoc.JavaDocTagList> {
   }
 
   public JavaDoc(String docComment) {
+    this(docComment, null);
+  }
+
+  public JavaDoc(String docComment, JavaDocTagHandler tagHandler) {
     if (docComment == null) {
       value = "";
     }
@@ -77,13 +88,77 @@ public class JavaDoc extends HashMap<String, JavaDoc.JavaDocTagList> {
 
           line = reader.readLine();
         }
-        
+
         pushValue(currentTag, currentValue.toString());
       }
       catch (IOException e) {
         //fall through.
       }
     }
+
+    if (tagHandler != null) {
+      this.value = handleAllTags(this.value, tagHandler);
+      for (Map.Entry<String, JavaDocTagList> entry : entrySet()) {
+        JavaDocTagList tagValues = entry.getValue();
+        for (int i = 0; i < tagValues.size(); i++) {
+          String value = tagValues.get(i);
+          tagValues.set(i, handleAllTags(value, tagHandler));
+        }
+      }
+    }
+  }
+
+  /**
+   * Handles all the tags with the given handler.
+   *
+   * @param value The value.
+   * @param handler The handler.
+   * @return The replacement value.
+   */
+  protected String handleAllTags(String value, JavaDocTagHandler handler) {
+    //first pass through the inline tags...
+    StringBuilder builder = new StringBuilder();
+
+    Matcher matcher = INLINE_TAG_PATTERN.matcher(value);
+    int lastStart = 0;
+    while (matcher.find()) {
+      builder.append(value.substring(lastStart, matcher.start()));
+      Object replacement = handler.onInlineTag(matcher.group(1), matcher.group(2));
+      if (replacement != null) {
+        if (replacement instanceof JavaDocTagHandler.TextToBeHandled) {
+          replacement = handleAllTags(String.valueOf(replacement), handler);
+        }
+        builder.append(replacement);
+      }
+      else {
+        builder.append(value.substring(matcher.start(), matcher.end()));
+      }
+      lastStart = matcher.end();
+    }
+    builder.append(value.substring(lastStart, value.length()));
+    value = builder.toString();
+
+    //second pass through the markup tags...
+    builder = new StringBuilder();
+    matcher = MARKUP_TAG_PATTERN.matcher(value);
+    lastStart = 0;
+    while (matcher.find()) {
+      builder.append(value.substring(lastStart, matcher.start()));
+      Object replacement = handler.onMarkupTag(matcher.group(1), matcher.group(2));
+      if (replacement != null) {
+        if (replacement instanceof JavaDocTagHandler.TextToBeHandled) {
+          replacement = handleAllTags(String.valueOf(replacement), handler);
+        }
+        builder.append(replacement);
+      }
+      else {
+        builder.append(value.substring(matcher.start(), matcher.end()));
+      }
+      lastStart = matcher.end();
+    }
+    builder.append(value.substring(lastStart, value.length()));
+
+    return builder.toString();
   }
 
   /**

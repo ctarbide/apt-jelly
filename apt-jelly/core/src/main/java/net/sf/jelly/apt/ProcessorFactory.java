@@ -24,6 +24,7 @@ import com.sun.mirror.declaration.AnnotationTypeDeclaration;
 import net.sf.jelly.apt.decorations.DeclarationDecorator;
 import net.sf.jelly.apt.decorations.DecoratedAnnotationProcessorEnvironment;
 import net.sf.jelly.apt.decorations.TypeMirrorDecorator;
+import net.sf.jelly.apt.util.JavaDocTagHandler;
 
 import java.io.File;
 import java.net.MalformedURLException;
@@ -57,10 +58,16 @@ public abstract class ProcessorFactory implements AnnotationProcessorFactory {
    */
   public static final String TYPE_DECORATOR_OPTION = "-A" + TypeMirrorDecorator.class.getName();
 
+  /**
+   * Option for specifying the type decorator.
+   */
+  public static final String JAVADOC_TAG_HANDLER_OPTION = "-A" + JavaDocTagHandler.class.getName();
+
   private static final Collection<String> SUPPORTED_OPTIONS = Collections.unmodifiableCollection(Arrays.asList(TEMPLATE_FILE_OPTION,
                                                                                                                TEMPLATE_URL_OPTION,
                                                                                                                DECLARATION_DECORATOR_OPTION,
-                                                                                                               TYPE_DECORATOR_OPTION));
+                                                                                                               TYPE_DECORATOR_OPTION,
+                                                                                                               JAVADOC_TAG_HANDLER_OPTION));
   protected static int round = 0;
   protected URL template;
 

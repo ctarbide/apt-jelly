@@ -23,6 +23,7 @@ import com.sun.mirror.util.DeclarationVisitor;
 import com.sun.mirror.util.SourcePosition;
 import net.sf.jelly.apt.decorations.DeclarationDecorator;
 import net.sf.jelly.apt.decorations.JavaDoc;
+import net.sf.jelly.apt.util.JavaDocTagHandlerFactory;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Proxy;
@@ -48,7 +49,7 @@ public class DecoratedDeclaration implements Declaration {
 
   public DecoratedDeclaration(Declaration delegate) {
     this.delegate = delegate;
-    this.javaDoc = new JavaDoc(delegate.getDocComment());
+    this.javaDoc = new JavaDoc(delegate.getDocComment(), JavaDocTagHandlerFactory.getTagHandler());
   }
 
   /**
