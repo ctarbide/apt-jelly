@@ -54,7 +54,7 @@ public class TestJavaDoc extends TestCase {
     assertEquals("some text {@link with a link} and <b>some markup <i>with other tags</i> in it.</b><br/>", value);
     value = javaDoc.handleAllTags("some text {@link with a link} and <b>some markup <i>with other tags</i> in it.</b><br/>", new BasicInlineTagStrippingHandler());
     assertEquals("some text with a link and <b>some markup <i>with other tags</i> in it.</b><br/>", value);
-    value = javaDoc.handleAllTags("some text {@link with a link} and <b>some markup <i>with other tags</i> in it.</b><br/>", new BasicInlineTagStrippingHandler() {
+    value = javaDoc.handleAllTags("some text {@link with a link} and <b and=\"attributes\" such=\"as\">some markup <i>with other tags</i> in it.</b><br/>", new BasicInlineTagStrippingHandler() {
       @Override
       public String onMarkupTag(String tagName, String tagBody) {
         return tagBody;

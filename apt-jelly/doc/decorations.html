@@ -210,6 +210,12 @@ Sam
               most notably the type mirrors for the thrown types of the method.
             </p>
 
+            <p>
+              By default, APT-Jelly passes the value of the JavaDoc comment directly through and does no processing of inline JavaDoc tags and markup.  However,
+              you can define your own handling mechanism if you don't want that text passed through literally.  At the time that APT is invoked, pass the
+              <tt>-Anet.sf.jelly.apt.util.JavaDocTagHandler</tt> option with the value of a class that implements <tt>net.sf.jelly.apt.util.JavaDocTagHandler</tt>.
+            </p>
+
             <p><b><u>annotations</u></b></p>
 
             <p>
