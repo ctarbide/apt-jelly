@@ -12,16 +12,17 @@
     </typedef>
 
     <artifact:pom id="parent.pom" file="${basedir}/pom.xml"/>
-    <artifact:pom id="freemarker.pom" file="${basedir}/freemarker/pom.xml"/>
-    <artifact:dependencies filesetId="freemarker.libs.fileset" pathId="freemarker.libs.path" pomRefId="freemarker.pom"/>
-    <artifact:pom id="jelly.pom" file="${basedir}/jelly/pom.xml"/>
-    <artifact:dependencies filesetId="jelly.libs.fileset" pathId="jelly.libs.path" pomRefId="jelly.pom"/>
 
     <echo message="Current version is: ${parent.pom.version}"/>
     <property name="dist.name" value="apt-jelly-${parent.pom.version}"/>
     <property name="dist.dir" value="target/dist"/>
     <property name="docs.dir" value="target/docs"/>
     <property name="javadoc.dir" value="${docs.dir}/api"/>
+
+    <artifact:dependencies filesetId="all.libs.fileset" pathId="all.libs.path">
+      <dependency groupId="net.sf.apt-jelly" artifactId="apt-jelly-jelly" version="${parent.pom.version}"/>
+      <dependency groupId="net.sf.apt-jelly" artifactId="apt-jelly-freemarker" version="${parent.pom.version}"/>
+    </artifact:dependencies>
   </target>
 
   <target name="doc" depends="init" description="generates some relevant documentation">
@@ -45,8 +46,7 @@
       </sourcepath>
 
       <classpath>
-        <path refid="freemarker.libs.path"/>
-        <path refid="jelly.libs.path"/>
+        <path refid="all.libs.path"/>
         <pathelement location="${java.home}/../lib/tools.jar"/>
         <path path="${java.class.path}"/>
       </classpath>
@@ -70,8 +70,7 @@
       <fileset dir="${docs.dir}"/>
     </copy>
     <copy todir="${dist.dir}/lib">
-      <fileset refid="freemarker.libs.fileset"/>
-      <fileset refid="jelly.libs.fileset"/>
+      <fileset refid="all.libs.fileset"/>
       <mapper type="flatten"/>
     </copy>
 
@@ -89,12 +88,12 @@
   <target name="src-dist" depends="init" description="creates a source distribution">
     <zip destfile="target/${dist.name}-src.zip">
       <zipfileset dir="core/src/main/java" prefix="apt-jelly/src"/>
-      <zipfileset dir="fremarker/src/main/java" prefix="apt-jelly/src"/>
+      <zipfileset dir="freemarker/src/main/java" prefix="apt-jelly/src"/>
       <zipfileset dir="jelly/src/main/java" prefix="apt-jelly/src"/>
     </zip>
     <tar destfile="target/${dist.name}-src.tar.gz" compression="gzip">
       <tarfileset dir="core/src/main/java" prefix="apt-jelly/src"/>
-      <tarfileset dir="fremarker/src/main/java" prefix="apt-jelly/src"/>
+      <tarfileset dir="freemarker/src/main/java" prefix="apt-jelly/src"/>
       <tarfileset dir="jelly/src/main/java" prefix="apt-jelly/src"/>
     </tar>
   </target>
