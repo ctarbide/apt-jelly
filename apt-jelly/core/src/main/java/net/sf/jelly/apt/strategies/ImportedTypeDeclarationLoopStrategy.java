@@ -127,7 +127,10 @@ public class ImportedTypeDeclarationLoopStrategy<B extends TemplateBlock> extend
 
     //visit the superclasses and constructors.
     if (typeDeclaration instanceof ClassDeclaration) {
-      ((ClassDeclaration) typeDeclaration).getSuperclass().accept(visitor);
+      ClassType superClass = ((ClassDeclaration) typeDeclaration).getSuperclass();
+      if (superClass != null) {
+        superClass.accept(visitor);
+      }
 
       for (ConstructorDeclaration constructor : ((ClassDeclaration) typeDeclaration).getConstructors()) {
         for (ParameterDeclaration parameter : constructor.getParameters()) {

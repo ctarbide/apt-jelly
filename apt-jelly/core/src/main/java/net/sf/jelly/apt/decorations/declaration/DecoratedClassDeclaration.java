@@ -55,7 +55,7 @@ public class DecoratedClassDeclaration extends DecoratedTypeDeclaration implemen
   @Override
   public <A extends Annotation> A getAnnotation(Class<A> annotationType) {
     A annotation = super.getAnnotation(annotationType);
-    if ((annotation == null) & (annotationType.getAnnotation(Inherited.class) != null)) {
+    if ((annotation == null) && (annotationType.getAnnotation(Inherited.class) != null) && (getSuperclass() != null)) {
       ClassDeclaration superDecl = getSuperclass().getDeclaration();
       if ((superDecl != null) && (!Object.class.getName().equals(superDecl.getQualifiedName()))) {
         return superDecl.getAnnotation(annotationType);
