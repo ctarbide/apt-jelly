@@ -47,7 +47,7 @@ public class DecoratedAnnotationMirror extends HashMap<String, Object> implement
 
     this.delegate = delegate;
     AnnotationType annotationType = delegate.getAnnotationType();
-    Collection<AnnotationTypeElementDeclaration> allElements = annotationType.getDeclaration().getMethods();
+    Collection<AnnotationTypeElementDeclaration> allElements = annotationType.getDeclaration() != null? annotationType.getDeclaration().getMethods() : Collections.<AnnotationTypeElementDeclaration>emptyList();
     Map<AnnotationTypeElementDeclaration, AnnotationValue> elementValues = getElementValues();
 
     put("annotationType", annotationType);

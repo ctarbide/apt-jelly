@@ -24,6 +24,7 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.*;
 import java.util.Collection;
 import java.util.Map;
+import java.util.ArrayList;
 
 /**
  * Handles invocations of methods on annotation instances.
@@ -117,10 +118,25 @@ public class AnnotationInvocationHandler implements InvocationHandler {
 
       Class componentType = realValueType.getComponentType();
       Object[] valueArray = (Object[]) Array.newInstance(componentType, values.size());
-      int index = 0;
-      for (AnnotationValue annotationValue : values) {
-        valueArray[index] = getRealValue(annotationValue.getValue(), componentType);
-        index++;
+      try {
+        int index = 0;
+        for (AnnotationValue annotationValue : values) {
+          valueArray[index] = getRealValue(annotationValue.getValue(), componentType);
+          index++;
+        }
+      }
+      catch (MirroredTypeException e) {
+        //mirrored type exception means there's an attempt to load a type for a non-existing class.
+        if (Class.class.isAssignableFrom(componentType)) {
+          ArrayList<TypeMirror> typeMirrors = new ArrayList<TypeMirror>(values.size());
+          for (AnnotationValue annotationValue : values) {
+            typeMirrors.add((TypeMirror) annotationValue.getValue());
+          }
+          throw new MirroredTypesException(typeMirrors);
+        }
+        else {
+          throw e;
+        }
       }
       realValue = valueArray;
     }

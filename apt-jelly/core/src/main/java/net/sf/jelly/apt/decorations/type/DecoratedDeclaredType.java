@@ -63,6 +63,9 @@ public class DecoratedDeclaredType extends DecoratedReferenceType implements Dec
     if ((declaration != null) && (declaration.getQualifiedName().equals(className))) {
       return true;
     }
+    else if (declaration == null) {
+      return false;
+    }
 
     Collection<InterfaceType> superinterfaces = declaration.getSuperinterfaces();
     for (InterfaceType interfaceType : superinterfaces) {
