@@ -43,7 +43,11 @@ public class DecoratedClassType extends DecoratedDeclaredType implements ClassTy
   }
 
   public boolean isInstanceOf(String className) {
-    if (super.isInstanceOf(className)) {
+    if (getDeclaration() == null) {
+      //special case: if we can't find the declaration, there's some compile error.
+      return false;
+    }
+    else if (super.isInstanceOf(className)) {
       return true;
     }
 
