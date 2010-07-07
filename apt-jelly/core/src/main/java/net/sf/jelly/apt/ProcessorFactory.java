@@ -47,6 +47,11 @@ public abstract class ProcessorFactory implements AnnotationProcessorFactory {
    * Option to pass to APT specifying a URL of the template to invoke.
    */
   public static final String TEMPLATE_URL_OPTION = "-AtemplateURL";
+  
+  /**
+   * Option to pass to APT specifying a template in classpath
+  */
+  public static final String TEMPLATE_CLASSPATH_OPTION = "-AtemplateClasspath";
 
   /**
    * Option for specifying the declaration decorator.
@@ -65,6 +70,7 @@ public abstract class ProcessorFactory implements AnnotationProcessorFactory {
 
   private static final Collection<String> SUPPORTED_OPTIONS = Collections.unmodifiableCollection(Arrays.asList(TEMPLATE_FILE_OPTION,
                                                                                                                TEMPLATE_URL_OPTION,
+                                                                                                               TEMPLATE_CLASSPATH_OPTION,
                                                                                                                DECLARATION_DECORATOR_OPTION,
                                                                                                                TYPE_DECORATOR_OPTION,
                                                                                                                JAVADOC_TAG_HANDLER_OPTION));
@@ -136,7 +142,7 @@ public abstract class ProcessorFactory implements AnnotationProcessorFactory {
     URL url = getTemplateURL();
 
     if (url == null) {
-      throw new IllegalArgumentException(String.format("A valid template option (%s or %s) must be set.", TEMPLATE_FILE_OPTION, TEMPLATE_URL_OPTION));
+      throw new IllegalArgumentException(String.format("A valid template option (%s or %s or %s) must be set.", TEMPLATE_FILE_OPTION, TEMPLATE_URL_OPTION, TEMPLATE_CLASSPATH_OPTION));
     }
 
     return newProcessor(url);
@@ -183,6 +189,15 @@ public abstract class ProcessorFactory implements AnnotationProcessorFactory {
         }
       }
     }
+    
+    if (url == null) {
+      String urlOption = options.get(TEMPLATE_CLASSPATH_OPTION);
+
+      if (urlOption != null) {
+        url = this.getClass().getClassLoader().getResource(urlOption);
+      }
+    }
+    
     return url;
   }
 
@@ -194,3 +209,5 @@ public abstract class ProcessorFactory implements AnnotationProcessorFactory {
    */
   protected abstract AnnotationProcessor newProcessor(URL url);
 }
+
+ 	  	 
