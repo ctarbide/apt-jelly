@@ -1,0 +1,23 @@
+package net.sf.jelly.apt.samplesource.javadoc;
+
+/**
+ * @author Ryan Heaton
+ */
+public class DocumentedImpl implements DocumentedInterface {
+
+  public String mymethod(String param1, String param2) throws IllegalStateException {
+    return null;
+  }
+
+  /**
+   * Here is the docs for mymethod2.
+   *
+   * @param param3 docs for param3
+   * @param param4 docs for param4
+   * @return docs for retval
+   * @throws IllegalStateException docs for ise
+   */
+  public String mymethod2(String param3, String param4) throws IllegalStateException {
+    return null;
+  }
+}
