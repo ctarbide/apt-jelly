@@ -31,9 +31,10 @@ public class TestForAllPackagesTransform extends FreemarkerTestCase {
   public void testForAllPackages() throws Exception {
     runScript("testForAllPackages.fmt");
     Properties results = readOutputAsProperties("testForAllPackages.properties");
-    assertEquals(3, results.size());
+    assertEquals(4, results.size());
     assertNotNull(results.getProperty("net.sf.jelly.apt.samplesource.services"));
     assertNotNull(results.getProperty("net.sf.jelly.apt.samplesource.annotations"));
+    assertNotNull(results.getProperty("net.sf.jelly.apt.samplesource.javadoc"));
     assertNotNull(results.getProperty("net.sf.jelly.apt.samplesource"));
   }
 

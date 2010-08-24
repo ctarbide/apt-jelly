@@ -37,10 +37,10 @@ import net.sf.jelly.apt.util.JavaDocTagHandler;
  */
 public class JavaDoc extends HashMap<String, JavaDoc.JavaDocTagList> {
 
-  protected static final Pattern MARKUP_TAG_PATTERN = Pattern.compile("<([^ ]+)[^>]*>(.*?)</\\1>"); 
-  protected static final Pattern INLINE_TAG_PATTERN = Pattern.compile("\\{@([^\\} ]+) ?(.*?)\\}"); 
+  public static final Pattern MARKUP_TAG_PATTERN = Pattern.compile("<([^ ]+)[^>]*>(.*?)</\\1>"); 
+  public static final Pattern INLINE_TAG_PATTERN = Pattern.compile("\\{@([^\\} ]+) ?(.*?)\\}");
 
-  private String value;
+  protected String value;
 
   public JavaDoc() {
     this(null);
@@ -51,6 +51,10 @@ public class JavaDoc extends HashMap<String, JavaDoc.JavaDocTagList> {
   }
 
   public JavaDoc(String docComment, JavaDocTagHandler tagHandler) {
+    init(docComment, tagHandler);
+  }
+
+  protected void init(String docComment, JavaDocTagHandler tagHandler) {
     if (docComment == null) {
       value = "";
     }
@@ -96,26 +100,31 @@ public class JavaDoc extends HashMap<String, JavaDoc.JavaDocTagList> {
       }
     }
 
-    if (tagHandler != null) {
-      this.value = handleAllTags(this.value, tagHandler);
+    if (doTagHandling(tagHandler)) {
+      this.value = handleAllTags(null, this.value, tagHandler);
       for (Map.Entry<String, JavaDocTagList> entry : entrySet()) {
         JavaDocTagList tagValues = entry.getValue();
         for (int i = 0; i < tagValues.size(); i++) {
           String value = tagValues.get(i);
-          tagValues.set(i, handleAllTags(value, tagHandler));
+          tagValues.set(i, handleAllTags(entry.getKey(), value, tagHandler));
         }
       }
     }
   }
 
+  protected boolean doTagHandling(JavaDocTagHandler tagHandler) {
+    return tagHandler != null;
+  }
+
   /**
    * Handles all the tags with the given handler.
    *
+   * @param tag The tag name
    * @param value The value.
    * @param handler The handler.
    * @return The replacement value.
    */
-  protected String handleAllTags(String value, JavaDocTagHandler handler) {
+  protected String handleAllTags(String tag, String value, JavaDocTagHandler handler) {
     //first pass through the inline tags...
     StringBuilder builder = new StringBuilder();
 
@@ -126,7 +135,7 @@ public class JavaDoc extends HashMap<String, JavaDoc.JavaDocTagList> {
       Object replacement = handler.onInlineTag(matcher.group(1), matcher.group(2));
       if (replacement != null) {
         if (replacement instanceof JavaDocTagHandler.TextToBeHandled) {
-          replacement = handleAllTags(String.valueOf(replacement), handler);
+          replacement = handleAllTags(tag, String.valueOf(replacement), handler);
         }
         builder.append(replacement);
       }
@@ -147,7 +156,7 @@ public class JavaDoc extends HashMap<String, JavaDoc.JavaDocTagList> {
       Object replacement = handler.onMarkupTag(matcher.group(1), matcher.group(2));
       if (replacement != null) {
         if (replacement instanceof JavaDocTagHandler.TextToBeHandled) {
-          replacement = handleAllTags(String.valueOf(replacement), handler);
+          replacement = handleAllTags(tag, String.valueOf(replacement), handler);
         }
         builder.append(replacement);
       }

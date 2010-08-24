@@ -34,8 +34,8 @@ import java.util.HashMap;
  */
 public class DecoratedExecutableDeclaration extends DecoratedMemberDeclaration implements ExecutableDeclaration {
 
-  private HashMap<String, String> throwsComments;
-  private HashMap<String, String> paramsComments;
+  protected HashMap<String, String> throwsComments;
+  protected HashMap<String, String> paramsComments;
 
   public DecoratedExecutableDeclaration(ExecutableDeclaration delegate) {
     super(delegate);

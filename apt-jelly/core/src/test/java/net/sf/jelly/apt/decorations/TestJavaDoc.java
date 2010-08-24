@@ -50,18 +50,18 @@ public class TestJavaDoc extends TestCase {
    */
   public void testTagHandling() throws Exception {
     JavaDoc javaDoc = new JavaDoc();
-    String value = javaDoc.handleAllTags("some text {@link with a link} and <b>some markup <i>with other tags</i> in it.</b><br/>", new NoOpTagHandler());
+    String value = javaDoc.handleAllTags(null, "some text {@link with a link} and <b>some markup <i>with other tags</i> in it.</b><br/>", new NoOpTagHandler());
     assertEquals("some text {@link with a link} and <b>some markup <i>with other tags</i> in it.</b><br/>", value);
-    value = javaDoc.handleAllTags("some text {@link with a link} and <b>some markup <i>with other tags</i> in it.</b><br/>", new BasicInlineTagStrippingHandler());
+    value = javaDoc.handleAllTags(null, "some text {@link with a link} and <b>some markup <i>with other tags</i> in it.</b><br/>", new BasicInlineTagStrippingHandler());
     assertEquals("some text with a link and <b>some markup <i>with other tags</i> in it.</b><br/>", value);
-    value = javaDoc.handleAllTags("some text {@link with a link} and <b and=\"attributes\" such=\"as\">some markup <i>with other tags</i> in it.</b><br/>", new BasicInlineTagStrippingHandler() {
+    value = javaDoc.handleAllTags(null, "some text {@link with a link} and <b and=\"attributes\" such=\"as\">some markup <i>with other tags</i> in it.</b><br/>", new BasicInlineTagStrippingHandler() {
       @Override
       public String onMarkupTag(String tagName, String tagBody) {
         return tagBody;
       }
     });
     assertEquals("some text with a link and some markup <i>with other tags</i> in it.<br/>", value);
-    value = javaDoc.handleAllTags("some text {@link with a link} and <b>some markup <i>with other tags</i> in it.</b><br/>", new BasicInlineTagStrippingHandler() {
+    value = javaDoc.handleAllTags(null, "some text {@link with a link} and <b>some markup <i>with other tags</i> in it.</b><br/>", new BasicInlineTagStrippingHandler() {
       @Override
       public Object onMarkupTag(String tagName, final String tagBody) {
         return new TextToBeHandled() {

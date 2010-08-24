@@ -1,0 +1,25 @@
+  <@file name="testInheritedMethodDocs.properties">
+    <@forAllTypes var="type">
+      <#if type.qualifiedName="net.sf.jelly.apt.samplesource.javadoc.DocumentedImpl" || type.qualifiedName="net.sf.jelly.apt.samplesource.javadoc.DocumentedExt">
+${type.qualifiedName}.javadoc=${type.javaDoc}
+${type.qualifiedName}.javadoc.author=${type.javaDoc.author}
+
+        <@forAllMethods var="method" returnTypeVar="returnType">
+${type.qualifiedName}.methods.${method.simpleName}=visited
+${type.qualifiedName}.methods.${method.simpleName}.javadoc=${method.javaDoc!""}
+${type.qualifiedName}.methods.${method.simpleName}.returnType.javaDoc=${returnType.docComment!""}
+
+          <@forAllParameters var="param" indexVar="paramIndex">
+${type.qualifiedName}.methods.${method.simpleName}.param${paramIndex}.name=${param.simpleName!""}
+${type.qualifiedName}.methods.${method.simpleName}.param${paramIndex}.javadoc=${param.javaDoc!""}
+${type.qualifiedName}.methods.${method.simpleName}.param${paramIndex}.docComment=${param.docComment!""}
+          </@forAllParameters>
+
+          <@forAllThrownTypes var="exception" indexVar="exceptionIndex">
+${type.qualifiedName}.methods.${method.simpleName}.exception${exceptionIndex}.toString=${exception!""}
+${type.qualifiedName}.methods.${method.simpleName}.exception${exceptionIndex}.docComment=${exception.docComment!""}
+          </@forAllThrownTypes>
+        </@forAllMethods>
+      </#if>
+    </@forAllTypes>
+  </@file>
