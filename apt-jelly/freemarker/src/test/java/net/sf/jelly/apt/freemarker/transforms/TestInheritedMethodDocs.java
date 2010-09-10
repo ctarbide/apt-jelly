@@ -39,10 +39,16 @@ public class TestInheritedMethodDocs extends FreemarkerTestCase {
     assertEquals("docs for param4", results.getProperty("net.sf.jelly.apt.samplesource.javadoc.DocumentedExt.methods.mymethod2.param1.javadoc"));
     assertEquals("docs for ise", results.getProperty("net.sf.jelly.apt.samplesource.javadoc.DocumentedExt.methods.mymethod2.exception0.docComment"));
 
-    assertEquals("", results.getProperty("net.sf.jelly.apt.samplesource.javadoc.DocumentedExt.methods.mymethod3.javadoc"));
-    assertEquals("", results.getProperty("net.sf.jelly.apt.samplesource.javadoc.DocumentedExt.methods.mymethod3.returnType.javaDoc"));
-    assertEquals("", results.getProperty("net.sf.jelly.apt.samplesource.javadoc.DocumentedExt.methods.mymethod3.param0.javadoc"));
-    assertEquals("", results.getProperty("net.sf.jelly.apt.samplesource.javadoc.DocumentedExt.methods.mymethod3.param1.javadoc"));
-    assertEquals("", results.getProperty("net.sf.jelly.apt.samplesource.javadoc.DocumentedExt.methods.mymethod3.exception0.docComment"));
+    assertEquals("Here is the docs for mymethod3.", results.getProperty("net.sf.jelly.apt.samplesource.javadoc.DocumentedExt.methods.mymethod3.javadoc"));
+    assertEquals("docs for retval", results.getProperty("net.sf.jelly.apt.samplesource.javadoc.DocumentedExt.methods.mymethod3.returnType.javaDoc"));
+    assertEquals("docs for param5", results.getProperty("net.sf.jelly.apt.samplesource.javadoc.DocumentedExt.methods.mymethod3.param0.javadoc"));
+    assertEquals("docs for param6", results.getProperty("net.sf.jelly.apt.samplesource.javadoc.DocumentedExt.methods.mymethod3.param1.javadoc"));
+    assertEquals("docs for ise", results.getProperty("net.sf.jelly.apt.samplesource.javadoc.DocumentedExt.methods.mymethod3.exception0.docComment"));
+
+    assertEquals("", results.getProperty("net.sf.jelly.apt.samplesource.javadoc.DocumentedExt.methods.mymethod4.javadoc"));
+    assertEquals("", results.getProperty("net.sf.jelly.apt.samplesource.javadoc.DocumentedExt.methods.mymethod4.returnType.javaDoc"));
+    assertEquals("", results.getProperty("net.sf.jelly.apt.samplesource.javadoc.DocumentedExt.methods.mymethod4.param0.javadoc"));
+    assertEquals("", results.getProperty("net.sf.jelly.apt.samplesource.javadoc.DocumentedExt.methods.mymethod4.param1.javadoc"));
+    assertEquals("", results.getProperty("net.sf.jelly.apt.samplesource.javadoc.DocumentedExt.methods.mymethod4.exception0.docComment"));
   }
 }
