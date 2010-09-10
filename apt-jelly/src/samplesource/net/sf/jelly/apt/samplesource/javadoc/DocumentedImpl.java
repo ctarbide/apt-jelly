@@ -20,4 +20,16 @@ public class DocumentedImpl implements DocumentedInterface {
   public String mymethod2(String param3, String param4) throws IllegalStateException {
     return null;
   }
+
+  /**
+   * Here is the docs for mymethod3.
+   *
+   * @param param5 docs for param5
+   * @param param6 docs for param6
+   * @return docs for retval
+   * @throws IllegalStateException docs for ise
+   */
+  public String mymethod3(String param5, String param6) throws IllegalStateException {
+    return null;
+  }
 }

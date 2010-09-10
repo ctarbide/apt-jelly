@@ -15,7 +15,14 @@ public class DocumentedExt extends DocumentedImpl {
     return super.mymethod2(param3, param4);
   }
 
+  /**
+   * {@inheritDoc}
+   */
   public String mymethod3(String param5, String param6) throws IllegalStateException {
+    return null;
+  }
+
+  public String mymethod4(String param7, String param8) throws IllegalStateException {
     return null;
   }
 }
