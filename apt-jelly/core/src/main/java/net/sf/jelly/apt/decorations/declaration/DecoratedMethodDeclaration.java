@@ -44,7 +44,7 @@ import java.util.regex.Pattern;
  */
 public class DecoratedMethodDeclaration extends DecoratedExecutableDeclaration implements MethodDeclaration {
 
-  public static final Pattern INHERITDOC_PATTERN = Pattern.compile("\\{@inheritDoc.*?\\}");
+  public static final Pattern INHERITDOC_PATTERN = Pattern.compile("^[ \\t]*\\{@inheritDoc.*?\\}[ \\t]*");
 
   public DecoratedMethodDeclaration(MethodDeclaration delegate) {
     super(delegate);
@@ -52,19 +52,22 @@ public class DecoratedMethodDeclaration extends DecoratedExecutableDeclaration i
 
   @Override
   protected JavaDoc constructJavaDoc(String docComment, final JavaDocTagHandler handler) {
-    if (docComment == null || "".equals(docComment.trim()) || INHERITDOC_PATTERN.matcher(docComment.trim()).matches()) {
-      docComment = findInheritedDocComment();
+    if (docComment == null || "".equals(docComment.trim()) || INHERITDOC_PATTERN.matcher(docComment).find()) {
+      if (docComment == null) {
+        docComment = "";
+      }
+      docComment = replaceDocInheritance(docComment);
     }
 
     return super.constructJavaDoc(docComment, handler);
   }
 
-  private String findInheritedDocComment() {
-    return findInheritedDocComment(new TreeSet<String>(), ((MethodDeclaration) getDelegate()).getDeclaringType());
+  private String replaceDocInheritance(String currentComment) {
+    return replaceDocInheritance(new TreeSet<String>(), currentComment, ((MethodDeclaration) getDelegate()).getDeclaringType());
   }
 
-  private String findInheritedDocComment(Set<String> visitedDecls, TypeDeclaration declaringType) {
-    if (declaringType != null) {
+  private String replaceDocInheritance(Set<String> visitedDecls, String currentComment, TypeDeclaration declaringType) {
+    if (declaringType != null && commentNeedsReplacement(currentComment)) {
       Declarations declarations = Context.getCurrentEnvironment().getDeclarationUtils();
       Collection<InterfaceType> superIfaces = declaringType.getSuperinterfaces();
       if (superIfaces != null) {
@@ -86,11 +89,10 @@ public class DecoratedMethodDeclaration extends DecoratedExecutableDeclaration i
               }
 
               if (declarations.overrides(decl1, decl2)) {
-                String docComment = decl2.getDocComment();
-                if (docComment == null || "".equals(docComment.trim()) || INHERITDOC_PATTERN.matcher(docComment.trim()).matches()) {
-                  continue;
+                currentComment = doReplace(currentComment, decl2.getDocComment());
+                if (!commentNeedsReplacement(currentComment)) {
+                  return currentComment;
                 }
-                return docComment;
               }
             }
             decls.add(decl);
@@ -98,9 +100,9 @@ public class DecoratedMethodDeclaration extends DecoratedExecutableDeclaration i
         }
 
         for (TypeDeclaration decl : decls) {
-          String docComment = findInheritedDocComment(visitedDecls, decl);
-          if (docComment != null) {
-            return docComment;
+          currentComment = replaceDocInheritance(visitedDecls, currentComment, decl);
+          if (!commentNeedsReplacement(currentComment)) {
+            return currentComment;
           }
         }
       }
@@ -127,21 +129,40 @@ public class DecoratedMethodDeclaration extends DecoratedExecutableDeclaration i
               }
 
               if (declarations.overrides(decl1, decl2)) {
-                String docComment = methodDeclaration.getDocComment();
-                if (docComment == null || "".equals(docComment.trim()) || INHERITDOC_PATTERN.matcher(docComment.trim()).matches()) {
-                  continue;
+                currentComment = doReplace(currentComment, decl2.getDocComment());
+                if (!commentNeedsReplacement(currentComment)) {
+                  return currentComment;
                 }
-                return docComment;
               }
             }
 
-            return findInheritedDocComment(visitedDecls, decl);
+            currentComment = replaceDocInheritance(visitedDecls, currentComment, decl);
+            if (!commentNeedsReplacement(currentComment)) {
+              return currentComment;
+            }
           }
         }
       }
     }
 
-    return null;
+    return currentComment;
+  }
+
+  private String doReplace(String currentComment, String replacement) {
+    if (replacement == null) {
+      replacement = "";
+    }
+
+    if ("".equals(currentComment)) {
+      return replacement.trim();
+    }
+    else {
+      return INHERITDOC_PATTERN.matcher(currentComment).replaceAll(replacement);
+    }
+  }
+
+  protected boolean commentNeedsReplacement(String currentComment) {
+    return (currentComment == null || "".equals(currentComment.trim()) || INHERITDOC_PATTERN.matcher(currentComment).find());
   }
 
   public TypeMirror getReturnType() {
