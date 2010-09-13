@@ -17,6 +17,8 @@ public class DocumentedExt extends DocumentedImpl {
 
   /**
    * {@inheritDoc}
+   *
+   * @see somethingelse
    */
   public String mymethod3(String param5, String param6) throws IllegalStateException {
     return null;
