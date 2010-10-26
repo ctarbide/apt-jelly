@@ -4,7 +4,7 @@
   <groupId>net.sf.apt-jelly</groupId>
   <artifactId>apt-jelly-parent</artifactId>
   <packaging>pom</packaging>
-  <version>2.13-SNAPSHOT</version>
+  <version>2.13</version>
   <name>APT-Jelly - Parent</name>
   <url>http://apt-jelly.sf.net/</url>
   <description>The apt-jelly is a source code artifact generation tool.</description>

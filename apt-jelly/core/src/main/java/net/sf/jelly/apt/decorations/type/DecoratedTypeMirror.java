@@ -109,6 +109,10 @@ public class DecoratedTypeMirror implements TypeMirror {
     return false;
   }
 
+  public TypeMirror getDelegate() {
+    return delegate;
+  }
+
   public String getDocComment() {
     return docComment;
   }
