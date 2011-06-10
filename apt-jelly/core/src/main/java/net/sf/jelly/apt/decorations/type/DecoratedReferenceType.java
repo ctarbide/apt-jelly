@@ -34,4 +34,9 @@ public class DecoratedReferenceType extends DecoratedTypeMirror implements Refer
   public void accept(TypeVisitor v) {
     v.visitReferenceType(this);
   }
+
+  @Override
+  public boolean isInstanceOf(String className) {
+    return super.isInstanceOf(className) || Object.class.getName().equals(className);
+  }
 }

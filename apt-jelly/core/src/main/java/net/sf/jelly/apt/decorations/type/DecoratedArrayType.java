@@ -43,6 +43,10 @@ public class DecoratedArrayType extends DecoratedReferenceType implements ArrayT
 
   @Override
   public boolean isInstanceOf(String className) {
+    if (super.isInstanceOf(className)) {
+      return true;
+    }
+
     className = className.trim();
     if (className.endsWith("]")) {
       className = className.substring(0, className.length() - 1).trim();

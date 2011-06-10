@@ -59,6 +59,10 @@ public class DecoratedDeclaredType extends DecoratedReferenceType implements Dec
   }
 
   public boolean isInstanceOf(String className) {
+    if (super.isInstanceOf(className)) {
+      return true;
+    }
+    
     DecoratedTypeDeclaration declaration = (DecoratedTypeDeclaration) getDeclaration();
     if ((declaration != null) && (declaration.getQualifiedName().equals(className))) {
       return true;
