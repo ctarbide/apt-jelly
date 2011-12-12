@@ -174,7 +174,7 @@ public class DecoratedMethodDeclaration extends DecoratedExecutableDeclaration i
   }
 
   public boolean isGetter() {
-    return (getSimpleName().startsWith("get") || isIs());
+    return ((getSimpleName().startsWith("get") || isIs()) && getParameters().isEmpty());
   }
 
   private boolean isIs() {
@@ -183,7 +183,7 @@ public class DecoratedMethodDeclaration extends DecoratedExecutableDeclaration i
   }
 
   public boolean isSetter() {
-    return (getSimpleName().startsWith("set"));
+    return (getSimpleName().startsWith("set") && getParameters().size() == 1);
   }
 
   public String getPropertyName() {

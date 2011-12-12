@@ -24,6 +24,7 @@ import net.sf.jelly.apt.decorations.TypeMirrorDecorator;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * A decorated type declaration provides:
@@ -90,10 +91,14 @@ public class DecoratedTypeDeclaration extends DecoratedMemberDeclaration impleme
     //now iterate through the getters and setters and pair them up....
     for (String propertyName : getters.keySet()) {
       DecoratedMethodDeclaration getter = getters.get(propertyName);
-      DecoratedMethodDeclaration setter = setters.get(propertyName);
+      DecoratedMethodDeclaration setter = setters.remove(propertyName);
       if (isPaired(getter, setter)) {
         properties.add(new PropertyDeclaration(getter, setter));
       }
+    }
+
+    for (DecoratedMethodDeclaration setter : setters.values()) {
+      properties.add(new PropertyDeclaration(null, setter));
     }
 
     return properties;

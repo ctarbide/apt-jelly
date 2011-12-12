@@ -35,6 +35,8 @@ public class PropertyDeclaration extends DecoratedMethodDeclaration {
 
   private final DecoratedMethodDeclaration setter;
   private final DecoratedMethodDeclaration getter;
+  private final String propertyName;
+  private final TypeMirror propertyType;
 
   /**
    * A property declaration.
@@ -44,17 +46,38 @@ public class PropertyDeclaration extends DecoratedMethodDeclaration {
    * @throws IllegalStateException If the getter and setter don't pair up.
    */
   public PropertyDeclaration(DecoratedMethodDeclaration getter, DecoratedMethodDeclaration setter) {
-    super(getter);
-    TypeMirror propertyType = getReturnType();
+    super(getter == null ? setter : getter);
 
     this.getter = getter;
     this.setter = setter;
+    this.propertyName = getter != null ? getter.getPropertyName() : setter.getPropertyName();
+
+    TypeMirror propertyType = null;
+    if (getter != null) {
+      propertyType = getter.getReturnType();
+    }
+
     if (setter != null) {
       Collection<ParameterDeclaration> parameters = setter.getParameters();
-      if ((parameters == null) || (parameters.size() != 1) || (!propertyType.equals(parameters.iterator().next().getType()))) {
+      if ((parameters == null) || (parameters.size() != 1)) {
         throw new IllegalStateException(this.setter.getPosition() + ": invalid setter for " + propertyType);
       }
+      else {
+        TypeMirror setterType = parameters.iterator().next().getType();
+        if (propertyType == null) {
+          propertyType = setterType;
+        }
+        else if (!propertyType.equals(setterType)) {
+          throw new IllegalStateException(this.setter.getPosition() + ": invalid setter for getter of type " + propertyType);
+        }
+      }
     }
+
+    if (propertyType == null) {
+      throw new IllegalStateException("Unable to determine property type for property" + this.propertyName + ".");
+    }
+    
+    this.propertyType = propertyType;
   }
 
   /**
@@ -63,7 +86,7 @@ public class PropertyDeclaration extends DecoratedMethodDeclaration {
    * @return The type of this property.
    */
   public TypeMirror getPropertyType() {
-    return getReturnType();
+    return this.propertyType;
   }
 
   /**
@@ -73,7 +96,7 @@ public class PropertyDeclaration extends DecoratedMethodDeclaration {
    */
   @Override
   public String getSimpleName() {
-    return getter.getPropertyName();
+    return this.propertyName;
   }
 
   /**
@@ -82,7 +105,7 @@ public class PropertyDeclaration extends DecoratedMethodDeclaration {
    */
   @Override
   public String getPropertyName() {
-    return getter.getPropertyName();
+    return this.propertyName;
   }
 
   /**
@@ -113,6 +136,15 @@ public class PropertyDeclaration extends DecoratedMethodDeclaration {
   }
 
   /**
+   * Whether this property is write-only.
+   *
+   * @return Whether this property is write-only.
+   */
+  public boolean isWriteOnly() {
+    return getGetter() == null;
+  }
+
+  /**
    * Gets the annotations on the setter and the getter.  If the annotation is on both the setter and the getter, only the one on the getter will
    * be included.
    *
@@ -122,11 +154,13 @@ public class PropertyDeclaration extends DecoratedMethodDeclaration {
   public Map<String, AnnotationMirror> getAnnotations() {
     Map<String, AnnotationMirror> annotations = new HashMap<String, AnnotationMirror>();
 
-    if (!isReadOnly()) {
-      annotations.putAll(getSetter().getAnnotations());
+    if (getGetter() != null) {
+      annotations.putAll(getGetter().getAnnotations());
     }
 
-    annotations.putAll(getGetter().getAnnotations());
+    if (getSetter() != null) {
+      annotations.putAll(getSetter().getAnnotations());
+    }
 
     return annotations;
   }
@@ -150,7 +184,11 @@ public class PropertyDeclaration extends DecoratedMethodDeclaration {
    */
   @Override
   public <A extends Annotation> A getAnnotation(Class<A> annotationType) {
-    A annotation = super.getAnnotation(annotationType);
+    A annotation = null;
+
+    if (this.getter != null) {
+      annotation = this.getter.getAnnotation(annotationType);
+    }
 
     if ((annotation == null) && (this.setter != null)) {
       annotation = this.setter.getAnnotation(annotationType);
@@ -159,4 +197,23 @@ public class PropertyDeclaration extends DecoratedMethodDeclaration {
     return annotation;
   }
 
+  @Override
+  public TypeMirror getReturnType() {
+    return getPropertyType();
+  }
+
+  @Override
+  public boolean isGetter() {
+    return false;
+  }
+
+  @Override
+  public boolean isSetter() {
+    return false;
+  }
+
+  @Override
+  public boolean isVarArgs() {
+    return false;
+  }
 }
