@@ -21,7 +21,7 @@
           <systemProperties>
             <property>
               <name>apt.core.test.src.dir</name>
-              <value>${basedir}/src/test/samples</value>
+              <value>${project.basedir}/src/test/samples</value>
             </property>
           </systemProperties>
           <excludes>
@@ -39,6 +39,20 @@
         <property>
           <name>java.vendor</name>
           <value>Sun Microsystems Inc.</value>
+        </property>
+      </activation>
+      <dependencies>
+        <dependency>
+          <groupId>com.sun</groupId>
+          <artifactId>tools</artifactId>
+        </dependency>
+      </dependencies>
+    </profile>
+    <profile>
+      <id>jdk6-home</id>
+      <activation>
+        <property>
+          <name>env.JDK6_HOME</name>
         </property>
       </activation>
       <dependencies>

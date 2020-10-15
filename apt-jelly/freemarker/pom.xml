@@ -20,7 +20,7 @@
           <systemProperties>
             <property>
               <name>apt.test.src.dir</name>
-              <value>${basedir}/src/test/sample</value>
+              <value>${project.basedir}/../src/samplesource</value>
             </property>
           </systemProperties>
           <excludes>
